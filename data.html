@@ -364,8 +364,55 @@
               
               <div>
                 
-  <section id="data-engineering">
-<h1>Data engineering<a class="headerlink" href="#data-engineering" title="Permalink to this headline">#</a></h1>
+  <section id="module-hypercoil.data">
+<span id="data-engineering"></span><h1>Data engineering<a class="headerlink" href="#module-hypercoil.data" title="Permalink to this headline">#</a></h1>
+<p>Data interfaces and data engineering workflows.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">data</span></code> submodule contains functionality for efficiently interacting with
+and ingesting data into the differentiable pipeline. The recommended data
+ingestion workflow proceeds as follows:</p>
+<img alt="_images/ingestion.svg" src="_images/ingestion.svg" /><ul class="simple">
+<li><p>Creating a <code class="docutils literal notranslate"><span class="pre">pybids</span></code>-inspired representation of a dataset’s layout on
+disk. This process uses a data grabber to locate files whose names match an
+expected pattern set and then stores their paths in a layout object.</p></li>
+<li><p>Mapping each data observation to a <code class="docutils literal notranslate"><span class="pre">DataReference</span></code> object. Each reference
+comprises a set of variables (corresponding to feature groups of the data
+observation, e.g. BOLD or confound time series).</p></li>
+<li><p>Transforming data references to tensors. Each of the variables that
+comprise a <code class="docutils literal notranslate"><span class="pre">DataReference</span></code> is equipped with a set of <code class="docutils literal notranslate"><span class="pre">torchvision</span></code>-
+inspired transformations that
+form an instruction set for mapping the filesystem path retrieved in the
+dataset layout to a tensor block.</p></li>
+<li><p>Saving the transformed references in a <code class="docutils literal notranslate"><span class="pre">.tar</span></code> archive for compatibility
+with the <code class="docutils literal notranslate"><span class="pre">webdataset</span></code> package. This process includes creating dataset
+splits (which can be later used for defining training, validation, and test
+sets) and <code class="docutils literal notranslate"><span class="pre">.tar</span></code>-formatted shards.</p></li>
+</ul>
+<p>In practice, the API is designed to combine the first three steps into a
+single function call when using a BIDS- or HCP-formatted dataset. In these
+cases, using the
+<a class="reference internal" href="api/hypercoil.data.bids.fmriprep_references.html"><span class="doc">fmriprep_references</span></a> and
+<a class="reference internal" href="api/hypercoil.data.hcp.hcp_references.html"><span class="doc">hcp_references</span></a> convenience
+functions, respectively, is sufficient to implement the first three workflow
+stages. The final stage is handled by passing the references thereby retrieved
+to the
+<span class="xref std std-doc">make_wds</span> function.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The data engineering workflow remains fairly brittle and unstable at this
+time. Many atoms are currently untested, and test coverage is overall
+poor.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The data grabbing and <code class="docutils literal notranslate"><span class="pre">webdataset</span></code> sharding procedures can be quite slow
+when datasets are large and disk read/write speed is limited. The workflow
+is likely suboptimal; we would welcome ideas for improvement or
+contributions. Parallelisation is not implemented, but the rate-limiting
+factor is likely the disk read/write head, so it’s not clear how helpful
+it would actually be. In our experience it can take close to an hour to
+initialise the layout for a large dataset, and upwards of a day to write
+a large webdataset to a slow hard disk.</p>
+</div>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>

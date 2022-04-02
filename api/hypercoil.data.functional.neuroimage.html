@@ -366,6 +366,42 @@
                 
   <section id="neuroimaging-datasets">
 <h1>Neuroimaging datasets<a class="headerlink" href="#neuroimaging-datasets" title="Permalink to this headline">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.read_neuro_image">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">read_neuro_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.read_neuro_image" title="Permalink to this definition">#</a></dt>
+<dd><p>Load neuroimaging data from the specified path. Any additional arguments
+are forwarded to <cite>nibabel.load</cite>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.nifti_header">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">nifti_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.nifti_header" title="Permalink to this definition">#</a></dt>
+<dd><p>Load some of the most essential (TM) metadata from a NIfTI file’s header
+into a python dictionary. Right now, this means the TR.</p>
+<p>Note that this operation is not smart enough to figure out the units if
+they’re not in the header. It will also assume that the fourth dimension is
+time when setting repetition time. If it’s not, you probably don’t need
+a repetition time anyway.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>metadata</strong><span class="classifier">dict</span></dt><dd><p>Python dictionary containing all metadata in the NIfTI header.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.cwb_cifti_header">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">cwb_cifti_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.cwb_cifti_header" title="Permalink to this definition">#</a></dt>
+<dd><p>Nibabel is rather slow when it comes to parsing CIfTI data. To limit the
+number of times we have to do this, we can use connectome workbench if it’s
+available to obtain header information from a CIfTI file. This isn’t as
+generalisable as <cite>nifti_header</cite>, but it should be more efficient for large
+CIfTI datasets so long as connectome workbench is available.</p>
+</dd></dl>
+
 </section>
 
 

@@ -366,6 +366,77 @@
                 
   <section id="general-use">
 <h1>General use<a class="headerlink" href="#general-use" title="Permalink to this headline">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.identity">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.identity" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the input.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.get_path_from_var">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">get_path_from_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.get_path_from_var" title="Permalink to this definition">#</a></dt>
+<dd><p>Ensure that the provided variable is a string representing a path on the
+filesystem.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.apply_transform">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">apply_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.apply_transform" title="Permalink to this definition">#</a></dt>
+<dd><p>Apply a transformation to each value in an iterable.</p>
+<p>If the iterable is a dictionary, each value is transformed; if it is a
+list, each entry is transformed. The transformation is not recursive; for
+a recursive transformation on a list (potentially of lists), use
+<cite>transform_block</cite>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.apply_to_select">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">apply_to_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.apply_to_select" title="Permalink to this definition">#</a></dt>
+<dd><p>Apply a transformation to selected values in an iterable.</p>
+<p>If the iterable is a dictionary, each key-specified value is transformed;
+if it is a list, each index-specified entry is transformed.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.transform_block">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">transform_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.transform_block" title="Permalink to this definition">#</a></dt>
+<dd><p>Apply a transformation to each entry in a list block. Only the base
+entries are transformed.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.unzip_blocked_dict">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">unzip_blocked_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.unzip_blocked_dict" title="Permalink to this definition">#</a></dt>
+<dd><p>Change a list block of dictionaries to a dictionary of list blocks.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.transpose">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">transpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.transpose" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.vector_encode">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">vector_encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.vector_encode" title="Permalink to this definition">#</a></dt>
+<dd><p>Encode a categorical variable as a vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">object</span></dt><dd><p>Object that can be cast to a Tensor. Each entry represents the value
+of a categorical variable.</p>
+</dd>
+<dt><strong>encoding</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor whose indices return an encoding for each level of the
+categorical variable. If this is an identity matrix whose dimension
+equals the number of levels of the categorical variable, then this
+represents a one-hot endoding. Note that because it can be expensive
+to store a large matrix, this is not a recommended way to create
+one-hot encodings for categorical variables with many levels.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
