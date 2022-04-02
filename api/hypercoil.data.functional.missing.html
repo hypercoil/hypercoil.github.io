@@ -366,6 +366,51 @@
                 
   <section id="missing-values">
 <h1>Missing values<a class="headerlink" href="#missing-values" title="Permalink to this headline">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.nanfill">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">nanfill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.nanfill" title="Permalink to this definition">#</a></dt>
+<dd><p>Populate all missing or invalid values in a tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">Tensor or np.ndarray</span></dt><dd><p>Tensor that potentially contains missing or invalid data denoted as
+NaN.</p>
+</dd>
+<dt><strong>fill</strong><span class="classifier">float, None, or Tensor/ndarray (default None)</span></dt><dd><p>Value(s) used to replace NaN entries in the input tensor. If this is
+None, then this operation does nothing. If this is a tensor, it must
+be broadcastable against the missing part of the input tensor. If this
+is the string ‘mean’, then every NaN entry is replaced with the mean
+of non-NaN entries.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">Tensor or np.ndarray</span></dt><dd><p>Input tensor with missing or invalid values populated.</p>
+</dd>
+<dt><strong>nanmask</strong><span class="classifier">Tensor or np.ndarray</span></dt><dd><p>Boolean tensor indicating the cells where NaN entries were previously
+located (returned so that they can be restored later if desired).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.fillnan">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">fillnan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nanmask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.fillnan" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.extend_to_max_size">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">extend_to_max_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.extend_to_max_size" title="Permalink to this definition">#</a></dt>
+<dd><p>Extend all tensors in a list until their sizes are equal to the size
+of the largest tensor along each axis. Any new entries created via
+extension are marked with NaN to denote that they were missing from
+the input; they can be populated by chaining this with a call to
+<cite>nanfill</cite>.</p>
+</dd></dl>
+
 </section>
 
 

@@ -142,6 +142,66 @@
                 
   <section id="lightgrabber">
 <h1>LightGrabber<a class="headerlink" href="#lightgrabber" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.data.grabber.LightGrabber">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.data.grabber.</span></span><span class="sig-name descname"><span class="pre">LightGrabber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patterns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.grabber.LightGrabber" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">hypercoil.data.grabber.LightGrabberBase</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">hypercoil.data.grabber._IndexQueryMixin</span></code></p>
+<p class="rubric">Methods Summary</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.grabber.LightGrabber.find_files" title="hypercoil.data.grabber.LightGrabber.find_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_files</span></code></a>(pattern)</p></td>
+<td><p>Find files in the dataset directory (and any nested directories) that match a specified pattern.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.data.grabber.LightGrabber.get" title="hypercoil.data.grabber.LightGrabber.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a>(**filters)</p></td>
+<td><p>Find dataset objects that match the specified filters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.grabber.LightGrabber.getall" title="hypercoil.data.grabber.LightGrabber.getall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getall</span></code></a>(entity)</p></td>
+<td><p>Find all values that a particular data entity (e.g., an identifier) takes in the dataset files included in the layout.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.data.grabber.LightGrabber.find_files">
+<span class="sig-name descname"><span class="pre">find_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.grabber.LightGrabber.find_files" title="Permalink to this definition">#</a></dt>
+<dd><p>Find files in the dataset directory (and any nested directories) that
+match a specified pattern.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.data.grabber.LightGrabber.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.grabber.LightGrabber.get" title="Permalink to this definition">#</a></dt>
+<dd><p>Find dataset objects that match the specified filters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.data.grabber.LightGrabber.getall">
+<span class="sig-name descname"><span class="pre">getall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.grabber.LightGrabber.getall" title="Permalink to this definition">#</a></dt>
+<dd><p>Find all values that a particular data entity (e.g., an identifier)
+takes in the dataset files included in the layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>entity</strong><span class="classifier">str</span></dt><dd><p>Name of the entity (e.g., ‘subject’ or ‘run’) to enumerate.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list</dt><dd><p>List of all unique values that the specified entity assumes in the
+dataset.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 

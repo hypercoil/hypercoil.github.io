@@ -366,6 +366,30 @@
                 
   <section id="data-frames">
 <h1>Data frames<a class="headerlink" href="#data-frames" title="Permalink to this headline">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.get_col">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">get_col</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.get_col" title="Permalink to this definition">#</a></dt>
+<dd><p>Obtain the data or index column with the given label from a DataFrame.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.apply_model_specs">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">apply_model_specs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.apply_model_specs" title="Permalink to this definition">#</a></dt>
+<dd><p>Transform an input dataset according to a specified collection of models.</p>
+<p>Each model specification is used to select and transform a subset of data
+columns and thereby produce a new DataFrame containing the specified
+model. Metadata can optionally be provided to guide column selection; for
+some use cases, it might be compulsory. The output is a dictionary mapping
+each model’s name to its corresponding DataFrame.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.functional.read_data_frame">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">read_data_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\t'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.read_data_frame" title="Permalink to this definition">#</a></dt>
+<dd><p>Load tabular data from the specified path. Defaults to TSV. Any additional
+arguments are forwarded to <cite>pd.read_csv</cite>.</p>
+</dd></dl>
+
 </section>
 
 

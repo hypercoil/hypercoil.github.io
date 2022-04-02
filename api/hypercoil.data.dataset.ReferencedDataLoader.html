@@ -366,6 +366,34 @@
                 
   <section id="referenceddataloader">
 <h1>ReferencedDataLoader<a class="headerlink" href="#referenceddataloader" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.data.dataset.ReferencedDataLoader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.data.dataset.</span></span><span class="sig-name descname"><span class="pre">ReferencedDataLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.dataset.ReferencedDataLoader" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataloader.DataLoader</span></code></p>
+<p>Data loader for a <a class="reference internal" href="hypercoil.data.dataset.ReferencedDataset.html"><span class="doc">ReferencedDataset</span></a>.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.dataset.ReferencedDataLoader.set_depth" title="hypercoil.data.dataset.ReferencedDataLoader.set_depth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_depth</span></code></a>(depth)</p></td>
+<td><p>Adjust the dataset's sampling depth.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.data.dataset.ReferencedDataLoader.set_depth">
+<span class="sig-name descname"><span class="pre">set_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.dataset.ReferencedDataLoader.set_depth" title="Permalink to this definition">#</a></dt>
+<dd><p>Adjust the dataset’s sampling depth. If the dataset has nested
+references, then the depth corresponds to the level of nesting from
+which the data are sampled.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
