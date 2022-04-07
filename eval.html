@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>data: Data engineering &#8212; hypercoil prototype (unreleased) documentation</title>
+    <title>eval: Benchmarks and evaluation &#8212; hypercoil prototype (unreleased) documentation</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -32,8 +32,8 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="bids: BIDS interfaces" href="api/hypercoil.data.bids.html" />
-    <link rel="prev" title="API reference" href="modules.html" />
+    <link rel="next" title="functional: Functions and functionals" href="functional.html" />
+    <link rel="prev" title="engine: Differentiable engine" href="engine.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -107,8 +107,8 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="data.html">
    <code class="docutils literal notranslate">
     <span class="pre">
      data
@@ -116,7 +116,7 @@
    </code>
    : Data engineering
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
@@ -375,8 +375,8 @@
   <ul class="simple">
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="eval.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
    <code class="docutils literal notranslate">
     <span class="pre">
      eval
@@ -384,7 +384,7 @@
    </code>
    : Benchmarks and evaluation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
   <label for="toctree-checkbox-8">
    <i class="fas fa-chevron-down">
    </i>
@@ -700,145 +700,10 @@
               
               <div>
                 
-  <section id="module-hypercoil.data">
-<span id="data-data-engineering"></span><h1><code class="docutils literal notranslate"><span class="pre">data</span></code>: Data engineering<a class="headerlink" href="#module-hypercoil.data" title="Permalink to this headline">#</a></h1>
-<p>Data interfaces and data engineering workflows.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">data</span></code> submodule contains functionality for efficiently interacting with
-and ingesting data into the differentiable pipeline. The recommended data
-ingestion workflow proceeds as follows:</p>
-<img alt="_images/ingestion.svg" src="_images/ingestion.svg" /><ul class="simple">
-<li><p>Creating a <code class="docutils literal notranslate"><span class="pre">pybids</span></code>-inspired representation of a dataset’s layout on
-disk. This process uses a data grabber to locate files whose names match an
-expected pattern set and then stores their paths in a layout object.</p></li>
-<li><p>Mapping each data observation to a <code class="docutils literal notranslate"><span class="pre">DataReference</span></code> object. Each reference
-comprises a set of variables (corresponding to feature groups of the data
-observation, e.g. BOLD or confound time series).</p></li>
-<li><p>Transforming data references to tensors. Each of the variables that
-comprise a <code class="docutils literal notranslate"><span class="pre">DataReference</span></code> is equipped with a set of <code class="docutils literal notranslate"><span class="pre">torchvision</span></code>-
-inspired transformations that
-form an instruction set for mapping the filesystem path retrieved in the
-dataset layout to a tensor block.</p></li>
-<li><p>Saving the transformed references in a <code class="docutils literal notranslate"><span class="pre">.tar</span></code> archive for compatibility
-with the <code class="docutils literal notranslate"><span class="pre">webdataset</span></code> package. This process includes creating dataset
-splits (which can be later used for defining training, validation, and test
-sets) and <code class="docutils literal notranslate"><span class="pre">.tar</span></code>-formatted shards.</p></li>
-</ul>
-<p>In practice, the API is designed to combine the first three steps into a
-single function call when using a BIDS- or HCP-formatted dataset. In these
-cases, using the
-<a class="reference internal" href="api/hypercoil.data.bids.fmriprep_references.html"><span class="doc">fmriprep_references</span></a> and
-<a class="reference internal" href="api/hypercoil.data.hcp.hcp_references.html"><span class="doc">hcp_references</span></a> convenience
-functions, respectively, is sufficient to implement the first three workflow
-stages. The final stage is handled by passing the references thereby retrieved
-to the
-<span class="xref std std-doc">make_wds</span> function.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The data engineering workflow remains fairly brittle and unstable at this
-time. Many atoms are currently untested, and test coverage is overall
-poor.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The data grabbing and <code class="docutils literal notranslate"><span class="pre">webdataset</span></code> sharding procedures can be quite slow
-when datasets are large and disk read/write speed is limited. The workflow
-is likely suboptimal; we would welcome ideas for improvement or
-contributions. Parallelisation is not implemented, but the rate-limiting
-factor is likely the disk read/write head, so it’s not clear how helpful
-it would actually be. In our experience it can take close to an hour to
-initialise the layout for a large dataset, and upwards of a day to write
-a large webdataset to a slow hard disk.</p>
-</div>
+  <section id="module-hypercoil.eval">
+<span id="eval-benchmarks-and-evaluation"></span><h1><code class="docutils literal notranslate"><span class="pre">eval</span></code>: Benchmarks and evaluation<a class="headerlink" href="#module-hypercoil.eval" title="Permalink to this headline">#</a></h1>
+<p>Benchmarks and evaluation.</p>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.data.bids.html"><code class="docutils literal notranslate"><span class="pre">bids</span></code>: BIDS interfaces</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.bids.fmriprep_references.html"><code class="docutils literal notranslate"><span class="pre">fmriprep_references</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.bids.fMRIPrepDataset.html"><code class="docutils literal notranslate"><span class="pre">fMRIPrepDataset</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.bids.LightBIDSLayout.html"><code class="docutils literal notranslate"><span class="pre">LightBIDSLayout</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.bids.BIDSObjectFactory.html"><code class="docutils literal notranslate"><span class="pre">BIDSObjectFactory</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.bids.LightBIDSObject.html"><code class="docutils literal notranslate"><span class="pre">LightBIDSObject</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.data.collate.html"><code class="docutils literal notranslate"><span class="pre">collate</span></code>: Batch collation functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.data.dataref.html"><code class="docutils literal notranslate"><span class="pre">dataref</span></code>: Data references</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.dataref.DataReference.html"><code class="docutils literal notranslate"><span class="pre">DataReference</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.dataref.DataQuery.html"><code class="docutils literal notranslate"><span class="pre">DataQuery</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.dataref.data_references.html"><code class="docutils literal notranslate"><span class="pre">data_references</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.data.dataset.html"><code class="docutils literal notranslate"><span class="pre">dataset</span></code>: Referenced datasets</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.dataset.ReferencedDataset.html"><code class="docutils literal notranslate"><span class="pre">ReferencedDataset</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.dataset.ReferencedDataLoader.html"><code class="docutils literal notranslate"><span class="pre">ReferencedDataLoader</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.data.functional.html"><code class="docutils literal notranslate"><span class="pre">functional</span></code>: Data transform functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.functional.general.html">General use</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.general.html#identity"><code class="docutils literal notranslate"><span class="pre">identity</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.general.html#get-path-from-var"><code class="docutils literal notranslate"><span class="pre">get_path_from_var</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.general.html#apply-transform"><code class="docutils literal notranslate"><span class="pre">apply_transform</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.general.html#apply-to-select"><code class="docutils literal notranslate"><span class="pre">apply_to_select</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.general.html#transform-block"><code class="docutils literal notranslate"><span class="pre">transform_block</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.general.html#unzip-blocked-dict"><code class="docutils literal notranslate"><span class="pre">unzip_blocked_dict</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.general.html#transpose"><code class="docutils literal notranslate"><span class="pre">transpose</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.general.html#vector-encode"><code class="docutils literal notranslate"><span class="pre">vector_encode</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.functional.filesystem.html">I/O and filesystem</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.filesystem.html#read-data-frame"><code class="docutils literal notranslate"><span class="pre">read_data_frame</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.filesystem.html#read-neuro-image"><code class="docutils literal notranslate"><span class="pre">read_neuro_image</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.filesystem.html#read-json"><code class="docutils literal notranslate"><span class="pre">read_json</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.filesystem.html#change-extension"><code class="docutils literal notranslate"><span class="pre">change_extension</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.functional.tensor.html">Tensor casting and binding</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.tensor.html#to-tensor"><code class="docutils literal notranslate"><span class="pre">to_tensor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.tensor.html#to-named-tensor"><code class="docutils literal notranslate"><span class="pre">to_named_tensor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.tensor.html#consolidate-block"><code class="docutils literal notranslate"><span class="pre">consolidate_block</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.tensor.html#extend-to-size"><code class="docutils literal notranslate"><span class="pre">extend_to_size</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.tensor.html#extend-to-max-size"><code class="docutils literal notranslate"><span class="pre">extend_to_max_size</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.functional.dataframe.html">Data frames</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.dataframe.html#get-col"><code class="docutils literal notranslate"><span class="pre">get_col</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.dataframe.html#apply-model-specs"><code class="docutils literal notranslate"><span class="pre">apply_model_specs</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.dataframe.html#read-data-frame"><code class="docutils literal notranslate"><span class="pre">read_data_frame</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.functional.neuroimage.html">Neuroimaging datasets</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.neuroimage.html#read-neuro-image"><code class="docutils literal notranslate"><span class="pre">read_neuro_image</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.neuroimage.html#nifti-header"><code class="docutils literal notranslate"><span class="pre">nifti_header</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.neuroimage.html#cwb-cifti-header"><code class="docutils literal notranslate"><span class="pre">cwb_cifti_header</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.functional.metadata.html">Metadata</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.metadata.html#read-json"><code class="docutils literal notranslate"><span class="pre">read_json</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.metadata.html#dump-data"><code class="docutils literal notranslate"><span class="pre">dump_data</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.metadata.html#get-metadata-variable"><code class="docutils literal notranslate"><span class="pre">get_metadata_variable</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.functional.missing.html">Missing values</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.missing.html#nanfill"><code class="docutils literal notranslate"><span class="pre">nanfill</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.missing.html#fillnan"><code class="docutils literal notranslate"><span class="pre">fillnan</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.missing.html#extend-to-max-size"><code class="docutils literal notranslate"><span class="pre">extend_to_max_size</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.functional.timeseries.html">Time series</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.timeseries.html#polynomial-detrend"><code class="docutils literal notranslate"><span class="pre">polynomial_detrend</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.timeseries.html#standardise"><code class="docutils literal notranslate"><span class="pre">standardise</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.timeseries.html#normalise"><code class="docutils literal notranslate"><span class="pre">normalise</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.timeseries.html#window"><code class="docutils literal notranslate"><span class="pre">window</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.timeseries.html#random-window"><code class="docutils literal notranslate"><span class="pre">random_window</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.data.functional.timeseries.html#window-map"><code class="docutils literal notranslate"><span class="pre">window_map</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.data.hcp.html"><code class="docutils literal notranslate"><span class="pre">hcp</span></code>: HCP interfaces</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.data.hcp.hcp_references.html"><code class="docutils literal notranslate"><span class="pre">hcp_references</span></code></a></li>
-</ul>
-</li>
-</ul>
 </div>
 </section>
 
