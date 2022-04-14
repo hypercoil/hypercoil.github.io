@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tensor casting and binding &#8212; hypercoil prototype (unreleased) documentation</title>
+    <title>accumulate: Local gradient accumulation &#8212; hypercoil prototype (unreleased) documentation</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -32,8 +32,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Data frames" href="hypercoil.data.functional.dataframe.html" />
-    <link rel="prev" title="I/O and filesystem" href="hypercoil.data.functional.filesystem.html" />
+    <link rel="next" title="Accumulator" href="hypercoil.engine.accumulate.Accumulator.html" />
+    <link rel="prev" title="engine: Differentiable engine" href="../engine.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -107,7 +107,7 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../data.html">
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -116,12 +116,12 @@
    </code>
    : Data engineering
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="hypercoil.data.bids.html">
      <code class="docutils literal notranslate">
@@ -273,7 +273,7 @@
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 current active has-children">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="hypercoil.data.functional.html">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -282,12 +282,12 @@
      </code>
      : Data transform functions
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
     <label for="toctree-checkbox-5">
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul class="current">
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.data.functional.general.html">
        General use
@@ -298,8 +298,8 @@
        I/O and filesystem
       </a>
      </li>
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.data.functional.tensor.html">
        Tensor casting and binding
       </a>
      </li>
@@ -358,7 +358,7 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../engine.html">
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -367,14 +367,14 @@
    </code>
    : Differentiable engine
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
   <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.engine.accumulate.html">
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="current reference internal" href="#">
      <code class="docutils literal notranslate">
       <span class="pre">
        accumulate
@@ -382,7 +382,7 @@
      </code>
      : Local gradient accumulation
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
     <label for="toctree-checkbox-8">
      <i class="fas fa-chevron-down">
      </i>
@@ -704,59 +704,9 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage mt-5 pt-1 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
 
 <nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#to-tensor">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     to_tensor
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#to-named-tensor">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     to_named_tensor
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#consolidate-block">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     consolidate_block
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extend-to-size">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     extend_to_size
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extend-to-max-size">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     extend_to_max_size
-    </span>
-   </code>
-  </a>
- </li>
-</ul>
-
+    
 </nav>
               </div>
               
@@ -776,110 +726,71 @@
               
               <div>
                 
-  <section id="tensor-casting-and-binding">
-<h1>Tensor casting and binding<a class="headerlink" href="#tensor-casting-and-binding" title="Permalink to this headline">#</a></h1>
-<section id="to-tensor">
-<h2><code class="docutils literal notranslate"><span class="pre">to_tensor</span></code><a class="headerlink" href="#to-tensor" title="Permalink to this headline">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.to_tensor">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">to_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.to_tensor" title="Permalink to this definition">#</a></dt>
-<dd><p>Change the input data into a tensor with the specified type and minimum
-dimension.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong><span class="classifier">object</span></dt><dd><p>Object that can be cast to a Tensor. If this is a pandas DataFrame,
-only the values are cast to a Tensor.</p>
-</dd>
-<dt><strong>dtype</strong><span class="classifier">torch datatype</span></dt><dd><p>Output tensor datatype.</p>
-</dd>
-<dt><strong>dim</strong><span class="classifier">int or ‘auto’ (default ‘auto’)</span></dt><dd><p>Minimum dimension of the output tensor. If this is ‘auto’, then no
-adjustments are made to the output tensor dimension. Otherwise, a
-singleton dimension is iteratively added until the tensor dimension
-is greater than or equal to the specified argument.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>tensor</strong><span class="classifier">Tensor</span></dt><dd><p>PyTorch Tensor containing the input data.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-<section id="to-named-tensor">
-<h2><code class="docutils literal notranslate"><span class="pre">to_named_tensor</span></code><a class="headerlink" href="#to-named-tensor" title="Permalink to this headline">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.to_named_tensor">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">to_named_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.to_named_tensor" title="Permalink to this definition">#</a></dt>
-<dd><p>Change the input data into a named tensor with the specified type and
-minimum dimension.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong><span class="classifier">object</span></dt><dd><p>Object that can be cast to a Tensor. If this is a pandas DataFrame,
-only the values are cast to a Tensor.</p>
-</dd>
-<dt><strong>dtype</strong><span class="classifier">torch datatype</span></dt><dd><p>Output tensor datatype.</p>
-</dd>
-<dt><strong>dim</strong><span class="classifier">int or ‘auto’ (default ‘auto’)</span></dt><dd><p>Minimum dimension of the output tensor. If this is ‘auto’, then no
-adjustments are made to the output tensor dimension. Otherwise, a
-singleton dimension is iteratively added until the tensor dimension
-is greater than or equal to the specified argument.</p>
-</dd>
-<dt><strong>names</strong><span class="classifier">list(str) or None (default None)</span></dt><dd><p>List of names to assign the dimensions of the produced tensor.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>tensor</strong><span class="classifier">Tensor</span></dt><dd><p>PyTorch Tensor containing the input data.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-<section id="consolidate-block">
-<h2><code class="docutils literal notranslate"><span class="pre">consolidate_block</span></code><a class="headerlink" href="#consolidate-block" title="Permalink to this headline">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.consolidate_block">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">consolidate_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.consolidate_block" title="Permalink to this definition">#</a></dt>
-<dd><p>Consolidate a list block of tensors into a single tensor. If the tensors
-in the list block are of different sizes, smaller tensors are padded with
-NaN entries until all sizes are conformant before consolidation.</p>
-</dd></dl>
-
-</section>
-<section id="extend-to-size">
-<h2><code class="docutils literal notranslate"><span class="pre">extend_to_size</span></code><a class="headerlink" href="#extend-to-size" title="Permalink to this headline">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.extend_to_size">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">extend_to_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.extend_to_size" title="Permalink to this definition">#</a></dt>
-<dd><p>Extend a tensor in the positive direction until its size matches the
-specification. Any new entries created via extension are marked with
-NaN to denote that they were missing from the input; they can be
-populated by chaining this with a call to <cite>nanfill</cite>.</p>
-</dd></dl>
-
-</section>
-<section id="extend-to-max-size">
-<h2><code class="docutils literal notranslate"><span class="pre">extend_to_max_size</span></code><a class="headerlink" href="#extend-to-max-size" title="Permalink to this headline">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.extend_to_max_size">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">extend_to_max_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.data.functional.extend_to_max_size" title="Permalink to this definition">#</a></dt>
-<dd><p>Extend all tensors in a list until their sizes are equal to the size
-of the largest tensor along each axis. Any new entries created via
-extension are marked with NaN to denote that they were missing from
-the input; they can be populated by chaining this with a call to
-<cite>nanfill</cite>.</p>
-</dd></dl>
-
-</section>
+  <section id="module-hypercoil.engine.accumulate">
+<span id="accumulate-local-gradient-accumulation"></span><h1><code class="docutils literal notranslate"><span class="pre">accumulate</span></code>: Local gradient accumulation<a class="headerlink" href="#module-hypercoil.engine.accumulate" title="Permalink to this headline">#</a></h1>
+<p>Local gradient accumulator for throughput control.</p>
+<p>Data conveyances through the atlas layer are, in general, throughput-limited.
+The atlas layer operates on voxel-wise or vertex-wise datasets, which
+necessitates a large memory footprint. On a consumer-grade GPU, fewer than 10
+samples – and in many cases only 1 or 2 – can reasonably be expected to fit
+in memory with the model.</p>
+<p>This poses a significant problem for downstream modules. In particular, we
+would like to impose a penalty on relationships between extracted features and
+nuisance measures (for example, between connectivity estimates and subject
+movement). Accurately and stably estimating these relationships (as with
+Pearson correlations across the batch dimension) requires a sufficient batch
+size that cannot be attained under the throughput constraints of the atlas
+layer.</p>
+<p>Currently, we circumvent this problem in a rather inefficient but operational
+way. The inefficiency arises because it usually necessitates an additional
+forward pass through the atlas layer.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is no principled reason for this inefficiency; it appears to be a
+limitation of the way we interact with autograd. It would be great to work
+out a more streamlined approach, perhaps involving forward-mode
+autodifferentiation. There are likely already many better solutions in
+existence.</p>
+</div>
+<p>Our solution works by first fragmenting each batch according to the throughput
+limit of the high-memory-demand function. It then passes the data fragments
+(which need not all be loaded into memory at once) one by one through a
+throughput-limited
+<span class="xref std std-doc">AccumulatingFunction</span>
+that subclasses <code class="docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code>. Each <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>
+caches only the accumulated batch-average local gradient with respect to each
+parameter for the backward pass, enabling memory savings of a factor equal to
+the batch size or batch size-to-throughput ratio.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that this solution only works if the local gradient over the batch is
+equal to the batch-average local gradient. Additionally, because it marks
+the input as non differentiable and thereby blocks further backpropagation,
+it will only work as an input layer.</p>
+</div>
+<p>Because of the compartmentalised environment of <code class="docutils literal notranslate"><span class="pre">autograd.Function</span></code>, it is
+not possible to interact with the per-fragment inputs and outputs outside of
+that environment, and inside the environment there is no history tracking;
+automatic differentiation is therefore inactive. This introduces a second
+challenge: we often want to define loss functions at the per-fragment stage.
+(For example,
+<a class="reference internal" href="hypercoil.loss.secondmoment.html"><span class="doc">second-moment losses</span></a>
+have little chance of fitting into GPU memory at the full batch level.) Those
+loss functions, however, require access to tensor history – which, again,
+cannot be tracked at the fragment level in the <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>’s
+forward pass.</p>
+<p>The working solution is to implement two parallel forward passes in a
+<code class="docutils literal notranslate"><span class="pre">Module</span></code> that wraps <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>, the
+<span class="xref std std-doc">Accumuline</span>. For each
+batch fragment, the <code class="docutils literal notranslate"><span class="pre">Accumuline</span></code> runs one forward pass inside the
+<code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code> and a second outside it. The forward pass run outside
+of the <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code> can then interact with local loss functions.</p>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.engine.accumulate.Accumulator.html"><code class="docutils literal notranslate"><span class="pre">Accumulator</span></code></a></li>
+</ul>
+</div>
 </section>
 
 
