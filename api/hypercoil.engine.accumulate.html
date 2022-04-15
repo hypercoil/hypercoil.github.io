@@ -397,6 +397,15 @@
        </code>
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.engine.accumulate.AccumulatingFunction.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         AccumulatingFunction
+        </span>
+       </code>
+      </a>
+     </li>
     </ul>
    </li>
   </ul>
@@ -756,7 +765,7 @@ existence.</p>
 limit of the high-memory-demand function. It then passes the data fragments
 (which need not all be loaded into memory at once) one by one through a
 throughput-limited
-<span class="xref std std-doc">AccumulatingFunction</span>
+<a class="reference internal" href="hypercoil.engine.accumulate.AccumulatingFunction.html"><span class="doc">AccumulatingFunction</span></a>
 that subclasses <code class="docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code>. Each <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>
 caches only the accumulated batch-average local gradient with respect to each
 parameter for the backward pass, enabling memory savings of a factor equal to
@@ -780,7 +789,7 @@ loss functions, however, require access to tensor history – which, again,
 cannot be tracked at the fragment level in the <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>’s
 forward pass.</p>
 <p>The working solution is to implement two parallel forward passes in a
-<code class="docutils literal notranslate"><span class="pre">Module</span></code> that wraps <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>, the
+<code class="docutils literal notranslate"><span class="pre">Module</span></code> that wraps <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>,
 <span class="xref std std-doc">Accumuline</span>. For each
 batch fragment, the <code class="docutils literal notranslate"><span class="pre">Accumuline</span></code> runs one forward pass inside the
 <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code> and a second outside it. The forward pass run outside
@@ -789,6 +798,7 @@ of the <code class="docutils literal notranslate"><span class="pre">Accumulating
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="hypercoil.engine.accumulate.Accumulator.html"><code class="docutils literal notranslate"><span class="pre">Accumulator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.engine.accumulate.AccumulatingFunction.html"><code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code></a></li>
 </ul>
 </div>
 </section>
