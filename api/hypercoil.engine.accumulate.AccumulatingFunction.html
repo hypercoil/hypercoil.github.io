@@ -769,7 +769,6 @@ use:</p>
 <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code> to arguments to the <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code>’s specified
 <code class="docutils literal notranslate"><span class="pre">model</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">argmap</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">T</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;X&#39;</span> <span class="p">:</span> <span class="n">T</span><span class="p">}</span>
-<span class="n">passmap</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">T</span><span class="p">:</span> <span class="p">{}</span>
 </pre></div>
 </div>
 <p>We can now apply our <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code> to input samples. Here we’re
@@ -822,9 +821,6 @@ respect to each input parameter provided in <code class="docutils literal notran
 <dt><strong>argmap</strong><span class="classifier">callable</span></dt><dd><p>Map from samples input to the function to mappings representing
 arguments to the <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code>.</p>
 </dd>
-<dt><strong>passmap</strong><span class="classifier">callable</span></dt><dd><p>Map from samples input to the function to mappings to be passed
-directly through the function without interacting with the model.</p>
-</dd>
 <dt><strong>sample</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">tensor</span></code> or iterable(<code class="docutils literal notranslate"><span class="pre">tensor</span></code>)</span></dt><dd><p>Input sample to be processed. The gradient with respect to the input
 sample is not returned.</p>
 </dd>
@@ -866,7 +862,7 @@ terminal call, this will instead be a tuple of collated tensors.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.engine.accumulate.AccumulatingFunction.backward" title="hypercoil.engine.accumulate.AccumulatingFunction.backward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">backward</span></code></a>(ctx, *grad_output)</p></td>
 <td><p>Defines a formula for differentiating the operation with backward mode automatic differentiation (alias to the vjp function).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.engine.accumulate.AccumulatingFunction.forward" title="hypercoil.engine.accumulate.AccumulatingFunction.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(ctx, acc, backward, argmap, passmap, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.engine.accumulate.AccumulatingFunction.forward" title="hypercoil.engine.accumulate.AccumulatingFunction.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(ctx, acc, backward, argmap, sample, ...)</p></td>
 <td><p>Performs the operation.</p></td>
 </tr>
 </tbody>
@@ -879,7 +875,7 @@ terminal call, this will instead be a tuple of collated tensors.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hypercoil.engine.accumulate.AccumulatingFunction.forward">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backward</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">argmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terminate</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.engine.accumulate.AccumulatingFunction.forward" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backward</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">argmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terminate</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.engine.accumulate.AccumulatingFunction.forward" title="Permalink to this definition">#</a></dt>
 <dd><p>Performs the operation.</p>
 <p>This function is to be overridden by all subclasses.</p>
 <p>It must accept a context ctx as the first argument, followed by any
