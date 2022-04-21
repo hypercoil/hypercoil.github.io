@@ -735,65 +735,8 @@
               
               <div>
                 
-  <section id="module-hypercoil.engine.accumulate">
-<span id="accumulate-local-gradient-accumulation"></span><h1><code class="docutils literal notranslate"><span class="pre">accumulate</span></code>: Local gradient accumulation<a class="headerlink" href="#module-hypercoil.engine.accumulate" title="Permalink to this headline">#</a></h1>
-<p>Local gradient accumulator for throughput control.</p>
-<p>Data conveyances through the atlas layer are, in general, throughput-limited.
-The atlas layer operates on voxel-wise or vertex-wise datasets, which
-necessitates a large memory footprint. On a consumer-grade GPU, fewer than 10
-samples – and in many cases only 1 or 2 – can reasonably be expected to fit
-in memory with the model.</p>
-<p>This poses a significant problem for downstream modules. In particular, we
-would like to impose a penalty on relationships between extracted features and
-nuisance measures (for example, between connectivity estimates and subject
-movement). Accurately and stably estimating these relationships (as with
-Pearson correlations across the batch dimension) requires a sufficient batch
-size that cannot be attained under the throughput constraints of the atlas
-layer.</p>
-<p>Currently, we circumvent this problem in a rather inefficient but operational
-way. The inefficiency arises because it usually necessitates an additional
-forward pass through the atlas layer.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>There is no principled reason for this inefficiency; it appears to be a
-limitation of the way we interact with autograd. It would be great to work
-out a more streamlined approach, perhaps involving forward-mode
-autodifferentiation. There are likely already many better solutions in
-existence.</p>
-</div>
-<p>Our solution works by first fragmenting each batch according to the throughput
-limit of the high-memory-demand function. It then passes the data fragments
-(which need not all be loaded into memory at once) one by one through a
-throughput-limited
-<a class="reference internal" href="hypercoil.engine.accumulate.AccumulatingFunction.html"><span class="doc">AccumulatingFunction</span></a>
-that subclasses <code class="docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code>. Each <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>
-caches only the accumulated batch-average local gradient with respect to each
-parameter for the backward pass, enabling memory savings of a factor equal to
-the batch size or batch size-to-throughput ratio.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Note that this solution only works if the local gradient over the batch is
-equal to the batch-average local gradient. Additionally, because it marks
-the input as non differentiable and thereby blocks further backpropagation,
-it will only work as an input layer.</p>
-</div>
-<p>Because of the compartmentalised environment of <code class="docutils literal notranslate"><span class="pre">autograd.Function</span></code>, it is
-not possible to interact with the per-fragment inputs and outputs outside of
-that environment, and inside the environment there is no history tracking;
-automatic differentiation is therefore inactive. This introduces a second
-challenge: we often want to define loss functions at the per-fragment stage.
-(For example,
-<a class="reference internal" href="hypercoil.loss.secondmoment.html"><span class="doc">second-moment losses</span></a>
-have little chance of fitting into GPU memory at the full batch level.) Those
-loss functions, however, require access to tensor history – which, again,
-cannot be tracked at the fragment level in the <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>’s
-forward pass.</p>
-<p>The working solution is to implement two parallel forward passes in a
-<code class="docutils literal notranslate"><span class="pre">Module</span></code> that wraps <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>,
-<span class="xref std std-doc">Accumuline</span>. For each
-batch fragment, the <code class="docutils literal notranslate"><span class="pre">Accumuline</span></code> runs one forward pass inside the
-<code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code> and a second outside it. The forward pass run outside
-of the <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code> can then interact with local loss functions.</p>
+  <section id="accumulate-local-gradient-accumulation">
+<h1><code class="docutils literal notranslate"><span class="pre">accumulate</span></code>: Local gradient accumulation<a class="headerlink" href="#accumulate-local-gradient-accumulation" title="Permalink to this headline">#</a></h1>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
