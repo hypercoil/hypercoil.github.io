@@ -735,27 +735,8 @@
               
               <div>
                 
-  <section id="module-hypercoil.loss">
-<span id="loss-loss-and-regularisation"></span><h1><code class="docutils literal notranslate"><span class="pre">loss</span></code>: Loss and regularisation<a class="headerlink" href="#module-hypercoil.loss" title="Permalink to this headline">#</a></h1>
-<p>Loss functions and regularisations.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">loss</span></code> submodule is a collection of implementations of differentiable
-functions that map from arbitrary inputs to scalar-valued outputs. These
-scalar outputs can provide a starting point for a backward pass through a
-differentiable program model. Functionality is provided for various measures
-of interest to functional brain mapping and other contexts.</p>
-<p>Helper wrappers allow packaging of multiple loss objectives in a single call.
-Each wrapped objective can be selectively applied to a subset of input tensors
-using
-<span class="xref std std-doc">LossApply</span>,
-<span class="xref std std-doc">LossArgument</span>, and
-<span class="xref std std-doc">LossScheme</span>
-functionality.</p>
-<p>All loss objects additionally inherit
-<span class="xref std std-doc">sentry</span> functionality, enabling them to send
-and receive information about events from elsewhere and respond accordingly.
-For instance, this can facilitate archival of each loss value over the course
-of training to inform hyperparameter tuning. It can also be used to update
-multipliers over the course of training by listening for epoch changes.</p>
+  <section id="loss-loss-and-regularisation">
+<h1><code class="docutils literal notranslate"><span class="pre">loss</span></code>: Loss and regularisation<a class="headerlink" href="#loss-loss-and-regularisation" title="Permalink to this headline">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.cmass.Compactness.html"><code class="docutils literal notranslate"><span class="pre">Compactness</span></code></a></li>
