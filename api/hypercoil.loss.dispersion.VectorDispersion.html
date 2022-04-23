@@ -30,6 +30,7 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Entropy and SoftmaxEntropy" href="hypercoil.loss.entropy.html" />
@@ -737,6 +738,71 @@
                 
   <section id="vectordispersion">
 <h1><code class="docutils literal notranslate"><span class="pre">VectorDispersion</span></code><a class="headerlink" href="#vectordispersion" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.dispersion.VectorDispersion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.dispersion.</span></span><span class="sig-name descname"><span class="pre">VectorDispersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.dispersion.VectorDispersion" title="Permalink to this definition">#</a></dt>
+<dd><p>Mutual separation among a set of vectors.</p>
+<div class="admonition-vector-dispersion admonition">
+<p class="admonition-title">Vector dispersion</p>
+<p>The dispersion among a set of vectors <span class="math notranslate nohighlight">\(v \in \mathcal{V}\)</span> is
+defined as</p>
+<p><span class="math notranslate nohighlight">\(\sum_{i, j} \mathrm{d}\left(v_i - v_j\right)\)</span></p>
+<p>for some measure of separation <span class="math notranslate nohighlight">\(\mathrm{d}\)</span>. (It is also
+valid to use a reduction other than the sum.)</p>
+</div>
+<p>This can be used as one half of a clustering loss. Such a clustering loss
+would promote mutual separation among centroids (between-cluster
+separation, imposed by the <code class="docutils literal notranslate"><span class="pre">VectorDispersion</span></code> loss) while also promoting
+proximity between observations and their closest centroids (within-cluster
+closeness, for instance using a
+<span class="xref std std-doc">norm loss</span> or
+<a class="reference internal" href="hypercoil.loss.cmass.Compactness.html"><span class="doc">compactness</span></a>
+if the clusters are associated with spatial coordinates).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
+</dd>
+<dt><strong>metric</strong><span class="classifier">callable (default L1 distance)</span></dt><dd><p>Map from a set of vectors to a distance matrix whose element i, j
+contains some notion of distance between vector i and vector j.
+Note that this object is currently defined with the assumption that
+the <cite>metric</cite> thus passed is commutative.</p>
+</dd>
+<dt><strong>reduction</strong><span class="classifier">callable (default <cite>torch.mean</cite>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The pairwise
+distance matrix is passed into <cite>reduction</cite> to return a scalar.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.dispersion.VectorDispersion.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.dispersion.VectorDispersion.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.dispersion.VectorDispersion.register_sentry">
+<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.dispersion.VectorDispersion.register_sentry" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.dispersion.VectorDispersion.register_action">
+<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.dispersion.VectorDispersion.register_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 

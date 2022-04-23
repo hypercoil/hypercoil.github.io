@@ -30,6 +30,7 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="determinant: Log determinant-based losses" href="hypercoil.loss.determinant.html" />
@@ -737,6 +738,56 @@
                 
   <section id="hemispherictether">
 <h1><code class="docutils literal notranslate"><span class="pre">HemisphericTether</span></code><a class="headerlink" href="#hemispherictether" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.cmass.HemisphericTether">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.cmass.</span></span><span class="sig-name descname"><span class="pre">HemisphericTether</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.cmass.HemisphericTether" title="Permalink to this definition">#</a></dt>
+<dd><p>Displacement of centres of mass in one cortical hemisphere from
+corresponding centres of mass in the other cortical hemisphere.</p>
+<div class="admonition-hemispheric-tether admonition">
+<p class="admonition-title">Hemispheric Tether</p>
+<p>The hemispheric tether is defined as</p>
+<p><span class="math notranslate nohighlight">\(\sum_{\ell} \left\| \ell_{LH, centre} - \ell_{RH, centre} \right\|\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\ell\)</span> denotes a pair of regions, one in each cortical
+hemisphere.</p>
+<a class="reference internal image-reference" href="../_images/spatialnull.gif"><img alt="../_images/spatialnull.gif" class="align-center" src="../_images/spatialnull.gif" style="width: 500px;" /></a>
+<p><cite>The symmetry of this spatial null model is enforced through a
+moderately strong hemispheric tether.</cite></p>
+</div>
+<p>When an atlas is initialised with the same number of parcels in each
+cortical hemisphere compartment, the hemispheric tether can be used to
+approximately enforce symmetry and to enforce analogy between a pair of
+parcels in the two cortical hemispheres.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Currently, this loss only works in spherical surface space.</p>
+</div>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.cmass.HemisphericTether.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.cmass.HemisphericTether.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.cmass.HemisphericTether.register_sentry">
+<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.cmass.HemisphericTether.register_sentry" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.cmass.HemisphericTether.register_action">
+<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.cmass.HemisphericTether.register_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 

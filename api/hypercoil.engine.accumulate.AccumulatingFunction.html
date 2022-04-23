@@ -737,6 +737,182 @@
                 
   <section id="accumulatingfunction">
 <h1><code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code><a class="headerlink" href="#accumulatingfunction" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.engine.accumulate.AccumulatingFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.engine.accumulate.</span></span><span class="sig-name descname"><span class="pre">AccumulatingFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.engine.accumulate.AccumulatingFunction" title="Permalink to this definition">#</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">autograd.Function</span></code> that supports local gradient accumulation.</p>
+<p>For many use cases, it will make most sense to use an
+<span class="xref std std-doc">Accumuline</span>
+instead of directly interfacing with this class.</p>
+<p>To use an <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>, we need to begin by defining an
+<a class="reference internal" href="hypercoil.engine.accumulate.Accumulator.html"><span class="doc">Accumulator</span></a>
+to perform the accumulation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">acc</span> <span class="o">=</span> <span class="n">Accumulator</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">gradient</span><span class="o">=</span><span class="n">model_grad</span><span class="p">,</span>
+    <span class="n">retain_dims</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>We will also need a function to operationalise the backward pass through
+the <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>. The backward function should take as inputs
+(i) all of the tensors that encode the back-propagated gradient of the
+loss node with respect to each output of the <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code> and
+(ii) all of the local derivatives accumulated by the <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code> we’ve
+created. For the case of matrix-matrix multiplication, we can reasonably
+use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">accbwd</span><span class="p">(</span><span class="n">grad_output</span><span class="p">,</span> <span class="n">grad_local</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">grad_output</span> <span class="o">@</span> <span class="n">grad_local</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>We’ll also need a quick function to map from samples input to the
+<code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code> to arguments to the <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code>’s specified
+<code class="docutils literal notranslate"><span class="pre">model</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">argmap</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">T</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;X&#39;</span> <span class="p">:</span> <span class="n">T</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>We can now apply our <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code> to input samples. Here we’re
+accumulating the local derivative of the matrix multiplication operation
+with respect to one of the matrices being multiplied, <code class="docutils literal notranslate"><span class="pre">W</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">T0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">accfwd</span> <span class="o">=</span> <span class="n">AccumulatingFunction</span><span class="o">.</span><span class="n">apply</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">accfwd</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">argmap</span><span class="p">,</span> <span class="n">passmap</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">accfwd</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">argmap</span><span class="p">,</span> <span class="n">passmap</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Each call to <code class="docutils literal notranslate"><span class="pre">accfwd</span></code> above will accumulate the local derivative in the
+provided <code class="docutils literal notranslate"><span class="pre">acc</span></code> object and will also append any outputs to the <code class="docutils literal notranslate"><span class="pre">out</span></code>
+iterable that we provided in our call. When we’ve collected all of the
+outputs we need in <code class="docutils literal notranslate"><span class="pre">out</span></code>, we make a terminal call to <code class="docutils literal notranslate"><span class="pre">accfwd</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">accfwd</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">bwd</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The terminal call is made by setting the <code class="docutils literal notranslate"><span class="pre">terminate</span></code> argument to True.
+We should not pass new data to the accumulating function during the
+terminal call, as it will not be used. The terminal call caches the
+accumulated derivative for the backward pass and then clears all
+accumulated data from the <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only the terminal call of an <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code> is capable of
+back-propagating gradients. All other calls will not track tensor
+history and will block any gradients that they receive from being
+further propagated.</p>
+</div>
+<p>We can use a <code class="docutils literal notranslate"><span class="pre">partial</span></code> to simplify usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">accfwd</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">AccumulatingFunction</span><span class="o">.</span><span class="n">apply</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">argmap</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>acc</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">Accumulator</span></code></span></dt><dd><p>Accumulator object for accumulating the local derivative over calls
+to the function.</p>
+</dd>
+<dt><strong>backward</strong><span class="classifier">callable</span></dt><dd><p>Backward pass through the function. This should take as inputs (i) all
+of the tensors that encode the back-propagated gradient of the
+loss node with respect to each output of the <code class="docutils literal notranslate"><span class="pre">AccumulatingFunction</span></code>
+and (ii) all of the local derivatives accumulated by the
+<code class="docutils literal notranslate"><span class="pre">Accumulator</span></code> and should return the back-propagated gradient with
+respect to each input parameter provided in <code class="docutils literal notranslate"><span class="pre">params</span></code>.</p>
+</dd>
+<dt><strong>argmap</strong><span class="classifier">callable</span></dt><dd><p>Map from samples input to the function to mappings representing
+arguments to the <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code>.</p>
+</dd>
+<dt><strong>sample</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">tensor</span></code> or iterable(<code class="docutils literal notranslate"><span class="pre">tensor</span></code>)</span></dt><dd><p>Input sample to be processed. The gradient with respect to the input
+sample is not returned.</p>
+</dd>
+<dt><strong>out</strong><span class="classifier">iterable</span></dt><dd><p>Iterable containing accumulated outputs thus far. The output created
+at each call is appended to this iterable.</p>
+</dd>
+<dt><strong>terminate</strong><span class="classifier">bool</span></dt><dd><p>Indicates that accumulation should be terminated, and a new node
+containing the accumulated local derivative should be added to the
+computational graph. Only the terminal call will retain tensor
+history, and only the terminal node accordingly backpropagates
+received gradient. However, the terminal call does not do any data
+processing or new accumulation, so it should not receive previously
+unseen input data.</p>
+</dd>
+<dt><strong>params</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">tensor</span></code></span></dt><dd><p>Parameters with respect to which the accumulated gradient should be
+computed and backpropagated. The <code class="docutils literal notranslate"><span class="pre">gradient</span></code> parameter provided to
+the input <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code> should define local gradients with respect
+to each of these parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">iterable</span></dt><dd><p>Iterable containing all previously accumulated outputs provided as
+parameters to <code class="docutils literal notranslate"><span class="pre">out</span></code>, together with a new output from the current
+call to the internal <code class="docutils literal notranslate"><span class="pre">model</span></code> of the input <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code>. For the
+terminal call, this will instead be a tuple of collated tensors.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.engine.accumulate.AccumulatingFunction.backward" title="hypercoil.engine.accumulate.AccumulatingFunction.backward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">backward</span></code></a>(ctx, *grad_output)</p></td>
+<td><p>Defines a formula for differentiating the operation with backward mode automatic differentiation (alias to the vjp function).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.engine.accumulate.AccumulatingFunction.forward" title="hypercoil.engine.accumulate.AccumulatingFunction.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(ctx, acc, backward, argmap, sample, ...)</p></td>
+<td><p>Performs the operation.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.engine.accumulate.AccumulatingFunction.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.engine.accumulate.AccumulatingFunction.apply" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.engine.accumulate.AccumulatingFunction.forward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backward</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">argmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terminate</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.engine.accumulate.AccumulatingFunction.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Performs the operation.</p>
+<p>This function is to be overridden by all subclasses.</p>
+<p>It must accept a context ctx as the first argument, followed by any
+number of arguments (tensors or other types).</p>
+<p>The context can be used to store arbitrary data that can be then
+retrieved during the backward pass. Tensors should not be stored
+directly on <cite>ctx</cite> (though this is not currently enforced for
+backward compatibility). Instead, tensors should be saved either with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_backward()</span></code> if they are intended to be used in
+<code class="docutils literal notranslate"><span class="pre">backward</span></code> (equivalently, <code class="docutils literal notranslate"><span class="pre">vjp</span></code>) or <code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_forward()</span></code>
+if they are intended to be used for in <code class="docutils literal notranslate"><span class="pre">jvp</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.engine.accumulate.AccumulatingFunction.backward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">grad_output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.engine.accumulate.AccumulatingFunction.backward" title="Permalink to this definition">#</a></dt>
+<dd><p>Defines a formula for differentiating the operation with backward mode
+automatic differentiation (alias to the vjp function).</p>
+<p>This function is to be overridden by all subclasses.</p>
+<p>It must accept a context <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx</span></code> as the first argument, followed by
+as many outputs as the <a class="reference internal" href="#hypercoil.engine.accumulate.AccumulatingFunction.forward" title="hypercoil.engine.accumulate.AccumulatingFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> returned (None will be passed in
+for non tensor outputs of the forward function),
+and it should return as many tensors, as there were inputs to
+<a class="reference internal" href="#hypercoil.engine.accumulate.AccumulatingFunction.forward" title="hypercoil.engine.accumulate.AccumulatingFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a>. Each argument is the gradient w.r.t the given output,
+and each returned value should be the gradient w.r.t. the
+corresponding input. If an input is not a Tensor or is a Tensor not
+requiring grads, you can just pass None as a gradient for that input.</p>
+<p>The context can be used to retrieve tensors saved during the forward
+pass. It also has an attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx.needs_input_grad</span></code> as a tuple
+of booleans representing whether each input needs gradient. E.g.,
+<a class="reference internal" href="#hypercoil.engine.accumulate.AccumulatingFunction.backward" title="hypercoil.engine.accumulate.AccumulatingFunction.backward"><code class="xref py py-func docutils literal notranslate"><span class="pre">backward()</span></code></a> will have <code class="docutils literal notranslate"><span class="pre">ctx.needs_input_grad[0]</span> <span class="pre">=</span> <span class="pre">True</span></code> if the
+first input to <a class="reference internal" href="#hypercoil.engine.accumulate.AccumulatingFunction.forward" title="hypercoil.engine.accumulate.AccumulatingFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> needs gradient computated w.r.t. the
+output.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 

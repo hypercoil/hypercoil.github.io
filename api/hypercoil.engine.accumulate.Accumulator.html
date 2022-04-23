@@ -737,6 +737,163 @@
                 
   <section id="accumulator">
 <h1><code class="docutils literal notranslate"><span class="pre">Accumulator</span></code><a class="headerlink" href="#accumulator" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.engine.accumulate.Accumulator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.engine.accumulate.</span></span><span class="sig-name descname"><span class="pre">Accumulator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retain_dims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autouse_domain_gradient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.engine.accumulate.Accumulator" title="Permalink to this definition">#</a></dt>
+<dd><p>Additive local gradient accumulator module.</p>
+<p>We can implement batch-averaged local additive gradient accumulation for
+matrix-matrix multiplication as follows. Let’s assume that one matrix
+<code class="docutils literal notranslate"><span class="pre">W</span></code> we are multiplying is also the parameter for which we want to
+accumulate gradient.</p>
+<p>First, we define a <code class="docutils literal notranslate"><span class="pre">model</span></code> for the forward call. This is the matrix
+multiply operation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">X</span><span class="p">:</span> <span class="n">W</span> <span class="o">@</span> <span class="n">X</span>
+</pre></div>
+</div>
+<p>Next, we specify the local gradient function – the derivative of the
+model output with respect to the parameter <code class="docutils literal notranslate"><span class="pre">W</span></code> that we are interested
+in. The gradient should return a mapping over parameters of interest:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_grad</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>By default, an <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code> will reduce any dimensions of the local
+gradient tensor not explicitly protected with a declaration to the
+argument <code class="docutils literal notranslate"><span class="pre">retain_dims</span></code>. For matrix multiplication, we must protect
+the matrix slice, corresponding to the last two dimensions of the
+gradient tensors. We can now define our <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">acc</span> <span class="o">=</span> <span class="n">Accumulator</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">gradient</span><span class="o">=</span><span class="n">model_grad</span><span class="p">,</span>
+    <span class="n">retain_dims</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>To use this <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code>, we pass it an argument mapping containing
+inputs to the <code class="docutils literal notranslate"><span class="pre">model</span></code> we specified:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">out0</span> <span class="o">=</span> <span class="n">acc</span><span class="p">(</span><span class="n">arg</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;X&#39;</span> <span class="p">:</span> <span class="n">T0</span><span class="p">})</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">out1</span> <span class="o">=</span> <span class="n">acc</span><span class="p">(</span><span class="n">arg</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;X&#39;</span> <span class="p">:</span> <span class="n">T1</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>The accumulator then accumulates the average (or summed) gradient computed
+over all matrix slices of the inputs <code class="docutils literal notranslate"><span class="pre">T0</span></code> and <code class="docutils literal notranslate"><span class="pre">T1</span></code>. It internally
+tracks the overall weight of gradients accumulated thus far (4 * 4 = 16
+after processing <code class="docutils literal notranslate"><span class="pre">T0</span></code> and 16 + 6 = 22 after also processing <code class="docutils literal notranslate"><span class="pre">T1</span></code>).
+The accumulated gradient is accessible in the attribute <code class="docutils literal notranslate"><span class="pre">acc</span></code>, and the
+gradient weight is accessible in the attribute <code class="docutils literal notranslate"><span class="pre">acc_weight</span></code>. To reset
+the accumulated tensors, use the <code class="docutils literal notranslate"><span class="pre">reset</span></code> or <code class="docutils literal notranslate"><span class="pre">zero_grad</span></code> operations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Accumulator</span></code> only stores the accumulated local gradient in its
+attribute <code class="docutils literal notranslate"><span class="pre">acc</span></code>. It is still the user’s responsibility to apply that
+gradient in any backward pass. The additional classes
+<a class="reference internal" href="hypercoil.engine.accumulate.AccumulatingFunction.html"><span class="doc">AccumulatingFunction</span></a>
+and
+<span class="xref std std-doc">Accumuline</span>
+can facilitate this for many use cases.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>model</strong><span class="classifier">callable</span></dt><dd><p>Forward computation. This should be a callable that maps from some
+input arguments to some outputs.</p>
+</dd>
+<dt><strong>gradient</strong><span class="classifier">callable</span></dt><dd><p>Backward computation. This should be a callable that takes as
+arguments all inputs to and outputs from the <code class="docutils literal notranslate"><span class="pre">model</span></code> callable and
+returns a dictionary of local gradients of outputs with respect to
+each parameter of interest, i.e. each parameter for which the local
+gradient is to be accumulated.</p>
+</dd>
+<dt><strong>retain_dims</strong><span class="classifier">iterable</span></dt><dd><p>List of dimensions of each gradient tensor returned by <code class="docutils literal notranslate"><span class="pre">gradient</span></code>
+over which averaging will not return a correct gradient.</p>
+</dd>
+<dt><strong>reduce_dims</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'mean'</span></code> or <code class="docutils literal notranslate"><span class="pre">'sum'</span></code> (default <code class="docutils literal notranslate"><span class="pre">'mean'</span></code>)</span></dt><dd><p>Reduction operation over all axes not protected by the <code class="docutils literal notranslate"><span class="pre">retain_dims</span></code>
+argument.</p>
+</dd>
+<dt><strong>autouse_domain_gradient</strong><span class="classifier">bool</span></dt><dd><p>Unused argument – currently does nothing.</p>
+</dd>
+<dt><strong>model_outputs</strong><span class="classifier">iterable (default <code class="docutils literal notranslate"><span class="pre">['out']</span></code>)</span></dt><dd><p>Keys naming each output of the model.</p>
+</dd>
+<dt><strong>model_params</strong><span class="classifier">iterable</span></dt><dd><p>Unused argument – currently does nothing.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>reduction</strong><span class="classifier">callable</span></dt><dd><p>Callable applied to gradient tensors to reduce all dimensions not
+explicitly protected by <code class="docutils literal notranslate"><span class="pre">retain_dim</span></code>. Defaults to <code class="docutils literal notranslate"><span class="pre">torch.mean</span></code>.</p>
+</dd>
+<dt><strong>acc</strong><span class="classifier">dict</span></dt><dd><p>Dictionary storing all accumulated gradients.</p>
+</dd>
+<dt><strong>acc_weight</strong><span class="classifier">dict</span></dt><dd><p>Dictionary storing total weights of all accumulated gradients.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.engine.accumulate.Accumulator.forward" title="hypercoil.engine.accumulate.Accumulator.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(arg)</p></td>
+<td><p>Defines the computation performed at every call.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.engine.accumulate.Accumulator.zero_grad" title="hypercoil.engine.accumulate.Accumulator.zero_grad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_grad</span></code></a>([set_to_none])</p></td>
+<td><p>Sets gradients of all model parameters to zero.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 53%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>reset</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.engine.accumulate.Accumulator.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.engine.accumulate.Accumulator.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.engine.accumulate.Accumulator.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.engine.accumulate.Accumulator.reset" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.engine.accumulate.Accumulator.zero_grad">
+<span class="sig-name descname"><span class="pre">zero_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_to_none</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.engine.accumulate.Accumulator.zero_grad" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets gradients of all model parameters to zero. See similar function
+under <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.Optimizer</span></code> for more context.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>set_to_none (bool): instead of setting to zero, set the grads to None.</dt><dd><p>See <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.optim.Optimizer.zero_grad()</span></code> for details.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
