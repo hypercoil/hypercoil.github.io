@@ -32,7 +32,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API reference" href="modules.html" />
+    <link rel="next" title="Installation" href="installation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -70,6 +70,18 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="installation.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="diffprog.html">
+  Framework
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="modules.html">
   API reference
  </a>
@@ -127,12 +139,7 @@
 
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Differentiable programming for brain mapping
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#indices-and-tables">
    Indices and tables
   </a>
@@ -161,18 +168,32 @@
   <section id="differentiable-programming-for-brain-mapping">
 <h1>Differentiable programming for brain mapping<a class="headerlink" href="#differentiable-programming-for-brain-mapping" title="Permalink to this headline">#</a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">hypercoil</span></code> software library includes tools for writing fully differentiable programs for use in brain mapping. At the current stage of development, most basic components of the functional connectivity software stack are available.</p>
+<img alt="https://github.com/rciric/hypercoil/actions/workflows/ci.yml/badge.svg" src="https://github.com/rciric/hypercoil/actions/workflows/ci.yml/badge.svg" /><img alt="https://github.com/rciric/hypercoil/actions/workflows/doc.yml/badge.svg" src="https://github.com/rciric/hypercoil/actions/workflows/doc.yml/badge.svg" /><a class="reference external image-reference" href="https://codecov.io/gh/rciric/hypercoil"><img alt="https://codecov.io/gh/rciric/hypercoil/branch/main/graph/badge.svg?token=FVJVK6AFQG" src="https://codecov.io/gh/rciric/hypercoil/branch/main/graph/badge.svg?token=FVJVK6AFQG" /></a>
+<p>Currently, because this project is still in the incipient stage, this documentation hub is fairly minimal (principally focused on documenting the fairly substantial <a class="reference internal" href="modules.html"><span class="doc">API</span></a> for <a class="reference internal" href="functional.html"><span class="doc">functionals</span></a>,  <a class="reference internal" href="nn.html"><span class="doc">neural network modules</span></a>, <a class="reference internal" href="init.html"><span class="doc">initialisation schemes</span></a>, and <a class="reference internal" href="loss.html"><span class="doc">loss functions</span></a>). Usage guidelines and simple examples will be ported into the documentation from test cases soon, and API details will eventually be added for currently unstable submodules, including data engineering workflows, evaluation and benchmarks, and visualisation.</p>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffprog.html">Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data.html"><code class="docutils literal notranslate"><span class="pre">data</span></code>: Data engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine.html"><code class="docutils literal notranslate"><span class="pre">engine</span></code>: Differentiable engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eval.html"><code class="docutils literal notranslate"><span class="pre">eval</span></code>: Benchmarks and evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functional.html"><code class="docutils literal notranslate"><span class="pre">functional</span></code>: Functions and functionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="init.html"><code class="docutils literal notranslate"><span class="pre">init</span></code>: Initialisation schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loss.html"><code class="docutils literal notranslate"><span class="pre">loss</span></code>: Loss and regularisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html"><code class="docutils literal notranslate"><span class="pre">nn</span></code>: Neural network modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viz.html"><code class="docutils literal notranslate"><span class="pre">viz</span></code>: Visualisation</a></li>
+</ul>
+</li>
 </ul>
 </div>
-</section>
 <section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">#</a></h1>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
+</section>
 </section>
 
 
