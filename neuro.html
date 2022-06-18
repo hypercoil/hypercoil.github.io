@@ -6,39 +6,39 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>sphere: Spherical coordinates &#8212; hypercoil prototype (unreleased) documentation</title>
+    <title>neuro: Neuroscience data utilities &#8212; hypercoil prototype (unreleased) documentation</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
 </script>
 
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
 
 
   <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
 
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="sphere_to_normals" href="hypercoil.functional.sphere.sphere_to_normals.html" />
-    <link rel="prev" title="mean_geom_spd" href="hypercoil.functional.semidefinite.mean_geom_spd.html" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="synth: Data synthesis" href="api/hypercoil.neuro.synth.html" />
+    <link rel="prev" title="SymmetricBimodal" href="api/hypercoil.loss.symbimodal.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
   </head>
@@ -59,13 +59,13 @@
   
 
 
-<a class="navbar-brand logo" href="../index.html">
+<a class="navbar-brand logo" href="index.html">
   
   
   
   
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image">
-    <img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image">
+    <img src="_static/logo.svg" class="logo__image only-light" alt="Logo image">
+    <img src="_static/logo.svg" class="logo__image only-dark" alt="Logo image">
   
   
 </a>
@@ -83,19 +83,19 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../installation.html">
+ <a class="reference internal nav-link" href="installation.html">
   Installation
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../diffprog.html">
+ <a class="reference internal nav-link" href="diffprog.html">
   Framework
  </a>
 </li>
 
 <li class="toctree-l1 current active nav-item">
- <a class="reference internal nav-link" href="../modules.html">
+ <a class="reference internal nav-link" href="modules.html">
   API reference
  </a>
 </li>
@@ -133,14 +133,14 @@
 
 <!-- Only show if we have sidebars configured, else just a small margin  -->
 <div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
-  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../data.html">
+  <a class="reference internal" href="data.html">
    <code class="docutils literal notranslate">
     <span class="pre">
      data
@@ -155,7 +155,7 @@
   </label>
   <ul>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.data.bids.html">
+    <a class="reference internal" href="api/hypercoil.data.bids.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        bids
@@ -170,7 +170,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.bids.fmriprep_references.html">
+      <a class="reference internal" href="api/hypercoil.data.bids.fmriprep_references.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          fmriprep_references
@@ -179,7 +179,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.bids.fMRIPrepDataset.html">
+      <a class="reference internal" href="api/hypercoil.data.bids.fMRIPrepDataset.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          fMRIPrepDataset
@@ -188,7 +188,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.bids.LightBIDSLayout.html">
+      <a class="reference internal" href="api/hypercoil.data.bids.LightBIDSLayout.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          LightBIDSLayout
@@ -197,7 +197,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.bids.BIDSObjectFactory.html">
+      <a class="reference internal" href="api/hypercoil.data.bids.BIDSObjectFactory.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          BIDSObjectFactory
@@ -206,7 +206,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.bids.LightBIDSObject.html">
+      <a class="reference internal" href="api/hypercoil.data.bids.LightBIDSObject.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          LightBIDSObject
@@ -217,7 +217,7 @@
     </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.data.collate.html">
+    <a class="reference internal" href="api/hypercoil.data.collate.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        collate
@@ -227,7 +227,7 @@
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.data.dataref.html">
+    <a class="reference internal" href="api/hypercoil.data.dataref.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        dataref
@@ -242,7 +242,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.dataref.DataReference.html">
+      <a class="reference internal" href="api/hypercoil.data.dataref.DataReference.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          DataReference
@@ -251,7 +251,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.dataref.DataQuery.html">
+      <a class="reference internal" href="api/hypercoil.data.dataref.DataQuery.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          DataQuery
@@ -260,7 +260,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.dataref.data_references.html">
+      <a class="reference internal" href="api/hypercoil.data.dataref.data_references.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          data_references
@@ -271,7 +271,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.data.dataset.html">
+    <a class="reference internal" href="api/hypercoil.data.dataset.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        dataset
@@ -286,7 +286,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.dataset.ReferencedDataset.html">
+      <a class="reference internal" href="api/hypercoil.data.dataset.ReferencedDataset.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          ReferencedDataset
@@ -295,7 +295,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.dataset.ReferencedDataLoader.html">
+      <a class="reference internal" href="api/hypercoil.data.dataset.ReferencedDataLoader.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          ReferencedDataLoader
@@ -306,7 +306,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.data.functional.html">
+    <a class="reference internal" href="api/hypercoil.data.functional.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        functional
@@ -321,49 +321,49 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.general.html">
+      <a class="reference internal" href="api/hypercoil.data.functional.general.html">
        General use
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.filesystem.html">
+      <a class="reference internal" href="api/hypercoil.data.functional.filesystem.html">
        I/O and filesystem
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.tensor.html">
+      <a class="reference internal" href="api/hypercoil.data.functional.tensor.html">
        Tensor casting and binding
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.dataframe.html">
+      <a class="reference internal" href="api/hypercoil.data.functional.dataframe.html">
        Data frames
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.neuroimage.html">
+      <a class="reference internal" href="api/hypercoil.data.functional.neuroimage.html">
        Neuroimaging datasets
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.metadata.html">
+      <a class="reference internal" href="api/hypercoil.data.functional.metadata.html">
        Metadata
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.missing.html">
+      <a class="reference internal" href="api/hypercoil.data.functional.missing.html">
        Missing values
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.timeseries.html">
+      <a class="reference internal" href="api/hypercoil.data.functional.timeseries.html">
        Time series
       </a>
      </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.data.hcp.html">
+    <a class="reference internal" href="api/hypercoil.data.hcp.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        hcp
@@ -378,7 +378,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.hcp.hcp_references.html">
+      <a class="reference internal" href="api/hypercoil.data.hcp.hcp_references.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          hcp_references
@@ -391,7 +391,7 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../engine.html">
+  <a class="reference internal" href="engine.html">
    <code class="docutils literal notranslate">
     <span class="pre">
      engine
@@ -406,7 +406,7 @@
   </label>
   <ul>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.engine.accumulate.html">
+    <a class="reference internal" href="api/hypercoil.engine.accumulate.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        accumulate
@@ -421,7 +421,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.engine.accumulate.Accumulator.html">
+      <a class="reference internal" href="api/hypercoil.engine.accumulate.Accumulator.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          Accumulator
@@ -430,7 +430,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.engine.accumulate.AccumulatingFunction.html">
+      <a class="reference internal" href="api/hypercoil.engine.accumulate.AccumulatingFunction.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          AccumulatingFunction
@@ -443,7 +443,7 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../eval.html">
+  <a class="reference internal" href="eval.html">
    <code class="docutils literal notranslate">
     <span class="pre">
      eval
@@ -459,8 +459,8 @@
   <ul class="simple">
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../functional.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="functional.html">
    <code class="docutils literal notranslate">
     <span class="pre">
      functional
@@ -468,14 +468,14 @@
    </code>
    : Functions and functionals
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
   <label for="toctree-checkbox-10">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.activation.html">
+    <a class="reference internal" href="api/hypercoil.functional.activation.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        activation
@@ -490,7 +490,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.activation.amplitude_tanh.html">
+      <a class="reference internal" href="api/hypercoil.functional.activation.amplitude_tanh.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          amplitude_tanh
@@ -499,7 +499,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.activation.amplitude_atanh.html">
+      <a class="reference internal" href="api/hypercoil.functional.activation.amplitude_atanh.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          amplitude_atanh
@@ -508,7 +508,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.activation.corrnorm.html">
+      <a class="reference internal" href="api/hypercoil.functional.activation.corrnorm.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          corrnorm
@@ -519,7 +519,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.cmass.html">
+    <a class="reference internal" href="api/hypercoil.functional.cmass.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        cmass
@@ -534,7 +534,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cmass.cmass_coor.html">
+      <a class="reference internal" href="api/hypercoil.functional.cmass.cmass_coor.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          cmass_coor
@@ -544,7 +544,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cmass.cmass.html">
+      <a class="reference internal" href="api/hypercoil.functional.cmass.cmass.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          cmass
@@ -554,7 +554,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cmass.diffuse.html">
+      <a class="reference internal" href="api/hypercoil.functional.cmass.diffuse.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          diffuse
@@ -564,14 +564,14 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cmass.cmass_reference.html">
+      <a class="reference internal" href="api/hypercoil.functional.cmass.cmass_reference.html">
        Displacement from a reference centre of mass
       </a>
      </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.cov.html">
+    <a class="reference internal" href="api/hypercoil.functional.cov.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        cov
@@ -586,7 +586,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cov.cov.html">
+      <a class="reference internal" href="api/hypercoil.functional.cov.cov.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          cov
@@ -596,7 +596,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cov.corr.html">
+      <a class="reference internal" href="api/hypercoil.functional.cov.corr.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          corr
@@ -606,7 +606,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cov.partialcov.html">
+      <a class="reference internal" href="api/hypercoil.functional.cov.partialcov.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          partialcov
@@ -616,7 +616,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cov.partialcorr.html">
+      <a class="reference internal" href="api/hypercoil.functional.cov.partialcorr.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          partialcorr
@@ -626,7 +626,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cov.pairedcov.html">
+      <a class="reference internal" href="api/hypercoil.functional.cov.pairedcov.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          pairedcov
@@ -636,7 +636,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cov.pairedcorr.html">
+      <a class="reference internal" href="api/hypercoil.functional.cov.pairedcorr.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          pairedcorr
@@ -646,7 +646,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cov.conditionalcov.html">
+      <a class="reference internal" href="api/hypercoil.functional.cov.conditionalcov.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          conditionalcov
@@ -656,7 +656,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cov.conditionalcorr.html">
+      <a class="reference internal" href="api/hypercoil.functional.cov.conditionalcorr.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          conditionalcorr
@@ -666,7 +666,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.cov.precision.html">
+      <a class="reference internal" href="api/hypercoil.functional.cov.precision.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          precision
@@ -678,7 +678,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.fourier.html">
+    <a class="reference internal" href="api/hypercoil.functional.fourier.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        fourier
@@ -693,7 +693,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.fourier.product_filter.html">
+      <a class="reference internal" href="api/hypercoil.functional.fourier.product_filter.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          product_filter
@@ -702,7 +702,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.fourier.product_filtfilt.html">
+      <a class="reference internal" href="api/hypercoil.functional.fourier.product_filtfilt.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          product_filtfilt
@@ -714,7 +714,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.graph.html">
+    <a class="reference internal" href="api/hypercoil.functional.graph.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        graph
@@ -729,7 +729,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.graph.girvan_newman_null.html">
+      <a class="reference internal" href="api/hypercoil.functional.graph.girvan_newman_null.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          girvan_newman_null
@@ -738,7 +738,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.graph.modularity_matrix.html">
+      <a class="reference internal" href="api/hypercoil.functional.graph.modularity_matrix.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          modularity_matrix
@@ -747,7 +747,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.graph.coaffiliation.html">
+      <a class="reference internal" href="api/hypercoil.functional.graph.coaffiliation.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          coaffiliation
@@ -757,7 +757,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.graph.relaxed_modularity.html">
+      <a class="reference internal" href="api/hypercoil.functional.graph.relaxed_modularity.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          relaxed_modularity
@@ -768,7 +768,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.interpolate.html">
+    <a class="reference internal" href="api/hypercoil.functional.interpolate.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        interpolate
@@ -783,7 +783,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.interpolate.hybrid_interpolate.html">
+      <a class="reference internal" href="api/hypercoil.functional.interpolate.hybrid_interpolate.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          hybrid_interpolate
@@ -793,7 +793,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.interpolate.weighted_interpolate.html">
+      <a class="reference internal" href="api/hypercoil.functional.interpolate.weighted_interpolate.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          weighted_interpolate
@@ -802,7 +802,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.interpolate.spectral_interpolate.html">
+      <a class="reference internal" href="api/hypercoil.functional.interpolate.spectral_interpolate.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          spectral_interpolate
@@ -813,7 +813,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.matrix.html">
+    <a class="reference internal" href="api/hypercoil.functional.matrix.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        matrix
@@ -828,7 +828,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.invert_spd.html">
+      <a class="reference internal" href="api/hypercoil.functional.matrix.invert_spd.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          invert_spd
@@ -837,7 +837,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.symmetric.html">
+      <a class="reference internal" href="api/hypercoil.functional.matrix.symmetric.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          symmetric
@@ -846,7 +846,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.spd.html">
+      <a class="reference internal" href="api/hypercoil.functional.matrix.spd.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          spd
@@ -855,7 +855,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.expand_outer.html">
+      <a class="reference internal" href="api/hypercoil.functional.matrix.expand_outer.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          expand_outer
@@ -864,7 +864,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.recondition_eigenspaces.html">
+      <a class="reference internal" href="api/hypercoil.functional.matrix.recondition_eigenspaces.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          recondition_eigenspaces
@@ -873,7 +873,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.delete_diagonal.html">
+      <a class="reference internal" href="api/hypercoil.functional.matrix.delete_diagonal.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          delete_diagonal
@@ -882,7 +882,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.toeplitz.html">
+      <a class="reference internal" href="api/hypercoil.functional.matrix.toeplitz.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          toeplitz
@@ -891,7 +891,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.sym2vec.html">
+      <a class="reference internal" href="api/hypercoil.functional.matrix.sym2vec.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          sym2vec
@@ -900,7 +900,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.vec2sym.html">
+      <a class="reference internal" href="api/hypercoil.functional.matrix.vec2sym.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          vec2sym
@@ -909,7 +909,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.squareform.html">
+      <a class="reference internal" href="api/hypercoil.functional.matrix.squareform.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          squareform
@@ -920,7 +920,7 @@
     </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.functional.resid.residualise.html">
+    <a class="reference internal" href="api/hypercoil.functional.resid.residualise.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        residualise
@@ -929,7 +929,7 @@
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.semidefinite.html">
+    <a class="reference internal" href="api/hypercoil.functional.semidefinite.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        semidefinite
@@ -944,7 +944,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.semidefinite.tangent_project_spd.html">
+      <a class="reference internal" href="api/hypercoil.functional.semidefinite.tangent_project_spd.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          tangent_project_spd
@@ -953,7 +953,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.semidefinite.cone_project_spd.html">
+      <a class="reference internal" href="api/hypercoil.functional.semidefinite.cone_project_spd.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          cone_project_spd
@@ -962,7 +962,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.semidefinite.mean_euc_spd.html">
+      <a class="reference internal" href="api/hypercoil.functional.semidefinite.mean_euc_spd.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          mean_euc_spd
@@ -971,7 +971,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.semidefinite.mean_harm_spd.html">
+      <a class="reference internal" href="api/hypercoil.functional.semidefinite.mean_harm_spd.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          mean_harm_spd
@@ -980,7 +980,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.semidefinite.mean_logeuc_spd.html">
+      <a class="reference internal" href="api/hypercoil.functional.semidefinite.mean_logeuc_spd.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          mean_logeuc_spd
@@ -989,7 +989,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.semidefinite.mean_geom_spd.html">
+      <a class="reference internal" href="api/hypercoil.functional.semidefinite.mean_geom_spd.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          mean_geom_spd
@@ -999,8 +999,8 @@
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 current active has-children">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="api/hypercoil.functional.sphere.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        sphere
@@ -1008,14 +1008,14 @@
      </code>
      : Spherical coordinates
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
     <label for="toctree-checkbox-19">
      <i class="fas fa-chevron-down">
      </i>
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.sphere.sphere_to_normals.html">
+      <a class="reference internal" href="api/hypercoil.functional.sphere.sphere_to_normals.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          sphere_to_normals
@@ -1024,7 +1024,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.sphere.sphere_to_latlong.html">
+      <a class="reference internal" href="api/hypercoil.functional.sphere.sphere_to_latlong.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          sphere_to_latlong
@@ -1033,7 +1033,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.sphere.spherical_geodesic.html">
+      <a class="reference internal" href="api/hypercoil.functional.sphere.spherical_geodesic.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          spherical_geodesic
@@ -1042,7 +1042,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.sphere.spatial_conv.html">
+      <a class="reference internal" href="api/hypercoil.functional.sphere.spatial_conv.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          spatial_conv
@@ -1051,7 +1051,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.sphere.spherical_conv.html">
+      <a class="reference internal" href="api/hypercoil.functional.sphere.spherical_conv.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          spherical_conv
@@ -1060,7 +1060,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.sphere.euclidean_conv.html">
+      <a class="reference internal" href="api/hypercoil.functional.sphere.euclidean_conv.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          euclidean_conv
@@ -1071,7 +1071,7 @@
     </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.functional.sylo.html">
+    <a class="reference internal" href="api/hypercoil.functional.sylo.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        sylo
@@ -1081,7 +1081,7 @@
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.symmap.html">
+    <a class="reference internal" href="api/hypercoil.functional.symmap.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        symmap
@@ -1096,7 +1096,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.symmap.symmap.html">
+      <a class="reference internal" href="api/hypercoil.functional.symmap.symmap.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          symmap
@@ -1105,7 +1105,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.symmap.symexp.html">
+      <a class="reference internal" href="api/hypercoil.functional.symmap.symexp.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          symexp
@@ -1114,7 +1114,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.symmap.symlog.html">
+      <a class="reference internal" href="api/hypercoil.functional.symmap.symlog.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          symlog
@@ -1123,7 +1123,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.symmap.symsqrt.html">
+      <a class="reference internal" href="api/hypercoil.functional.symmap.symsqrt.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          symsqrt
@@ -1134,7 +1134,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.tsconv.html">
+    <a class="reference internal" href="api/hypercoil.functional.tsconv.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        tsconv
@@ -1149,7 +1149,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.tsconv2d.html">
+      <a class="reference internal" href="api/hypercoil.functional.tsconv.tsconv2d.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          tsconv2d
@@ -1158,7 +1158,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.basisconv2d.html">
+      <a class="reference internal" href="api/hypercoil.functional.tsconv.basisconv2d.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          basisconv2d
@@ -1167,7 +1167,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.polyconv2d.html">
+      <a class="reference internal" href="api/hypercoil.functional.tsconv.polyconv2d.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          polyconv2d
@@ -1176,7 +1176,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.basischan.html">
+      <a class="reference internal" href="api/hypercoil.functional.tsconv.basischan.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          basischan
@@ -1185,7 +1185,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.polychan.html">
+      <a class="reference internal" href="api/hypercoil.functional.tsconv.polychan.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          polychan
@@ -1196,7 +1196,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.utils.html">
+    <a class="reference internal" href="api/hypercoil.functional.utils.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        utils
@@ -1211,7 +1211,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.conform_mask.html">
+      <a class="reference internal" href="api/hypercoil.functional.utils.conform_mask.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          conform_mask
@@ -1220,7 +1220,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.apply_mask.html">
+      <a class="reference internal" href="api/hypercoil.functional.utils.apply_mask.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          apply_mask
@@ -1229,7 +1229,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.wmean.html">
+      <a class="reference internal" href="api/hypercoil.functional.utils.wmean.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          wmean
@@ -1238,7 +1238,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.complex_decompose.html">
+      <a class="reference internal" href="api/hypercoil.functional.utils.complex_decompose.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          complex_decompose
@@ -1247,7 +1247,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.complex_recompose.html">
+      <a class="reference internal" href="api/hypercoil.functional.utils.complex_recompose.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          complex_recompose
@@ -1260,7 +1260,7 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../init.html">
+  <a class="reference internal" href="init.html">
    <code class="docutils literal notranslate">
     <span class="pre">
      init
@@ -1275,7 +1275,7 @@
   </label>
   <ul>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.init.atlas.html">
+    <a class="reference internal" href="api/hypercoil.init.atlas.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        atlas
@@ -1290,7 +1290,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.atlas.BaseAtlas.html">
+      <a class="reference internal" href="api/hypercoil.init.atlas.BaseAtlas.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          BaseAtlas
@@ -1299,7 +1299,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.atlas.DirichletInitBaseAtlas.html">
+      <a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitBaseAtlas.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          DirichletInitBaseAtlas
@@ -1308,7 +1308,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.atlas.DiscreteVolumetricAtlas.html">
+      <a class="reference internal" href="api/hypercoil.init.atlas.DiscreteVolumetricAtlas.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          DiscreteVolumetricAtlas
@@ -1317,7 +1317,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.atlas.MultiVolumetricAtlas.html">
+      <a class="reference internal" href="api/hypercoil.init.atlas.MultiVolumetricAtlas.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          MultiVolumetricAtlas
@@ -1326,7 +1326,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.atlas.MultifileVolumetricAtlas.html">
+      <a class="reference internal" href="api/hypercoil.init.atlas.MultifileVolumetricAtlas.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          MultifileVolumetricAtlas
@@ -1335,7 +1335,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html">
+      <a class="reference internal" href="api/hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          CortexSubcortexCIfTIAtlas
@@ -1344,7 +1344,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.atlas.DirichletInitVolumetricAtlas.html">
+      <a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitVolumetricAtlas.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          DirichletInitVolumetricAtlas
@@ -1353,7 +1353,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.atlas.DirichletInitSurfaceAtlas.html">
+      <a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitSurfaceAtlas.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          DirichletInitSurfaceAtlas
@@ -1362,7 +1362,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.atlas.AtlasInit.html">
+      <a class="reference internal" href="api/hypercoil.init.atlas.AtlasInit.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          AtlasInit
@@ -1373,7 +1373,7 @@
     </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.init.atlasmixins.html">
+    <a class="reference internal" href="api/hypercoil.init.atlasmixins.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        atlasmixins
@@ -1383,7 +1383,7 @@
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.init.base.html">
+    <a class="reference internal" href="api/hypercoil.init.base.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        base
@@ -1398,7 +1398,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.base.from_distr_init_.html">
+      <a class="reference internal" href="api/hypercoil.init.base.from_distr_init_.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          from_distr_init_
@@ -1407,7 +1407,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.base.constant_init_.html">
+      <a class="reference internal" href="api/hypercoil.init.base.constant_init_.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          constant_init_
@@ -1416,7 +1416,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.base.identity_init_.html">
+      <a class="reference internal" href="api/hypercoil.init.base.identity_init_.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          identity_init_
@@ -1425,7 +1425,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.base.DomainInitialiser.html">
+      <a class="reference internal" href="api/hypercoil.init.base.DomainInitialiser.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          DomainInitialiser
@@ -1434,7 +1434,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.base.DistributionInitialiser.html">
+      <a class="reference internal" href="api/hypercoil.init.base.DistributionInitialiser.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          DistributionInitialiser
@@ -1443,7 +1443,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.base.ConstantInitialiser.html">
+      <a class="reference internal" href="api/hypercoil.init.base.ConstantInitialiser.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          ConstantInitialiser
@@ -1454,7 +1454,7 @@
     </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.init.deltaplus.html">
+    <a class="reference internal" href="api/hypercoil.init.deltaplus.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        deltaplus
@@ -1463,7 +1463,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.init.dirichlet.html">
+    <a class="reference internal" href="api/hypercoil.init.dirichlet.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        dirichlet
@@ -1472,7 +1472,7 @@
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.init.domainbase.html">
+    <a class="reference internal" href="api/hypercoil.init.domainbase.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        domainbase
@@ -1487,7 +1487,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domainbase.Clip.html">
+      <a class="reference internal" href="api/hypercoil.init.domainbase.Clip.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          Clip
@@ -1497,7 +1497,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domainbase.Normalise.html">
+      <a class="reference internal" href="api/hypercoil.init.domainbase.Normalise.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          Normalise
@@ -1507,7 +1507,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domainbase._Domain.html">
+      <a class="reference internal" href="api/hypercoil.init.domainbase._Domain.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          _Domain
@@ -1516,7 +1516,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domainbase._PhaseAmplitudeDomain.html">
+      <a class="reference internal" href="api/hypercoil.init.domainbase._PhaseAmplitudeDomain.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          _PhaseAmplitudeDomain
@@ -1525,7 +1525,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domainbase.Identity.html">
+      <a class="reference internal" href="api/hypercoil.init.domainbase.Identity.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          Identity
@@ -1534,7 +1534,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domainbase.Linear.html">
+      <a class="reference internal" href="api/hypercoil.init.domainbase.Linear.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          Linear
@@ -1543,7 +1543,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domainbase.Affine.html">
+      <a class="reference internal" href="api/hypercoil.init.domainbase.Affine.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          Affine
@@ -1554,7 +1554,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.init.domain.html">
+    <a class="reference internal" href="api/hypercoil.init.domain.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        domain
@@ -1569,7 +1569,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domain.Atanh.html">
+      <a class="reference internal" href="api/hypercoil.init.domain.Atanh.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          Atanh
@@ -1578,7 +1578,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domain.Logit.html">
+      <a class="reference internal" href="api/hypercoil.init.domain.Logit.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          Logit
@@ -1587,7 +1587,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domain.MultiLogit.html">
+      <a class="reference internal" href="api/hypercoil.init.domain.MultiLogit.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          MultiLogit
@@ -1596,7 +1596,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domain.AmplitudeAtanh.html">
+      <a class="reference internal" href="api/hypercoil.init.domain.AmplitudeAtanh.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          AmplitudeAtanh
@@ -1605,7 +1605,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.domain.AmplitudeMultiLogit.html">
+      <a class="reference internal" href="api/hypercoil.init.domain.AmplitudeMultiLogit.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          AmplitudeMultiLogit
@@ -1616,7 +1616,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.init.freqfilter.html">
+    <a class="reference internal" href="api/hypercoil.init.freqfilter.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        freqfilter
@@ -1631,7 +1631,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.freqfilter.FreqFilterSpec.html">
+      <a class="reference internal" href="api/hypercoil.init.freqfilter.FreqFilterSpec.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          FreqFilterSpec
@@ -1640,7 +1640,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.freqfilter.freqfilter_init_.html">
+      <a class="reference internal" href="api/hypercoil.init.freqfilter.freqfilter_init_.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          freqfilter_init_
@@ -1649,7 +1649,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.freqfilter.clamp_init_.html">
+      <a class="reference internal" href="api/hypercoil.init.freqfilter.clamp_init_.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          clamp_init_
@@ -1660,7 +1660,7 @@
     </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.init.iirfilter.html">
+    <a class="reference internal" href="api/hypercoil.init.iirfilter.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        iirfilter
@@ -1670,7 +1670,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.init.laplace.html">
+    <a class="reference internal" href="api/hypercoil.init.laplace.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        laplace
@@ -1679,12 +1679,12 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.init.masklogic.html">
+    <a class="reference internal" href="api/hypercoil.init.masklogic.html">
      Mask logic
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.init.mpbl.html">
+    <a class="reference internal" href="api/hypercoil.init.mpbl.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        mpbl
@@ -1693,7 +1693,7 @@
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.init.semidefinite.html">
+    <a class="reference internal" href="api/hypercoil.init.semidefinite.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        semidefinite
@@ -1707,7 +1707,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.semidefinite.TangencyInit.html">
+      <a class="reference internal" href="api/hypercoil.init.semidefinite.TangencyInit.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          TangencyInit
@@ -1716,7 +1716,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.init.semidefinite.SemidefiniteMean.html">
+      <a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          SemidefiniteMean
@@ -1727,7 +1727,7 @@
     </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.init.sylo.html">
+    <a class="reference internal" href="api/hypercoil.init.sylo.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        sylo
@@ -1736,7 +1736,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.init.toeplitz.html">
+    <a class="reference internal" href="api/hypercoil.init.toeplitz.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        toeplitz
@@ -1747,7 +1747,7 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../loss.html">
+  <a class="reference internal" href="loss.html">
    <code class="docutils literal notranslate">
     <span class="pre">
      loss
@@ -1762,7 +1762,7 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.base.LossApply.html">
+    <a class="reference internal" href="api/hypercoil.loss.base.LossApply.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        LossApply
@@ -1771,7 +1771,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.base.ReducingLoss.html">
+    <a class="reference internal" href="api/hypercoil.loss.base.ReducingLoss.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        ReducingLoss
@@ -1780,7 +1780,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.batchcorr.auto_tol.html">
+    <a class="reference internal" href="api/hypercoil.loss.batchcorr.auto_tol.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        auto_tol
@@ -1789,7 +1789,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.batchcorr.BatchCorrelation.html">
+    <a class="reference internal" href="api/hypercoil.loss.batchcorr.BatchCorrelation.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        BatchCorrelation
@@ -1798,7 +1798,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.batchcorr.QCFC.html">
+    <a class="reference internal" href="api/hypercoil.loss.batchcorr.QCFC.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        QCFC
@@ -1807,7 +1807,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.cmass.Compactness.html">
+    <a class="reference internal" href="api/hypercoil.loss.cmass.Compactness.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        Compactness
@@ -1816,7 +1816,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.cmass.HemisphericTether.html">
+    <a class="reference internal" href="api/hypercoil.loss.cmass.HemisphericTether.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        HemisphericTether
@@ -1825,7 +1825,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.determinant.html">
+    <a class="reference internal" href="api/hypercoil.loss.determinant.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        determinant
@@ -1835,7 +1835,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.dispersion.VectorDispersion.html">
+    <a class="reference internal" href="api/hypercoil.loss.dispersion.VectorDispersion.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        VectorDispersion
@@ -1844,7 +1844,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.entropy.html">
+    <a class="reference internal" href="api/hypercoil.loss.entropy.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        Entropy
@@ -1859,7 +1859,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.equilibrium.html">
+    <a class="reference internal" href="api/hypercoil.loss.equilibrium.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        Equilibrium
@@ -1874,7 +1874,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.hinge.HingeLoss.html">
+    <a class="reference internal" href="api/hypercoil.loss.hinge.HingeLoss.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        HingeLoss
@@ -1883,7 +1883,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.jsdiv.html">
+    <a class="reference internal" href="api/hypercoil.loss.jsdiv.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        JSDivergence
@@ -1898,7 +1898,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.modularity.ModularityLoss.html">
+    <a class="reference internal" href="api/hypercoil.loss.modularity.ModularityLoss.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        ModularityLoss
@@ -1907,7 +1907,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.mvkurtosis.MultivariateKurtosis.html">
+    <a class="reference internal" href="api/hypercoil.loss.mvkurtosis.MultivariateKurtosis.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        MultivariateKurtosis
@@ -1916,7 +1916,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.norm.NormedLoss.html">
+    <a class="reference internal" href="api/hypercoil.loss.norm.NormedLoss.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        NormedLoss
@@ -1925,7 +1925,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.norm.UnilateralNormedLoss.html">
+    <a class="reference internal" href="api/hypercoil.loss.norm.UnilateralNormedLoss.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        UnilateralNormedLoss
@@ -1934,7 +1934,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.norm.ConstraintViolation.html">
+    <a class="reference internal" href="api/hypercoil.loss.norm.ConstraintViolation.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        ConstraintViolation
@@ -1943,7 +1943,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.scheme.LossScheme.html">
+    <a class="reference internal" href="api/hypercoil.loss.scheme.LossScheme.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        LossScheme
@@ -1952,7 +1952,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.secondmoment.html">
+    <a class="reference internal" href="api/hypercoil.loss.secondmoment.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        secondmoment
@@ -1962,7 +1962,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.smoothness.SmoothnessPenalty.html">
+    <a class="reference internal" href="api/hypercoil.loss.smoothness.SmoothnessPenalty.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        SmoothnessPenalty
@@ -1971,7 +1971,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.symbimodal.html">
+    <a class="reference internal" href="api/hypercoil.loss.symbimodal.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        SymmetricBimodal
@@ -1981,8 +1981,8 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../neuro.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
    <code class="docutils literal notranslate">
     <span class="pre">
      neuro
@@ -1990,14 +1990,14 @@
    </code>
    : Neuroscience data utilities
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/>
   <label for="toctree-checkbox-31">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.neuro.synth.html">
+    <a class="reference internal" href="api/hypercoil.neuro.synth.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        synth
@@ -2012,7 +2012,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.neuro.synth.match_spectra.html">
+      <a class="reference internal" href="api/hypercoil.neuro.synth.match_spectra.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          match_spectra
@@ -2021,7 +2021,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.neuro.synth.match_covariance.html">
+      <a class="reference internal" href="api/hypercoil.neuro.synth.match_covariance.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          match_covariance
@@ -2030,7 +2030,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.neuro.synth.match_reference.html">
+      <a class="reference internal" href="api/hypercoil.neuro.synth.match_reference.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          match_reference
@@ -2039,7 +2039,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.neuro.synth.match_cov_and_spectrum.html">
+      <a class="reference internal" href="api/hypercoil.neuro.synth.match_cov_and_spectrum.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          match_cov_and_spectrum
@@ -2048,7 +2048,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.neuro.synth.synthesise_matched.html">
+      <a class="reference internal" href="api/hypercoil.neuro.synth.synthesise_matched.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          synthesise_matched
@@ -2057,7 +2057,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.neuro.synth.synthesise_from_cov_and_spectrum.html">
+      <a class="reference internal" href="api/hypercoil.neuro.synth.synthesise_from_cov_and_spectrum.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          synthesise_from_cov_and_spectrum
@@ -2070,7 +2070,7 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../nn.html">
+  <a class="reference internal" href="nn.html">
    <code class="docutils literal notranslate">
     <span class="pre">
      nn
@@ -2085,7 +2085,7 @@
   </label>
   <ul>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.nn.activation.html">
+    <a class="reference internal" href="api/hypercoil.nn.activation.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        activation
@@ -2100,7 +2100,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.activation.CorrelationNorm.html">
+      <a class="reference internal" href="api/hypercoil.nn.activation.CorrelationNorm.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          CorrelationNorm
@@ -2112,7 +2112,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.nn.atlas.html">
+    <a class="reference internal" href="api/hypercoil.nn.atlas.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        atlas
@@ -2127,7 +2127,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.atlas.AtlasLinear.html">
+      <a class="reference internal" href="api/hypercoil.nn.atlas.AtlasLinear.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          AtlasLinear
@@ -2137,7 +2137,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.atlas.AtlasAccumuline.html">
+      <a class="reference internal" href="api/hypercoil.nn.atlas.AtlasAccumuline.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          AtlasAccumuline
@@ -2149,7 +2149,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.nn.cov.html">
+    <a class="reference internal" href="api/hypercoil.nn.cov.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        cov
@@ -2164,7 +2164,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.cov._Cov.html">
+      <a class="reference internal" href="api/hypercoil.nn.cov._Cov.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          _Cov
@@ -2174,7 +2174,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.cov.UnaryCovariance.html">
+      <a class="reference internal" href="api/hypercoil.nn.cov.UnaryCovariance.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          UnaryCovariance
@@ -2183,7 +2183,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.cov.UnaryCovarianceTW.html">
+      <a class="reference internal" href="api/hypercoil.nn.cov.UnaryCovarianceTW.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          UnaryCovarianceTW
@@ -2192,7 +2192,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.cov.UnaryCovarianceUW.html">
+      <a class="reference internal" href="api/hypercoil.nn.cov.UnaryCovarianceUW.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          UnaryCovarianceUW
@@ -2201,7 +2201,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.cov.BinaryCovariance.html">
+      <a class="reference internal" href="api/hypercoil.nn.cov.BinaryCovariance.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          BinaryCovariance
@@ -2210,7 +2210,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.cov.BinaryCovarianceTW.html">
+      <a class="reference internal" href="api/hypercoil.nn.cov.BinaryCovarianceTW.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          BinaryCovarianceTW
@@ -2219,7 +2219,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.cov.BinaryCovarianceUW.html">
+      <a class="reference internal" href="api/hypercoil.nn.cov.BinaryCovarianceUW.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          BinaryCovarianceUW
@@ -2230,7 +2230,7 @@
     </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.nn.freqfilter.FrequencyDomainFilter.html">
+    <a class="reference internal" href="api/hypercoil.nn.freqfilter.FrequencyDomainFilter.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        freqfilter
@@ -2240,7 +2240,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.nn.iirfilter.html">
+    <a class="reference internal" href="api/hypercoil.nn.iirfilter.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        iirfilter
@@ -2250,7 +2250,7 @@
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.nn.interpolate.html">
+    <a class="reference internal" href="api/hypercoil.nn.interpolate.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        interpolate
@@ -2265,7 +2265,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.interpolate.SpectralInterpolate.html">
+      <a class="reference internal" href="api/hypercoil.nn.interpolate.SpectralInterpolate.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          SpectralInterpolate
@@ -2274,7 +2274,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.interpolate.WeightedInterpolate.html">
+      <a class="reference internal" href="api/hypercoil.nn.interpolate.WeightedInterpolate.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          WeightedInterpolate
@@ -2283,7 +2283,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.interpolate.HybridInterpolate.html">
+      <a class="reference internal" href="api/hypercoil.nn.interpolate.HybridInterpolate.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          HybridInterpolate
@@ -2294,7 +2294,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.nn.recombinator.html">
+    <a class="reference internal" href="api/hypercoil.nn.recombinator.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        recombinator
@@ -2308,7 +2308,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.recombinator.Recombinator.html">
+      <a class="reference internal" href="api/hypercoil.nn.recombinator.Recombinator.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          Recombinator
@@ -2317,7 +2317,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.recombinator.QueryEncoder.html">
+      <a class="reference internal" href="api/hypercoil.nn.recombinator.QueryEncoder.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          QueryEncoder
@@ -2328,7 +2328,7 @@
     </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.nn.resid.Residualise.html">
+    <a class="reference internal" href="api/hypercoil.nn.resid.Residualise.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        Residualise
@@ -2337,7 +2337,7 @@
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.nn.select.html">
+    <a class="reference internal" href="api/hypercoil.nn.select.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        select
@@ -2352,7 +2352,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.select.ResponseFunctionLinearSelector.html">
+      <a class="reference internal" href="api/hypercoil.nn.select.ResponseFunctionLinearSelector.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          ResponseFunctionLinearSelector
@@ -2361,7 +2361,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.select.LinearCombinationSelector.html">
+      <a class="reference internal" href="api/hypercoil.nn.select.LinearCombinationSelector.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          LinearCombinationSelector
@@ -2370,7 +2370,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.select.EliminationSelector.html">
+      <a class="reference internal" href="api/hypercoil.nn.select.EliminationSelector.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          EliminationSelector
@@ -2381,7 +2381,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.nn.semidefinite.html">
+    <a class="reference internal" href="api/hypercoil.nn.semidefinite.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        semidefinite
@@ -2395,7 +2395,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.semidefinite.TangentProject.html">
+      <a class="reference internal" href="api/hypercoil.nn.semidefinite.TangentProject.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          TangentProject
@@ -2404,7 +2404,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.semidefinite.BatchTangentProject.html">
+      <a class="reference internal" href="api/hypercoil.nn.semidefinite.BatchTangentProject.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          BatchTangentProject
@@ -2415,7 +2415,7 @@
     </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.nn.spdnoise.SPDNoise.html">
+    <a class="reference internal" href="api/hypercoil.nn.spdnoise.SPDNoise.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        SPDNoise
@@ -2424,7 +2424,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.nn.svm.SVM.html">
+    <a class="reference internal" href="api/hypercoil.nn.svm.SVM.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        SVM
@@ -2433,7 +2433,7 @@
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.nn.sylo.html">
+    <a class="reference internal" href="api/hypercoil.nn.sylo.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        sylo
@@ -2447,7 +2447,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.sylo.Sylo.html">
+      <a class="reference internal" href="api/hypercoil.nn.sylo.Sylo.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          Sylo
@@ -2456,7 +2456,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.sylo.SyloResNet.html">
+      <a class="reference internal" href="api/hypercoil.nn.sylo.SyloResNet.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          SyloResNet
@@ -2467,7 +2467,7 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.nn.vertcom.html">
+    <a class="reference internal" href="api/hypercoil.nn.vertcom.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        vertcom
@@ -2482,7 +2482,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.vertcom.VerticalCompression.html">
+      <a class="reference internal" href="api/hypercoil.nn.vertcom.VerticalCompression.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          VerticalCompression
@@ -2491,7 +2491,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.vertcom.vertical_compression.html">
+      <a class="reference internal" href="api/hypercoil.nn.vertcom.vertical_compression.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          vertical_compression
@@ -2502,7 +2502,7 @@
     </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.nn.window.WindowAmplifier.html">
+    <a class="reference internal" href="api/hypercoil.nn.window.WindowAmplifier.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        WindowAmplifier
@@ -2513,7 +2513,7 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../viz.html">
+  <a class="reference internal" href="viz.html">
    <code class="docutils literal notranslate">
     <span class="pre">
      viz
@@ -2567,17 +2567,20 @@
               
               <article class="bd-article" role="main">
                 
-  <section id="module-hypercoil.functional.sphere">
-<span id="sphere-spherical-coordinates"></span><h1><code class="docutils literal notranslate"><span class="pre">sphere</span></code>: Spherical coordinates<a class="headerlink" href="#module-hypercoil.functional.sphere" title="Permalink to this heading">#</a></h1>
-<p>Operations supporting spherical coordinate systems.</p>
+  <section id="module-hypercoil.neuro">
+<span id="neuro-neuroscience-data-utilities"></span><h1><code class="docutils literal notranslate"><span class="pre">neuro</span></code>: Neuroscience data utilities<a class="headerlink" href="#module-hypercoil.neuro" title="Permalink to this heading">#</a></h1>
+<p>Tools for neuroscience and neuroimaging</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.sphere_to_normals.html"><code class="docutils literal notranslate"><span class="pre">sphere_to_normals</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.sphere_to_latlong.html"><code class="docutils literal notranslate"><span class="pre">sphere_to_latlong</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.spherical_geodesic.html"><code class="docutils literal notranslate"><span class="pre">spherical_geodesic</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.spatial_conv.html"><code class="docutils literal notranslate"><span class="pre">spatial_conv</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.spherical_conv.html"><code class="docutils literal notranslate"><span class="pre">spherical_conv</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.euclidean_conv.html"><code class="docutils literal notranslate"><span class="pre">euclidean_conv</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.neuro.synth.html"><code class="docutils literal notranslate"><span class="pre">synth</span></code>: Data synthesis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.neuro.synth.match_spectra.html"><code class="docutils literal notranslate"><span class="pre">match_spectra</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.neuro.synth.match_covariance.html"><code class="docutils literal notranslate"><span class="pre">match_covariance</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.neuro.synth.match_reference.html"><code class="docutils literal notranslate"><span class="pre">match_reference</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.neuro.synth.match_cov_and_spectrum.html"><code class="docutils literal notranslate"><span class="pre">match_cov_and_spectrum</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.neuro.synth.synthesise_matched.html"><code class="docutils literal notranslate"><span class="pre">synthesise_matched</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.neuro.synth.synthesise_from_cov_and_spectrum.html"><code class="docutils literal notranslate"><span class="pre">synthesise_from_cov_and_spectrum</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -2595,7 +2598,7 @@
   
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
 
 <footer class="bd-footer"><div class="bd-footer__inner container">
   

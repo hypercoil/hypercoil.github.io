@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>sphere: Spherical coordinates &#8212; hypercoil prototype (unreleased) documentation</title>
+    <title>ConstraintViolation &#8212; hypercoil prototype (unreleased) documentation</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -37,8 +37,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="sphere_to_normals" href="hypercoil.functional.sphere.sphere_to_normals.html" />
-    <link rel="prev" title="mean_geom_spd" href="hypercoil.functional.semidefinite.mean_geom_spd.html" />
+    <link rel="next" title="LossScheme" href="hypercoil.loss.scheme.LossScheme.html" />
+    <link rel="prev" title="UnilateralNormedLoss" href="hypercoil.loss.norm.UnilateralNormedLoss.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
   </head>
@@ -459,7 +459,7 @@
   <ul class="simple">
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../functional.html">
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -468,12 +468,12 @@
    </code>
    : Functions and functionals
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
   <label for="toctree-checkbox-10">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="hypercoil.functional.activation.html">
      <code class="docutils literal notranslate">
@@ -999,8 +999,8 @@
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 current active has-children">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="hypercoil.functional.sphere.html">
      <code class="docutils literal notranslate">
       <span class="pre">
        sphere
@@ -1008,7 +1008,7 @@
      </code>
      : Spherical coordinates
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
     <label for="toctree-checkbox-19">
      <i class="fas fa-chevron-down">
      </i>
@@ -1746,7 +1746,7 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../loss.html">
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -1755,12 +1755,12 @@
    </code>
    : Loss and regularisation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/>
   <label for="toctree-checkbox-30">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="hypercoil.loss.base.LossApply.html">
      <code class="docutils literal notranslate">
@@ -1933,8 +1933,8 @@
      </code>
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.norm.ConstraintViolation.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      <code class="docutils literal notranslate">
       <span class="pre">
        ConstraintViolation
@@ -2567,19 +2567,67 @@
               
               <article class="bd-article" role="main">
                 
-  <section id="module-hypercoil.functional.sphere">
-<span id="sphere-spherical-coordinates"></span><h1><code class="docutils literal notranslate"><span class="pre">sphere</span></code>: Spherical coordinates<a class="headerlink" href="#module-hypercoil.functional.sphere" title="Permalink to this heading">#</a></h1>
-<p>Operations supporting spherical coordinate systems.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.sphere_to_normals.html"><code class="docutils literal notranslate"><span class="pre">sphere_to_normals</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.sphere_to_latlong.html"><code class="docutils literal notranslate"><span class="pre">sphere_to_latlong</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.spherical_geodesic.html"><code class="docutils literal notranslate"><span class="pre">spherical_geodesic</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.spatial_conv.html"><code class="docutils literal notranslate"><span class="pre">spatial_conv</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.spherical_conv.html"><code class="docutils literal notranslate"><span class="pre">spherical_conv</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.sphere.euclidean_conv.html"><code class="docutils literal notranslate"><span class="pre">euclidean_conv</span></code></a></li>
-</ul>
-</div>
+  <section id="constraintviolation">
+<h1><code class="docutils literal notranslate"><span class="pre">ConstraintViolation</span></code><a class="headerlink" href="#constraintviolation" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.norm.ConstraintViolation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.norm.</span></span><span class="sig-name descname"><span class="pre">ConstraintViolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precompose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.norm.ConstraintViolation" title="Permalink to this definition">#</a></dt>
+<dd><p>Constraint violation loss.</p>
+<p>This loss uses a set of constraint functions and evaluates them on its
+input. If a constraint evaluates to 0 or less, then it is considered to
+be satisfied and no penalty is applied. Otherwise, a
+<a class="reference internal" href="hypercoil.loss.norm.NormedLoss.html#hypercoil.loss.norm.NormedLoss" title="hypercoil.loss.norm.NormedLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">normed</span> <span class="pre">penalty</span></code></a> is applied in proportion to the
+maximum violation of any constraint.</p>
+<p>For example, using the constraint <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">x</span></code> penalises only
+positive elements (equivalent to <a class="reference internal" href="hypercoil.loss.norm.UnilateralNormedLoss.html#hypercoil.loss.norm.UnilateralNormedLoss" title="hypercoil.loss.norm.UnilateralNormedLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnilateralNormedLoss</span></code></a>), while
+<code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">-x</span></code> penalises only negative elements.
+<code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">tensor([1,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">-2])</span> <span class="pre">&#64;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">2</span></code> applies the specified affine
+function as a constraint.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>constraints</strong><span class="classifier">iterable(callable)</span></dt><dd><p>Iterable containing constraint functions.</p>
+</dd>
+<dt><strong>nu</strong><span class="classifier">float</span></dt><dd><p>Loss function weight multiplier.</p>
+</dd>
+<dt><strong>p</strong><span class="classifier">float (default 2)</span></dt><dd><p>Norm order. <code class="docutils literal notranslate"><span class="pre">p=1</span></code> corresponds to the Manhattan L1 norm, <code class="docutils literal notranslate"><span class="pre">p=2</span></code>
+corresponds to the Euclidean L2 norm, etc.</p>
+</dd>
+<dt><strong>precompose</strong><span class="classifier">callable or None (default None)</span></dt><dd><p>Pre-transformation of the input tensor, on whose output the unilateral
+norm is computed.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int, iterable(int), or None (default None)</span></dt><dd><p>Axes defining the slice of the input tensor over which the norm is
+computed. If this is None, then the overall tensor norm is computed.</p>
+</dd>
+<dt><strong>reduction</strong><span class="classifier">callable (default <code class="docutils literal notranslate"><span class="pre">torch.mean</span></code>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The output of
+the norm operation over the specified axes produces a tensor whose
+extent over remaining axes is unreduced. This output tensor is then
+passed into <code class="docutils literal notranslate"><span class="pre">reduction</span></code> to return a scalar.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.norm.ConstraintViolation.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.norm.ConstraintViolation.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate the loss function, and communicate the results to any
+listening sentry objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.norm.ConstraintViolation.register_sentry">
+<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.norm.ConstraintViolation.register_sentry" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.norm.ConstraintViolation.register_action">
+<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypercoil.loss.norm.ConstraintViolation.register_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
