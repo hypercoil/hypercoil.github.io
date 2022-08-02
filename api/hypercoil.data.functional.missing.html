@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Missing values &#8212; hypercoil prototype (unreleased) documentation</title>
 <script>
@@ -2060,6 +2060,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="hypercoil.loss.connectopy.html">
+     Connectopy loss functional
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="hypercoil.loss.determinant.html">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -2881,7 +2886,7 @@ located (returned so that they can be restored later if desired).</p>
 <h2><code class="docutils literal notranslate"><span class="pre">extend_to_max_size</span></code><a class="headerlink" href="#extend-to-max-size" title="Permalink to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="hypercoil.data.functional.extend_to_max_size">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">extend_to_max_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor_list</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L281-L295"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.extend_to_max_size" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">extend_to_max_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L281-L295"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.extend_to_max_size" title="Permalink to this definition">#</a></dt>
 <dd><p>Extend all tensors in a list until their sizes are equal to the size
 of the largest tensor along each axis. Any new entries created via
 extension are marked with NaN to denote that they were missing from
@@ -2917,7 +2922,7 @@ the input; they can be populated by chaining this with a call to
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
 </p>
   </div>
   
