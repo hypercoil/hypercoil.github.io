@@ -35,7 +35,6 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Displacement from a reference centre of mass" href="hypercoil.functional.cmass.cmass_reference.html" />
@@ -2810,49 +2809,6 @@
                 
   <section id="diffuse-diffuseness-around-centre-of-mass">
 <h1><code class="docutils literal notranslate"><span class="pre">diffuse</span></code>: Diffuseness around centre of mass<a class="headerlink" href="#diffuse-diffuseness-around-centre-of-mass" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.functional.cmass.diffuse">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.cmass.</span></span><span class="sig-name descname"><span class="pre">diffuse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">floor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/functional/cmass.py#L140-L189"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.cmass.diffuse" title="Permalink to this definition">#</a></dt>
-<dd><p>Compute a compactness score for a weight.</p>
-<p>The compactness is defined as</p>
-<p><span class="math notranslate nohighlight">\(\mathbf{1}^\intercal\left(A \circ \left\|C - \frac{AC}{A\mathbf{1}} \right\|_{cols} \right)\mathbf{1}\)</span></p>
-<dl class="field-list simple">
-<dt class="field-odd">Dimension<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((*, W, L)\)</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of preceding dimensions, W
-denotes number of weights (e.g., regions of an atlas),
-and L denotes number of locations (e.g., voxels).</p>
-</dd>
-<dt><strong>coor :</strong> <span class="math notranslate nohighlight">\((*, D, L)\)</span></dt><dd><p>D denotes the dimension of the embedding space of the
-locations.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Weight for which the compactness score is to be computed.</p>
-</dd>
-<dt><strong>coor</strong><span class="classifier">Tensor</span></dt><dd><p>Coordinates corresponding to each column (location/voxel) in X.</p>
-</dd>
-<dt><strong>norm</strong></dt><dd><p>Indicator of the type of norm to use for the distance function.</p>
-</dd>
-<dt><strong>floor</strong><span class="classifier">float (default 0)</span></dt><dd><p>Any points closer to the centre of mass than the floor are assigned
-a compactness score of 0.</p>
-</dd>
-<dt><strong>radius</strong><span class="classifier">float or None (default None)</span></dt><dd><p>If this is not None, then the centre of mass and distances are
-computed on a sphere with the specified radius.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>float</dt><dd><p>Measure of each weight’s compactness about its centre of mass.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 

@@ -35,7 +35,6 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="isochor: PSD normalisation" href="hypercoil.functional.activation.isochor.html" />
@@ -2810,58 +2809,6 @@
                 
   <section id="corrnorm">
 <h1><code class="docutils literal notranslate"><span class="pre">corrnorm</span></code><a class="headerlink" href="#corrnorm" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.functional.activation.corrnorm">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.activation.</span></span><span class="sig-name descname"><span class="pre">corrnorm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/functional/activation.py#L227-L283"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.activation.corrnorm" title="Permalink to this definition">#</a></dt>
-<dd><p>Correlation normalisation activation function.</p>
-<p>Divide each entry <span class="math notranslate nohighlight">\(A_{ij}\)</span> of the input matrix <span class="math notranslate nohighlight">\(A\)</span> by the
-product of the signed square roots of the corresponding diagonals:</p>
-<p><span class="math notranslate nohighlight">\(\bar{A}_{ij} = A_{ij} \frac{\mathrm{sgn}(A_{ii} A_{jj})}{\sqrt{A_{ii}}\sqrt{A_{jj}} + \epsilon}\)</span></p>
-<p>This default behaviour, which maps a covariance matrix to a Pearson
-correlation matrix, can be overriden by providing a <code class="docutils literal notranslate"><span class="pre">factor</span></code> argument
-(detailed below). This activation function is also similar to a signed
-version of the normalisation operation for a graph Laplacian matrix.</p>
-<dl class="field-list">
-<dt class="field-odd">Dimension<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>input :</strong> <span class="math notranslate nohighlight">\((*, P, P)\)</span></dt><dd><p>P denotes the row and column dimensions of the input
-matrices. <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of additional
-dimensions.</p>
-</dd>
-<dt><strong>output :</strong> <span class="math notranslate nohighlight">\((*, P, P)\)</span></dt><dd><p>As above.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><dl>
-<dt><strong>input</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor to be normalised.</p>
-</dd>
-<dt><strong>factor</strong><span class="classifier">Tensor, iterable(Tensor, Tensor), or None (default None)</span></dt><dd><p>Normalisation factor.</p>
-<ul class="simple">
-<li><p>If this is not explicitly specified, it follows the default
-behaviour (division by the product of signed square roots.)</p></li>
-<li><p>If this is a tensor, <code class="docutils literal notranslate"><span class="pre">input</span></code> is directly divided by the
-provided tensor. This option is provided mostly for compatibility
-with non-square inputs.</p></li>
-<li><p>If this is a pair of tensors, then <code class="docutils literal notranslate"><span class="pre">input</span></code> is divided by their
-outer product.</p></li>
-</ul>
-</dd>
-<dt><strong>gradpath</strong><span class="classifier">str <code class="docutils literal notranslate"><span class="pre">'input'</span></code> or <code class="docutils literal notranslate"><span class="pre">'both'</span></code> (default <code class="docutils literal notranslate"><span class="pre">'both'</span></code>)</span></dt><dd><p>If this is set to <code class="docutils literal notranslate"><span class="pre">'input'</span></code> and the default normalisation behaviour
-is used, then gradient will be blocked from flowing backward through
-the computation of the normalisation factor from the input.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>Tensor</dt><dd><p>Normalised input.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 

@@ -35,7 +35,6 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="amplitude_atanh" href="hypercoil.functional.activation.amplitude_atanh.html" />
@@ -2810,37 +2809,6 @@
                 
   <section id="amplitude-tanh">
 <h1><code class="docutils literal notranslate"><span class="pre">amplitude_tanh</span></code><a class="headerlink" href="#amplitude-tanh" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.functional.activation.amplitude_tanh">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.activation.</span></span><span class="sig-name descname"><span class="pre">amplitude_tanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/functional/activation.py#L155-L184"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.activation.amplitude_tanh" title="Permalink to this definition">#</a></dt>
-<dd><p>Hyperbolic tangent activation function applied to the amplitude only.</p>
-<p>The amplitude (absolute value) of the input is transformed according to</p>
-<p><span class="math notranslate nohighlight">\(\mathrm{tanh} x\)</span></p>
-<p>while the phase (complex argument) is preserved. This function maps the
-complex plane to the open unit disc: the origin is mapped to itself
-and distant regions of the complex plane are mapped to the circumference.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Dimension<span class="colon">:</span></dt>
-<dd class="field-odd"><p>As this activation function is applied elementwise, it
-conserves dimension; the output will be of the same shape as
-the input.</p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>input</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor whose amplitude is to be transformed elementwise by the
-hyperbolic tangent activation function.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>out</strong><span class="classifier">Tensor</span></dt><dd><p>Transformed input tensor.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
