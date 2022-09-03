@@ -35,7 +35,6 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.cmass.cmass';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -2912,54 +2911,6 @@
               
   <section id="cmass-centre-of-mass-array-coordinates">
 <h1><code class="docutils literal notranslate"><span class="pre">cmass</span></code>: Centre of mass, array coordinates<a class="headerlink" href="#cmass-centre-of-mass-array-coordinates" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.functional.cmass.cmass">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.cmass.</span></span><span class="sig-name descname"><span class="pre">cmass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_rm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/functional/cmass.py#L21-L80"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.cmass.cmass" title="Permalink to this definition">#</a></dt>
-<dd><p>Differentiably compute a weight’s centre of mass. This can be used to
-regularise the weight so that its centre of mass is close to a provided
-coordinate.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Dimension<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((*, k_1, k_2, ..., k_n)\)</span></dt><dd><p><cite>*</cite> denotes any number of batch and intervening
-dimensions, and the <a href="#id1"><span class="problematic" id="id2">`</span></a>k_i`s are dimensions along which the
-centre of mass is computed</p>
-</dd>
-<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, n)\)</span></dt><dd><p><cite>n</cite> denotes the number of dimensions of each centre of
-mass vector</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor containing the weights whose centres of mass are to be
-computed.</p>
-</dd>
-<dt><strong>axes</strong><span class="classifier">iterable or None (default None)</span></dt><dd><p>Axes of the input tensor that together define each slice of the tensor
-within which a single centre-of-mass vector is computed. If this is
-set to None, then the centre of mass is computed across all axes. If
-this is [-3, -2, -1], then the centre of mass is computed separately
-for each 3-dimensional slice spanned by the last three axes of the
-tensor.</p>
-</dd>
-<dt><strong>na_rm</strong><span class="classifier">float or False (default False)</span></dt><dd><p>If any single slice of the input tensor has zero mass, then the centre
-of mass within that slice is undefined and populated with NaN. The
-<cite>na_rm</cite> parameter specified how such undefined values are handled. If
-this is False, then NaN values are left intact; if this is a float,
-then NaN values are replaced by the specified float.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>cmass</strong><span class="classifier">Tensor</span></dt><dd><p>Centre of mass vectors for each slice from the input tensor. The
-coordinates are ordered according to the specification in <code class="docutils literal notranslate"><span class="pre">axes</span></code>.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 

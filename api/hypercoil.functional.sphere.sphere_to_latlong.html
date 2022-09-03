@@ -35,7 +35,6 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.sphere.sphere_to_latlong';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -2912,33 +2911,6 @@
               
   <section id="sphere-to-latlong">
 <h1><code class="docutils literal notranslate"><span class="pre">sphere_to_latlong</span></code><a class="headerlink" href="#sphere-to-latlong" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.functional.sphere.sphere_to_latlong">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.sphere.</span></span><span class="sig-name descname"><span class="pre">sphere_to_latlong</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coor</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/functional/sphere.py#L61-L89"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.sphere.sphere_to_latlong" title="Permalink to this definition">#</a></dt>
-<dd><p>Convert spherical coordinates from normal vector format to latitude/
-longitude format. Note this only works for 2-spheres as of now.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Dimension<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>Input :</strong> <span class="math notranslate nohighlight">\((*, 3)\)</span>
-<strong>Output :</strong> <span class="math notranslate nohighlight">\((*, 2)\)</span></p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>coor</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor containing 3-tuple coordinates indicating x, y, and z values of
-each point on a sphere whose centre is the origin.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>coor</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor containing 2-tuple coordinates indicating the latitude and
-longitude of each point.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
