@@ -2911,63 +2911,6 @@
               
   <section id="referenceddataset">
 <h1><code class="docutils literal notranslate"><span class="pre">ReferencedDataset</span></code><a class="headerlink" href="#referenceddataset" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.data.dataset.ReferencedDataset">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.data.dataset.</span></span><span class="sig-name descname"><span class="pre">ReferencedDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_refs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/dataset.py#L25-L98"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.dataset.ReferencedDataset" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
-<p>A referenced dataset.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>data_refs</strong><span class="classifier">list(<a class="reference internal" href="hypercoil.data.dataref.DataReference.html"><span class="doc">DataReference</span></a>)</span></dt><dd><p>List of data references to include in the dataset. References can be
-obtained using a search method like <cite>data_references</cite> or one of its
-parent functions.</p>
-</dd>
-<dt><strong>depth</strong><span class="classifier">int (default 0)</span></dt><dd><p>Sampling depth of the dataset: if the passed references are nested
-hierarchically, then each minibatch is sampled from data references
-at the indicated level. By default, the dataset is sampled from the
-highest level (no nesting).</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.dataset.ReferencedDataset.add_data" title="hypercoil.data.dataset.ReferencedDataset.add_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_data</span></code></a>(data_refs)</p></td>
-<td><p>Append additional data references to the dataset.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.data.dataset.ReferencedDataset.set_depth" title="hypercoil.data.dataset.ReferencedDataset.set_depth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_depth</span></code></a>(depth)</p></td>
-<td><p>Adjust the dataset's sampling depth.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Methods Documentation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.data.dataset.ReferencedDataset.add_data">
-<span class="sig-name descname"><span class="pre">add_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_refs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/dataset.py#L77-L88"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.dataset.ReferencedDataset.add_data" title="Permalink to this definition">#</a></dt>
-<dd><p>Append additional data references to the dataset.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>data_refs</strong><span class="classifier">list(<a class="reference internal" href="hypercoil.data.dataref.DataReference.html"><span class="doc">DataReference</span></a>)</span></dt><dd><p>List of additional references to add.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.data.dataset.ReferencedDataset.set_depth">
-<span class="sig-name descname"><span class="pre">set_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/dataset.py#L62-L76"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.dataset.ReferencedDataset.set_depth" title="Permalink to this definition">#</a></dt>
-<dd><p>Adjust the dataset’s sampling depth. If the dataset has nested
-references, then the depth corresponds to the level of nesting from
-which the data are sampled. References from the specified depth are
-automatically collated into the internal object list.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 
 

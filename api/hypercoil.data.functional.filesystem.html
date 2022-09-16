@@ -2913,76 +2913,15 @@
 <h1>I/O and filesystem<a class="headerlink" href="#i-o-and-filesystem" title="Permalink to this heading">#</a></h1>
 <section id="read-data-frame">
 <h2><code class="docutils literal notranslate"><span class="pre">read_data_frame</span></code><a class="headerlink" href="#read-data-frame" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.read_data_frame">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">read_data_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\t'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L328-L335"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.read_data_frame" title="Permalink to this definition">#</a></dt>
-<dd><p>Load tabular data from the specified path. Defaults to TSV. Any additional
-arguments are forwarded to <cite>pd.read_csv</cite>.</p>
-</dd></dl>
-
 </section>
 <section id="read-neuro-image">
 <h2><code class="docutils literal notranslate"><span class="pre">read_neuro_image</span></code><a class="headerlink" href="#read-neuro-image" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.read_neuro_image">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">read_neuro_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L337-L350"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.read_neuro_image" title="Permalink to this definition">#</a></dt>
-<dd><p>Load neuroimaging data from the specified path. Any additional arguments
-are forwarded to <cite>nibabel.load</cite>.</p>
-</dd></dl>
-
 </section>
 <section id="read-json">
 <h2><code class="docutils literal notranslate"><span class="pre">read_json</span></code><a class="headerlink" href="#read-json" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.read_json">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">read_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L402-L419"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.read_json" title="Permalink to this definition">#</a></dt>
-<dd><p>Load JSON-formatted metadata into a python dictionary.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>Path to the JSON-formatted metadata file.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>metadata</strong><span class="classifier">dict</span></dt><dd><p>Python dictionary containing all metadata in the JSON file.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 <section id="change-extension">
 <h2><code class="docutils literal notranslate"><span class="pre">change_extension</span></code><a class="headerlink" href="#change-extension" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.change_extension">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">change_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_ext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L375-L400"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.change_extension" title="Permalink to this definition">#</a></dt>
-<dd><p>Edit a path to change its extension.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>Path on a file system.</p>
-</dd>
-<dt><strong>new_ext</strong><span class="classifier">str</span></dt><dd><p>New extension for the path.</p>
-</dd>
-<dt><strong>mode</strong><span class="classifier">‘all’ or ‘last’ (default ‘all’)</span></dt><dd><p>‘all’ indicates that everything after the first period in the base
-name is to be treated as the old extension and replaced; ‘last’
-indicates that only text after the final period in the base name is to
-be treated as the old extension.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>new_path</strong><span class="classifier">str</span></dt><dd><p>Input path with the specified new extension.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 </section>
 
