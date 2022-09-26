@@ -36,6 +36,7 @@
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.semidefinite.tangent_project_spd';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -2945,6 +2946,91 @@
               
   <section id="tangent-project-spd">
 <h1><code class="docutils literal notranslate"><span class="pre">tangent_project_spd</span></code><a class="headerlink" href="#tangent-project-spd" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.semidefinite.tangent_project_spd">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.semidefinite.</span></span><span class="sig-name descname"><span class="pre">tangent_project_spd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recondition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigenspaces'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'convexcombination'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'eigenspaces'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_nans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate_eigenvalues</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/semidefinite.py#L20-L79"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.semidefinite.tangent_project_spd" title="Permalink to this definition">#</a></dt>
+<dd><p>Project a batch of symmetric matrices from the positive semidefinite cone
+into a tangent subspace.</p>
+<p>Given a tangency point <span class="math notranslate nohighlight">\(\Omega\)</span>, each input <span class="math notranslate nohighlight">\(\Theta\)</span> is
+projected as:</p>
+<p><span class="math notranslate nohighlight">\(\vec{\Theta} = \log \Omega^{-1/2} \Theta \Omega^{-1/2}\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\Omega^{-1/2}\)</span> denotes the inverse matrix square root of
+<span class="math notranslate nohighlight">\(\Omega\)</span> and <span class="math notranslate nohighlight">\(\log\)</span> denotes the matrix-argument logarithm.</p>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((N, *, D, D)\)</span></dt><dd><p>N denotes batch size, <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of
+intervening dimensions, D denotes matrix row and column
+dimension.</p>
+</dd>
+<dt><strong>Reference :</strong> <span class="math notranslate nohighlight">\((*, D, D)\)</span></dt><dd><p>As above.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((N, *, D, D)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>input</strong><span class="classifier">Tensor</span></dt><dd><p>Batch of symmetric positive definite matrices to project into the
+tangent subspace.</p>
+</dd>
+<dt><strong>reference</strong><span class="classifier">Tensor</span></dt><dd><p>Point of tangency. This is an element of the positive semidefinite
+cone at which the projection occurs. It should be representative of
+the sample being projected (for instance, some form of mean).</p>
+</dd>
+<dt><strong>psi</strong><span class="classifier">float in [0, 1]</span></dt><dd><p>Conditioning factor to promote positive definiteness.</p>
+</dd>
+<dt><strong>key: Tensor or None (default None)</strong></dt><dd><p>Key for pseudo-random number generation. Required if <code class="docutils literal notranslate"><span class="pre">recondition</span></code> is
+set to <code class="docutils literal notranslate"><span class="pre">'eigenspaces'</span></code> and <code class="docutils literal notranslate"><span class="pre">psi</span></code> is in (0, 1].</p>
+</dd>
+<dt><strong>recondition</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'convexcombination'</span></code> or <code class="docutils literal notranslate"><span class="pre">'eigenspaces'</span></code> (default <code class="docutils literal notranslate"><span class="pre">'eigenspaces'</span></code>)</span></dt><dd><p>Method for reconditioning.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'convexcombination'</span></code> denotes that the original input will be
+replaced with a convex combination of the input and an identity
+matrix.</p>
+<p><span class="math notranslate nohighlight">\(\widetilde{X} = (1 - \psi) X + \psi I\)</span></p>
+<p>A suitable <span class="math notranslate nohighlight">\(\psi\)</span> can be used to ensure that all eigenvalues
+are positive.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'eigenspaces'</span></code> denotes that noise will be added to the original
+input along the diagonal.</p>
+<p><span class="math notranslate nohighlight">\(\widetilde{X} = X + \psi I - \xi I\)</span></p>
+<p>where each element of <span class="math notranslate nohighlight">\(\xi\)</span> is independently sampled uniformly
+from <span class="math notranslate nohighlight">\((0, \psi)\)</span>. In addition to promoting positive
+definiteness, this method promotes eigenspaces with dimension 1 (no
+degenerate/repeated eigenvalues). Nondegeneracy of eigenvalues is
+required for differentiation through SVD.</p>
+</li>
+</ul>
+</dd>
+<dt><strong>fill_nans</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that any NaNs among the transformed eigenvalues should be
+replaced with zeros.</p>
+</dd>
+<dt><strong>truncate_eigenvalues</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that very small eigenvalues, which might for instance occur
+due to numerical errors in the decomposition, should be truncated to
+zero. Note that you should not do this if you wish to differentiate
+through this operation, or if you require the input to be positive
+definite. For these use cases, consider using the <code class="docutils literal notranslate"><span class="pre">psi</span></code> and
+<code class="docutils literal notranslate"><span class="pre">recondition</span></code> parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>output</strong><span class="classifier">Tensor</span></dt><dd><p>Batch of matrices transformed via projection into the tangent subspace.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="hypercoil.functional.semidefinite.cone_project_spd.html#hypercoil.functional.semidefinite.cone_project_spd" title="hypercoil.functional.semidefinite.cone_project_spd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cone_project_spd</span></code></a></dt><dd><p>The inverse projection, into the semidefinite cone.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
 </section>
 
 
@@ -2958,6 +3044,27 @@
           
             <div class="bd-sidebar-secondary bd-toc">
               
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypercoil.functional.semidefinite.tangent_project_spd">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     tangent_project_spd()
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
 <div class="toc-item">
   
 </div>
