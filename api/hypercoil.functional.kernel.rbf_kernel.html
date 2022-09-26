@@ -119,6 +119,13 @@
                 
 
                 <li class="nav-item">
+                    <a class="nav-link" href="../overview.html">
+                        Technical overview
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
                     <a class="nav-link" href="../diffprog.html">
                         Framework
                     </a>
@@ -200,6 +207,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../installation.html">
                         Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../overview.html">
+                        Technical overview
                     </a>
                 </li>
                 
@@ -736,7 +750,17 @@
          hybrid_interpolate
         </span>
        </code>
-       : Weighted + spectral interpolation
+       : Linear + spectral interpolation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.interpolate.linear_interpolate.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         linear_interpolate
+        </span>
+       </code>
+       : Linear interpolation
       </a>
      </li>
      <li class="toctree-l3">
@@ -779,6 +803,24 @@
        <code class="docutils literal notranslate">
         <span class="pre">
          linear_kernel
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.param_norm.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         param_norm
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.linear_distance.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         linear_distance
         </span>
        </code>
       </a>
@@ -828,6 +870,24 @@
        </code>
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.cov_kernel.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         cov_kernel
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.corr_kernel.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         corr_kernel
+        </span>
+       </code>
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -846,7 +906,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.invert_spd.html">
+      <a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          invert_spd
@@ -900,10 +960,28 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.matrix.diag_embed.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         diag_embed
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.matrix.fill_diagonal.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          fill_diagonal
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.matrix.toeplitz_2d.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         toeplitz_2d
         </span>
        </code>
       </a>
@@ -1042,6 +1120,15 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sphere.spherical_geodesic.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         spherical_geodesic
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.sphere.sphere_to_normals.html">
        <code class="docutils literal notranslate">
         <span class="pre">
@@ -1055,15 +1142,6 @@
        <code class="docutils literal notranslate">
         <span class="pre">
          sphere_to_latlong
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.sphere.spherical_geodesic.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spherical_geodesic
         </span>
        </code>
       </a>
@@ -1176,28 +1254,19 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.tsconv.conv.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         conv
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.tsconv.tsconv2d.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          tsconv2d
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.basisconv2d.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         basisconv2d
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.polyconv2d.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         polyconv2d
         </span>
        </code>
       </a>
@@ -1212,10 +1281,28 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.tsconv.basisconv2d.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         basisconv2d
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.tsconv.polychan.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          polychan
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.tsconv.polyconv2d.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         polyconv2d
         </span>
        </code>
       </a>
@@ -1256,10 +1343,10 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.wmean.html">
+      <a class="reference internal" href="hypercoil.functional.utils.mask_tensor.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         wmean
+         mask_tensor
         </span>
        </code>
       </a>
@@ -1283,28 +1370,10 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.sparse_mm.html">
+      <a class="reference internal" href="hypercoil.functional.utils.amplitude_apply.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         sparse_mm
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.sparse_rcmul.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         sparse_rcmul
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.orient_and_conform.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         orient_and_conform
+         amplitude_apply
         </span>
        </code>
       </a>
@@ -2629,7 +2698,7 @@
 <h1><code class="docutils literal notranslate"><span class="pre">rbf_kernel</span></code><a class="headerlink" href="#rbf-kernel" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hypercoil.functional.kernel.rbf_kernel">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.kernel.</span></span><span class="sig-name descname"><span class="pre">rbf_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/functional/kernel.py#L448-L514"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.kernel.rbf_kernel" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.kernel.</span></span><span class="sig-name descname"><span class="pre">rbf_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/kernel.py#L448-L514"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.kernel.rbf_kernel" title="Permalink to this definition">#</a></dt>
 <dd><p>Parameterised RBF kernel between input tensors.</p>
 <p>For tensors <span class="math notranslate nohighlight">\(X_0\)</span> and <span class="math notranslate nohighlight">\(X_1\)</span> containing features in column
 vectors, the parameterised RBF kernel is</p>

@@ -39,8 +39,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.matrix';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="invert_spd" href="hypercoil.functional.matrix.invert_spd.html" />
-    <link rel="prev" title="cosine_kernel" href="hypercoil.functional.kernel.cosine_kernel.html" />
+    <link rel="next" title="invert_spd" href="hypercoil.functional.matrix.cholesky_invert.html" />
+    <link rel="prev" title="corr_kernel" href="hypercoil.functional.kernel.corr_kernel.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -113,6 +113,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../installation.html">
                         Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../overview.html">
+                        Technical overview
                     </a>
                 </li>
                 
@@ -199,6 +206,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../installation.html">
                         Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../overview.html">
+                        Technical overview
                     </a>
                 </li>
                 
@@ -735,7 +749,17 @@
          hybrid_interpolate
         </span>
        </code>
-       : Weighted + spectral interpolation
+       : Linear + spectral interpolation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.interpolate.linear_interpolate.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         linear_interpolate
+        </span>
+       </code>
+       : Linear interpolation
       </a>
      </li>
      <li class="toctree-l3">
@@ -778,6 +802,24 @@
        <code class="docutils literal notranslate">
         <span class="pre">
          linear_kernel
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.param_norm.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         param_norm
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.linear_distance.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         linear_distance
         </span>
        </code>
       </a>
@@ -827,6 +869,24 @@
        </code>
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.cov_kernel.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         cov_kernel
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.corr_kernel.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         corr_kernel
+        </span>
+       </code>
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 current active has-children">
@@ -845,7 +905,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.invert_spd.html">
+      <a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          invert_spd
@@ -899,10 +959,28 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.matrix.diag_embed.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         diag_embed
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.matrix.fill_diagonal.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          fill_diagonal
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.matrix.toeplitz_2d.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         toeplitz_2d
         </span>
        </code>
       </a>
@@ -1041,6 +1119,15 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sphere.spherical_geodesic.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         spherical_geodesic
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.sphere.sphere_to_normals.html">
        <code class="docutils literal notranslate">
         <span class="pre">
@@ -1054,15 +1141,6 @@
        <code class="docutils literal notranslate">
         <span class="pre">
          sphere_to_latlong
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.sphere.spherical_geodesic.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spherical_geodesic
         </span>
        </code>
       </a>
@@ -1175,28 +1253,19 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.tsconv.conv.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         conv
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.tsconv.tsconv2d.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          tsconv2d
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.basisconv2d.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         basisconv2d
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.polyconv2d.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         polyconv2d
         </span>
        </code>
       </a>
@@ -1211,10 +1280,28 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.tsconv.basisconv2d.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         basisconv2d
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.tsconv.polychan.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          polychan
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.tsconv.polyconv2d.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         polyconv2d
         </span>
        </code>
       </a>
@@ -1255,10 +1342,10 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.wmean.html">
+      <a class="reference internal" href="hypercoil.functional.utils.mask_tensor.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         wmean
+         mask_tensor
         </span>
        </code>
       </a>
@@ -1282,28 +1369,10 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.sparse_mm.html">
+      <a class="reference internal" href="hypercoil.functional.utils.amplitude_apply.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         sparse_mm
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.sparse_rcmul.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         sparse_rcmul
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.orient_and_conform.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         orient_and_conform
+         amplitude_apply
         </span>
        </code>
       </a>
@@ -2629,7 +2698,7 @@
 <p>Special matrix functions.</p>
 <span class="target" id="module-hypercoil.functional.matrix"></span><div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.matrix.invert_spd.html"><code class="docutils literal notranslate"><span class="pre">invert_spd</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html"><code class="docutils literal notranslate"><span class="pre">invert_spd</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.matrix.symmetric.html"><code class="docutils literal notranslate"><span class="pre">symmetric</span></code></a><ul>
 <li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.matrix.symmetric.html#hypercoil.functional.matrix.symmetric"><code class="docutils literal notranslate"><span class="pre">symmetric()</span></code></a></li>
 </ul>
@@ -2650,8 +2719,16 @@
 <li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.matrix.delete_diagonal.html#hypercoil.functional.matrix.delete_diagonal"><code class="docutils literal notranslate"><span class="pre">delete_diagonal()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.matrix.diag_embed.html"><code class="docutils literal notranslate"><span class="pre">diag_embed</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.matrix.diag_embed.html#hypercoil.functional.matrix.diag_embed"><code class="docutils literal notranslate"><span class="pre">diag_embed()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.matrix.fill_diagonal.html"><code class="docutils literal notranslate"><span class="pre">fill_diagonal</span></code></a><ul>
 <li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.matrix.fill_diagonal.html#hypercoil.functional.matrix.fill_diagonal"><code class="docutils literal notranslate"><span class="pre">fill_diagonal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.matrix.toeplitz_2d.html"><code class="docutils literal notranslate"><span class="pre">toeplitz_2d</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.matrix.toeplitz_2d.html#hypercoil.functional.matrix.toeplitz_2d"><code class="docutils literal notranslate"><span class="pre">toeplitz_2d()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.matrix.toeplitz.html"><code class="docutils literal notranslate"><span class="pre">toeplitz</span></code></a><ul>

@@ -40,8 +40,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.tsconv.polyconv2d';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="basischan" href="hypercoil.functional.tsconv.basischan.html" />
-    <link rel="prev" title="basisconv2d" href="hypercoil.functional.tsconv.basisconv2d.html" />
+    <link rel="next" title="utils: Miscellaneous" href="hypercoil.functional.utils.html" />
+    <link rel="prev" title="polychan" href="hypercoil.functional.tsconv.polychan.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -114,6 +114,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../installation.html">
                         Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../overview.html">
+                        Technical overview
                     </a>
                 </li>
                 
@@ -200,6 +207,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../installation.html">
                         Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../overview.html">
+                        Technical overview
                     </a>
                 </li>
                 
@@ -736,7 +750,17 @@
          hybrid_interpolate
         </span>
        </code>
-       : Weighted + spectral interpolation
+       : Linear + spectral interpolation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.interpolate.linear_interpolate.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         linear_interpolate
+        </span>
+       </code>
+       : Linear interpolation
       </a>
      </li>
      <li class="toctree-l3">
@@ -779,6 +803,24 @@
        <code class="docutils literal notranslate">
         <span class="pre">
          linear_kernel
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.param_norm.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         param_norm
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.linear_distance.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         linear_distance
         </span>
        </code>
       </a>
@@ -828,6 +870,24 @@
        </code>
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.cov_kernel.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         cov_kernel
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.corr_kernel.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         corr_kernel
+        </span>
+       </code>
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -846,7 +906,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.invert_spd.html">
+      <a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          invert_spd
@@ -900,10 +960,28 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.matrix.diag_embed.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         diag_embed
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.matrix.fill_diagonal.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          fill_diagonal
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.matrix.toeplitz_2d.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         toeplitz_2d
         </span>
        </code>
       </a>
@@ -1042,6 +1120,15 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sphere.spherical_geodesic.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         spherical_geodesic
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.sphere.sphere_to_normals.html">
        <code class="docutils literal notranslate">
         <span class="pre">
@@ -1055,15 +1142,6 @@
        <code class="docutils literal notranslate">
         <span class="pre">
          sphere_to_latlong
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.sphere.spherical_geodesic.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spherical_geodesic
         </span>
        </code>
       </a>
@@ -1176,28 +1254,19 @@
     </label>
     <ul class="current">
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.tsconv2d.html">
+      <a class="reference internal" href="hypercoil.functional.tsconv.conv.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         tsconv2d
+         conv
         </span>
        </code>
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.basisconv2d.html">
+      <a class="reference internal" href="hypercoil.functional.tsconv.tsconv2d.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         basisconv2d
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         polyconv2d
+         tsconv2d
         </span>
        </code>
       </a>
@@ -1212,10 +1281,28 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.tsconv.basisconv2d.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         basisconv2d
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.tsconv.polychan.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          polychan
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         polyconv2d
         </span>
        </code>
       </a>
@@ -1256,10 +1343,10 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.wmean.html">
+      <a class="reference internal" href="hypercoil.functional.utils.mask_tensor.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         wmean
+         mask_tensor
         </span>
        </code>
       </a>
@@ -1283,28 +1370,10 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.sparse_mm.html">
+      <a class="reference internal" href="hypercoil.functional.utils.amplitude_apply.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         sparse_mm
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.sparse_rcmul.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         sparse_rcmul
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.orient_and_conform.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         orient_and_conform
+         amplitude_apply
         </span>
        </code>
       </a>
@@ -2629,7 +2698,7 @@
 <h1><code class="docutils literal notranslate"><span class="pre">polyconv2d</span></code><a class="headerlink" href="#polyconv2d" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hypercoil.functional.tsconv.polyconv2d">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.tsconv.</span></span><span class="sig-name descname"><span class="pre">polyconv2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_const</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'initial'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'final'</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/functional/tsconv.py#L184-L268"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.tsconv.polyconv2d" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.tsconv.</span></span><span class="sig-name descname"><span class="pre">polyconv2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_const</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'initial'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'final'</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/tsconv.py#L184-L268"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.tsconv.polyconv2d" title="Permalink to this definition">#</a></dt>
 <dd><p>Perform convolution using a polynomial channel basis.</p>
 <p>Convolution using a kernel whose ith input channel views the input dataset
 raised to the ith power.</p>
