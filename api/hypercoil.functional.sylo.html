@@ -3053,14 +3053,14 @@
             
             <article class="bd-article" role="main">
               
-  <section id="sylo-sylo-function">
-<h1><code class="docutils literal notranslate"><span class="pre">sylo</span></code>: Sylo function<a class="headerlink" href="#sylo-sylo-function" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.functional.sylo">
+<span id="sylo-sylo-function"></span><h1><code class="docutils literal notranslate"><span class="pre">sylo</span></code>: Sylo function<a class="headerlink" href="#module-hypercoil.functional.sylo" title="Permalink to this heading">#</a></h1>
 <p>Sylo (“symmetric low-rank”) kernel operator.</p>
 <p>This operation is a BrainNetCNN-like function equipped with an inductive bias
 that should be favourable for learning on a set of unordered dense matrices,
 and designed with analogy to convolutional layers. There are still a lot of
 quirks to work out before it’s usable.</p>
-<span class="target" id="module-hypercoil.functional.sylo"></span><dl class="py function">
+<dl class="py function">
 <dt class="sig sig-object py" id="hypercoil.functional.sylo.sylo">
 <span class="sig-prename descclassname"><span class="pre">hypercoil.functional.sylo.</span></span><span class="sig-name descname"><span class="pre">sylo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">X:</span> <span class="pre">~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray],</span> <span class="pre">L:</span> <span class="pre">~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray],</span> <span class="pre">R:</span> <span class="pre">~typing.Optional[~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">C:</span> <span class="pre">~typing.Optional[~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">bias:</span> <span class="pre">~typing.Optional[~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">symmetry:</span> <span class="pre">~typing.Optional[~typing.Literal['cross',</span> <span class="pre">'skew']]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">similarity:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">crosshair_similarity&gt;,</span> <span class="pre">remove_diagonal:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/sylo.py#L19-L127"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.sylo.sylo" title="Permalink to this definition">#</a></dt>
 <dd><p>Sylo transformation of a tensor block.</p>
@@ -3240,7 +3240,7 @@ is often used to encode node attributes, or might be 1 for all nodes.</p>
   <div class="footer-item">
     
 <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.2.<br>
 </p>
 
   </div>
