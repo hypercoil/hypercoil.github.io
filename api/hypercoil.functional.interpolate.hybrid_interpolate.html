@@ -2947,7 +2947,7 @@
 <h1><code class="docutils literal notranslate"><span class="pre">hybrid_interpolate</span></code>: Linear + spectral interpolation<a class="headerlink" href="#hybrid-interpolate-linear-spectral-interpolation" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hypercoil.functional.interpolate.hybrid_interpolate">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.interpolate.</span></span><span class="sig-name descname"><span class="pre">hybrid_interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_consecutive_linear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oversampling_frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_thresh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/interpolate.py#L54-L146"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.interpolate.hybrid_interpolate" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.interpolate.</span></span><span class="sig-name descname"><span class="pre">hybrid_interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_consecutive_linear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oversampling_frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_thresh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/interpolate.py#L196-L245"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.interpolate.hybrid_interpolate" title="Permalink to this definition">#</a></dt>
 <dd><p>Interpolate unseen time frames using a hybrid approach that combines
 <a class="reference internal" href="hypercoil.functional.interpolate.linear_interpolate.html#hypercoil.functional.interpolate.linear_interpolate" title="hypercoil.functional.interpolate.linear_interpolate"><code class="xref py py-func docutils literal notranslate"><span class="pre">linear</span></code></a> and
 <a class="reference internal" href="hypercoil.functional.interpolate.spectral_interpolate.html#hypercoil.functional.interpolate.spectral_interpolate" title="hypercoil.functional.interpolate.spectral_interpolate"><code class="xref py py-func docutils literal notranslate"><span class="pre">spectral</span></code></a>
@@ -2964,9 +2964,9 @@ will be used for imputation.</p></li>
 <li><p>Linear interpolation is applied using the seen time frames, together
 with the frames interpolated using the spectral method.</p></li>
 </ul>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
+<dd class="field-odd"><dl class="simple">
 <dt><strong>data</strong><span class="classifier">tensor</span></dt><dd><p>Time series data.</p>
 </dd>
 <dt><strong>mask</strong><span class="classifier">boolean tensor</span></dt><dd><p>Boolean tensor indicating whether the value in each frame of the input
@@ -2978,36 +2978,27 @@ missing and flags them for interpolation.</p>
 will be used; any unseen frames that cannot be imputed using this
 maximum are instead imputed using the spectral approach.</p>
 </dd>
-<dt><strong>map_to_kernel</strong><span class="classifier">callable(int -&gt; tensor)</span></dt><dd><p>A function that uses the integer value of the current stage to create
-a convolutional kernel for weighting of neighbours. By default, a
-boxcar window that includes the current frame, together with <code class="docutils literal notranslate"><span class="pre">stage</span></code>
-frames in each of the forward and backward directions, is returned.</p>
-</dd>
 <dt><strong>oversampling_frequency</strong><span class="classifier">float (default 8)</span></dt><dd><p>Determines the number of frequency bins to use when estimating the
-sine and cosine spectra in spectral interpolation. 1 indicates that
-the number of bins should be the same as in a Fourier transform,
-while larger values indicate that frequency bins should be
-oversampled.</p>
+sine and cosine spectra. 1 indicates that the number of bins should be
+the same as in a Fourier transform, while larger values indicate that
+frequency bins should be oversampled.</p>
 </dd>
-<dt><strong>maximum_frequency</strong><span class="classifier">float (default 1)</span></dt><dd><p>Maximum frequency bin to consider in the spectral fit, as a fraction
-of Nyquist.</p>
+<dt><strong>maximum_frequency</strong><span class="classifier">float (default 1)</span></dt><dd><p>Maximum frequency bin to consider in the fit, as a fraction of
+Nyquist.</p>
+</dd>
+<dt><strong>sampling_period</strong><span class="classifier">float (default 1)</span></dt><dd><p>Period separating consecutive samples in <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
 </dd>
 <dt><strong>frequency_thresh</strong><span class="classifier">float (default 0.3)</span></dt><dd><p>Because of the non-orthogonality of the basis functions, spurious
 variance will often be captured in the spectral estimates. To control
 this spurious variance, all frequency bins whose estimates are less
-than <code class="docutils literal notranslate"><span class="pre">thresh</span></code>, as a fraction of the maximum estimate across all
-bins, are set to 0.</p>
-</dd>
-<dt><strong>handle_fail</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'raise'</span></code> or <code class="docutils literal notranslate"><span class="pre">'orig'</span></code> (default <code class="docutils literal notranslate"><span class="pre">'orig'</span></code>)</span></dt><dd><p>Specifies behaviour if the interpolation fails (which typically occurs
-if every frame is labelled as unseen). <code class="docutils literal notranslate"><span class="pre">'raise'</span></code> raises an
-exception, while <code class="docutils literal notranslate"><span class="pre">'orig'</span></code> returns values from the input time series
-for any frames that are still missing after interpolation.</p>
+than <code class="docutils literal notranslate"><span class="pre">frequency_thresh</span></code>, as a fraction of the maximum estimate
+across all bins, are set to 0.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>tensor</dt><dd><p>Input dataset with missing frames imputed.</p>
+<dt>Tensor</dt><dd><p>Input dataset with missing frames imputed.</p>
 </dd>
 </dl>
 </dd>

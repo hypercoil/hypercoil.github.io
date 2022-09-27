@@ -2948,7 +2948,7 @@
 <h1><code class="docutils literal notranslate"><span class="pre">relaxed_modularity</span></code><a class="headerlink" href="#relaxed-modularity" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hypercoil.functional.graph.relaxed_modularity">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.graph.</span></span><span class="sig-name descname"><span class="pre">relaxed_modularity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">A:</span> <span class="pre">~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray],</span> <span class="pre">C:</span> <span class="pre">~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray],</span> <span class="pre">C_o:</span> <span class="pre">~typing.Optional[~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">L:</span> <span class="pre">~typing.Optional[~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">exclude_diag:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">gamma:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">null:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">girvan_newman_null&gt;,</span> <span class="pre">normalise_modularity:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">normalise_coaffiliation:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">directed:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">sign:</span> <span class="pre">~typing.Optional[~typing.Literal['+',</span> <span class="pre">'-']]</span> <span class="pre">=</span> <span class="pre">'+',</span> <span class="pre">**params</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/graph.py#L212-L318"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.graph.relaxed_modularity" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.graph.</span></span><span class="sig-name descname"><span class="pre">relaxed_modularity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">A:</span> <span class="pre">~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray],</span> <span class="pre">C:</span> <span class="pre">~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray],</span> <span class="pre">C_o:</span> <span class="pre">~typing.Optional[~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">L:</span> <span class="pre">~typing.Optional[~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">exclude_diag:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">gamma:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">null:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">girvan_newman_null&gt;,</span> <span class="pre">normalise_modularity:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">normalise_coaffiliation:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">directed:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">sign:</span> <span class="pre">~typing.Optional[~typing.Literal['+',</span> <span class="pre">'-']]</span> <span class="pre">=</span> <span class="pre">'+',</span> <span class="pre">**params</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/graph.py#L254-L312"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.graph.relaxed_modularity" title="Permalink to this definition">#</a></dt>
 <dd><p>A relaxation of the modularity of a network given a community partition.</p>
 <p>This relaxation supports non-deterministic assignments of vertices to
 communities and non-assortative linkages between communities. It reverts
@@ -2966,10 +2966,13 @@ the source set and O denotes number of vertices in the
 sink set. If the same set of vertices emits and receives
 edges, then <span class="math notranslate nohighlight">\(I = O\)</span>.</p>
 </dd>
-<dt><strong>C :</strong> <span class="math notranslate nohighlight">\((*, I, C)\)</span></dt><dd><p>C denotes the total number of communities in the proposed
-partition.</p>
+<dt><strong>C_i :</strong> <span class="math notranslate nohighlight">\((*, I, C)\)</span></dt><dd><p><cite>*</cite> denotes any number of preceding dimensions, I denotes
+number of vertices in the source set, and C denotes the
+total number of communities in the proposed partition.</p>
 </dd>
-<dt><strong>C_o :</strong> <span class="math notranslate nohighlight">\((*, I, C)\)</span></dt><dd><p>As above.</p>
+<dt><strong>C_o :</strong> <span class="math notranslate nohighlight">\((*, I, C)\)</span></dt><dd><p>O denotes number of vertices in the sink set. If the same
+set of vertices emits and receives edges, then
+<span class="math notranslate nohighlight">\(I = O\)</span>.</p>
 </dd>
 <dt><strong>L :</strong> <span class="math notranslate nohighlight">\((*, C, C)\)</span></dt><dd><p>As above.</p>
 </dd>
@@ -2979,7 +2982,8 @@ partition.</p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>A</strong><span class="classifier">Tensor</span></dt><dd><p>Block of adjacency matrices for which the modularity is to be computed.</p>
+<dt><strong>A</strong><span class="classifier">Tensor</span></dt><dd><p>Block of adjacency matrices for which the quantity of interest is to
+be computed.</p>
 </dd>
 <dt><strong>C</strong><span class="classifier">Tensor</span></dt><dd><p>Community affiliation of vertices in the source set. Each slice is a
 matrix <span class="math notranslate nohighlight">\(C^{(i)} \in \mathbb{R}^{I \ times C}\)</span> that encodes the
@@ -2989,9 +2993,10 @@ this is binary-valued, then it reflects a deterministic assignment.</p>
 </dd>
 <dt><strong>C_o</strong><span class="classifier">Tensor or None (default None)</span></dt><dd><p>Community affiliation of vertices in the sink set. If None, then it is
 assumed that the source and sink sets are the same, and <code class="docutils literal notranslate"><span class="pre">C_o</span></code> is set
-equal to <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p>
+equal to <code class="docutils literal notranslate"><span class="pre">C_i</span></code>.</p>
 </dd>
-<dt><strong>L</strong><span class="classifier">Tensor or None (default None)</span></dt><dd><p>Probability of affiliation between communities. Each entry
+<dt><strong>L</strong><span class="classifier">Tensor or None (default None)</span></dt><dd><p>The inter-community coupling matrix <span class="math notranslate nohighlight">\(\Omega\)</span>, mapping the
+probability of affiliation between communities. Each entry
 <span class="math notranslate nohighlight">\(L_{ij}\)</span> encodes the probability of a vertex in community i
 connecting with a vertex in community j. If None, then a strictly
 assortative structure is assumed (equivalent to L equals identity),
@@ -3000,27 +3005,25 @@ while nodes in different communities remain disaffiliated.</p>
 </dd>
 <dt><strong>exclude_diag</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that self-links are not factored into the coaffiliation.</p>
 </dd>
-<dt><strong>gamma</strong><span class="classifier">nonnegative float (default 1)</span></dt><dd><p>Resolution parameter for the modularity matrix. A smaller value
-assigns maximum modularity to partitions with large communities, while
-a larger value assigns maximum modularity to partitions with many
-small communities.</p>
+<dt><strong>normalise_coaffiliation</strong><span class="classifier">bool (default False)</span></dt><dd><p>Normalise all community assignment weights to max out at 1.</p>
+</dd>
+<dt><strong>directed</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that the input adjacency matrices should be considered as a
+directed graph.</p>
+</dd>
+<dt><strong>gamma</strong><span class="classifier">nonnegative float (default 1)</span></dt><dd><p>Resolution parameter for the modularity matrix. A smaller value assigns
+maximum modularity to partitions with large communities, while a larger
+value assigns maximum modularity to partitions with many small
+communities.</p>
 </dd>
 <dt><strong>null</strong><span class="classifier">callable(A) (default <code class="docutils literal notranslate"><span class="pre">girvan_newman_null</span></code>)</span></dt><dd><p>Function of <code class="docutils literal notranslate"><span class="pre">A</span></code> that returns, for each adjacency matrix in the input
 tensor block, a suitable null model. By default, the
 <a class="reference internal" href="hypercoil.functional.graph.girvan_newman_null.html"><span class="doc">Girvan-Newman null model</span></a>
 is used.</p>
 </dd>
-<dt><strong>normalise_modularity</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that the resulting matrix should be normalised by the total
+<dt><strong>normalise</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that the resulting matrix should be normalised by the total
 matrix degree. This may not be necessary for many use cases – for
 instance, where the arg max of a function of the modularity matrix is
 desired.</p>
-</dd>
-<dt><strong>normalise_coaffiliation</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that all weights in the community assignment matrix block
-should be renormalised to max out at 1. Note that this is unnecessary
-if the affiliations have already been passed through a softmax.</p>
-</dd>
-<dt><strong>directed</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that the input adjacency matrices should be considered as a
-directed graph.</p>
 </dd>
 <dt><strong>sign</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'+'</span></code>, <code class="docutils literal notranslate"><span class="pre">'-'</span></code>, or None (default <code class="docutils literal notranslate"><span class="pre">'+'</span></code>)</span></dt><dd><p>Sign of connections to be considered in the modularity.</p>
 </dd>

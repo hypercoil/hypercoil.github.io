@@ -2948,15 +2948,18 @@
 <h1><code class="docutils literal notranslate"><span class="pre">product_filtfilt</span></code>: Zero-phase filter<a class="headerlink" href="#product-filtfilt-zero-phase-filter" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hypercoil.functional.fourier.product_filtfilt">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.fourier.</span></span><span class="sig-name descname"><span class="pre">product_filtfilt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/fourier.py#L57-L106"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.fourier.product_filtfilt" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.fourier.</span></span><span class="sig-name descname"><span class="pre">product_filtfilt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/fourier.py#L120-L149"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.fourier.product_filtfilt" title="Permalink to this definition">#</a></dt>
 <dd><p>Perform zero-phase digital filtering of a signal via multiplication in the
 frequency domain.</p>
 <p>This function operates by first filtering the data and then filtering a
 time-reversed copy of the filtered data again. Note that the effect on the
 amplitude is quadratic in the filter weight.</p>
-<p>If the <code class="docutils literal notranslate"><span class="pre">weight</span></code> argument is strictly real, then the filter has no phase
-delay component and it could make sense to simply use <code class="docutils literal notranslate"><span class="pre">product_filter</span></code>
-depending on the context.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">weight</span></code> argument is strictly real, then the filter has no
+phase delay component and it could make sense to simply use
+<a class="reference internal" href="hypercoil.functional.fourier.product_filter.html#hypercoil.functional.fourier.product_filter" title="hypercoil.functional.fourier.product_filter"><code class="xref py py-func docutils literal notranslate"><span class="pre">product_filter()</span></code></a> depending on the context.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Dimension<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -2980,15 +2983,15 @@ high along the last axis. Dimensions before the last can be used to
 apply different filters to different variables in the input signal
 according to tensor broadcasting rules.</p>
 </dd>
-<dt><strong>**params</strong></dt><dd><p>Any additional parameters provided will be passed to <cite>jnp.fft.rfft</cite>
-and <cite>jnp.fft.irfft</cite>.</p>
+<dt><strong>**params</strong></dt><dd><p>Any additional parameters provided will be passed to <code class="docutils literal notranslate"><span class="pre">jnp.fft.rfft</span></code>
+and <code class="docutils literal notranslate"><span class="pre">jnp.fft.irfft</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>out</strong><span class="classifier">Tensor</span></dt><dd><p>Original time series filtered forward and backward via multiplication
-in the frequency domain.</p>
+<dt>Tensor</dt><dd><p>Original time series filtered via multiplication in the frequency
+domain.</p>
 </dd>
 </dl>
 </dd>
