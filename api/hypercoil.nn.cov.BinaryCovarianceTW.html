@@ -8,7 +8,7 @@
 
     <title>BinaryCovarianceTW &#8212; hypercoil prototype (unreleased) documentation</title>
   <script>
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -36,6 +36,7 @@
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.cov.BinaryCovarianceTW';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -46,7 +47,7 @@
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="dark">
 
   
   <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
@@ -284,23 +285,6 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../eval.html">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     eval
-    </span>
-   </code>
-   : Benchmarks and evaluation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="simple">
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
   <a class="reference internal" href="../functional.html">
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -309,8 +293,8 @@
    </code>
    : Functions and functionals
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -324,8 +308,8 @@
      </code>
      : Activation functions
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-4">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-3">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -378,8 +362,8 @@
      </code>
      : Centre of mass
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-5">
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-4">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -430,8 +414,8 @@
      </code>
      : Connectopic manifolds
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-6">
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-5">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -465,8 +449,8 @@
      </code>
      : Covariances and correlations
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-7">
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-6">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -572,8 +556,8 @@
      </code>
      : Frequency-domain filter
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-8">
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-7">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -672,8 +656,8 @@
      </code>
      : Graphs and networks
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-9">
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-8">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -736,8 +720,8 @@
      </code>
      : Interpolation and imputation
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-10">
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-9">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -791,8 +775,8 @@
      </code>
      : Parameterised kernels
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-11">
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-10">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -898,8 +882,8 @@
      </code>
      : Matrix operations
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-12">
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-11">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1041,8 +1025,8 @@
      </code>
      : Positive semidefinite cone
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-13">
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-12">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1112,12 +1096,21 @@
      </code>
      : Sparse matrix operations
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-14">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-13">
      <i class="fas fa-chevron-down">
      </i>
     </label>
     <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.random_sparse.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         random_sparse
+        </span>
+       </code>
+      </a>
+     </li>
      <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.sparse.spdiagmm.html">
        <code class="docutils literal notranslate">
@@ -1275,7 +1268,7 @@
       <a class="reference internal" href="hypercoil.functional.sparse.topk_diagreplace.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         diagreplace
+         topk_diagreplace
         </span>
        </code>
       </a>
@@ -1300,8 +1293,8 @@
      </code>
      : Spherical coordinates
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-15">
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-14">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1381,8 +1374,8 @@
      </code>
      : Symmetric matrix maps
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-16">
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-15">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1434,8 +1427,8 @@
      </code>
      : Time series convolution
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-17">
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-16">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1505,8 +1498,8 @@
      </code>
      : Miscellaneous
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-18">
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-17">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1576,8 +1569,8 @@
      </code>
      : Random windowing
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-19">
+    <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-18">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1640,8 +1633,8 @@
    </code>
    : Initialisation schemes
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-20">
+  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-19">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1655,8 +1648,8 @@
      </code>
      : Atlas initialisation
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-21">
+    <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-20">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1763,8 +1756,8 @@
      </code>
      : Base initialisations
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-22">
+    <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-21">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1852,8 +1845,8 @@
      </code>
      : Frequency band init
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-23">
+    <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-22">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1897,8 +1890,8 @@
      </code>
      : Mapped parameters and parameter maps
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-24">
+    <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-23">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2066,8 +2059,8 @@
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-25">
+    <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-24">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2121,8 +2114,8 @@
    </code>
    : Loss and regularisation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-26">
+  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-25">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -2527,15 +2520,6 @@
      : Scheme for multiple losses
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.loss.scheme.LossReturn.html">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       LossReturn
-      </span>
-     </code>
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -2547,8 +2531,8 @@
    </code>
    : Neuroscience data utilities
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-27">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -2562,8 +2546,8 @@
      </code>
      : Data synthesis
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-28">
+    <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-27">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2635,8 +2619,8 @@
    </code>
    : Neural network modules
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-29">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-28">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -2650,8 +2634,8 @@
      </code>
      : Activation functions as modules
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-30">
+    <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-29">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2687,8 +2671,8 @@
      </code>
      : Atlas layers
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-31">
+    <input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-30">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2714,8 +2698,8 @@
      </code>
      : Covariance modules
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-32">
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-31">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2815,8 +2799,8 @@
      </code>
      : Interpolation layers
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-33">
+    <input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-32">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2858,8 +2842,8 @@
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-34">
+    <input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-33">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2892,8 +2876,8 @@
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-35">
+    <input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-34">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2944,8 +2928,8 @@
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-36">
+    <input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-35">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2979,8 +2963,8 @@
      </code>
      : Vertex compression
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-37">
+    <input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-36">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -3005,23 +2989,6 @@
      </code>
     </a>
    </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../viz.html">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     viz
-    </span>
-   </code>
-   : Visualisation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-38">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="simple">
   </ul>
  </li>
 </ul>
@@ -3054,6 +3021,125 @@
               
   <section id="binarycovariancetw">
 <h1><code class="docutils literal notranslate"><span class="pre">BinaryCovarianceTW</span></code><a class="headerlink" href="#binarycovariancetw" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.nn.cov.BinaryCovarianceTW">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.cov.</span></span><span class="sig-name descname"><span class="pre">BinaryCovarianceTW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/hypercoil/nn/cov.py#L711-L759"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.cov.BinaryCovarianceTW" title="Permalink to this definition">#</a></dt>
+<dd><p>Covariance measures using variables stored in two tensors, with a single
+learnable weight for each time lag.
+</p>
+<p>By default, the weight is initialised following a double exponential
+function of lag, such that the weights at 0 lag are
+<span class="math notranslate nohighlight">\(e^{{-|0|}} = 1\)</span>, the weights at 1 or -1 lag are
+<span class="math notranslate nohighlight">\(e^{{-|1|}}\)</span>, etc. Note that if the maximum lag is 0, this
+default initialisation will be equivalent to an unweighted covariance.</p>
+<p>The input tensors are interpreted as sets of multivariate observations.
+A covariance estimator computes some measure of statistical dependence
+among the variables in each observation, with the potential addition of
+stochastic noise and dropout to re-weight observations and regularise the
+model.</p>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input 1:</strong> <span class="math notranslate nohighlight">\((N, *, C_1, O)\)</span></dt><dd><p><cite>N</cite> denotes batch size, <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of
+intervening dimensions, <span class="math notranslate nohighlight">\(C_1\)</span> denotes number of data
+channels or variables, <cite>O</cite> denotes number of time points
+or observations per channel.</p>
+</dd>
+<dt><strong>Input 2:</strong> <span class="math notranslate nohighlight">\((N, *, C_2, O)\)</span></dt><dd><p><span class="math notranslate nohighlight">\(C_2\)</span> denotes number of data channels or variables
+in the second input tensor.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((N, *, W, C_{*}, C_{*})\)</span></dt><dd><p><cite>W</cite> denotes number of sets of weights. <span class="math notranslate nohighlight">\(C_{*}\)</span> can
+denote either <span class="math notranslate nohighlight">\(C_1\)</span> or <span class="math notranslate nohighlight">\(C_2\)</span>, depending on the
+estimator provided. Paired estimators produce one axis of
+each size, while conditional estimators produce both axes
+of size <span class="math notranslate nohighlight">\(C_1\)</span>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>estimator</strong><span class="classifier">callable</span></dt><dd><p>Covariance estimator, e.g. from
+<a class="reference internal" href="hypercoil.functional.cov.html"><span class="doc">hypercoil.functional.cov</span></a>. The
+estimator must be binary: it should accept two tensors rather than
+one. Some available options are:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="hypercoil.functional.cov.pairedcov.html"><span class="doc">pairedcov</span></a>:
+Empirical covariance between variables in tensor 1 and those in
+tensor 2.</p></li>
+<li><p><a class="reference internal" href="hypercoil.functional.cov.pairedcorr.html"><span class="doc">pairedcorr</span></a>:
+Pearson correlation between variables in tensor 1 and those in
+tensor 2.</p></li>
+<li><p><a class="reference internal" href="hypercoil.functional.cov.conditionalcov.html"><span class="doc">conditionalcov</span></a>:
+Covariance between variables in tensor 1 after conditioning on
+variables in tensor 2. Can be used to control for the effects of
+confounds and is equivalent to confound regression with the
+addition of an intercept term.</p></li>
+<li><p><a class="reference internal" href="hypercoil.functional.cov.conditionalcorr.html"><span class="doc">conditionalcorr</span></a>:
+Pearson correlation between variables in tensor 1 after
+conditioning on variables in tensor 2.</p></li>
+</ul>
+</dd>
+<dt><strong>dim</strong><span class="classifier">int</span></dt><dd><p>Number of observations <cite>O</cite> per data instance. This determines the
+dimension of each slice of the covariance weight tensor.</p>
+</dd>
+<dt><strong>min_lag , max_lag</strong><span class="classifier">int or None (default 0)</span></dt><dd><p>Minimum and maximum lags to include in the weight matrix. If these
+parameters are not None, the structure of the weight matrix is
+constrained to allow nonzero entries only along diagonals that are a
+maximum offset of (<code class="docutils literal notranslate"><span class="pre">min_lag</span></code>, <code class="docutils literal notranslate"><span class="pre">max_lag</span></code>) from the main diagonal.
+The default value of 0 permits weights only along the main diagonal.</p>
+</dd>
+<dt><strong>out_channels</strong><span class="classifier">int (default 1)</span></dt><dd><p>Number of weight sets <code class="docutils literal notranslate"><span class="pre">W</span></code> to include. For each weight set, the
+module produces an output channel.</p>
+</dd>
+<dt><strong>rowvar</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that the last axis of the input tensor is the observation
+axis and the penultimate axis is the variable axis. If False, then
+this relationship is transposed.</p>
+</dd>
+<dt><strong>biased</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that the biased normalisation (i.e., division by <cite>N</cite> in the
+unweighted case) should be performed. By default, normalisation of the
+covariance is unbiased (i.e., division by <cite>N - 1</cite>).</p>
+</dd>
+<dt><strong>ddof</strong><span class="classifier">int or None (default None)</span></dt><dd><p>Degrees of freedom for normalisation. If this is specified, it
+overrides the normalisation factor automatically determined using the
+<code class="docutils literal notranslate"><span class="pre">biased</span></code> parameter.</p>
+</dd>
+<dt><strong>l2</strong><span class="classifier">nonnegative float (default 0)</span></dt><dd><p>L2 regularisation term to add to the maximum likelihood estimate of
+the covariance matrix. This can be set to a positive value to obtain
+intermediate for estimating the regularised inverse covariance or to
+an ensure that the covariance matrix is non-singular (if, for
+instance, it needs to be inverted or projected into a tangent
+space).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>weight_col, weight_row</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((W, L)\)</span></span></dt><dd><p>Toeplitz matrix generators for the columns (lag) and rows (lead) of
+the weight matrix. L denotes the maximum lag. These parameters are
+repeated along each diagonal of the weight matrix up to the maximum
+lag. The weight generators are initialised as exponentials over
+negative integers with a maximum of 1 at the origin (zero lag;
+<span class="math notranslate nohighlight">\(e^0\)</span>). The <code class="docutils literal notranslate"><span class="pre">weight</span></code> attribute is a property that is generated
+from these parameters as needed.</p>
+</dd>
+<dt><strong>mask</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((W, O, O)\)</span> or None</span></dt><dd><p>Boolean-valued tensor indicating the entries of the weight tensor that
+are permitted to take nonzero values. This is determined by the
+specified <code class="docutils literal notranslate"><span class="pre">max_lag</span></code> parameter at initialisation.</p>
+</dd>
+<dt><strong>weight</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((W, O, O)\)</span></span></dt><dd><p>Tensor containing importance or coupling weights for the observations.
+If this tensor is 1-dimensional, each entry weights the corresponding
+observation in the covariance computation. If it is 2-dimensional,
+then it must be square, symmetric, and positive semidefinite. In this
+case, diagonal entries again correspond to relative importances, while
+off-diagonal entries indicate coupling factors. For instance, a banded
+or multi-diagonal tensor can be used to specify inter-temporal
+coupling for a time series covariance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -3067,6 +3153,27 @@
           
             <div class="bd-sidebar-secondary bd-toc">
               
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypercoil.nn.cov.BinaryCovarianceTW">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     BinaryCovarianceTW
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
 <div class="toc-item">
   
 </div>

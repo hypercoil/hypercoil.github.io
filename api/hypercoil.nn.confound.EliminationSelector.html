@@ -8,7 +8,7 @@
 
     <title>EliminationSelector &#8212; hypercoil prototype (unreleased) documentation</title>
   <script>
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -36,6 +36,7 @@
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.confound.EliminationSelector';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -44,7 +45,7 @@
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="dark">
 
   
   <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
@@ -280,6 +281,74 @@
               
   <section id="eliminationselector">
 <h1><code class="docutils literal notranslate"><span class="pre">EliminationSelector</span></code><a class="headerlink" href="#eliminationselector" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.nn.confound.EliminationSelector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.confound.</span></span><span class="sig-name descname"><span class="pre">EliminationSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/hypercoil/nn/confound.py#L299-L399"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.confound.EliminationSelector" title="Permalink to this definition">#</a></dt>
+<dd><p>Model selection by elimination of variables.</p>
+<p>Begin with a full complement of model vectors, then eliminate them by
+placing an L1 penalty on the weight of this layer.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Do not use this model! It once performed well as a fluke of
+initialisation, but testing it across multiple random seeds has shown
+that it is not a good model. It is included here as part of the
+synthetic data experiments, but should not be used in practice.</p>
+</div>
+<p>The internal weights of this module are passed through a parameterised
+sigmoid function and then thresholded at 0. Any variables corresponding
+to a 0 weight are eliminated in the forward pass.</p>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((*, I, T)\)</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of preceding dimensions,
+<span class="math notranslate nohighlight">\(I\)</span> denotes number of candidate model vectors,
+<span class="math notranslate nohighlight">\(T\)</span> denotes number of time points or observations
+per vector.</p>
+</dd>
+</dl>
+<p><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, I, T)\)</span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>n_columns</strong><span class="classifier">int</span></dt><dd><p>Number of candidate vectors for the model.</p>
+</dd>
+<dt><strong>infimum</strong><span class="classifier">float (default -1.5)</span></dt><dd><p>Infimum of the thresholded sigmoid function, pre-thresholding. Note
+that an infimum closer to 0 results in a gentler slope close to the
+elimination threshold.</p>
+</dd>
+<dt><strong>supremum</strong><span class="classifier">float (default 2.5)</span></dt><dd><p>Supremum of the thresholded sigmoid function.</p>
+</dd>
+<dt><strong>or_dim</strong><span class="classifier">int</span></dt><dd><p>If this is greater than 1, then <cite>or_dim</cite> separate vectors are learned,
+and a variable is only eliminated if every one learns a 0 weight for
+that variable.
+During testing, we did not find a practical use for this. We didn’t
+look very carefully, and it’s possible that someone might find a use.</p>
+</dd>
+<dt><strong>and_dim</strong><span class="classifier">int</span></dt><dd><p>If this is greater than 1, then <cite>and_dim</cite> separate vectors are
+learned, and a variable is eliminated if any one learns a 0 weight for
+that variable.
+If both <cite>or_dim</cite> and <cite>and_dim</cite> are set, then the selector first takes
+the union across the <cite>or</cite> dimension and then takes the intersection
+across the <cite>and</cite> dimension.
+During testing, we did not find a practical use for this. We didn’t
+look very carefully, and it’s possible that someone might find a use.</p>
+</dd>
+<dt><strong>init</strong><span class="classifier">callable</span></dt><dd><p>Initialisation function for the layer weight. Defaults to values
+randomly sampled from Uniform(0, 1).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(x, *[, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -293,6 +362,27 @@
           
             <div class="bd-sidebar-secondary bd-toc">
               
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypercoil.nn.confound.EliminationSelector">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     EliminationSelector
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
 <div class="toc-item">
   
 </div>

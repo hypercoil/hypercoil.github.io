@@ -8,7 +8,7 @@
 
     <title>LinearCombinationSelector &#8212; hypercoil prototype (unreleased) documentation</title>
   <script>
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -36,6 +36,7 @@
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.confound.LinearCombinationSelector';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -44,7 +45,7 @@
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="dark">
 
   
   <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
@@ -280,6 +281,42 @@
               
   <section id="linearcombinationselector">
 <h1><code class="docutils literal notranslate"><span class="pre">LinearCombinationSelector</span></code><a class="headerlink" href="#linearcombinationselector" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.nn.confound.LinearCombinationSelector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.confound.</span></span><span class="sig-name descname"><span class="pre">LinearCombinationSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/hypercoil/nn/confound.py#L256-L297"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.confound.LinearCombinationSelector" title="Permalink to this definition">#</a></dt>
+<dd><p>Model selection as a linear combination.</p>
+<p>Learn linear combinations of candidate vectors to produce a model. Thin
+wrapper around <a class="reference internal" href="hypercoil.nn.confound.LinearRFNN.html#hypercoil.nn.confound.LinearRFNN" title="hypercoil.nn.confound.LinearRFNN"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRFNN</span></code></a> without the convolutional layers for
+learning response functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((*, I, T)\)</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of preceding dimensions,
+<span class="math notranslate nohighlight">\(I\)</span> denotes number of candidate model vectors,
+<span class="math notranslate nohighlight">\(T\)</span> denotes number of time points or observations
+per vector.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, O, T)\)</span></dt><dd><p><span class="math notranslate nohighlight">\(O\)</span> denotes the final model dimension.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>model_dim</strong><span class="classifier">int</span></dt><dd><p>Dimension of the model to be learned.</p>
+</dd>
+<dt><strong>n_columns</strong><span class="classifier">int</span></dt><dd><p>Number of input vectors to be combined linearly to form the model.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>weight</strong><span class="classifier">tensor</span></dt><dd><p>Tensor of shape <span class="math notranslate nohighlight">\((I, O)\)</span> <cite>n_columns</cite> x <cite>model_dim</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -293,6 +330,27 @@
           
             <div class="bd-sidebar-secondary bd-toc">
               
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypercoil.nn.confound.LinearCombinationSelector">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     LinearCombinationSelector
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
 <div class="toc-item">
   
 </div>
