@@ -908,7 +908,7 @@
       <a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         invert_spd
+         cholesky_invert
         </span>
        </code>
       </a>
@@ -3054,6 +3054,109 @@
               
   <section id="discretevolumetricatlas">
 <h1><code class="docutils literal notranslate"><span class="pre">DiscreteVolumetricAtlas</span></code><a class="headerlink" href="#discretevolumetricatlas" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.atlas.DiscreteVolumetricAtlas">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlas.</span></span><span class="sig-name descname"><span class="pre">DiscreteVolumetricAtlas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/atlas.py#L475-L536"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlas.DiscreteVolumetricAtlas" title="Permalink to this definition">#</a></dt>
+<dd><p>Discrete atlas container object. Use for atlases stored in single-volume
+images with non-overlapping, discrete-valued parcels. It is assumed that
+a value of 0 in the reference image corresponds to no label.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ref_pointer</strong></dt><dd><p>Path to a NIfTI file containing the atlas.</p>
+</dd>
+<dt><strong>dtype</strong></dt><dd><p>Datatype for non-Boolean (non-mask) and non-Long (non-label) tensors
+created as part of the atlas.</p>
+</dd>
+<dt><strong>device</strong></dt><dd><p>Device on which all tensors created as part of the atlas reside.</p>
+</dd>
+<dt><strong>clear_cache</strong><span class="classifier">bool (True)</span></dt><dd><p>Indicates that data loaded in from the reference should be cleared
+away when atlas creation is complete.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>ref</strong><span class="classifier">nb.Nifti1Image</span></dt><dd><p>The reference whose pointer was provided at construction time.</p>
+</dd>
+<dt><strong>mask</strong><span class="classifier">bool tensor</span></dt><dd><p>Boolean tensor indicating the inclusion status of each spatial
+location in the atlas.</p>
+</dd>
+<dt><strong>compartments</strong><span class="classifier">dict(bool tensor)</span></dt><dd><p>Boolean tensor indicating the spatial extent of each atlas
+subcompartment.</p>
+</dd>
+<dt><strong>decoder</strong><span class="classifier">dict(long tensor)</span></dt><dd><p>Numerical identity of the parcel in each row of a subcompartment’s
+map tensor.</p>
+</dd>
+<dt><strong>maps</strong><span class="classifier">dict(tensor)</span></dt><dd><p>Assignment of each spatial location in each subcompartment to a set
+of regions.</p>
+</dd>
+<dt><strong>coors</strong><span class="classifier">dict(tensor)</span></dt><dd><p>Spatial position of each location in the atlas.</p>
+</dd>
+<dt><strong>topology</strong><span class="classifier">dict(str)</span></dt><dd><p>Type of topology (spherical or Euclidean) over each compartment.</p>
+</dd>
+<dt><strong>cached_ref_data</strong><span class="classifier">ndarray</span></dt><dd><p>Data loaded from the reference to enable construction. By default,
+this is purged when construction is complete.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.atlas.DiscreteVolumetricAtlas.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compartments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_bin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spherical_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/atlas.py#L281-L358"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlas.DiscreteVolumetricAtlas.__call__" title="Permalink to this definition">#</a></dt>
+<dd><p>Compute transformed maps for selected atlas subcompartments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>compartments</strong><span class="classifier">iterable, False, or True (default True)</span></dt><dd><p>Compartments for which transformed maps should be computed. If
+this is set to False, then a single transformed map is returned
+for the combined compartment containing all spatial locations. If
+this is set to True, then a transformed map is returned for every
+defined compartment.</p>
+</dd>
+<dt><strong>normalise</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that maps should be spatially normalised such that the
+sum over all assignments to a parcel is equal to 1. When the map
+is used as a linear transformation, this option results in
+computation of a weighted average over each parcel.</p>
+</dd>
+<dt><strong>sigma</strong><span class="classifier">float or None (default None)</span></dt><dd><p>If this is not None, then spatial smoothing using a Gaussian
+kernel is applied over each parcel’s assignments. Distances are
+established by the atlas’s coordinate system and the topology of
+each compartment. The value of sigma establishes the width of the
+Gaussian kernel.</p>
+</dd>
+<dt><strong>noise</strong><span class="classifier">callable or None</span></dt><dd><p>If this is a callable, then it should be a mapping from a tensor
+to another tensor of the same dimensions. After spatial smoothing
+but before normalisation, this callable is applied to each map
+tensor to inject noise.</p>
+</dd>
+<dt><strong>max_bin</strong><span class="classifier">int (default 10000)</span></dt><dd><p>Because spatial smoothing has substantial memory overhead, this
+flag sets a ceiling on the number of spatial locations to be
+smoothed at a time.</p>
+</dd>
+<dt><strong>spherical_scale</strong><span class="classifier">float (default 1)</span></dt><dd><p>During spatial smoothing, the Gaussian kernel is scaled by this
+value for spherical coordinate systems only. This enables the use
+of different kernel widths for spherical and Euclidean
+coordinates.</p>
+</dd>
+<dt><strong>truncate</strong><span class="classifier">float</span></dt><dd><p>Maximum distance at which data points are convolved together
+during smoothing.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict(tensor)</dt><dd><p>Dictionary of transformed maps for each specified atlas
+compartment.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -3067,6 +3170,38 @@
           
             <div class="bd-sidebar-secondary bd-toc">
               
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypercoil.init.atlas.DiscreteVolumetricAtlas">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     DiscreteVolumetricAtlas
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypercoil.init.atlas.DiscreteVolumetricAtlas.__call__">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DiscreteVolumetricAtlas.__call__()
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
 <div class="toc-item">
   
 </div>

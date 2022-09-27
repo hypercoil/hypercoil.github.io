@@ -908,7 +908,7 @@
       <a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         invert_spd
+         cholesky_invert
         </span>
        </code>
       </a>
@@ -3052,8 +3052,93 @@
             
             <article class="bd-article" role="main">
               
-  <section id="mpbl">
-<h1><code class="docutils literal notranslate"><span class="pre">mpbl</span></code><a class="headerlink" href="#mpbl" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.init.mpbl">
+<span id="mpbl"></span><h1><code class="docutils literal notranslate"><span class="pre">mpbl</span></code><a class="headerlink" href="#module-hypercoil.init.mpbl" title="Permalink to this heading">#</a></h1>
+<p>Maximum potential bipartite lattice (MPBL) algorithm.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.init.mpbl.maximum_potential_bipartite_lattice">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.init.mpbl.</span></span><span class="sig-name descname"><span class="pre">maximum_potential_bipartite_lattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">potentials:</span> <span class="pre">~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">~typing.Tuple[~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray],</span> <span class="pre">~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray]]],</span> <span class="pre">n_out:</span> <span class="pre">~typing.Union[int,</span> <span class="pre">~typing.Tuple[int,</span> <span class="pre">int]],</span> <span class="pre">order:</span> <span class="pre">int,</span> <span class="pre">iters:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">100,</span> <span class="pre">temperature:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">random_init:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">attenuation:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">2.0,</span> <span class="pre">objective:</span> <span class="pre">~typing.Optional[~typing.Union[~jaxlib.xla_extension.DeviceArrayBase,</span> <span class="pre">~numpy.ndarray]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">criterion:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">corr_criterion&gt;,</span> <span class="pre">*,</span> <span class="pre">key:</span> <span class="pre">~jax._src.random.PRNGKey</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/mpbl.py#L210-L363"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.mpbl.maximum_potential_bipartite_lattice" title="Permalink to this definition">#</a></dt>
+<dd><p>Estimates the maximum potential bipartite lattice using a greedy Monte
+Carlo approach. A naive solution to the vertical compression problem.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is experimental and currently incompatible with
+JAX JIT compilation.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>potentials: Tensor or (Tensor, Tensor)</strong></dt><dd><p>Array of potentials to be maximised in the bipartition. This could,
+for instance, be the mutual information among vertices or the
+community allegiance matrix.
+Size: <cite>n_in</cite> x <cite>n_in</cite>
+If this is a tuple, then the algorithm will solve two different MPBL
+problems: one for each tensor. In this case, the first tensor should
+be of dimension <cite>H_in</cite> x <cite>H_in</cite> and the second should be of dimension
+<cite>W_in</cite> x <cite>W_in</cite>, where the dimension of the <cite>objective</cite> matrix is
+<cite>H_in</cite> x <cite>W_in</cite>.</p>
+</dd>
+<dt><strong>n_out: int or (int, int)</strong></dt><dd><p>Number of output vertices. Ideally, this should be selected such that
+there are many common multiples of <code class="docutils literal notranslate"><span class="pre">n_out</span></code> and the number of
+vertices in the input potentials.</p>
+</dd>
+<dt><strong>order: int</strong></dt><dd><p>Lattice order of the bipartition.
+1: total number of edges is the least common multiple of <cite>n_in</cite> and</p>
+<blockquote>
+<div><p><cite>n_out</cite></p>
+</div></blockquote>
+<p>2: total number of edges is twice the least common multiple</p>
+</dd>
+<dt><strong>iters: int</strong></dt><dd><p>Number of iterations of the greedy approach to run. Only the result
+that maximises the final potential will be returned.</p>
+</dd>
+<dt><strong>temperature: float</strong></dt><dd><p>Softmax temperature for selecting the next vertex to fuse.
+0 deterministically fuses the maximum (default).
+Infinity fuses randomly.</p>
+</dd>
+<dt><strong>random_init: bool</strong></dt><dd><p>Procedural initialisation. True begins from a random vertex (default).
+False begins from a vertex connected to the edge with the maximum
+overall potential.</p>
+</dd>
+<dt><strong>attenuation: float</strong></dt><dd><p>Attenuation factor for the potentials matrix. The potentials joining
+each vertex set that is compressed into a single new vertex are
+divided by the attenuation factor. This helps to prevent redundancy in
+compressed sets.</p>
+</dd>
+<dt><strong>objective: Tensor</strong></dt><dd><p>Tensor whose reconstruction from vertical compression determines the
+best bipartite lattice. If none is provided, the algorithm defaults to
+the input potentials matrix.</p>
+</dd>
+<dt><strong>criterion: function</strong></dt><dd><p>Objective function that accepts three parameters and returns a scalar
+value.
+* <cite>orig</cite> is the original objective matrix.
+* <cite>recon</cite> is the reconstructed objective matrix</p>
+<blockquote>
+<div><p>(compressed and uncompressed).</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><cite>u</cite> is the vector of potentials included in the compression.</p></li>
+<li><p>The returned scalar is minimal for an optimum compression.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Assignment of nodes into a bipartition that maximises the potential of
+the resultant graph, among those tried by the greedy approach. This is
+not guaranteed to be a global optimum.</p>
+</dd>
+<dt>float</dt><dd><p>Overall potential of the bipartition.</p>
+</dd>
+<dt>Tensor</dt><dd><p>Propagated potentials. These can be maximised, for instance, in
+downstream vertical compressions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -3067,6 +3152,27 @@
           
             <div class="bd-sidebar-secondary bd-toc">
               
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypercoil.init.mpbl.maximum_potential_bipartite_lattice">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     maximum_potential_bipartite_lattice()
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
 <div class="toc-item">
   
 </div>

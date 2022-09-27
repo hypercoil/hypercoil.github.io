@@ -36,6 +36,7 @@
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.init.atlas';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -908,7 +909,7 @@
       <a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         invert_spd
+         cholesky_invert
         </span>
        </code>
       </a>
@@ -3052,20 +3053,112 @@
             
             <article class="bd-article" role="main">
               
-  <section id="atlas-atlas-initialisation">
-<h1><code class="docutils literal notranslate"><span class="pre">atlas</span></code>: Atlas initialisation<a class="headerlink" href="#atlas-atlas-initialisation" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.init.atlas">
+<span id="atlas-atlas-initialisation"></span><h1><code class="docutils literal notranslate"><span class="pre">atlas</span></code>: Atlas initialisation<a class="headerlink" href="#module-hypercoil.init.atlas" title="Permalink to this heading">#</a></h1>
+<p>Tools for initialising parameters corresponding to brain atlases.</p>
+<p>Neuroimaging atlases are principally defined and distributed with reference to
+either volumetric or surface-based coordinate spaces. Additionally, atlases
+might be either discrete-valued, hard-label parcellations or continuous-valued
+maps that can overlap with one another. The <code class="docutils literal notranslate"><span class="pre">atlas</span></code> initialisation module is
+designed to handle these use cases, together with random or unstructured
+initialisations that do not leverage prior knowledge and are thus unbiased by
+it.</p>
+<p>The initialisation class itself,
+<span class="xref std std-doc">AtlasInit</span>,
+takes as its main, non-optional argument an instance of an <code class="docutils literal notranslate"><span class="pre">Atlas</span></code> object.
+All atlas objects subclass the abstract base class
+<a class="reference internal" href="hypercoil.init.atlas.BaseAtlas.html"><span class="doc">BaseAtlas</span></a>
+and incorporate a combination of
+<a class="reference internal" href="hypercoil.init.atlasmixins.html"><span class="doc">atlas mixins</span></a>
+to implement diverse functionalities. These subclasses generally take a
+pointer to a reference as an input argument; this reference either forms the
+base for the atlas (for classes that use previously existing knowledge
+annotations) or defines its dimensions (for classes based on random
+initialisations). Existing subclasses include</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="hypercoil.init.atlas.DiscreteVolumetricAtlas.html"><span class="doc">DiscreteVolumetricAtlas</span></a>
+implements a volumetric atlas with discrete parcels, loaded from a single
+reference image and a single volume in which each unique integer identifies
+a single parcel.</p></li>
+<li><p><a class="reference internal" href="hypercoil.init.atlas.MultiVolumetricAtlas.html"><span class="doc">MultiVolumetricAtlas</span></a>
+implements a volumetric atlas whose parcels are each encoded in a separate
+volume of the reference image.</p></li>
+<li><p><a class="reference internal" href="hypercoil.init.atlas.MultifileVolumetricAtlas.html"><span class="doc">MultifileVolumetricAtlas</span></a>
+implements a volumetric atlas whose parcels (either discrete or continuous)
+are each encoded in a separate reference image file.</p></li>
+<li><p><a class="reference internal" href="hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html"><span class="doc">CortexSubcortexCIfTIAtlas</span></a>
+implements a surface-based atlas with discrete parcels, loaded from a CIfTI
+image. Parcels are compartmentalised into left and right cerebral cortex and
+subcortex.</p></li>
+<li><p><a class="reference internal" href="hypercoil.init.atlas.DirichletInitVolumetricAtlas.html"><span class="doc">DirichletInitVolumetricAtlas</span></a>
+implements a volumetric atlas whose voxel-label annotations are initialised
+as random, i.i.d. samples from a Dirichlet distribution.</p></li>
+<li><p><a class="reference internal" href="hypercoil.init.atlas.DirichletInitSurfaceAtlas.html"><span class="doc">DirichletInitSurfaceAtlas</span></a>
+implements a surface-based atlas compartmentalised into left and right
+cerebral cortex and subcortex. Voxel- and vertex-label annotations are
+initialised as random, i.i.d. samples from a Dirichlet distribution.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For cases not handled by the existing subclasses, we would eventually like
+the <a class="reference internal" href="hypercoil.init.atlasmixins.html"><span class="doc">atlas mixins</span></a>
+to be flexible and robust enough so that users can straightforwardly
+design new atlas subclasses. In reality, we are not currently close to
+this objective.</p>
+</div>
+<a class="reference internal image-reference" href="../_images/atlas_linearmap.svg"><img alt="../_images/atlas_linearmap.svg" class="align-center" src="../_images/atlas_linearmap.svg" width="400" /></a>
+<p>Each subclass instance of <code class="docutils literal notranslate"><span class="pre">BaseAtlas</span></code> has a <code class="docutils literal notranslate"><span class="pre">maps</span></code> attribute that stores
+voxel-label annotations as a dictionary. The keys of this dictionary
+correspond to isolated compartments of the atlas. (The single key <code class="docutils literal notranslate"><span class="pre">'all'</span></code> is
+used for atlases not compartmentalised.) The dictionary values are
+<span class="math notranslate nohighlight">\(L_{compartment} \times V_{compartment}\)</span> matrices, where
+<span class="math notranslate nohighlight">\(V_{compartment}\)</span> is the number of spatial locations (voxels or
+vertices) in the compartment, and
+<span class="math notranslate nohighlight">\(L_{compartment}\)</span> is the number of distinct parcel labels in the
+compartment. These matrices can be used in a linear mapping to reduce the
+dimension of an input time series from the number of voxels to the number of
+parcels. See
+<a class="reference internal" href="hypercoil.nn.atlas.html"><span class="doc">the linear atlas module</span></a>
+for more details.</p>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.BaseAtlas.html"><code class="docutils literal notranslate"><span class="pre">BaseAtlas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.DirichletInitBaseAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitBaseAtlas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.DiscreteVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">DiscreteVolumetricAtlas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.MultiVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">MultiVolumetricAtlas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.MultifileVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">MultifileVolumetricAtlas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html"><code class="docutils literal notranslate"><span class="pre">CortexSubcortexCIfTIAtlas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.DirichletInitVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitVolumetricAtlas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.DirichletInitSurfaceAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitSurfaceAtlas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.AtlasInitialiser.html"><code class="docutils literal notranslate"><span class="pre">AtlasInitialiser</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.BaseAtlas.html"><code class="docutils literal notranslate"><span class="pre">BaseAtlas</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hypercoil.init.atlas.BaseAtlas.html#hypercoil.init.atlas.BaseAtlas"><code class="docutils literal notranslate"><span class="pre">BaseAtlas</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.DirichletInitBaseAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitBaseAtlas</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hypercoil.init.atlas.DirichletInitBaseAtlas.html#hypercoil.init.atlas.DirichletInitBaseAtlas"><code class="docutils literal notranslate"><span class="pre">DirichletInitBaseAtlas</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.DiscreteVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">DiscreteVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hypercoil.init.atlas.DiscreteVolumetricAtlas.html#hypercoil.init.atlas.DiscreteVolumetricAtlas"><code class="docutils literal notranslate"><span class="pre">DiscreteVolumetricAtlas</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.MultiVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">MultiVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hypercoil.init.atlas.MultiVolumetricAtlas.html#hypercoil.init.atlas.MultiVolumetricAtlas"><code class="docutils literal notranslate"><span class="pre">MultiVolumetricAtlas</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.MultifileVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">MultifileVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hypercoil.init.atlas.MultifileVolumetricAtlas.html#hypercoil.init.atlas.MultifileVolumetricAtlas"><code class="docutils literal notranslate"><span class="pre">MultifileVolumetricAtlas</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html"><code class="docutils literal notranslate"><span class="pre">CortexSubcortexCIfTIAtlas</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html#hypercoil.init.atlas.CortexSubcortexCIfTIAtlas"><code class="docutils literal notranslate"><span class="pre">CortexSubcortexCIfTIAtlas</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.DirichletInitVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hypercoil.init.atlas.DirichletInitVolumetricAtlas.html#hypercoil.init.atlas.DirichletInitVolumetricAtlas"><code class="docutils literal notranslate"><span class="pre">DirichletInitVolumetricAtlas</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.DirichletInitSurfaceAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitSurfaceAtlas</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hypercoil.init.atlas.DirichletInitSurfaceAtlas.html#hypercoil.init.atlas.DirichletInitSurfaceAtlas"><code class="docutils literal notranslate"><span class="pre">DirichletInitSurfaceAtlas</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.init.atlas.AtlasInitialiser.html"><code class="docutils literal notranslate"><span class="pre">AtlasInitialiser</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hypercoil.init.atlas.AtlasInitialiser.html#hypercoil.init.atlas.AtlasInitialiser"><code class="docutils literal notranslate"><span class="pre">AtlasInitialiser</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>

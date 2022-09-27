@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>invert_spd &#8212; hypercoil prototype (unreleased) documentation</title>
+    <title>cholesky_invert &#8212; hypercoil prototype (unreleased) documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -36,6 +36,7 @@
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.matrix.cholesky_invert';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -908,7 +909,7 @@
       <a class="current reference internal" href="#">
        <code class="docutils literal notranslate">
         <span class="pre">
-         invert_spd
+         cholesky_invert
         </span>
        </code>
       </a>
@@ -3052,8 +3053,45 @@
             
             <article class="bd-article" role="main">
               
-  <section id="invert-spd">
-<h1><code class="docutils literal notranslate"><span class="pre">invert_spd</span></code><a class="headerlink" href="#invert-spd" title="Permalink to this heading">#</a></h1>
+  <section id="cholesky-invert">
+<h1><code class="docutils literal notranslate"><span class="pre">cholesky_invert</span></code><a class="headerlink" href="#cholesky-invert" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.matrix.cholesky_invert">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.matrix.</span></span><span class="sig-name descname"><span class="pre">cholesky_invert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/matrix.py#L15-L50"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.matrix.cholesky_invert" title="Permalink to this definition">#</a></dt>
+<dd><p>Invert a symmetric positive definite matrix using Cholesky decomposition.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The input matrix must be symmetric and positive definite. If this is
+not the case, the function will either raise a <cite>LinAlgError</cite> or
+produce undefined results. For positive semidefinite matrices, the
+Moore-Penrose pseudoinverse can be used instead.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((*, D, D)\)</span></dt><dd><p>D denotes the row or column dimension of the matrices to
+be inverted. <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of preceding
+dimensions.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, D, D)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>A</strong><span class="classifier">Tensor</span></dt><dd><p>Symmetric positive definite matrix.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Ainv</strong><span class="classifier">Tensor</span></dt><dd><p>Inverse of the input matrix.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -3067,6 +3105,27 @@
           
             <div class="bd-sidebar-secondary bd-toc">
               
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypercoil.functional.matrix.cholesky_invert">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     cholesky_invert()
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
 <div class="toc-item">
   
 </div>

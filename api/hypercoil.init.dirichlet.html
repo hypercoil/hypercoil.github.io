@@ -908,7 +908,7 @@
       <a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         invert_spd
+         cholesky_invert
         </span>
        </code>
       </a>
@@ -3052,13 +3052,59 @@
             
             <article class="bd-article" role="main">
               
-  <section id="dirichlet">
-<h1><code class="docutils literal notranslate"><span class="pre">dirichlet</span></code><a class="headerlink" href="#dirichlet" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.init.dirichlet">
+<span id="dirichlet"></span><h1><code class="docutils literal notranslate"><span class="pre">dirichlet</span></code><a class="headerlink" href="#module-hypercoil.init.dirichlet" title="Permalink to this heading">#</a></h1>
+<p>Initialise a tensor such that elements along a given axis are Dirichlet
+samples.</p>
 <section id="dirichlet-init">
 <h2><code class="docutils literal notranslate"><span class="pre">dirichlet_init</span></code><a class="headerlink" href="#dirichlet-init" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.init.dirichlet.dirichlet_init">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.init.dirichlet.</span></span><span class="sig-name descname"><span class="pre">dirichlet_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Distribution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/dirichlet.py#L16-L47"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.dirichlet.dirichlet_init" title="Permalink to this definition">#</a></dt>
+<dd><p>Dirichlet sample initialisation.</p>
+<p>Initialise a tensor such that any 1D slice through that tensor along a
+given axis is a sample from a specified Dirichlet distribution. Each 1D
+slice can therefore be understood as encoding a categorical probability
+distribution.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>shape</strong><span class="classifier">tuple</span></dt><dd><p>Shape of the tensor to initialise.</p>
+</dd>
+<dt><strong>distr</strong><span class="classifier">instance of <code class="docutils literal notranslate"><span class="pre">torch.distributions.Dirichlet</span></code></span></dt><dd><p>Parametrised Dirichlet distribution from which all 1D slices of the
+input tensor along the specified axis are sampled.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int (default -1)</span></dt><dd><p>Axis along which slices are sampled from the specified Dirichlet
+distribution.</p>
+</dd>
+<dt><strong>key</strong><span class="classifier">jax.random.PRNGKey</span></dt><dd><p>Pseudo-random number generator key for sampling the Dirichlet
+distribution.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="dirichletinitialiser">
 <h2><code class="docutils literal notranslate"><span class="pre">DirichletInitialiser</span></code><a class="headerlink" href="#dirichletinitialiser" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.dirichlet.DirichletInitialiser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.dirichlet.</span></span><span class="sig-name descname"><span class="pre">DirichletInitialiser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/dirichlet.py#L49-L116"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.dirichlet.DirichletInitialiser" title="Permalink to this definition">#</a></dt>
+<dd><p>Initialise a parameter such that all slices along the final axis are
+samples from a specified Dirichlet distribution.</p>
+<p>See <a class="reference internal" href="#hypercoil.init.dirichlet.dirichlet_init" title="hypercoil.init.dirichlet.dirichlet_init"><code class="xref py py-func docutils literal notranslate"><span class="pre">dirichlet_init()</span></code></a> and <code class="xref py py-class docutils literal notranslate"><span class="pre">MappedInitialiser</span></code> for argument
+details.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">init</span></code>(model, *[, mapper, num_classes, axis, ...])</p></td>
+<td><p>Initialise a parameter using the specified initialiser and mapper.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -3088,6 +3134,17 @@
     </span>
    </code>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypercoil.init.dirichlet.dirichlet_init">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dirichlet_init()
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dirichletinitialiser">
@@ -3097,6 +3154,17 @@
     </span>
    </code>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypercoil.init.dirichlet.DirichletInitialiser">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DirichletInitialiser
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 

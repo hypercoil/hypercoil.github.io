@@ -908,7 +908,7 @@
       <a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         invert_spd
+         cholesky_invert
         </span>
        </code>
       </a>
@@ -3052,13 +3052,74 @@
             
             <article class="bd-article" role="main">
               
-  <section id="deltaplus">
-<h1><code class="docutils literal notranslate"><span class="pre">deltaplus</span></code><a class="headerlink" href="#deltaplus" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.init.deltaplus">
+<span id="deltaplus"></span><h1><code class="docutils literal notranslate"><span class="pre">deltaplus</span></code><a class="headerlink" href="#module-hypercoil.init.deltaplus" title="Permalink to this heading">#</a></h1>
+<p>Initialise parameters as a set of delta functions, plus Gaussian noise.</p>
 <section id="deltaplus-init">
 <h2><code class="docutils literal notranslate"><span class="pre">deltaplus_init</span></code><a class="headerlink" href="#deltaplus-init" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.init.deltaplus.deltaplus_init">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.init.deltaplus.</span></span><span class="sig-name descname"><span class="pre">deltaplus_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/deltaplus.py#L14-L57"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.deltaplus.deltaplus_init" title="Permalink to this definition">#</a></dt>
+<dd><p>Delta-plus initialisation.</p>
+<p>Initialise a tensor as a delta function added to Gaussian noise. This can
+be used to initialise filters for time series convolutions. The
+initialisation can be configured to produce a filter that approximately
+returns the input signal (or a lagged version of the input signal).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>shape</strong><span class="classifier">tuple</span></dt><dd><p>Shape of the tensor to initialise.</p>
+</dd>
+<dt><strong>loc</strong><span class="classifier">tuple or None (default None)</span></dt><dd><p>Location of the delta function expressed as an n-tuple of array
+coordinates along the last n axes of the tensor. Defaults to the
+centre of the tensor.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float (default 1)</span></dt><dd><p>Magnitude of the delta function. Defaults to 1.</p>
+</dd>
+<dt><strong>var</strong><span class="classifier">float or Tensor (default 0.2)</span></dt><dd><p>Variance of the Gaussian distribution from which the random noise is
+sampled. By default, noise is sampled i.i.d. for all entries in the
+tensor. To change the i.i.d. behaviour, use a tensor of floats that
+is broadcastable to the specified shape.</p>
+</dd>
+<dt><strong>key</strong><span class="classifier">jax.random.PRNGKey</span></dt><dd><p>Pseudo-random number generator key for sampling the Gaussian noise.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None. The input tensor is initialised in-place.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="deltaplusinitialiser">
 <h2><code class="docutils literal notranslate"><span class="pre">DeltaPlusInitialiser</span></code><a class="headerlink" href="#deltaplusinitialiser" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.deltaplus.DeltaPlusInitialiser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.deltaplus.</span></span><span class="sig-name descname"><span class="pre">DeltaPlusInitialiser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/deltaplus.py#L59-L115"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.deltaplus.DeltaPlusInitialiser" title="Permalink to this definition">#</a></dt>
+<dd><p>Parameter initialiser following the delta-plus-noise scheme.</p>
+<p>Initialise a tensor as a delta function added to Gaussian noise.</p>
+<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">deltaplus_init_()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">MappedInitialiser</span></code> for usage
+details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>loc</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">init</span></code>(model, *[, mapper, loc, scale, var, where])</p></td>
+<td><p>Initialise a parameter using the specified initialiser and mapper.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -3088,6 +3149,17 @@
     </span>
    </code>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypercoil.init.deltaplus.deltaplus_init">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       deltaplus_init()
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#deltaplusinitialiser">
@@ -3097,6 +3169,17 @@
     </span>
    </code>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypercoil.init.deltaplus.DeltaPlusInitialiser">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DeltaPlusInitialiser
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 

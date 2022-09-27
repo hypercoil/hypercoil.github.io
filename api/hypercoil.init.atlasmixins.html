@@ -908,7 +908,7 @@
       <a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         invert_spd
+         cholesky_invert
         </span>
        </code>
       </a>
@@ -3055,136 +3055,6 @@
   <section id="module-hypercoil.init.atlasmixins">
 <span id="atlasmixins-atlas-mixins"></span><h1><code class="docutils literal notranslate"><span class="pre">atlasmixins</span></code>: Atlas mixins<a class="headerlink" href="#module-hypercoil.init.atlasmixins" title="Permalink to this heading">#</a></h1>
 <p>Mixins for designing atlas classes.</p>
-<section id="abstractions">
-<h2>Abstractions<a class="headerlink" href="#abstractions" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.Reference">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">Reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L103-L279"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.Reference" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">axobj</span></code></dt><dd><p>Thanks to Chris Markiewicz for tutorials that shaped this implementation.</p>
-</dd>
-<dt><strong>data</strong></dt><dd></dd>
-<dt><strong>dataobj</strong></dt><dd></dd>
-<dt><strong>header</strong></dt><dd></dd>
-<dt><strong>model_axobj</strong></dt><dd></dd>
-<dt><strong>model_shape</strong></dt><dd></dd>
-<dt><strong>model_zooms</strong></dt><dd></dd>
-<dt><strong>modelobj</strong></dt><dd></dd>
-<dt><strong>ndim</strong></dt><dd></dd>
-<dt><strong>nifti_header</strong></dt><dd></dd>
-<dt><strong>other_axes</strong></dt><dd></dd>
-<dt><strong>shape</strong></dt><dd></dd>
-<dt><strong>zooms</strong></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>cache_dataobj</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>cache_modelobj</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>cifti_model_axes</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>dataobj_from_imobj</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>imobj_from_pointer</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>load_imobj</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>purge_cache</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.Mask">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">Mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L281-L362"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.Mask" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong></dt><dd></dd>
-<dt><strong>shape</strong></dt><dd></dd>
-<dt><strong>size</strong></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>map_to_masked</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.Compartment">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">Compartment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L364-L406"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.Compartment" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong></dt><dd></dd>
-<dt><strong>mask_array</strong></dt><dd></dd>
-<dt><strong>shape</strong></dt><dd></dd>
-<dt><strong>size</strong></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>dynamic_slice_map</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>map_to_masked</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.CompartmentSet">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">CompartmentSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L408-L468"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.CompartmentSet" title="Permalink to this definition">#</a></dt>
-<dd><p class="rubric">Methods</p>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>dynamic_slice_map</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>items</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>keys</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>map_to_contiguous</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>values</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</section>
 <section id="referencemixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~ReferenceMixin</span></code><a class="headerlink" href="#referencemixin" title="Permalink to this heading">#</a></h2>
 <dl class="py class">
@@ -3408,6 +3278,136 @@ compartments.</p>
 </dd></dl>
 
 </section>
+<section id="abstractions">
+<h2>Abstractions<a class="headerlink" href="#abstractions" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.Reference">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">Reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L103-L279"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.Reference" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">axobj</span></code></dt><dd><p>Thanks to Chris Markiewicz for tutorials that shaped this implementation.</p>
+</dd>
+<dt><strong>data</strong></dt><dd></dd>
+<dt><strong>dataobj</strong></dt><dd></dd>
+<dt><strong>header</strong></dt><dd></dd>
+<dt><strong>model_axobj</strong></dt><dd></dd>
+<dt><strong>model_shape</strong></dt><dd></dd>
+<dt><strong>model_zooms</strong></dt><dd></dd>
+<dt><strong>modelobj</strong></dt><dd></dd>
+<dt><strong>ndim</strong></dt><dd></dd>
+<dt><strong>nifti_header</strong></dt><dd></dd>
+<dt><strong>other_axes</strong></dt><dd></dd>
+<dt><strong>shape</strong></dt><dd></dd>
+<dt><strong>zooms</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>cache_dataobj</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>cache_modelobj</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>cifti_model_axes</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>dataobj_from_imobj</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>imobj_from_pointer</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>load_imobj</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>purge_cache</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.Mask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">Mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L281-L362"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.Mask" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong></dt><dd></dd>
+<dt><strong>shape</strong></dt><dd></dd>
+<dt><strong>size</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>map_to_masked</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.Compartment">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">Compartment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L364-L406"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.Compartment" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong></dt><dd></dd>
+<dt><strong>mask_array</strong></dt><dd></dd>
+<dt><strong>shape</strong></dt><dd></dd>
+<dt><strong>size</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>dynamic_slice_map</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>map_to_masked</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.CompartmentSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">CompartmentSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L408-L468"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.CompartmentSet" title="Permalink to this definition">#</a></dt>
+<dd><p class="rubric">Methods</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>dynamic_slice_map</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>items</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>keys</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>map_to_contiguous</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>values</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
 </section>
 
 
@@ -3428,49 +3428,6 @@ compartments.</p>
 </div>
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#abstractions">
-   Abstractions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.Reference">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       Reference
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.Mask">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       Mask
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.Compartment">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       Compartment
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.CompartmentSet">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       CompartmentSet
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencemixin">
    <code class="docutils literal notranslate">
@@ -3711,6 +3668,49 @@ compartments.</p>
      <code class="docutils literal notranslate">
       <span class="pre">
        _SpatialConvMixin
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#abstractions">
+   Abstractions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.Reference">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Reference
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.Mask">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Mask
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.Compartment">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Compartment
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.CompartmentSet">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       CompartmentSet
       </span>
      </code>
     </a>

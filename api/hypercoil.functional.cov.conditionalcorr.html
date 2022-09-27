@@ -909,7 +909,7 @@
       <a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         invert_spd
+         cholesky_invert
         </span>
        </code>
       </a>
@@ -3057,20 +3057,28 @@
 <h1><code class="docutils literal notranslate"><span class="pre">conditionalcorr</span></code>: Conditional correlation<a class="headerlink" href="#conditionalcorr-conditional-correlation" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hypercoil.functional.cov.conditionalcorr">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.cov.</span></span><span class="sig-name descname"><span class="pre">conditionalcorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">require_nonsingular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/cov.py#L425-L467"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.cov.conditionalcorr" title="Permalink to this definition">#</a></dt>
-<dd><blockquote>
-<div><p>Conditional Pearson correlation of variables in a tensor batch.</p>
-<p>The correlation is obtained via normalisation of the conditional
-covariance. Given a conditional covariance matrix
-<span class="math notranslate nohighlight">\(\hat{\Sigma} \in \mathbb{R}^{n       imes n}\)</span>, each
-entry of the conditional correlation matrix
-<span class="math notranslate nohighlight">\(R \in \mathbb{R}^{n  imes n}\)</span>
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.cov.</span></span><span class="sig-name descname"><span class="pre">conditionalcorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">require_nonsingular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DeviceArrayBase</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/hypercoil/functional/cov.py#L429-L466"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.cov.conditionalcorr" title="Permalink to this definition">#</a></dt>
+<dd><p>Conditional Pearson correlation of variables in a tensor batch.</p>
+<p>The conditional covariance is the covariance of one set of variables X
+conditioned on another set of variables Y. The conditional covariance is
+computed from the covariance <span class="math notranslate nohighlight">\(\Sigma_{{XX}}\)</span> of X ,
+the covariance <span class="math notranslate nohighlight">\(\Sigma_{{YY}}\)</span> of Y, and the
+covariance <span class="math notranslate nohighlight">\(\Sigma_{{XY}}\)</span> between X and Y.
+It is defined as the Schur complement of <span class="math notranslate nohighlight">\(\Sigma_{{YY}}\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\Sigma_{X|Y} = \Sigma_{XX} - \Sigma_{XY} \Sigma_{YY}^{{-1}} \Sigma_{XY}^\intercal\)</span></p>
+<p>The conditional covariance is equivalent to the covariance of the first set
+of variables after residualising them with respect to the second set of
+variables (plus an intercept term). This can be interpreted as the
+covariance of variables of interest (the first set) after controlling for
+the effects of confounds or nuisance variables (the second set).</p>
+<p>The correlation is obtained via normalisation of the covariance. Given a
+covariance matrix
+<span class="math notranslate nohighlight">\(\hat{\Sigma} \in \mathbb{R}^{n \times n}\)</span>, each
+entry of the correlation matrix
+<span class="math notranslate nohighlight">\(R \in \mathbb{R}^{n \times n}\)</span>
 is defined according to</p>
-<p>:math:<a href="#id1"><span class="problematic" id="id2">`</span></a>R_{ij} =</p>
-</div></blockquote>
-<p>rac{hat{Sigma}_{ij}}{sqrt{hat{Sigma}_{ii}} sqrt{hat{Sigma}_{jj}}`</p>
-<blockquote>
-<div><dl class="field-list simple">
+<p><span class="math notranslate nohighlight">\(R_{ij} = \frac{\hat{\Sigma}_{ij}}{\sqrt{\hat{\Sigma}_{ii}} \sqrt{\hat{\Sigma}_{jj}}}\)</span></p>
+<dl class="field-list simple">
 <dt class="field-odd">Dimension<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>Input X:</strong> <span class="math notranslate nohighlight">\((N, *, C_X, obs)\)</span> or <span class="math notranslate nohighlight">\((N, *, obs, C_X)\)</span></dt><dd><p>N denotes batch size, <cite>*</cite> denotes any number of
@@ -3087,11 +3095,8 @@ to be correlated (or conditioned on)</p>
 </dd>
 </dl>
 </dd>
-</dl>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
 <dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor containing samples of multivariate observations, with those
 variables whose influence we wish to control for removed and separated
 out into tensor Y. Each slice along the last axis corresponds to an
@@ -3135,8 +3140,8 @@ an intermediate for estimating the regularised inverse covariance.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
 <dt><strong>sigma</strong><span class="classifier">Tensor</span></dt><dd><p>Conditional empirical covariance matrix of the variables in input
 tensor X conditioned on the variables in input tensor Y.</p>
 </dd>
