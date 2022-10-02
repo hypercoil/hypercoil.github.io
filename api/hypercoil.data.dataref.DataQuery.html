@@ -35,6 +35,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.data.dataref.DataQuery';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -2911,93 +2912,6 @@
               
   <section id="dataquery">
 <h1><code class="docutils literal notranslate"><span class="pre">DataQuery</span></code><a class="headerlink" href="#dataquery" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.data.dataref.DataQuery">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.data.dataref.</span></span><span class="sig-name descname"><span class="pre">DataQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/dataref.py#L233-L317"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.dataref.DataQuery" title="Permalink to this definition">#</a></dt>
-<dd><p>A query to a layout or grabber object representation of a filesystem
-directory containing a dataset.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of the data object returned by the query.</p>
-</dd>
-<dt><strong>pattern</strong><span class="classifier">str or None</span></dt><dd><p>Pattern within the search directory that all query results should
-conform to. If this is provided for all queries, then all subsequent
-searches will be substantially narrowed and accelerated.</p>
-</dd>
-<dt><strong>variables</strong><span class="classifier">dict or <span class="xref std std-doc">VariableFactoryFactory</span></span></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">VariableFactoryFactory</span></code> object whose child factory produces a
-<code class="docutils literal notranslate"><span class="pre">DatasetVariable</span></code> of a type suitable for storing the paths returned
-by the query, or a dictionary of such objects.</p>
-</dd>
-<dt><strong>transform</strong><span class="classifier">transform object or None</span></dt><dd><p>Currently <em>this does nothing</em>. Eventually it should override the
-variable’s default transform. For now, just write a new variable
-class if the existing ones don’t have suitable transforms.</p>
-</dd>
-<dt><strong>filters</strong><span class="classifier">dict</span></dt><dd><p>Additional keyword arguments to the query are used to filter the
-dataset to return only those data objects matching the query.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataQuery.__call__" title="hypercoil.data.dataref.DataQuery.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(layout, **params)</p></td>
-<td><p>Submit the query to a filesystem layout.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataQuery.variable_factory" title="hypercoil.data.dataref.DataQuery.variable_factory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">variable_factory</span></code></a>()</p></td>
-<td><p>Return the variable factory with the specified identifier levels assigned.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Methods Summary</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataQuery.__call__" title="hypercoil.data.dataref.DataQuery.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(layout, **params)</p></td>
-<td><p>Submit the query to a filesystem layout.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataQuery.variable_factory" title="hypercoil.data.dataref.DataQuery.variable_factory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">variable_factory</span></code></a>()</p></td>
-<td><p>Return the variable factory with the specified identifier levels assigned.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Methods Documentation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.data.dataref.DataQuery.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layout</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/dataref.py#L273-L300"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.dataref.DataQuery.__call__" title="Permalink to this definition">#</a></dt>
-<dd><p>Submit the query to a filesystem layout.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>layout</strong><span class="classifier">object</span></dt><dd><p>Object representing a filesystem directory containing a dataset.
-It must implement a <code class="docutils literal notranslate"><span class="pre">get</span></code> method that returns all directory
-entries that match a set of filters.</p>
-</dd>
-<dt><strong>params</strong><span class="classifier">dict</span></dt><dd><p>Additional keyword arguments to the query: these are combined with
-the filters provided at initialisation to form a query. If there is
-a name collision, then filters provided at <code class="docutils literal notranslate"><span class="pre">__call__</span></code> take
-precedence.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl>
-<dt><strong>result</strong><span class="classifier">list(<span class="xref std std-doc">DatasetVariable</span>)</span></dt><dd><p>List of data objects in the layout matching the query.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.data.dataref.DataQuery.variable_factory">
-<span class="sig-name descname"><span class="pre">variable_factory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/dataref.py#L301-L317"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.dataref.DataQuery.variable_factory" title="Permalink to this definition">#</a></dt>
-<dd><p>Return the variable factory with the specified identifier levels
-assigned.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 
 
@@ -3059,7 +2973,7 @@ assigned.</p>
   <div class="footer-item">
     
 <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.0.post0.<br>
 </p>
 
   </div>

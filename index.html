@@ -6,9 +6,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Differentiable programming for brain mapping &#8212; hypercoil prototype (unreleased) documentation</title>
+    <title>A differentiable program for mapping brain function &#8212; hypercoil prototype (unreleased) documentation</title>
   <script>
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -35,6 +35,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -44,7 +45,7 @@
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="dark">
 
   
   <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
@@ -89,8 +90,8 @@
   
 
   
-    <img src="_static/logo.svg" class="logo__image only-light" alt="Logo image">
-    <img src="_static/logo.svg" class="logo__image only-dark" alt="Logo image">
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="_static/logo.png" class="logo__image only-dark" alt="Logo image">
   
   
 </a>
@@ -111,6 +112,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="installation.html">
                         Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="overview.html">
+                        Technical overview
                     </a>
                 </li>
                 
@@ -202,6 +210,13 @@
                 
 
                 <li class="nav-item">
+                    <a class="nav-link" href="overview.html">
+                        Technical overview
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
                     <a class="nav-link" href="diffprog.html">
                         Framework
                     </a>
@@ -264,35 +279,61 @@
             
             <article class="bd-article" role="main">
               
-  <section id="differentiable-programming-for-brain-mapping">
-<h1>Differentiable programming for brain mapping<a class="headerlink" href="#differentiable-programming-for-brain-mapping" title="Permalink to this heading">#</a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">hypercoil</span></code> software library includes tools for writing fully differentiable programs for use in brain mapping. At the current stage of development, most basic components of the functional connectivity software stack are available.</p>
-<img alt="https://github.com/rciric/hypercoil/actions/workflows/ci.yml/badge.svg" src="https://github.com/rciric/hypercoil/actions/workflows/ci.yml/badge.svg" /><img alt="https://github.com/rciric/hypercoil/actions/workflows/doc.yml/badge.svg" src="https://github.com/rciric/hypercoil/actions/workflows/doc.yml/badge.svg" /><a class="reference external image-reference" href="https://codecov.io/gh/rciric/hypercoil"><img alt="https://codecov.io/gh/rciric/hypercoil/branch/main/graph/badge.svg?token=FVJVK6AFQG" src="https://codecov.io/gh/rciric/hypercoil/branch/main/graph/badge.svg?token=FVJVK6AFQG" /></a>
+  <section id="a-differentiable-program-for-mapping-brain-function">
+<h1>A differentiable program for mapping brain function<a class="headerlink" href="#a-differentiable-program-for-mapping-brain-function" title="Permalink to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">hypercoil</span></code> software library includes tools for writing fully differentiable programs for use in brain mapping. It is build on the <a class="reference external" href="https://jax.readthedocs.io/en/latest/">JAX</a> framework, which combines a NumPy-like API with automatic differentiation and support for GPU acceleration. At the current stage of development, most basic components of the functional connectivity software stack are available.</p>
+<a class="reference external image-reference" href="https://github.com/hypercoil/hypercoil/actions/workflows/ci.yml"><img alt="Continuous Integration" src="https://github.com/hypercoil/hypercoil/actions/workflows/ci.yml/badge.svg" /></a>
+<a class="reference external image-reference" href="https://github.com/hypercoil/hypercoil/actions/workflows/doc.yml"><img alt="Documentation" src="https://github.com/hypercoil/hypercoil/actions/workflows/doc.yml/badge.svg" /></a>
+<a class="reference external image-reference" href="https://codecov.io/gh/hypercoil/hypercoil"><img alt="Code Coverage" src="https://codecov.io/gh/hypercoil/hypercoil/branch/main/graph/badge.svg?token=FVJVK6AFQG" /></a>
+<a class="reference external image-reference" href="https://github.com/hypercoil/hypercoil/"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-hypercoil-662299?logo=github" /></a>
+<a class="reference external image-reference" href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache_2.0-informational?logo=openaccess" /></a>
+<a class="reference external image-reference" href="https://hypercoil.github.io/portal.html"><img alt="Preprint" src="https://img.shields.io/badge/cite-preprint-red?logo=arxiv" /></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/hypercoil/hypercoil/xrecore/docs/source/_static/logo.png"><img alt="https://raw.githubusercontent.com/hypercoil/hypercoil/xrecore/docs/source/_static/logo.png" class="align-center" src="https://raw.githubusercontent.com/hypercoil/hypercoil/xrecore/docs/source/_static/logo.png" style="width: 600px;" /></a>
+<section id="about">
+<h2>About<a class="headerlink" href="#about" title="Permalink to this heading">#</a></h2>
+<p>In functional neuroimaging and adjacent fields, the advent of large, public data repositories has brought with it a proliferation of instruments and methods for analysing these data. This has introduced new challenges for the field: How can we ensure that our analyses are reproducible? How can we ensure that our analyses are valid? Conditioned on our dataset and our scientific question, how do we choose from among the available methods to design an analytic workflow in a principled way? How can we know that the workflow we’ve designed is suited to answering the questions we are asking?</p>
+<p>We typically approach the problem of designing a scientific workflow <em>combinatorially</em>: we begin from a set of analytic options, and we choose from among these to configure our workflow. The <code class="docutils literal notranslate"><span class="pre">hypercoil</span></code> library provides a framework for going beyond this combinatorial approach, and for designing principled workflows that are <em>differentiable</em>. Instead of selecting from among a set of available methods, we can <em>learn</em> the (locally) best workflow for our dataset and our scientific question. This approach is particularly well-suited to the functional neuroimaging domain, where the data are high-dimensional and the scientific questions are often complex.</p>
+<p>Built upon the same principles that power deep neural networks, this library provides software instruments for designing, deploying, and evaluating both differentiable programs and GPU-accelerated workflows. Our current focus is on applications related to fMRI-derived brain connectivity, but the library is designed to be eventually generalisable to other domains.</p>
+<p><strong>Public warning:</strong> At this time, this software should be used as if it were in a pre-alpha state. Many operations are fragile or incompletely documented. Edge cases might not be covered, and there are certainly bugs lurking in the code base. <em>Expect breaking changes</em> as the code base is further expanded and refined. Contributions or ideas for improvement are always welcome.</p>
+</section>
+<section id="remarks">
+<h2>Remarks<a class="headerlink" href="#remarks" title="Permalink to this heading">#</a></h2>
 <p>Currently, because this project is still in the incipient stage, this documentation hub is fairly minimal (principally focused on documenting the fairly substantial <a class="reference internal" href="modules.html"><span class="doc">API</span></a> for <a class="reference internal" href="functional.html"><span class="doc">functionals</span></a>,  <a class="reference internal" href="nn.html"><span class="doc">neural network modules</span></a>, <a class="reference internal" href="init.html"><span class="doc">initialisation schemes</span></a>, and <a class="reference internal" href="loss.html"><span class="doc">loss functions</span></a>). Usage guidelines and simple examples will be ported into the documentation from test cases soon, and API details will eventually be added for currently unstable submodules, including data engineering workflows, evaluation and benchmarks, and visualisation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>At this time, this software should be used as if it were in a pre-alpha state. Many operations are fragile or incompletely documented. Edge cases might not be covered, and there are certainly bugs lurking in the code base. <em>Expect breaking changes</em> as the code base is further expanded and refined. Contributions or ideas for improvement are always welcome.</p>
+</div>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Technical overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#functional-and-nn-composable-differentiable-functionals"><code class="docutils literal notranslate"><span class="pre">functional</span></code> and <code class="docutils literal notranslate"><span class="pre">nn</span></code>: composable differentiable functionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#init-functional-parameterisation"><code class="docutils literal notranslate"><span class="pre">init</span></code>: functional parameterisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#loss-learning-signals"><code class="docutils literal notranslate"><span class="pre">loss</span></code>: learning signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#formula-functional-grammar"><code class="docutils literal notranslate"><span class="pre">formula</span></code>: functional grammar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#viz-visualisation"><code class="docutils literal notranslate"><span class="pre">viz</span></code>: visualisation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#a-simple-example">A simple example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffprog.html">Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">API reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data.html"><code class="docutils literal notranslate"><span class="pre">data</span></code>: Data engineering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="engine.html"><code class="docutils literal notranslate"><span class="pre">engine</span></code>: Differentiable engine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="eval.html"><code class="docutils literal notranslate"><span class="pre">eval</span></code>: Benchmarks and evaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="functional.html"><code class="docutils literal notranslate"><span class="pre">functional</span></code>: Functions and functionals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="init.html"><code class="docutils literal notranslate"><span class="pre">init</span></code>: Initialisation schemes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="loss.html"><code class="docutils literal notranslate"><span class="pre">loss</span></code>: Loss and regularisation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="neuro.html"><code class="docutils literal notranslate"><span class="pre">neuro</span></code>: Neuroscience data utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html"><code class="docutils literal notranslate"><span class="pre">nn</span></code>: Neural network modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="viz.html"><code class="docutils literal notranslate"><span class="pre">viz</span></code>: Visualisation</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <section id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">#</a></h2>
+<h3>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
+</section>
 </section>
 </section>
 
@@ -315,9 +356,21 @@
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#indices-and-tables">
-   Indices and tables
+  <a class="reference internal nav-link" href="#about">
+   About
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#remarks">
+   Remarks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indices-and-tables">
+     Indices and tables
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -363,7 +416,7 @@
     
 <p class="copyright">
 
-    &copy; Copyright 2021, the development team.<br>
+    &copy; Copyright 2022-, the development team.<br>
 
 </p>
 
@@ -372,7 +425,7 @@
   <div class="footer-item">
     
 <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.3.<br>
 </p>
 
   </div>

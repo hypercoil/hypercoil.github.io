@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Index &#8212; hypercoil prototype (unreleased) documentation</title>
   <script>
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -34,6 +34,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
@@ -42,7 +43,7 @@
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="dark">
 
   
   <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
@@ -87,8 +88,8 @@
   
 
   
-    <img src="_static/logo.svg" class="logo__image only-light" alt="Logo image">
-    <img src="_static/logo.svg" class="logo__image only-dark" alt="Logo image">
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="_static/logo.png" class="logo__image only-dark" alt="Logo image">
   
   
 </a>
@@ -109,6 +110,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="installation.html">
                         Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="overview.html">
+                        Technical overview
                     </a>
                 </li>
                 
@@ -200,6 +208,13 @@
                 
 
                 <li class="nav-item">
+                    <a class="nav-link" href="overview.html">
+                        Technical overview
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
                     <a class="nav-link" href="diffprog.html">
                         Framework
                     </a>
@@ -276,31 +291,87 @@
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
  
 </div>
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.dataref.DataQuery.html#hypercoil.data.dataref.DataQuery.__call__">__call__() (hypercoil.data.dataref.DataQuery method)</a>
+      <li><a href="api/hypercoil.init.atlas.AtlasInitialiser.html#hypercoil.init.atlas.AtlasInitialiser.__call__">__call__() (hypercoil.init.atlas.AtlasInitialiser method)</a>
 
       <ul>
-        <li><a href="api/hypercoil.data.dataref.DataReference.html#hypercoil.data.dataref.DataReference.__call__">(hypercoil.data.dataref.DataReference method)</a>
+        <li><a href="api/hypercoil.init.atlas.BaseAtlas.html#hypercoil.init.atlas.BaseAtlas.__call__">(hypercoil.init.atlas.BaseAtlas method)</a>
+</li>
+        <li><a href="api/hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html#hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.__call__">(hypercoil.init.atlas.CortexSubcortexCIfTIAtlas method)</a>
+</li>
+        <li><a href="api/hypercoil.init.atlas.DirichletInitBaseAtlas.html#hypercoil.init.atlas.DirichletInitBaseAtlas.__call__">(hypercoil.init.atlas.DirichletInitBaseAtlas method)</a>
+</li>
+        <li><a href="api/hypercoil.init.atlas.DirichletInitSurfaceAtlas.html#hypercoil.init.atlas.DirichletInitSurfaceAtlas.__call__">(hypercoil.init.atlas.DirichletInitSurfaceAtlas method)</a>
+</li>
+        <li><a href="api/hypercoil.init.atlas.DirichletInitVolumetricAtlas.html#hypercoil.init.atlas.DirichletInitVolumetricAtlas.__call__">(hypercoil.init.atlas.DirichletInitVolumetricAtlas method)</a>
+</li>
+        <li><a href="api/hypercoil.init.atlas.DiscreteVolumetricAtlas.html#hypercoil.init.atlas.DiscreteVolumetricAtlas.__call__">(hypercoil.init.atlas.DiscreteVolumetricAtlas method)</a>
+</li>
+        <li><a href="api/hypercoil.init.atlas.MultifileVolumetricAtlas.html#hypercoil.init.atlas.MultifileVolumetricAtlas.__call__">(hypercoil.init.atlas.MultifileVolumetricAtlas method)</a>
+</li>
+        <li><a href="api/hypercoil.init.atlas.MultiVolumetricAtlas.html#hypercoil.init.atlas.MultiVolumetricAtlas.__call__">(hypercoil.init.atlas.MultiVolumetricAtlas method)</a>
 </li>
       </ul></li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._CIfTIReferenceMixin">_CIfTIReferenceMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._ContinuousLabelMixin">_ContinuousLabelMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._CortexSubcortexCIfTICompartmentMixin">_CortexSubcortexCIfTICompartmentMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._CortexSubcortexCIfTIMaskMixin">_CortexSubcortexCIfTIMaskMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._DirichletLabelMixin">_DirichletLabelMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.dataref.DataReference.html#hypercoil.data.dataref.DataReference.__getattr__">__getattr__() (hypercoil.data.dataref.DataReference method)</a>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._DiscreteLabelMixin">_DiscreteLabelMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._EvenlySampledConvMixin">_EvenlySampledConvMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._FromNullMaskMixin">_FromNullMaskMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._LogicMaskMixin">_LogicMaskMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._MultiCompartmentMixin">_MultiCompartmentMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._PhantomReferenceMixin">_PhantomReferenceMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._SingleCompartmentMixin">_SingleCompartmentMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._SpatialConvMixin">_SpatialConvMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._SurfaceObjectReferenceMixin">_SurfaceObjectReferenceMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._SurfaceSingleReferenceMixin">_SurfaceSingleReferenceMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._VertexCIfTIMeshMixin">_VertexCIfTIMeshMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._VolumeMultiReferenceMixin">_VolumeMultiReferenceMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._VolumeObjectReferenceMixin">_VolumeObjectReferenceMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._VolumeSingleReferenceMixin">_VolumeSingleReferenceMixin (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._VolumetricMeshMixin">_VolumetricMeshMixin (class in hypercoil.init.atlasmixins)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -308,25 +379,31 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.bids.fMRIPrepDataset.html#hypercoil.data.bids.fMRIPrepDataset.add_data">add_data() (hypercoil.data.bids.fMRIPrepDataset method)</a>
-
-      <ul>
-        <li><a href="api/hypercoil.data.dataset.ReferencedDataset.html#hypercoil.data.dataset.ReferencedDataset.add_data">(hypercoil.data.dataset.ReferencedDataset method)</a>
+      <li><a href="api/hypercoil.init.mapparam.AffineMappedParameter.html#hypercoil.init.mapparam.AffineMappedParameter">AffineMappedParameter (class in hypercoil.init.mapparam)</a>
 </li>
-      </ul></li>
+      <li><a href="api/hypercoil.functional.utils.amplitude_apply.html#hypercoil.functional.utils.amplitude_apply">amplitude_apply() (in module hypercoil.functional.utils)</a>
+</li>
       <li><a href="api/hypercoil.functional.activation.amplitude_atanh.html#hypercoil.functional.activation.amplitude_atanh">amplitude_atanh() (in module hypercoil.functional.activation)</a>
 </li>
       <li><a href="api/hypercoil.functional.activation.amplitude_tanh.html#hypercoil.functional.activation.amplitude_tanh">amplitude_tanh() (in module hypercoil.functional.activation)</a>
 </li>
+      <li><a href="api/hypercoil.init.mapparam.AmplitudeProbabilitySimplexParameter.html#hypercoil.init.mapparam.AmplitudeProbabilitySimplexParameter">AmplitudeProbabilitySimplexParameter (class in hypercoil.init.mapparam)</a>
+</li>
+      <li><a href="api/hypercoil.init.mapparam.AmplitudeTanhMappedParameter.html#hypercoil.init.mapparam.AmplitudeTanhMappedParameter">AmplitudeTanhMappedParameter (class in hypercoil.init.mapparam)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.functional.fourier.analytic_signal.html#hypercoil.functional.fourier.analytic_signal">analytic_signal() (in module hypercoil.functional.fourier)</a>
+</li>
       <li><a href="api/hypercoil.functional.utils.apply_mask.html#hypercoil.functional.utils.apply_mask">apply_mask() (in module hypercoil.functional.utils)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.dataframe.html#hypercoil.data.functional.apply_model_specs">apply_model_specs() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.functional.sparse.as_topk.html#hypercoil.functional.sparse.as_topk">as_topk() (in module hypercoil.functional.sparse)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.general.html#hypercoil.data.functional.apply_to_select">apply_to_select() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.init.atlas.AtlasInitialiser.html#hypercoil.init.atlas.AtlasInitialiser">AtlasInitialiser (class in hypercoil.init.atlas)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.general.html#hypercoil.data.functional.apply_transform">apply_transform() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.nn.atlas.AtlasLinear.html#hypercoil.nn.atlas.AtlasLinear">AtlasLinear (class in hypercoil.nn.atlas)</a>
+</li>
+      <li><a href="api/hypercoil.loss.auto_tol.html#hypercoil.loss.auto_tol">auto_tol() (in module hypercoil.loss)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -334,7 +411,43 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.bids.BIDSObjectFactory.html#hypercoil.data.bids.BIDSObjectFactory">BIDSObjectFactory (class in hypercoil.data.bids)</a>
+      <li><a href="api/hypercoil.init.atlas.BaseAtlas.html#hypercoil.init.atlas.BaseAtlas">BaseAtlas (class in hypercoil.init.atlas)</a>
+</li>
+      <li><a href="api/hypercoil.nn.cov.BaseCovariance.html#hypercoil.nn.cov.BaseCovariance">BaseCovariance (class in hypercoil.nn.cov)</a>
+</li>
+      <li><a href="api/hypercoil.functional.tsconv.basischan.html#hypercoil.functional.tsconv.basischan">basischan() (in module hypercoil.functional.tsconv)</a>
+</li>
+      <li><a href="api/hypercoil.functional.tsconv.basisconv2d.html#hypercoil.functional.tsconv.basisconv2d">basisconv2d() (in module hypercoil.functional.tsconv)</a>
+</li>
+      <li><a href="api/hypercoil.nn.tsconv.BasisConv2D.html#hypercoil.nn.tsconv.BasisConv2D">BasisConv2D() (in module hypercoil.nn.tsconv)</a>
+</li>
+      <li><a href="api/hypercoil.loss.batch_corr.html#hypercoil.loss.batch_corr">batch_corr() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.batch_corr.html#hypercoil.loss.BatchCorrelationLoss">BatchCorrelationLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.nn.semidefinite.BatchTangentProject.html#hypercoil.nn.semidefinite.BatchTangentProject">BatchTangentProject() (in module hypercoil.nn.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.loss.bimodal_symmetric.html#hypercoil.loss.bimodal_symmetric">bimodal_symmetric() (in module hypercoil.loss)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.loss.bimodal_symmetric.html#hypercoil.loss.BimodalSymmetricLoss">BimodalSymmetricLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.nn.cov.BinaryCovariance.html#hypercoil.nn.cov.BinaryCovariance">BinaryCovariance (class in hypercoil.nn.cov)</a>
+</li>
+      <li><a href="api/hypercoil.nn.cov.BinaryCovarianceTW.html#hypercoil.nn.cov.BinaryCovarianceTW">BinaryCovarianceTW (class in hypercoil.nn.cov)</a>
+</li>
+      <li><a href="api/hypercoil.nn.cov.BinaryCovarianceUW.html#hypercoil.nn.cov.BinaryCovarianceUW">BinaryCovarianceUW (class in hypercoil.nn.cov)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.block_serialise.html#hypercoil.functional.sparse.block_serialise">block_serialise() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.loss.bregman_divergence.html#hypercoil.loss.bregman_divergence">bregman_divergence() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.bregman_divergence.html#hypercoil.loss.bregman_divergence_logit">bregman_divergence_logit() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.bregman_divergence.html#hypercoil.loss.BregmanDivergenceLogitLoss">BregmanDivergenceLogitLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.bregman_divergence.html#hypercoil.loss.BregmanDivergenceLoss">BregmanDivergenceLoss (class in hypercoil.loss)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -342,7 +455,11 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.filesystem.html#hypercoil.data.functional.change_extension">change_extension() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.functional.matrix.cholesky_invert.html#hypercoil.functional.matrix.cholesky_invert">cholesky_invert() (in module hypercoil.functional.matrix)</a>
+</li>
+      <li><a href="api/hypercoil.init.freqfilter.clamp_init_.html#hypercoil.init.freqfilter.clamp_init">clamp_init() (in module hypercoil.init.freqfilter)</a>
+</li>
+      <li><a href="api/hypercoil.init.mapparam.Clip.html#hypercoil.init.mapparam.Clip">Clip (class in hypercoil.init.mapparam)</a>
 </li>
       <li><a href="api/hypercoil.functional.cmass.cmass.html#hypercoil.functional.cmass.cmass">cmass() (in module hypercoil.functional.cmass)</a>
 </li>
@@ -352,19 +469,59 @@
 </li>
       <li><a href="api/hypercoil.functional.cmass.cmass_reference.html#hypercoil.functional.cmass.cmass_reference_displacement_grid">cmass_reference_displacement_grid() (in module hypercoil.functional.cmass)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.functional.graph.coaffiliation.html#hypercoil.functional.graph.coaffiliation">coaffiliation() (in module hypercoil.functional.graph)</a>
+</li>
+      <li><a href="api/hypercoil.loss.compactness.html#hypercoil.loss.compactness">compactness() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.compactness.html#hypercoil.loss.CompactnessLoss">CompactnessLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins.Compartment">Compartment (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins.CompartmentSet">CompartmentSet (class in hypercoil.init.atlasmixins)</a>
+</li>
       <li><a href="api/hypercoil.functional.utils.complex_decompose.html#hypercoil.functional.utils.complex_decompose">complex_decompose() (in module hypercoil.functional.utils)</a>
 </li>
       <li><a href="api/hypercoil.functional.utils.complex_recompose.html#hypercoil.functional.utils.complex_recompose">complex_recompose() (in module hypercoil.functional.utils)</a>
 </li>
+      <li><a href="api/hypercoil.functional.cov.conditionalcorr.html#hypercoil.functional.cov.conditionalcorr">conditionalcorr() (in module hypercoil.functional.cov)</a>
+</li>
+      <li><a href="api/hypercoil.functional.cov.conditionalcov.html#hypercoil.functional.cov.conditionalcov">conditionalcov() (in module hypercoil.functional.cov)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.functional.semidefinite.cone_project_spd.html#hypercoil.functional.semidefinite.cone_project_spd">cone_project_spd() (in module hypercoil.functional.semidefinite)</a>
+</li>
       <li><a href="api/hypercoil.functional.utils.conform_mask.html#hypercoil.functional.utils.conform_mask">conform_mask() (in module hypercoil.functional.utils)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.tensor.html#hypercoil.data.functional.consolidate_block">consolidate_block() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.loss.connectopy.html#hypercoil.loss.connectopy">connectopy() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.connectopy.html#hypercoil.loss.ConnectopyLoss">ConnectopyLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.init.base.constant_init.html#hypercoil.init.base.constant_init">constant_init() (in module hypercoil.init.base)</a>
+</li>
+      <li><a href="api/hypercoil.init.base.ConstantInitialiser.html#hypercoil.init.base.ConstantInitialiser">ConstantInitialiser() (in module hypercoil.init.base)</a>
+</li>
+      <li><a href="api/hypercoil.loss.constraint_violation.html#hypercoil.loss.constraint_violation">constraint_violation() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.constraint_violation.html#hypercoil.loss.ConstraintViolationLoss">ConstraintViolationLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.functional.tsconv.conv.html#hypercoil.functional.tsconv.conv">conv() (in module hypercoil.functional.tsconv)</a>
+</li>
+      <li><a href="api/hypercoil.functional.cov.corr.html#hypercoil.functional.cov.corr">corr() (in module hypercoil.functional.cov)</a>
+</li>
+      <li><a href="api/hypercoil.functional.kernel.corr_kernel.html#hypercoil.functional.kernel.corr_kernel">corr_kernel() (in module hypercoil.functional.kernel)</a>
+</li>
+      <li><a href="api/hypercoil.nn.activation.CorrelationNorm.html#hypercoil.nn.activation.CorrelationNorm">CorrelationNorm (class in hypercoil.nn.activation)</a>
 </li>
       <li><a href="api/hypercoil.functional.activation.corrnorm.html#hypercoil.functional.activation.corrnorm">corrnorm() (in module hypercoil.functional.activation)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.neuroimage.html#hypercoil.data.functional.cwb_cifti_header">cwb_cifti_header() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html#hypercoil.init.atlas.CortexSubcortexCIfTIAtlas">CortexSubcortexCIfTIAtlas (class in hypercoil.init.atlas)</a>
+</li>
+      <li><a href="api/hypercoil.functional.kernel.cosine_kernel.html#hypercoil.functional.kernel.cosine_kernel">cosine_kernel() (in module hypercoil.functional.kernel)</a>
+</li>
+      <li><a href="api/hypercoil.functional.cov.cov.html#hypercoil.functional.cov.cov">cov() (in module hypercoil.functional.cov)</a>
+</li>
+      <li><a href="api/hypercoil.functional.kernel.cov_kernel.html#hypercoil.functional.kernel.cov_kernel">cov_kernel() (in module hypercoil.functional.kernel)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -372,19 +529,45 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.dataref.DataReference.html#hypercoil.data.dataref.DataReference.data">data (hypercoil.data.dataref.DataReference attribute)</a>
+      <li><a href="api/hypercoil.functional.matrix.delete_diagonal.html#hypercoil.functional.matrix.delete_diagonal">delete_diagonal() (in module hypercoil.functional.matrix)</a>
 </li>
-      <li><a href="api/hypercoil.data.dataref.data_references.html#hypercoil.data.dataref.data_references">data_references() (in module hypercoil.data.dataref)</a>
+      <li><a href="api/hypercoil.init.deltaplus.html#hypercoil.init.deltaplus.deltaplus_init">deltaplus_init() (in module hypercoil.init.deltaplus)</a>
 </li>
-      <li><a href="api/hypercoil.data.dataref.DataQuery.html#hypercoil.data.dataref.DataQuery">DataQuery (class in hypercoil.data.dataref)</a>
+      <li><a href="api/hypercoil.init.deltaplus.html#hypercoil.init.deltaplus.DeltaPlusInitialiser">DeltaPlusInitialiser (class in hypercoil.init.deltaplus)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.dataref.DataReference.html#hypercoil.data.dataref.DataReference">DataReference (class in hypercoil.data.dataref)</a>
+      <li><a href="api/hypercoil.loss.det_gram.html#hypercoil.loss.det_gram">det_gram() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.functional.matrix.diag_embed.html#hypercoil.functional.matrix.diag_embed">diag_embed() (in module hypercoil.functional.matrix)</a>
+</li>
+      <li><a href="api/hypercoil.loss.difference.html#hypercoil.loss.difference">difference() (in module hypercoil.loss)</a>
 </li>
       <li><a href="api/hypercoil.functional.cmass.diffuse.html#hypercoil.functional.cmass.diffuse">diffuse() (in module hypercoil.functional.cmass)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.metadata.html#hypercoil.data.functional.dump_data">dump_data() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.functional.connectopy.diffusion_mapping.html#hypercoil.functional.connectopy.diffusion_mapping">diffusion_mapping() (in module hypercoil.functional.connectopy)</a>
+</li>
+      <li><a href="api/hypercoil.init.dirichlet.html#hypercoil.init.dirichlet.dirichlet_init">dirichlet_init() (in module hypercoil.init.dirichlet)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.init.atlas.DirichletInitBaseAtlas.html#hypercoil.init.atlas.DirichletInitBaseAtlas">DirichletInitBaseAtlas (class in hypercoil.init.atlas)</a>
+</li>
+      <li><a href="api/hypercoil.init.dirichlet.html#hypercoil.init.dirichlet.DirichletInitialiser">DirichletInitialiser (class in hypercoil.init.dirichlet)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlas.DirichletInitSurfaceAtlas.html#hypercoil.init.atlas.DirichletInitSurfaceAtlas">DirichletInitSurfaceAtlas (class in hypercoil.init.atlas)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlas.DirichletInitVolumetricAtlas.html#hypercoil.init.atlas.DirichletInitVolumetricAtlas">DirichletInitVolumetricAtlas (class in hypercoil.init.atlas)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlas.DiscreteVolumetricAtlas.html#hypercoil.init.atlas.DiscreteVolumetricAtlas">DiscreteVolumetricAtlas (class in hypercoil.init.atlas)</a>
+</li>
+      <li><a href="api/hypercoil.loss.dispersion.html#hypercoil.loss.dispersion">dispersion() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.dispersion.html#hypercoil.loss.DispersionLoss">DispersionLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.init.base.DistributionInitialiser.html#hypercoil.init.base.DistributionInitialiser">DistributionInitialiser() (in module hypercoil.init.base)</a>
+</li>
+      <li><a href="api/hypercoil.init.mapparam.DomainMappedParameter.html#hypercoil.init.mapparam.DomainMappedParameter">DomainMappedParameter (class in hypercoil.init.mapparam)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.dspdmm.html#hypercoil.functional.sparse.dspdmm">dspdmm() (in module hypercoil.functional.sparse)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -392,15 +575,33 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.functional.sphere.euclidean_conv.html#hypercoil.functional.sphere.euclidean_conv">euclidean_conv() (in module hypercoil.functional.sphere)</a>
+      <li><a href="api/hypercoil.nn.confound.EliminationSelector.html#hypercoil.nn.confound.EliminationSelector">EliminationSelector (class in hypercoil.nn.confound)</a>
 </li>
-      <li><a href="api/hypercoil.data.collate.html#hypercoil.data.collate.extend_and_bind">extend_and_bind() (in module hypercoil.data.collate)</a>
+      <li><a href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy">entropy() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy_logit">entropy_logit() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.entropy.html#hypercoil.loss.EntropyLogitLoss">EntropyLogitLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.entropy.html#hypercoil.loss.EntropyLoss">EntropyLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.functional.fourier.env_inst.html#hypercoil.functional.fourier.env_inst">env_inst() (in module hypercoil.functional.fourier)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.missing.html#hypercoil.data.functional.extend_to_max_size">extend_to_max_size() (in module hypercoil.data.functional)</a>, <a href="api/hypercoil.data.functional.tensor.html#hypercoil.data.functional.extend_to_max_size">[1]</a>
+      <li><a href="api/hypercoil.functional.fourier.envelope.html#hypercoil.functional.fourier.envelope">envelope() (in module hypercoil.functional.fourier)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.tensor.html#hypercoil.data.functional.extend_to_size">extend_to_size() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium">equilibrium() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium_logit">equilibrium_logit() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.EquilibriumLogitLoss">EquilibriumLogitLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.EquilibriumLoss">EquilibriumLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sphere.euclidean_conv.html#hypercoil.functional.sphere.euclidean_conv">euclidean_conv() (in module hypercoil.functional.sphere)</a>
+</li>
+      <li><a href="api/hypercoil.functional.matrix.expand_outer.html#hypercoil.functional.matrix.expand_outer">expand_outer() (in module hypercoil.functional.matrix)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -408,17 +609,21 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.missing.html#hypercoil.data.functional.fillnan">fillnan() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.functional.matrix.fill_diagonal.html#hypercoil.functional.matrix.fill_diagonal">fill_diagonal() (in module hypercoil.functional.matrix)</a>
 </li>
-      <li><a href="api/hypercoil.data.grabber.LightGrabber.html#hypercoil.data.grabber.LightGrabber.find_files">find_files() (hypercoil.data.grabber.LightGrabber method)</a>
+      <li><a href="api/hypercoil.init.mapparam.ForcePositiveDefinite.html#hypercoil.init.mapparam.ForcePositiveDefinite">ForcePositiveDefinite (class in hypercoil.init.mapparam)</a>
+</li>
+      <li><a href="api/hypercoil.init.freqfilter.freqfilter_init_.html#hypercoil.init.freqfilter.freqfilter_init">freqfilter_init() (in module hypercoil.init.freqfilter)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.neuro.fMRIDataReference.html#hypercoil.data.neuro.fMRIDataReference">fMRIDataReference (class in hypercoil.data.neuro)</a>
+      <li><a href="api/hypercoil.init.freqfilter.FreqFilterSpec.html#hypercoil.init.freqfilter.FreqFilterSpec">FreqFilterSpec (class in hypercoil.init.freqfilter)</a>
 </li>
-      <li><a href="api/hypercoil.data.bids.fmriprep_references.html#hypercoil.data.bids.fmriprep_references">fmriprep_references() (in module hypercoil.data.bids)</a>
+      <li><a href="api/hypercoil.nn.freqfilter.FrequencyDomainFilter.html#hypercoil.nn.freqfilter.FrequencyDomainFilter">FrequencyDomainFilter (class in hypercoil.nn.freqfilter)</a>
 </li>
-      <li><a href="api/hypercoil.data.bids.fMRIPrepDataset.html#hypercoil.data.bids.fMRIPrepDataset">fMRIPrepDataset (class in hypercoil.data.bids)</a>
+      <li><a href="api/hypercoil.init.base.from_distr_init.html#hypercoil.init.base.from_distr_init">from_distr_init() (in module hypercoil.init.base)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.full_as_topk.html#hypercoil.functional.sparse.full_as_topk">full_as_topk() (in module hypercoil.functional.sparse)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -426,21 +631,19 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.collate.html#hypercoil.data.collate.gen_collate">gen_collate() (in module hypercoil.data.collate)</a>
+      <li><a href="api/hypercoil.functional.kernel.gaussian_kernel.html#hypercoil.functional.kernel.gaussian_kernel">gaussian_kernel() (in module hypercoil.functional.kernel)</a>
 </li>
-      <li><a href="api/hypercoil.data.grabber.LightGrabber.html#hypercoil.data.grabber.LightGrabber.get">get() (hypercoil.data.grabber.LightGrabber method)</a>
+      <li><a href="api/hypercoil.init.freqfilter.FreqFilterSpec.html#hypercoil.init.freqfilter.FreqFilterSpec.get_clamps">get_clamps() (hypercoil.init.freqfilter.FreqFilterSpec method)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.dataframe.html#hypercoil.data.functional.get_col">get_col() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.functional.graph.girvan_newman_null.html#hypercoil.functional.graph.girvan_newman_null">girvan_newman_null() (in module hypercoil.functional.graph)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.metadata.html#hypercoil.data.functional.get_metadata_variable">get_metadata_variable() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.loss.det_gram.html#hypercoil.loss.GramDeterminantLoss">GramDeterminantLoss (class in hypercoil.loss)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.general.html#hypercoil.data.functional.get_path_from_var">get_path_from_var() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.loss.log_det_gram.html#hypercoil.loss.GramLogDeterminantLoss">GramLogDeterminantLoss (class in hypercoil.loss)</a>
 </li>
-      <li><a href="api/hypercoil.data.dataref.DataReference.html#hypercoil.data.dataref.DataReference.get_var">get_var() (hypercoil.data.dataref.DataReference method)</a>
-</li>
-      <li><a href="api/hypercoil.data.grabber.LightGrabber.html#hypercoil.data.grabber.LightGrabber.getall">getall() (hypercoil.data.grabber.LightGrabber method)</a>
+      <li><a href="api/hypercoil.functional.graph.graph_laplacian.html#hypercoil.functional.graph.graph_laplacian">graph_laplacian() (in module hypercoil.functional.graph)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -448,57 +651,28 @@
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.hcp.hcp_references.html#hypercoil.data.hcp.hcp_references">hcp_references() (in module hypercoil.data.hcp)</a>
+      <li><a href="api/hypercoil.functional.fourier.hilbert_transform.html#hypercoil.functional.fourier.hilbert_transform">hilbert_transform() (in module hypercoil.functional.fourier)</a>
+</li>
+      <li><a href="api/hypercoil.loss.hinge_loss.html#hypercoil.loss.hinge_loss">hinge_loss() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.hinge_loss.html#hypercoil.loss.HingeLoss">HingeLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.functional.interpolate.hybrid_interpolate.html#hypercoil.functional.interpolate.hybrid_interpolate">hybrid_interpolate() (in module hypercoil.functional.interpolate)</a>
+</li>
+      <li><a href="api/hypercoil.nn.interpolate.HybridInterpolate.html#hypercoil.nn.interpolate.HybridInterpolate">HybridInterpolate (class in hypercoil.nn.interpolate)</a>
 </li>
       <li>
-    hypercoil.data
+    hypercoil.engine
 
       <ul>
-        <li><a href="data.html#module-hypercoil.data">module</a>
-</li>
-      </ul></li>
-      <li>
-    hypercoil.data.bids
-
-      <ul>
-        <li><a href="api/hypercoil.data.bids.html#module-hypercoil.data.bids">module</a>
-</li>
-      </ul></li>
-      <li>
-    hypercoil.data.collate
-
-      <ul>
-        <li><a href="api/hypercoil.data.collate.html#module-hypercoil.data.collate">module</a>
+        <li><a href="engine.html#module-hypercoil.engine">module</a>
 </li>
       </ul></li>
       <li>
-    hypercoil.data.dataref
+    hypercoil.functional
 
       <ul>
-        <li><a href="api/hypercoil.data.dataref.html#module-hypercoil.data.dataref">module</a>
-</li>
-      </ul></li>
-      <li>
-    hypercoil.data.dataset
-
-      <ul>
-        <li><a href="api/hypercoil.data.dataset.html#module-hypercoil.data.dataset">module</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    hypercoil.data.functional
-
-      <ul>
-        <li><a href="api/hypercoil.data.functional.html#module-hypercoil.data.functional">module</a>
-</li>
-      </ul></li>
-      <li>
-    hypercoil.data.hcp
-
-      <ul>
-        <li><a href="api/hypercoil.data.hcp.html#module-hypercoil.data.hcp">module</a>
+        <li><a href="functional.html#module-hypercoil.functional">module</a>
 </li>
       </ul></li>
       <li>
@@ -516,10 +690,94 @@
 </li>
       </ul></li>
       <li>
+    hypercoil.functional.connectopy
+
+      <ul>
+        <li><a href="api/hypercoil.functional.connectopy.html#module-hypercoil.functional.connectopy">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.functional.cov
+
+      <ul>
+        <li><a href="api/hypercoil.functional.cov.html#module-hypercoil.functional.cov">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.functional.fourier
+
+      <ul>
+        <li><a href="api/hypercoil.functional.fourier.html#module-hypercoil.functional.fourier">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.functional.graph
+
+      <ul>
+        <li><a href="api/hypercoil.functional.graph.html#module-hypercoil.functional.graph">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.functional.interpolate
+
+      <ul>
+        <li><a href="api/hypercoil.functional.interpolate.html#module-hypercoil.functional.interpolate">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.functional.kernel
+
+      <ul>
+        <li><a href="api/hypercoil.functional.kernel.html#module-hypercoil.functional.kernel">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.functional.matrix
+
+      <ul>
+        <li><a href="api/hypercoil.functional.matrix.html#module-hypercoil.functional.matrix">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.functional.semidefinite
+
+      <ul>
+        <li><a href="api/hypercoil.functional.semidefinite.html#module-hypercoil.functional.semidefinite">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.functional.sparse
+
+      <ul>
+        <li><a href="api/hypercoil.functional.sparse.html#module-hypercoil.functional.sparse">module</a>
+</li>
+      </ul></li>
+      <li>
     hypercoil.functional.sphere
 
       <ul>
         <li><a href="api/hypercoil.functional.sphere.html#module-hypercoil.functional.sphere">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.functional.sylo
+
+      <ul>
+        <li><a href="api/hypercoil.functional.sylo.html#module-hypercoil.functional.sylo">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.functional.symmap
+
+      <ul>
+        <li><a href="api/hypercoil.functional.symmap.html#module-hypercoil.functional.symmap">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.functional.tsconv
+
+      <ul>
+        <li><a href="api/hypercoil.functional.tsconv.html#module-hypercoil.functional.tsconv">module</a>
 </li>
       </ul></li>
       <li>
@@ -529,17 +787,296 @@
         <li><a href="api/hypercoil.functional.utils.html#module-hypercoil.functional.utils">module</a>
 </li>
       </ul></li>
+      <li>
+    hypercoil.functional.window
+
+      <ul>
+        <li><a href="api/hypercoil.functional.window.html#module-hypercoil.functional.window">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init
+
+      <ul>
+        <li><a href="init.html#module-hypercoil.init">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.atlas
+
+      <ul>
+        <li><a href="api/hypercoil.init.atlas.html#module-hypercoil.init.atlas">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.atlasmixins
+
+      <ul>
+        <li><a href="api/hypercoil.init.atlasmixins.html#module-hypercoil.init.atlasmixins">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.base
+
+      <ul>
+        <li><a href="api/hypercoil.init.base.html#module-hypercoil.init.base">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    hypercoil.init.deltaplus
+
+      <ul>
+        <li><a href="api/hypercoil.init.deltaplus.html#module-hypercoil.init.deltaplus">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.dirichlet
+
+      <ul>
+        <li><a href="api/hypercoil.init.dirichlet.html#module-hypercoil.init.dirichlet">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.freqfilter
+
+      <ul>
+        <li><a href="api/hypercoil.init.freqfilter.html#module-hypercoil.init.freqfilter">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.iirfilter
+
+      <ul>
+        <li><a href="api/hypercoil.init.iirfilter.html#module-hypercoil.init.iirfilter">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.laplace
+
+      <ul>
+        <li><a href="api/hypercoil.init.laplace.html#module-hypercoil.init.laplace">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.mapparam
+
+      <ul>
+        <li><a href="api/hypercoil.init.mapparam.html#module-hypercoil.init.mapparam">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.mpbl
+
+      <ul>
+        <li><a href="api/hypercoil.init.mpbl.html#module-hypercoil.init.mpbl">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.semidefinite
+
+      <ul>
+        <li><a href="api/hypercoil.init.semidefinite.html#module-hypercoil.init.semidefinite">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.sylo
+
+      <ul>
+        <li><a href="api/hypercoil.init.sylo.html#module-hypercoil.init.sylo">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.init.toeplitz
+
+      <ul>
+        <li><a href="api/hypercoil.init.toeplitz.html#module-hypercoil.init.toeplitz">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.loss
+
+      <ul>
+        <li><a href="loss.html#module-hypercoil.loss">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.neuro
+
+      <ul>
+        <li><a href="neuro.html#module-hypercoil.neuro">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.neuro.synth
+
+      <ul>
+        <li><a href="api/hypercoil.neuro.synth.html#module-hypercoil.neuro.synth">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn
+
+      <ul>
+        <li><a href="nn.html#module-hypercoil.nn">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.activation
+
+      <ul>
+        <li><a href="api/hypercoil.nn.activation.html#module-hypercoil.nn.activation">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.atlas
+
+      <ul>
+        <li><a href="api/hypercoil.nn.atlas.html#module-hypercoil.nn.atlas">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.confound
+
+      <ul>
+        <li><a href="api/hypercoil.nn.confound.html#module-hypercoil.nn.confound">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.cov
+
+      <ul>
+        <li><a href="api/hypercoil.nn.cov.html#module-hypercoil.nn.cov">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.iirfilter
+
+      <ul>
+        <li><a href="api/hypercoil.nn.iirfilter.html#module-hypercoil.nn.iirfilter">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.interpolate
+
+      <ul>
+        <li><a href="api/hypercoil.nn.interpolate.html#module-hypercoil.nn.interpolate">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.recombinator
+
+      <ul>
+        <li><a href="api/hypercoil.nn.recombinator.html#module-hypercoil.nn.recombinator">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.resid.Residualise
+
+      <ul>
+        <li><a href="api/hypercoil.nn.resid.Residualise.html#module-hypercoil.nn.resid.Residualise">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.semidefinite
+
+      <ul>
+        <li><a href="api/hypercoil.nn.semidefinite.html#module-hypercoil.nn.semidefinite">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.sylo
+
+      <ul>
+        <li><a href="api/hypercoil.nn.sylo.html#module-hypercoil.nn.sylo">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.tsconv
+
+      <ul>
+        <li><a href="api/hypercoil.nn.tsconv.html#module-hypercoil.nn.tsconv">module</a>
+</li>
+      </ul></li>
+      <li>
+    hypercoil.nn.vertcom
+
+      <ul>
+        <li><a href="api/hypercoil.nn.vertcom.html#module-hypercoil.nn.vertcom">module</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.general.html#hypercoil.data.functional.identity">identity() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.loss.identity.html#hypercoil.loss.identity">identity() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.init.base.identity_init.html#hypercoil.init.base.identity_init">identity_init() (in module hypercoil.init.base)</a>
+</li>
+      <li><a href="api/hypercoil.init.base.IdentityInitialiser.html#hypercoil.init.base.IdentityInitialiser">IdentityInitialiser (class in hypercoil.init.base)</a>
+</li>
+      <li><a href="api/hypercoil.init.mapparam.IdentityMappedParameter.html#hypercoil.init.mapparam.IdentityMappedParameter">IdentityMappedParameter (class in hypercoil.init.mapparam)</a>
+</li>
+      <li><a href="api/hypercoil.nn.iirfilter.html#hypercoil.nn.iirfilter.IIRFilter">IIRFilter (class in hypercoil.nn.iirfilter)</a>
+</li>
+      <li><a href="api/hypercoil.init.iirfilter.html#hypercoil.init.iirfilter.IIRFilterSpec">IIRFilterSpec (class in hypercoil.init.iirfilter)</a>
+</li>
+      <li><a href="api/hypercoil.nn.iirfilter.html#hypercoil.nn.iirfilter.IIRFiltFilt">IIRFiltFilt (class in hypercoil.nn.iirfilter)</a>
+</li>
+      <li><a href="api/hypercoil.init.iirfilter.html#hypercoil.init.iirfilter.IIRFilterSpec.initialise_coefs">initialise_coefs() (hypercoil.init.iirfilter.IIRFilterSpec method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.init.freqfilter.FreqFilterSpec.html#hypercoil.init.freqfilter.FreqFilterSpec.initialise_spectrum">initialise_spectrum() (hypercoil.init.freqfilter.FreqFilterSpec method)</a>
+</li>
+      <li><a href="api/hypercoil.functional.fourier.instantaneous_frequency.html#hypercoil.functional.fourier.instantaneous_frequency">instantaneous_frequency() (in module hypercoil.functional.fourier)</a>
+</li>
+      <li><a href="api/hypercoil.functional.fourier.instantaneous_phase.html#hypercoil.functional.fourier.instantaneous_phase">instantaneous_phase() (in module hypercoil.functional.fourier)</a>
+</li>
+      <li><a href="api/hypercoil.loss.interhemispheric_tether.html#hypercoil.loss.interhemispheric_tether">interhemispheric_tether() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.interhemispheric_tether.html#hypercoil.loss.InterhemisphericTetherLoss">InterhemisphericTetherLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.nn.activation.Isochor.html#hypercoil.nn.activation.Isochor">Isochor (class in hypercoil.nn.activation)</a>
+</li>
       <li><a href="api/hypercoil.functional.activation.isochor.html#hypercoil.functional.activation.isochor">isochor() (in module hypercoil.functional.activation)</a>
+</li>
+      <li><a href="api/hypercoil.init.mapparam.IsochoricParameter.html#hypercoil.init.mapparam.IsochoricParameter">IsochoricParameter (class in hypercoil.init.mapparam)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.loss.js_divergence.html#hypercoil.loss.js_divergence">js_divergence() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.js_divergence.html#hypercoil.loss.js_divergence_logit">js_divergence_logit() (in module hypercoil.loss)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.loss.js_divergence.html#hypercoil.loss.JSDivergenceLogitLoss">JSDivergenceLogitLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.js_divergence.html#hypercoil.loss.JSDivergenceLoss">JSDivergenceLoss (class in hypercoil.loss)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.loss.kl_divergence.html#hypercoil.loss.kl_divergence">kl_divergence() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.kl_divergence.html#hypercoil.loss.kl_divergence_logit">kl_divergence_logit() (in module hypercoil.loss)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.loss.kl_divergence.html#hypercoil.loss.KLDivergenceLogitLoss">KLDivergenceLogitLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.kl_divergence.html#hypercoil.loss.KLDivergenceLoss">KLDivergenceLoss (class in hypercoil.loss)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -547,15 +1084,33 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.dataref.DataReference.html#hypercoil.data.dataref.DataReference.label">label (hypercoil.data.dataref.DataReference attribute)</a>
+      <li><a href="api/hypercoil.init.laplace.html#hypercoil.init.laplace.laplace_init">laplace_init() (in module hypercoil.init.laplace)</a>
 </li>
-      <li><a href="api/hypercoil.data.bids.LightBIDSLayout.html#hypercoil.data.bids.LightBIDSLayout">LightBIDSLayout (class in hypercoil.data.bids)</a>
+      <li><a href="api/hypercoil.init.laplace.html#hypercoil.init.laplace.LaplaceInitialiser">LaplaceInitialiser (class in hypercoil.init.laplace)</a>
+</li>
+      <li><a href="api/hypercoil.functional.connectopy.laplacian_eigenmaps.html#hypercoil.functional.connectopy.laplacian_eigenmaps">laplacian_eigenmaps() (in module hypercoil.functional.connectopy)</a>
+</li>
+      <li><a href="api/hypercoil.functional.kernel.linear_distance.html#hypercoil.functional.kernel.linear_distance">linear_distance() (in module hypercoil.functional.kernel)</a>
+</li>
+      <li><a href="api/hypercoil.functional.interpolate.linear_interpolate.html#hypercoil.functional.interpolate.linear_interpolate">linear_interpolate() (in module hypercoil.functional.interpolate)</a>
+</li>
+      <li><a href="api/hypercoil.functional.kernel.linear_kernel.html#hypercoil.functional.kernel.linear_kernel">linear_kernel() (in module hypercoil.functional.kernel)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.bids.LightBIDSObject.html#hypercoil.data.bids.LightBIDSObject">LightBIDSObject (class in hypercoil.data.bids)</a>
+      <li><a href="api/hypercoil.nn.confound.LinearCombinationSelector.html#hypercoil.nn.confound.LinearCombinationSelector">LinearCombinationSelector (class in hypercoil.nn.confound)</a>
 </li>
-      <li><a href="api/hypercoil.data.grabber.LightGrabber.html#hypercoil.data.grabber.LightGrabber">LightGrabber (class in hypercoil.data.grabber)</a>
+      <li><a href="api/hypercoil.nn.interpolate.LinearInterpolate.html#hypercoil.nn.interpolate.LinearInterpolate">LinearInterpolate (class in hypercoil.nn.interpolate)</a>
+</li>
+      <li><a href="api/hypercoil.nn.confound.LinearRFNN.html#hypercoil.nn.confound.LinearRFNN">LinearRFNN (class in hypercoil.nn.confound)</a>
+</li>
+      <li><a href="api/hypercoil.loss.log_det_gram.html#hypercoil.loss.log_det_gram">log_det_gram() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.Loss.html#hypercoil.loss.Loss">Loss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.scheme.LossApply.html#hypercoil.loss.scheme.LossApply">LossApply (class in hypercoil.loss.scheme)</a>
+</li>
+      <li><a href="api/hypercoil.loss.scheme.LossScheme.html#hypercoil.loss.scheme.LossScheme">LossScheme (class in hypercoil.loss.scheme)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -563,46 +1118,174 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.init.base.MappedInitialiser.html#hypercoil.init.base.MappedInitialiser">MappedInitialiser (class in hypercoil.init.base)</a>
+</li>
+      <li><a href="api/hypercoil.init.mapparam.MappedLogits.html#hypercoil.init.mapparam.MappedLogits">MappedLogits (class in hypercoil.init.mapparam)</a>
+</li>
+      <li><a href="api/hypercoil.init.mapparam.MappedParameter.html#hypercoil.init.mapparam.MappedParameter">MappedParameter (class in hypercoil.init.mapparam)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins.Mask">Mask (class in hypercoil.init.atlasmixins)</a>
+</li>
+      <li><a href="api/hypercoil.functional.utils.mask_tensor.html#hypercoil.functional.utils.mask_tensor">mask_tensor() (in module hypercoil.functional.utils)</a>
+</li>
+      <li><a href="api/hypercoil.neuro.synth.match_cov_and_spectrum.html#hypercoil.neuro.synth.match_cov_and_spectrum">match_cov_and_spectrum() (in module hypercoil.neuro.synth)</a>
+</li>
+      <li><a href="api/hypercoil.neuro.synth.match_covariance.html#hypercoil.neuro.synth.match_covariance">match_covariance() (in module hypercoil.neuro.synth)</a>
+</li>
+      <li><a href="api/hypercoil.neuro.synth.match_reference.html#hypercoil.neuro.synth.match_reference">match_reference() (in module hypercoil.neuro.synth)</a>
+</li>
+      <li><a href="api/hypercoil.neuro.synth.match_spectra.html#hypercoil.neuro.synth.match_spectra">match_spectra() (in module hypercoil.neuro.synth)</a>
+</li>
+      <li><a href="api/hypercoil.loss.scalarise.max_scalarise.html#hypercoil.loss.scalarise.max_scalarise">max_scalarise() (in module hypercoil.loss.scalarise)</a>
+</li>
+      <li><a href="api/hypercoil.init.mpbl.html#hypercoil.init.mpbl.maximum_potential_bipartite_lattice">maximum_potential_bipartite_lattice() (in module hypercoil.init.mpbl)</a>
+</li>
+      <li><a href="api/hypercoil.functional.semidefinite.mean_euc_spd.html#hypercoil.functional.semidefinite.mean_euc_spd">mean_euc_spd() (in module hypercoil.functional.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.functional.semidefinite.mean_geom_spd.html#hypercoil.functional.semidefinite.mean_geom_spd">mean_geom_spd() (in module hypercoil.functional.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.functional.semidefinite.mean_harm_spd.html#hypercoil.functional.semidefinite.mean_harm_spd">mean_harm_spd() (in module hypercoil.functional.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.functional.semidefinite.mean_logeuc_spd.html#hypercoil.functional.semidefinite.mean_logeuc_spd">mean_logeuc_spd() (in module hypercoil.functional.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.loss.scalarise.mean_scalarise.html#hypercoil.loss.scalarise.mean_scalarise">mean_scalarise() (in module hypercoil.loss.scalarise)</a>
+</li>
+      <li><a href="api/hypercoil.loss.scalarise.meansq_scalarise.html#hypercoil.loss.scalarise.meansq_scalarise">meansq_scalarise() (in module hypercoil.loss.scalarise)</a>
+</li>
+      <li><a href="api/hypercoil.loss.modularity.html#hypercoil.loss.modularity">modularity() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.functional.graph.modularity_matrix.html#hypercoil.functional.graph.modularity_matrix">modularity_matrix() (in module hypercoil.functional.graph)</a>
+</li>
+      <li><a href="api/hypercoil.loss.modularity.html#hypercoil.loss.ModularityLoss">ModularityLoss (class in hypercoil.loss)</a>
+</li>
       <li>
     module
 
       <ul>
-        <li><a href="data.html#module-hypercoil.data">hypercoil.data</a>
+        <li><a href="engine.html#module-hypercoil.engine">hypercoil.engine</a>
 </li>
-        <li><a href="api/hypercoil.data.bids.html#module-hypercoil.data.bids">hypercoil.data.bids</a>
-</li>
-        <li><a href="api/hypercoil.data.collate.html#module-hypercoil.data.collate">hypercoil.data.collate</a>
-</li>
-        <li><a href="api/hypercoil.data.dataref.html#module-hypercoil.data.dataref">hypercoil.data.dataref</a>
-</li>
-        <li><a href="api/hypercoil.data.dataset.html#module-hypercoil.data.dataset">hypercoil.data.dataset</a>
-</li>
-        <li><a href="api/hypercoil.data.functional.html#module-hypercoil.data.functional">hypercoil.data.functional</a>
-</li>
-        <li><a href="api/hypercoil.data.hcp.html#module-hypercoil.data.hcp">hypercoil.data.hcp</a>
+        <li><a href="functional.html#module-hypercoil.functional">hypercoil.functional</a>
 </li>
         <li><a href="api/hypercoil.functional.activation.html#module-hypercoil.functional.activation">hypercoil.functional.activation</a>
 </li>
         <li><a href="api/hypercoil.functional.cmass.html#module-hypercoil.functional.cmass">hypercoil.functional.cmass</a>
 </li>
+        <li><a href="api/hypercoil.functional.connectopy.html#module-hypercoil.functional.connectopy">hypercoil.functional.connectopy</a>
+</li>
+        <li><a href="api/hypercoil.functional.cov.html#module-hypercoil.functional.cov">hypercoil.functional.cov</a>
+</li>
+        <li><a href="api/hypercoil.functional.fourier.html#module-hypercoil.functional.fourier">hypercoil.functional.fourier</a>
+</li>
+        <li><a href="api/hypercoil.functional.graph.html#module-hypercoil.functional.graph">hypercoil.functional.graph</a>
+</li>
+        <li><a href="api/hypercoil.functional.interpolate.html#module-hypercoil.functional.interpolate">hypercoil.functional.interpolate</a>
+</li>
+        <li><a href="api/hypercoil.functional.kernel.html#module-hypercoil.functional.kernel">hypercoil.functional.kernel</a>
+</li>
+        <li><a href="api/hypercoil.functional.matrix.html#module-hypercoil.functional.matrix">hypercoil.functional.matrix</a>
+</li>
+        <li><a href="api/hypercoil.functional.semidefinite.html#module-hypercoil.functional.semidefinite">hypercoil.functional.semidefinite</a>
+</li>
+        <li><a href="api/hypercoil.functional.sparse.html#module-hypercoil.functional.sparse">hypercoil.functional.sparse</a>
+</li>
         <li><a href="api/hypercoil.functional.sphere.html#module-hypercoil.functional.sphere">hypercoil.functional.sphere</a>
+</li>
+        <li><a href="api/hypercoil.functional.sylo.html#module-hypercoil.functional.sylo">hypercoil.functional.sylo</a>
+</li>
+        <li><a href="api/hypercoil.functional.symmap.html#module-hypercoil.functional.symmap">hypercoil.functional.symmap</a>
+</li>
+        <li><a href="api/hypercoil.functional.tsconv.html#module-hypercoil.functional.tsconv">hypercoil.functional.tsconv</a>
 </li>
         <li><a href="api/hypercoil.functional.utils.html#module-hypercoil.functional.utils">hypercoil.functional.utils</a>
 </li>
+        <li><a href="api/hypercoil.functional.window.html#module-hypercoil.functional.window">hypercoil.functional.window</a>
+</li>
+        <li><a href="init.html#module-hypercoil.init">hypercoil.init</a>
+</li>
+        <li><a href="api/hypercoil.init.atlas.html#module-hypercoil.init.atlas">hypercoil.init.atlas</a>
+</li>
+        <li><a href="api/hypercoil.init.atlasmixins.html#module-hypercoil.init.atlasmixins">hypercoil.init.atlasmixins</a>
+</li>
+        <li><a href="api/hypercoil.init.base.html#module-hypercoil.init.base">hypercoil.init.base</a>
+</li>
+        <li><a href="api/hypercoil.init.deltaplus.html#module-hypercoil.init.deltaplus">hypercoil.init.deltaplus</a>
+</li>
+        <li><a href="api/hypercoil.init.dirichlet.html#module-hypercoil.init.dirichlet">hypercoil.init.dirichlet</a>
+</li>
+        <li><a href="api/hypercoil.init.freqfilter.html#module-hypercoil.init.freqfilter">hypercoil.init.freqfilter</a>
+</li>
+        <li><a href="api/hypercoil.init.iirfilter.html#module-hypercoil.init.iirfilter">hypercoil.init.iirfilter</a>
+</li>
+        <li><a href="api/hypercoil.init.laplace.html#module-hypercoil.init.laplace">hypercoil.init.laplace</a>
+</li>
+        <li><a href="api/hypercoil.init.mapparam.html#module-hypercoil.init.mapparam">hypercoil.init.mapparam</a>
+</li>
+        <li><a href="api/hypercoil.init.mpbl.html#module-hypercoil.init.mpbl">hypercoil.init.mpbl</a>
+</li>
+        <li><a href="api/hypercoil.init.semidefinite.html#module-hypercoil.init.semidefinite">hypercoil.init.semidefinite</a>
+</li>
+        <li><a href="api/hypercoil.init.sylo.html#module-hypercoil.init.sylo">hypercoil.init.sylo</a>
+</li>
+        <li><a href="api/hypercoil.init.toeplitz.html#module-hypercoil.init.toeplitz">hypercoil.init.toeplitz</a>
+</li>
+        <li><a href="loss.html#module-hypercoil.loss">hypercoil.loss</a>
+</li>
+        <li><a href="neuro.html#module-hypercoil.neuro">hypercoil.neuro</a>
+</li>
+        <li><a href="api/hypercoil.neuro.synth.html#module-hypercoil.neuro.synth">hypercoil.neuro.synth</a>
+</li>
+        <li><a href="nn.html#module-hypercoil.nn">hypercoil.nn</a>
+</li>
+        <li><a href="api/hypercoil.nn.activation.html#module-hypercoil.nn.activation">hypercoil.nn.activation</a>
+</li>
+        <li><a href="api/hypercoil.nn.atlas.html#module-hypercoil.nn.atlas">hypercoil.nn.atlas</a>
+</li>
+        <li><a href="api/hypercoil.nn.confound.html#module-hypercoil.nn.confound">hypercoil.nn.confound</a>
+</li>
+        <li><a href="api/hypercoil.nn.cov.html#module-hypercoil.nn.cov">hypercoil.nn.cov</a>
+</li>
+        <li><a href="api/hypercoil.nn.iirfilter.html#module-hypercoil.nn.iirfilter">hypercoil.nn.iirfilter</a>
+</li>
+        <li><a href="api/hypercoil.nn.interpolate.html#module-hypercoil.nn.interpolate">hypercoil.nn.interpolate</a>
+</li>
+        <li><a href="api/hypercoil.nn.recombinator.html#module-hypercoil.nn.recombinator">hypercoil.nn.recombinator</a>
+</li>
+        <li><a href="api/hypercoil.nn.resid.Residualise.html#module-hypercoil.nn.resid.Residualise">hypercoil.nn.resid.Residualise</a>
+</li>
+        <li><a href="api/hypercoil.nn.semidefinite.html#module-hypercoil.nn.semidefinite">hypercoil.nn.semidefinite</a>
+</li>
+        <li><a href="api/hypercoil.nn.sylo.html#module-hypercoil.nn.sylo">hypercoil.nn.sylo</a>
+</li>
+        <li><a href="api/hypercoil.nn.tsconv.html#module-hypercoil.nn.tsconv">hypercoil.nn.tsconv</a>
+</li>
+        <li><a href="api/hypercoil.nn.vertcom.html#module-hypercoil.nn.vertcom">hypercoil.nn.vertcom</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.loss.MSELoss.html#hypercoil.loss.MSELoss">MSELoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlas.MultifileVolumetricAtlas.html#hypercoil.init.atlas.MultifileVolumetricAtlas">MultifileVolumetricAtlas (class in hypercoil.init.atlas)</a>
+</li>
+      <li><a href="api/hypercoil.loss.multivariate_kurtosis.html#hypercoil.loss.multivariate_kurtosis">multivariate_kurtosis() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.multivariate_kurtosis.html#hypercoil.loss.MultivariateKurtosis">MultivariateKurtosis (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlas.MultiVolumetricAtlas.html#hypercoil.init.atlas.MultiVolumetricAtlas">MultiVolumetricAtlas (class in hypercoil.init.atlas)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.missing.html#hypercoil.data.functional.nanfill">nanfill() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.loss.scalarise.norm_scalarise.html#hypercoil.loss.scalarise.norm_scalarise">norm_scalarise() (in module hypercoil.loss.scalarise)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.neuroimage.html#hypercoil.data.functional.nifti_header">nifti_header() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.loss.NormedLoss.html#hypercoil.loss.NormedLoss">NormedLoss (class in hypercoil.loss)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.timeseries.html#hypercoil.data.functional.normalise">normalise() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.init.mapparam.NormSphereParameter.html#hypercoil.init.mapparam.NormSphereParameter">NormSphereParameter (class in hypercoil.init.mapparam)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -610,11 +1293,11 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.functional.utils.orient_and_conform.html#hypercoil.functional.utils.orient_and_conform">orient_and_conform() (in module hypercoil.functional.utils)</a>
+      <li><a href="api/hypercoil.engine.axisutil.orient_and_conform.html#hypercoil.engine.axisutil.orient_and_conform">orient_and_conform() (in module hypercoil.engine.axisutil)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.dataref.DataReference.html#hypercoil.data.dataref.DataReference.outcome">outcome (hypercoil.data.dataref.DataReference attribute)</a>
+      <li><a href="api/hypercoil.init.mapparam.OrthogonalParameter.html#hypercoil.init.mapparam.OrthogonalParameter">OrthogonalParameter (class in hypercoil.init.mapparam)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -622,11 +1305,49 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.dataref.DataReference.html#hypercoil.data.dataref.DataReference.parse_ids">parse_ids() (hypercoil.data.dataref.DataReference method)</a>
+      <li><a href="api/hypercoil.functional.cov.pairedcorr.html#hypercoil.functional.cov.pairedcorr">pairedcorr() (in module hypercoil.functional.cov)</a>
+</li>
+      <li><a href="api/hypercoil.functional.cov.pairedcov.html#hypercoil.functional.cov.pairedcov">pairedcov() (in module hypercoil.functional.cov)</a>
+</li>
+      <li><a href="api/hypercoil.functional.kernel.param_norm.html#hypercoil.functional.kernel.param_norm">param_norm() (in module hypercoil.functional.kernel)</a>
+</li>
+      <li><a href="api/hypercoil.loss.ParameterisedLoss.html#hypercoil.loss.ParameterisedLoss">ParameterisedLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.functional.cov.partialcorr.html#hypercoil.functional.cov.partialcorr">partialcorr() (in module hypercoil.functional.cov)</a>
+</li>
+      <li><a href="api/hypercoil.functional.cov.partialcov.html#hypercoil.functional.cov.partialcov">partialcov() (in module hypercoil.functional.cov)</a>
+</li>
+      <li><a href="api/hypercoil.init.mapparam.PhaseAmplitudeMixin.html#hypercoil.init.mapparam.PhaseAmplitudeMixin">PhaseAmplitudeMixin (class in hypercoil.init.mapparam)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.timeseries.html#hypercoil.data.functional.polynomial_detrend">polynomial_detrend() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.functional.tsconv.polychan.html#hypercoil.functional.tsconv.polychan">polychan() (in module hypercoil.functional.tsconv)</a>
+</li>
+      <li><a href="api/hypercoil.functional.tsconv.polyconv2d.html#hypercoil.functional.tsconv.polyconv2d">polyconv2d() (in module hypercoil.functional.tsconv)</a>
+</li>
+      <li><a href="api/hypercoil.nn.tsconv.PolyConv2D.html#hypercoil.nn.tsconv.PolyConv2D">PolyConv2D() (in module hypercoil.nn.tsconv)</a>
+</li>
+      <li><a href="api/hypercoil.functional.kernel.polynomial_kernel.html#hypercoil.functional.kernel.polynomial_kernel">polynomial_kernel() (in module hypercoil.functional.kernel)</a>
+</li>
+      <li><a href="api/hypercoil.functional.cov.precision.html#hypercoil.functional.cov.precision">precision() (in module hypercoil.functional.cov)</a>
+</li>
+      <li><a href="api/hypercoil.init.mapparam.ProbabilitySimplexParameter.html#hypercoil.init.mapparam.ProbabilitySimplexParameter">ProbabilitySimplexParameter (class in hypercoil.init.mapparam)</a>
+</li>
+      <li><a href="api/hypercoil.functional.fourier.product_filter.html#hypercoil.functional.fourier.product_filter">product_filter() (in module hypercoil.functional.fourier)</a>
+</li>
+      <li><a href="api/hypercoil.functional.fourier.product_filtfilt.html#hypercoil.functional.fourier.product_filtfilt">product_filtfilt() (in module hypercoil.functional.fourier)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.loss.qcfc.html#hypercoil.loss.qcfc">qcfc() (in module hypercoil.loss)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.loss.qcfc.html#hypercoil.loss.QCFCLoss">QCFCLoss (class in hypercoil.loss)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -634,19 +1355,27 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.timeseries.html#hypercoil.data.functional.random_window">random_window() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.functional.sparse.random_sparse.html#hypercoil.functional.sparse.random_sparse">random_sparse() (in module hypercoil.functional.sparse)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.dataframe.html#hypercoil.data.functional.read_data_frame">read_data_frame() (in module hypercoil.data.functional)</a>, <a href="api/hypercoil.data.functional.filesystem.html#hypercoil.data.functional.read_data_frame">[1]</a>
+      <li><a href="api/hypercoil.functional.kernel.rbf_kernel.html#hypercoil.functional.kernel.rbf_kernel">rbf_kernel() (in module hypercoil.functional.kernel)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.filesystem.html#hypercoil.data.functional.read_json">read_json() (in module hypercoil.data.functional)</a>, <a href="api/hypercoil.data.functional.metadata.html#hypercoil.data.functional.read_json">[1]</a>
+      <li><a href="api/hypercoil.nn.recombinator.Recombinator.html#hypercoil.nn.recombinator.Recombinator">Recombinator() (in module hypercoil.nn.recombinator)</a>
+</li>
+      <li><a href="api/hypercoil.functional.matrix.recondition_eigenspaces.html#hypercoil.functional.matrix.recondition_eigenspaces">recondition_eigenspaces() (in module hypercoil.functional.matrix)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins.Reference">Reference (class in hypercoil.init.atlasmixins)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.filesystem.html#hypercoil.data.functional.read_neuro_image">read_neuro_image() (in module hypercoil.data.functional)</a>, <a href="api/hypercoil.data.functional.neuroimage.html#hypercoil.data.functional.read_neuro_image">[1]</a>
+      <li><a href="api/hypercoil.loss.reference_tether.html#hypercoil.loss.reference_tether">reference_tether() (in module hypercoil.loss)</a>
 </li>
-      <li><a href="api/hypercoil.data.dataset.ReferencedDataLoader.html#hypercoil.data.dataset.ReferencedDataLoader">ReferencedDataLoader (class in hypercoil.data.dataset)</a>
+      <li><a href="api/hypercoil.loss.reference_tether.html#hypercoil.loss.ReferenceTetherLoss">ReferenceTetherLoss (class in hypercoil.loss)</a>
 </li>
-      <li><a href="api/hypercoil.data.dataset.ReferencedDataset.html#hypercoil.data.dataset.ReferencedDataset">ReferencedDataset (class in hypercoil.data.dataset)</a>
+      <li><a href="api/hypercoil.functional.graph.relaxed_modularity.html#hypercoil.functional.graph.relaxed_modularity">relaxed_modularity() (in module hypercoil.functional.graph)</a>
+</li>
+      <li><a href="api/hypercoil.init.mapparam.Renormalise.html#hypercoil.init.mapparam.Renormalise">Renormalise (class in hypercoil.init.mapparam)</a>
+</li>
+      <li><a href="api/hypercoil.functional.resid.residualise.html#hypercoil.functional.resid.residualise">residualise() (in module hypercoil.functional.resid)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -654,20 +1383,58 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.dataset.ReferencedDataLoader.html#hypercoil.data.dataset.ReferencedDataLoader.set_depth">set_depth() (hypercoil.data.dataset.ReferencedDataLoader method)</a>
-
-      <ul>
-        <li><a href="api/hypercoil.data.dataset.ReferencedDataset.html#hypercoil.data.dataset.ReferencedDataset.set_depth">(hypercoil.data.dataset.ReferencedDataset method)</a>
+      <li><a href="api/hypercoil.functional.window.sample_nonoverlapping_windows_existing_ax.html#hypercoil.functional.window.sample_nonoverlapping_windows_existing_ax">sample_nonoverlapping_windows_existing_ax() (in module hypercoil.functional.window)</a>
 </li>
-      </ul></li>
-      <li><a href="api/hypercoil.functional.utils.sparse_mm.html#hypercoil.functional.utils.sparse_mm">sparse_mm() (in module hypercoil.functional.utils)</a>
+      <li><a href="api/hypercoil.functional.window.sample_nonoverlapping_windows_new_ax.html#hypercoil.functional.window.sample_nonoverlapping_windows_new_ax">sample_nonoverlapping_windows_new_ax() (in module hypercoil.functional.window)</a>
 </li>
-      <li><a href="api/hypercoil.functional.utils.sparse_rcmul.html#hypercoil.functional.utils.sparse_rcmul">sparse_rcmul() (in module hypercoil.functional.utils)</a>
+      <li><a href="api/hypercoil.functional.window.sample_overlapping_windows_existing_ax.html#hypercoil.functional.window.sample_overlapping_windows_existing_ax">sample_overlapping_windows_existing_ax() (in module hypercoil.functional.window)</a>
+</li>
+      <li><a href="api/hypercoil.functional.window.sample_overlapping_windows_new_ax.html#hypercoil.functional.window.sample_overlapping_windows_new_ax">sample_overlapping_windows_new_ax() (in module hypercoil.functional.window)</a>
+</li>
+      <li><a href="api/hypercoil.functional.window.sample_windows.html#hypercoil.functional.window.sample_windows">sample_windows() (in module hypercoil.functional.window)</a>
+</li>
+      <li><a href="api/hypercoil.loss.second_moment.html#hypercoil.loss.second_moment">second_moment() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.second_moment.html#hypercoil.loss.second_moment_centred">second_moment_centred() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.second_moment.html#hypercoil.loss.SecondMomentCentredLoss">SecondMomentCentredLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.second_moment.html#hypercoil.loss.SecondMomentLoss">SecondMomentLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.select_indices.html#hypercoil.functional.sparse.select_indices">select_indices() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.loss.scalarise.selfwmean_scalarise.html#hypercoil.loss.scalarise.selfwmean_scalarise">selfwmean_scalarise() (in module hypercoil.loss.scalarise)</a>
+</li>
+      <li><a href="api/hypercoil.functional.kernel.sigmoid_kernel.html#hypercoil.functional.kernel.sigmoid_kernel">sigmoid_kernel() (in module hypercoil.functional.kernel)</a>
+</li>
+      <li><a href="api/hypercoil.loss.smoothness.html#hypercoil.loss.smoothness">smoothness() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.smoothness.html#hypercoil.loss.SmoothnessLoss">SmoothnessLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.sp_block_serialise.html#hypercoil.functional.sparse.sp_block_serialise">sp_block_serialise() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.sparse_astype.html#hypercoil.functional.sparse.sparse_astype">sparse_astype() (in module hypercoil.functional.sparse)</a>
 </li>
       <li><a href="api/hypercoil.functional.sphere.spatial_conv.html#hypercoil.functional.sphere.spatial_conv">spatial_conv() (in module hypercoil.functional.sphere)</a>
 </li>
+      <li><a href="api/hypercoil.functional.matrix.spd.html#hypercoil.functional.matrix.spd">spd() (in module hypercoil.functional.matrix)</a>
+</li>
+      <li><a href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#hypercoil.init.semidefinite.SPDEuclideanMean">SPDEuclideanMean (class in hypercoil.init.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#hypercoil.init.semidefinite.SPDGeometricMean">SPDGeometricMean (class in hypercoil.init.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#hypercoil.init.semidefinite.SPDHarmonicMean">SPDHarmonicMean (class in hypercoil.init.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.spdiagmm.html#hypercoil.functional.sparse.spdiagmm">spdiagmm() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#hypercoil.init.semidefinite.SPDLogEuclideanMean">SPDLogEuclideanMean (class in hypercoil.init.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.functional.interpolate.spectral_interpolate.html#hypercoil.functional.interpolate.spectral_interpolate">spectral_interpolate() (in module hypercoil.functional.interpolate)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.nn.interpolate.SpectralInterpolate.html#hypercoil.nn.interpolate.SpectralInterpolate">SpectralInterpolate (class in hypercoil.nn.interpolate)</a>
+</li>
       <li><a href="api/hypercoil.functional.sphere.sphere_to_latlong.html#hypercoil.functional.sphere.sphere_to_latlong">sphere_to_latlong() (in module hypercoil.functional.sphere)</a>
 </li>
       <li><a href="api/hypercoil.functional.sphere.sphere_to_normals.html#hypercoil.functional.sphere.sphere_to_normals">sphere_to_normals() (in module hypercoil.functional.sphere)</a>
@@ -676,7 +1443,43 @@
 </li>
       <li><a href="api/hypercoil.functional.sphere.spherical_geodesic.html#hypercoil.functional.sphere.spherical_geodesic">spherical_geodesic() (in module hypercoil.functional.sphere)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.timeseries.html#hypercoil.data.functional.standardise">standardise() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.functional.sparse.splr_hadamard.html#hypercoil.functional.sparse.splr_hadamard">splr_hadamard() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.spsp_innerpaired.html#hypercoil.functional.sparse.spsp_innerpaired">spsp_innerpaired() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.spsp_pairdiff.html#hypercoil.functional.sparse.spsp_pairdiff">spsp_pairdiff() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.spspmm.html#hypercoil.functional.sparse.spspmm">spspmm() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.spspmm_full.html#hypercoil.functional.sparse.spspmm_full">spspmm_full() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.matrix.squareform.html#hypercoil.functional.matrix.squareform">squareform() (in module hypercoil.functional.matrix)</a>
+</li>
+      <li><a href="api/hypercoil.loss.scalarise.sum_scalarise.html#hypercoil.loss.scalarise.sum_scalarise">sum_scalarise() (in module hypercoil.loss.scalarise)</a>
+</li>
+      <li><a href="api/hypercoil.nn.sylo.Sylo.html#hypercoil.nn.sylo.Sylo">Sylo (class in hypercoil.nn.sylo)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sylo.html#hypercoil.functional.sylo.sylo">sylo() (in module hypercoil.functional.sylo)</a>
+</li>
+      <li><a href="api/hypercoil.init.sylo.html#hypercoil.init.sylo.sylo_init">sylo_init() (in module hypercoil.init.sylo)</a>
+</li>
+      <li><a href="api/hypercoil.init.sylo.html#hypercoil.init.sylo.SyloInitialiser">SyloInitialiser (class in hypercoil.init.sylo)</a>
+</li>
+      <li><a href="api/hypercoil.functional.matrix.sym2vec.html#hypercoil.functional.matrix.sym2vec">sym2vec() (in module hypercoil.functional.matrix)</a>
+</li>
+      <li><a href="api/hypercoil.functional.symmap.symexp.html#hypercoil.functional.symmap.symexp">symexp() (in module hypercoil.functional.symmap)</a>
+</li>
+      <li><a href="api/hypercoil.functional.symmap.symlog.html#hypercoil.functional.symmap.symlog">symlog() (in module hypercoil.functional.symmap)</a>
+</li>
+      <li><a href="api/hypercoil.functional.symmap.symmap.html#hypercoil.functional.symmap.symmap">symmap() (in module hypercoil.functional.symmap)</a>
+</li>
+      <li><a href="api/hypercoil.functional.matrix.symmetric.html#hypercoil.functional.matrix.symmetric">symmetric() (in module hypercoil.functional.matrix)</a>
+</li>
+      <li><a href="api/hypercoil.functional.symmap.symsqrt.html#hypercoil.functional.symmap.symsqrt">symsqrt() (in module hypercoil.functional.symmap)</a>
+</li>
+      <li><a href="api/hypercoil.neuro.synth.synthesise_from_cov_and_spectrum.html#hypercoil.neuro.synth.synthesise_from_cov_and_spectrum">synthesise_from_cov_and_spectrum() (in module hypercoil.neuro.synth)</a>
+</li>
+      <li><a href="api/hypercoil.neuro.synth.synthesise_matched.html#hypercoil.neuro.synth.synthesise_matched">synthesise_matched() (in module hypercoil.neuro.synth)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -684,15 +1487,45 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.tensor.html#hypercoil.data.functional.to_named_tensor">to_named_tensor() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.init.semidefinite.TangencyInitialiser.html#hypercoil.init.semidefinite.tangency_init">tangency_init() (in module hypercoil.init.semidefinite)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.tensor.html#hypercoil.data.functional.to_tensor">to_tensor() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.init.semidefinite.TangencyInitialiser.html#hypercoil.init.semidefinite.TangencyInitialiser">TangencyInitialiser (class in hypercoil.init.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.functional.semidefinite.tangent_project_spd.html#hypercoil.functional.semidefinite.tangent_project_spd">tangent_project_spd() (in module hypercoil.functional.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.nn.semidefinite.TangentProject.html#hypercoil.nn.semidefinite.TangentProject">TangentProject() (in module hypercoil.nn.semidefinite)</a>
+</li>
+      <li><a href="api/hypercoil.init.mapparam.TanhMappedParameter.html#hypercoil.init.mapparam.TanhMappedParameter">TanhMappedParameter (class in hypercoil.init.mapparam)</a>
+</li>
+      <li><a href="api/hypercoil.nn.tsconv.TimeSeriesConv2D.html#hypercoil.nn.tsconv.TimeSeriesConv2D">TimeSeriesConv2D() (in module hypercoil.nn.tsconv)</a>
+</li>
+      <li><a href="api/hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html#hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.to_image">to_image() (hypercoil.init.atlas.CortexSubcortexCIfTIAtlas method)</a>
+
+      <ul>
+        <li><a href="api/hypercoil.init.atlas.DirichletInitSurfaceAtlas.html#hypercoil.init.atlas.DirichletInitSurfaceAtlas.to_image">(hypercoil.init.atlas.DirichletInitSurfaceAtlas method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/hypercoil.functional.matrix.toeplitz.html#hypercoil.functional.matrix.toeplitz">toeplitz() (in module hypercoil.functional.matrix)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.general.html#hypercoil.data.functional.transform_block">transform_block() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.functional.matrix.toeplitz_2d.html#hypercoil.functional.matrix.toeplitz_2d">toeplitz_2d() (in module hypercoil.functional.matrix)</a>
 </li>
-      <li><a href="api/hypercoil.data.functional.general.html#hypercoil.data.functional.transpose">transpose() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.init.toeplitz.html#hypercoil.init.toeplitz.ToeplitzInitialiser">ToeplitzInitialiser (class in hypercoil.init.toeplitz)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.topk.html#hypercoil.functional.sparse.topk">topk() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.topk_diagreplace.html#hypercoil.functional.sparse.topk_diagreplace">topk_diagreplace() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.topk_diagzero.html#hypercoil.functional.sparse.topk_diagzero">topk_diagzero() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.topk_to_bcoo.html#hypercoil.functional.sparse.topk_to_bcoo">topk_to_bcoo() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.topkx.html#hypercoil.functional.sparse.topkx">topkx() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.sparse.trace_spspmm.html#hypercoil.functional.sparse.trace_spspmm">trace_spspmm() (in module hypercoil.functional.sparse)</a>
+</li>
+      <li><a href="api/hypercoil.functional.tsconv.tsconv2d.html#hypercoil.functional.tsconv.tsconv2d">tsconv2d() (in module hypercoil.functional.tsconv)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -700,7 +1533,19 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.general.html#hypercoil.data.functional.unzip_blocked_dict">unzip_blocked_dict() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.nn.cov.UnaryCovariance.html#hypercoil.nn.cov.UnaryCovariance">UnaryCovariance (class in hypercoil.nn.cov)</a>
+</li>
+      <li><a href="api/hypercoil.nn.cov.UnaryCovarianceTW.html#hypercoil.nn.cov.UnaryCovarianceTW">UnaryCovarianceTW (class in hypercoil.nn.cov)</a>
+</li>
+      <li><a href="api/hypercoil.nn.cov.UnaryCovarianceUW.html#hypercoil.nn.cov.UnaryCovarianceUW">UnaryCovarianceUW (class in hypercoil.nn.cov)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.loss.unilateral_loss.html#hypercoil.loss.unilateral_loss">unilateral_loss() (in module hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.loss.unilateral_loss.html#hypercoil.loss.UnilateralLoss">UnilateralLoss (class in hypercoil.loss)</a>
+</li>
+      <li><a href="api/hypercoil.functional.fourier.unwrap.html#hypercoil.functional.fourier.unwrap">unwrap() (in module hypercoil.functional.fourier)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -708,11 +1553,15 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.dataref.DataQuery.html#hypercoil.data.dataref.DataQuery.variable_factory">variable_factory() (hypercoil.data.dataref.DataQuery method)</a>
+      <li><a href="api/hypercoil.functional.matrix.vec2sym.html#hypercoil.functional.matrix.vec2sym">vec2sym() (in module hypercoil.functional.matrix)</a>
+</li>
+      <li><a href="api/hypercoil.functional.vertcom.vertical_compression.html#hypercoil.functional.sylo.vertical_compression">vertical_compression() (in module hypercoil.functional.sylo)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.general.html#hypercoil.data.functional.vector_encode">vector_encode() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.nn.vertcom.VerticalCompression.html#hypercoil.nn.vertcom.VerticalCompression">VerticalCompression() (in module hypercoil.nn.vertcom)</a>
+</li>
+      <li><a href="api/hypercoil.loss.scalarise.vnorm_scalarise.html#hypercoil.loss.scalarise.vnorm_scalarise">vnorm_scalarise() (in module hypercoil.loss.scalarise)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -720,13 +1569,23 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.timeseries.html#hypercoil.data.functional.window">window() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.functional.interpolate.weighted_interpolate.html#hypercoil.functional.interpolate.weighted_interpolate">weighted_interpolate() (in module hypercoil.functional.interpolate)</a>
+</li>
+      <li><a href="api/hypercoil.nn.window.WindowAmplifier.html#hypercoil.nn.window.WindowAmplifier">WindowAmplifier (class in hypercoil.nn.window)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/hypercoil.data.functional.timeseries.html#hypercoil.data.functional.window_map">window_map() (in module hypercoil.data.functional)</a>
+      <li><a href="api/hypercoil.loss.scalarise.wmean.html#hypercoil.loss.scalarise.wmean">wmean() (in module hypercoil.loss.scalarise)</a>
 </li>
-      <li><a href="api/hypercoil.functional.utils.wmean.html#hypercoil.functional.utils.wmean">wmean() (in module hypercoil.functional.utils)</a>
+      <li><a href="api/hypercoil.loss.scalarise.wmean_scalarise.html#hypercoil.loss.scalarise.wmean_scalarise">wmean_scalarise() (in module hypercoil.loss.scalarise)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/hypercoil.loss.zero.html#hypercoil.loss.zero">zero() (in module hypercoil.loss)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -776,7 +1635,7 @@
     
 <p class="copyright">
 
-    &copy; Copyright 2021, the development team.<br>
+    &copy; Copyright 2022-, the development team.<br>
 
 </p>
 
@@ -785,7 +1644,7 @@
   <div class="footer-item">
     
 <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.3.<br>
 </p>
 
   </div>

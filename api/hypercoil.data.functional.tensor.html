@@ -35,6 +35,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.data.functional.tensor';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -2913,105 +2914,18 @@
 <h1>Tensor casting and binding<a class="headerlink" href="#tensor-casting-and-binding" title="Permalink to this heading">#</a></h1>
 <section id="to-tensor">
 <h2><code class="docutils literal notranslate"><span class="pre">to_tensor</span></code><a class="headerlink" href="#to-tensor" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.to_tensor">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">to_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L37-L78"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.to_tensor" title="Permalink to this definition">#</a></dt>
-<dd><p>Change the input data into a tensor with the specified type and minimum
-dimension.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong><span class="classifier">object</span></dt><dd><p>Object that can be cast to a Tensor. If this is a pandas DataFrame,
-only the values are cast to a Tensor.</p>
-</dd>
-<dt><strong>dtype</strong><span class="classifier">torch datatype</span></dt><dd><p>Output tensor datatype.</p>
-</dd>
-<dt><strong>dim</strong><span class="classifier">int or ‘auto’ (default ‘auto’)</span></dt><dd><p>Minimum dimension of the output tensor. If this is ‘auto’, then no
-adjustments are made to the output tensor dimension. Otherwise, a
-singleton dimension is iteratively added until the tensor dimension
-is greater than or equal to the specified argument.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>tensor</strong><span class="classifier">Tensor</span></dt><dd><p>PyTorch Tensor containing the input data.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 <section id="to-named-tensor">
 <h2><code class="docutils literal notranslate"><span class="pre">to_named_tensor</span></code><a class="headerlink" href="#to-named-tensor" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.to_named_tensor">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">to_named_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L80-L108"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.to_named_tensor" title="Permalink to this definition">#</a></dt>
-<dd><p>Change the input data into a named tensor with the specified type and
-minimum dimension.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong><span class="classifier">object</span></dt><dd><p>Object that can be cast to a Tensor. If this is a pandas DataFrame,
-only the values are cast to a Tensor.</p>
-</dd>
-<dt><strong>dtype</strong><span class="classifier">torch datatype</span></dt><dd><p>Output tensor datatype.</p>
-</dd>
-<dt><strong>dim</strong><span class="classifier">int or ‘auto’ (default ‘auto’)</span></dt><dd><p>Minimum dimension of the output tensor. If this is ‘auto’, then no
-adjustments are made to the output tensor dimension. Otherwise, a
-singleton dimension is iteratively added until the tensor dimension
-is greater than or equal to the specified argument.</p>
-</dd>
-<dt><strong>names</strong><span class="classifier">list(str) or None (default None)</span></dt><dd><p>List of names to assign the dimensions of the produced tensor.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>tensor</strong><span class="classifier">Tensor</span></dt><dd><p>PyTorch Tensor containing the input data.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 <section id="consolidate-block">
 <h2><code class="docutils literal notranslate"><span class="pre">consolidate_block</span></code><a class="headerlink" href="#consolidate-block" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.consolidate_block">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">consolidate_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L219-L238"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.consolidate_block" title="Permalink to this definition">#</a></dt>
-<dd><p>Consolidate a list block of tensors into a single tensor. If the tensors
-in the list block are of different sizes, smaller tensors are padded with
-NaN entries until all sizes are conformant before consolidation.</p>
-</dd></dl>
-
 </section>
 <section id="extend-to-size">
 <h2><code class="docutils literal notranslate"><span class="pre">extend_to_size</span></code><a class="headerlink" href="#extend-to-size" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.extend_to_size">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">extend_to_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L297-L315"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.extend_to_size" title="Permalink to this definition">#</a></dt>
-<dd><p>Extend a tensor in the positive direction until its size matches the
-specification. Any new entries created via extension are marked with
-NaN to denote that they were missing from the input; they can be
-populated by chaining this with a call to <cite>nanfill</cite>.</p>
-</dd></dl>
-
 </section>
 <section id="extend-to-max-size">
 <h2><code class="docutils literal notranslate"><span class="pre">extend_to_max_size</span></code><a class="headerlink" href="#extend-to-max-size" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.extend_to_max_size">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">extend_to_max_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L281-L295"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.extend_to_max_size" title="Permalink to this definition">#</a></dt>
-<dd><p>Extend all tensors in a list until their sizes are equal to the size
-of the largest tensor along each axis. Any new entries created via
-extension are marked with NaN to denote that they were missing from
-the input; they can be populated by chaining this with a call to
-<cite>nanfill</cite>.</p>
-</dd></dl>
-
 </section>
 </section>
 
@@ -3131,7 +3045,7 @@ the input; they can be populated by chaining this with a call to
   <div class="footer-item">
     
 <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.0.post0.<br>
 </p>
 
   </div>

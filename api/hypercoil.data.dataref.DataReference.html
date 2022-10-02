@@ -35,6 +35,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.data.dataref.DataReference';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -2911,212 +2912,6 @@
               
   <section id="datareference">
 <h1><code class="docutils literal notranslate"><span class="pre">DataReference</span></code><a class="headerlink" href="#datareference" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.data.dataref.DataReference">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.data.dataref.</span></span><span class="sig-name descname"><span class="pre">DataReference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outcomes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/dataref.py#L16-L231"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.dataref.DataReference" title="Permalink to this definition">#</a></dt>
-<dd><p>A reference to a single observation of multivariate data, or to a single
-level of observations of multivariate data.</p>
-<p>If this is a reference to a level of observations, those observations (or
-sub-levels of observations) can be further packaged recursively into
-<code class="docutils literal notranslate"><span class="pre">DataReference</span></code> objects and assigned to the <code class="docutils literal notranslate"><span class="pre">subrefs</span></code> field. This
-enables a parent <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> to traverse the dataset at any depth. See
-<a class="reference internal" href="hypercoil.data.neuro.fMRIDataReference.html"><span class="doc">fMRIDataReference</span></a>
-for an example implementation of this and other functionality.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>data</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pandas</span> <span class="pre">DataFrame</span></code> containing all assignments to the variables of
-the <code class="docutils literal notranslate"><span class="pre">DataReference</span></code>. The name of each variable provided as an
-argument to <code class="docutils literal notranslate"><span class="pre">DataReference</span></code> should be present as a column name in
-this <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
-</dd>
-<dt><strong>idx</strong><span class="classifier">tuple or None</span></dt><dd><p>Index names corresponding to the observation(s) to be included in this
-<code class="docutils literal notranslate"><span class="pre">DataReference</span></code> from the provided <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. If this is None,
-then it is assumed that all observations in the provided DataFrame are
-to be included.</p>
-</dd>
-<dt><strong>level_names</strong><span class="classifier">iterable</span></dt><dd><p>Names of any observation levels packaged together into this
-<code class="docutils literal notranslate"><span class="pre">DataReference</span></code>. Each entry should also be an index column name in
-<code class="docutils literal notranslate"><span class="pre">data</span></code>; furthermore, each index column whose corresponding <code class="docutils literal notranslate"><span class="pre">idx</span></code>
-entry is a slice should be included here. In the future, this might be
-computed automatically.</p>
-</dd>
-<dt><strong>variables</strong><span class="classifier">list(<span class="xref std std-doc">VariableFactory</span>)</span></dt><dd><p>List of <code class="docutils literal notranslate"><span class="pre">VariableFactory</span></code> objects that, when called, produce a
-variable of each type in the <code class="docutils literal notranslate"><span class="pre">DataReference</span></code>. The use of factories
-rather than the variables themselves enables them to be passed
-recursively to any subreferences with ease and without overwriting the
-parent variable at assignment.</p>
-</dd>
-<dt><strong>labels</strong><span class="classifier">list(<span class="xref std std-doc">VariableFactory</span>)</span></dt><dd><p>List of <code class="docutils literal notranslate"><span class="pre">VariableFactory</span></code> objects that, when called, produce a
-<code class="docutils literal notranslate"><span class="pre">CategoricalVariable</span></code> object for each categorical outcome variable
-in the <code class="docutils literal notranslate"><span class="pre">DataReference.</span></code> The use of factories rather than the
-variables themselves enables them to be passed recursively to any
-subreferences with ease and without overwriting the parent variable at
-assignment.</p>
-</dd>
-<dt><strong>outcomes</strong><span class="classifier">list(<span class="xref std std-doc">VariableFactory</span>)</span></dt><dd><p>List of <code class="docutils literal notranslate"><span class="pre">VariableFactory</span></code> objects that, when called, produce a
-<code class="docutils literal notranslate"><span class="pre">ContinuousVariable</span></code> object for each continuous outcome variable in
-the <code class="docutils literal notranslate"><span class="pre">DataReference</span></code>. The use of factories rather than the variables
-themselves enables them to be passed recursively to any subreferences
-with ease and without overwriting the parent variable at assignment.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>Any variable name or identifier can additionally be accessed as an
-attribute of <code class="docutils literal notranslate"><span class="pre">DataReference</span></code>. This will return the assigned value of
-the fully transformed variable.</p>
-<dl class="field-list">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>vfactory</strong><span class="classifier">list(<span class="xref std std-doc">VariableFactory</span>)</span></dt><dd><p>The factories passed to the <code class="docutils literal notranslate"><span class="pre">variables</span></code> argument at initialisation.</p>
-</dd>
-<dt><strong>lfactory</strong><span class="classifier">list(<span class="xref std std-doc">VariableFactory</span>)</span></dt><dd><p>The factories passed to the <code class="docutils literal notranslate"><span class="pre">labels</span></code> argument at initialisation.</p>
-</dd>
-<dt><strong>ofactory</strong><span class="classifier">list(<span class="xref std std-doc">VariableFactory</span>)</span></dt><dd><p>The factories passed to the <code class="docutils literal notranslate"><span class="pre">outcomes</span></code> argument at initialisation.</p>
-</dd>
-<dt><strong>variables</strong><span class="classifier">list(<span class="xref std std-doc">DatasetVariable</span>)</span></dt><dd><p>List of variable objects produced from calls to the factories
-provided at initialisation and assigned the corresponding fields of
-the input <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. If the references were produced from a call
-to <code class="docutils literal notranslate"><span class="pre">data_references</span></code> or a parent method, then each variable thus
-produced will result from a query to the dataset filesystem directory
-layout.</p>
-</dd>
-<dt><strong>labels</strong><span class="classifier">list(<span class="xref std std-doc">DatasetVariable</span>)</span></dt><dd><p>List of <code class="docutils literal notranslate"><span class="pre">CategoricalVariable</span></code> objects produced from calls to
-factories provided at initialisation and assigned the corresponding
-fields of the input <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. Each corresponds to a specified
-categorical outcome variable.</p>
-</dd>
-<dt><strong>outcomes</strong><span class="classifier">list(<span class="xref std std-doc">DatasetVariable</span>)</span></dt><dd><p>List of <code class="docutils literal notranslate"><span class="pre">ContinuousVariable</span></code> objects produced from calls to
-factories provided at initialisation and assigned the corresponding
-fields of the input <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. Each corresponds to a specified
-continuous outcome variable.</p>
-</dd>
-<dt><strong>ids</strong><span class="classifier">dict</span></dt><dd><p>Dictionary of identifiers for the current data reference.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataReference.__call__" title="hypercoil.data.dataref.DataReference.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>()</p></td>
-<td><p>Obtain the fully transformed assignments to all variables of the <code class="docutils literal notranslate"><span class="pre">DataReference</span></code>.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataReference.get_var" title="hypercoil.data.dataref.DataReference.get_var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_var</span></code></a>(name)</p></td>
-<td><p>Get the variable with the specified name.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataReference.parse_ids" title="hypercoil.data.dataref.DataReference.parse_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_ids</span></code></a>(values)</p></td>
-<td><p>Populate the values of any identifier variables of the <code class="docutils literal notranslate"><span class="pre">DataReference</span></code>.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes Summary</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataReference.data" title="hypercoil.data.dataref.DataReference.data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></a></p></td>
-<td><p>Fully transformed assignments to all data variables obtained via direct query of the parent dataset.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataReference.label" title="hypercoil.data.dataref.DataReference.label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">label</span></code></a></p></td>
-<td><p>Fully transformed assignments to all categorical outcome variables.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataReference.outcome" title="hypercoil.data.dataref.DataReference.outcome"><code class="xref py py-obj docutils literal notranslate"><span class="pre">outcome</span></code></a></p></td>
-<td><p>Fully transformed assignments to all continuous outcome variables.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Methods Summary</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataReference.__call__" title="hypercoil.data.dataref.DataReference.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>()</p></td>
-<td><p>Obtain the fully transformed assignments to all variables of the <code class="docutils literal notranslate"><span class="pre">DataReference</span></code>.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataReference.get_var" title="hypercoil.data.dataref.DataReference.get_var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_var</span></code></a>(name)</p></td>
-<td><p>Get the variable with the specified name.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.dataref.DataReference.parse_ids" title="hypercoil.data.dataref.DataReference.parse_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_ids</span></code></a>(values)</p></td>
-<td><p>Populate the values of any identifier variables of the <code class="docutils literal notranslate"><span class="pre">DataReference</span></code>.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes Documentation</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hypercoil.data.dataref.DataReference.data">
-<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#hypercoil.data.dataref.DataReference.data" title="Permalink to this definition">#</a></dt>
-<dd><p>Fully transformed assignments to all data variables obtained via
-direct query of the parent dataset.</p>
-<p>Assignments are returned as a dictionary of key-value pairs specifying
-the name of each variable and its fully transformed assignment.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hypercoil.data.dataref.DataReference.label">
-<span class="sig-name descname"><span class="pre">label</span></span><a class="headerlink" href="#hypercoil.data.dataref.DataReference.label" title="Permalink to this definition">#</a></dt>
-<dd><p>Fully transformed assignments to all categorical outcome variables.</p>
-<p>Assignments are returned as a dictionary of key-value pairs specifying
-the name of each variable and its fully transformed assignment.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hypercoil.data.dataref.DataReference.outcome">
-<span class="sig-name descname"><span class="pre">outcome</span></span><a class="headerlink" href="#hypercoil.data.dataref.DataReference.outcome" title="Permalink to this definition">#</a></dt>
-<dd><p>Fully transformed assignments to all continuous outcome variables.</p>
-<p>Assignments are returned as a dictionary of key-value pairs specifying
-the name of each variable and its fully transformed assignment.</p>
-</dd></dl>
-
-<p class="rubric">Methods Documentation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.data.dataref.DataReference.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/dataref.py#L221-L231"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.dataref.DataReference.__call__" title="Permalink to this definition">#</a></dt>
-<dd><p>Obtain the fully transformed assignments to all variables of the
-<code class="docutils literal notranslate"><span class="pre">DataReference</span></code>.</p>
-<p>Assignments are returned as a dictionary of key-value pairs specifying
-the name of each variable and its fully transformed assignment.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.data.dataref.DataReference.__getattr__">
-<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/dataref.py#L167-L186"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.dataref.DataReference.__getattr__" title="Permalink to this definition">#</a></dt>
-<dd><p>If a requested attribute is not present in the object, see if there is
-a variable by that name. If so, return the fully transformed
-assignment to that variable. If the variable’s assignment is a
-dictionary with multiple values, then return the entire dictionary;
-otherwise, return only the requested value.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.data.dataref.DataReference.get_var">
-<span class="sig-name descname"><span class="pre">get_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/dataref.py#L160-L166"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.dataref.DataReference.get_var" title="Permalink to this definition">#</a></dt>
-<dd><p>Get the variable with the specified name.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.data.dataref.DataReference.parse_ids">
-<span class="sig-name descname"><span class="pre">parse_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/dataref.py#L137-L159"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.dataref.DataReference.parse_ids" title="Permalink to this definition">#</a></dt>
-<dd><p>Populate the values of any identifier variables of the
-<code class="docutils literal notranslate"><span class="pre">DataReference</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>values</strong><span class="classifier">list</span></dt><dd><p>List of values of identifier variables, ordered identically to the
-variables in the <code class="docutils literal notranslate"><span class="pre">DataReference</span></code> index.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>ids</strong><span class="classifier">dict</span></dt><dd><p>Dictionary mapping identifier variable names to the values they
-are assigned for this <code class="docutils literal notranslate"><span class="pre">DataReference</span></code>.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 
 
@@ -3178,7 +2973,7 @@ are assigned for this <code class="docutils literal notranslate"><span class="pr
   <div class="footer-item">
     
 <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.0.post0.<br>
 </p>
 
   </div>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Python Module Index &#8212; hypercoil prototype (unreleased) documentation</title>
   <script>
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -34,6 +34,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'py-modindex';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -45,7 +46,7 @@
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="dark">
 
   
   <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
@@ -90,8 +91,8 @@
   
 
   
-    <img src="_static/logo.svg" class="logo__image only-light" alt="Logo image">
-    <img src="_static/logo.svg" class="logo__image only-dark" alt="Logo image">
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="_static/logo.png" class="logo__image only-dark" alt="Logo image">
   
   
 </a>
@@ -112,6 +113,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="installation.html">
                         Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="overview.html">
+                        Technical overview
                     </a>
                 </li>
                 
@@ -203,6 +211,13 @@
                 
 
                 <li class="nav-item">
+                    <a class="nav-link" href="overview.html">
+                        Technical overview
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
                     <a class="nav-link" href="diffprog.html">
                         Framework
                     </a>
@@ -285,37 +300,12 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="data.html#module-hypercoil.data"><code class="xref">hypercoil.data</code></a></td><td>
+       <a href="engine.html#module-hypercoil.engine"><code class="xref">hypercoil.engine</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="api/hypercoil.data.bids.html#module-hypercoil.data.bids"><code class="xref">hypercoil.data.bids</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="api/hypercoil.data.collate.html#module-hypercoil.data.collate"><code class="xref">hypercoil.data.collate</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="api/hypercoil.data.dataref.html#module-hypercoil.data.dataref"><code class="xref">hypercoil.data.dataref</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="api/hypercoil.data.dataset.html#module-hypercoil.data.dataset"><code class="xref">hypercoil.data.dataset</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="api/hypercoil.data.functional.html#module-hypercoil.data.functional"><code class="xref">hypercoil.data.functional</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="api/hypercoil.data.hcp.html#module-hypercoil.data.hcp"><code class="xref">hypercoil.data.hcp</code></a></td><td>
+       <a href="functional.html#module-hypercoil.functional"><code class="xref">hypercoil.functional</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
@@ -330,12 +320,227 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.connectopy.html#module-hypercoil.functional.connectopy"><code class="xref">hypercoil.functional.connectopy</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.cov.html#module-hypercoil.functional.cov"><code class="xref">hypercoil.functional.cov</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.fourier.html#module-hypercoil.functional.fourier"><code class="xref">hypercoil.functional.fourier</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.graph.html#module-hypercoil.functional.graph"><code class="xref">hypercoil.functional.graph</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.interpolate.html#module-hypercoil.functional.interpolate"><code class="xref">hypercoil.functional.interpolate</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.kernel.html#module-hypercoil.functional.kernel"><code class="xref">hypercoil.functional.kernel</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.matrix.html#module-hypercoil.functional.matrix"><code class="xref">hypercoil.functional.matrix</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.semidefinite.html#module-hypercoil.functional.semidefinite"><code class="xref">hypercoil.functional.semidefinite</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.sparse.html#module-hypercoil.functional.sparse"><code class="xref">hypercoil.functional.sparse</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
        <a href="api/hypercoil.functional.sphere.html#module-hypercoil.functional.sphere"><code class="xref">hypercoil.functional.sphere</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.sylo.html#module-hypercoil.functional.sylo"><code class="xref">hypercoil.functional.sylo</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.symmap.html#module-hypercoil.functional.symmap"><code class="xref">hypercoil.functional.symmap</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.tsconv.html#module-hypercoil.functional.tsconv"><code class="xref">hypercoil.functional.tsconv</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
        <a href="api/hypercoil.functional.utils.html#module-hypercoil.functional.utils"><code class="xref">hypercoil.functional.utils</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.functional.window.html#module-hypercoil.functional.window"><code class="xref">hypercoil.functional.window</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="init.html#module-hypercoil.init"><code class="xref">hypercoil.init</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.atlas.html#module-hypercoil.init.atlas"><code class="xref">hypercoil.init.atlas</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.atlasmixins.html#module-hypercoil.init.atlasmixins"><code class="xref">hypercoil.init.atlasmixins</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.base.html#module-hypercoil.init.base"><code class="xref">hypercoil.init.base</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.deltaplus.html#module-hypercoil.init.deltaplus"><code class="xref">hypercoil.init.deltaplus</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.dirichlet.html#module-hypercoil.init.dirichlet"><code class="xref">hypercoil.init.dirichlet</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.freqfilter.html#module-hypercoil.init.freqfilter"><code class="xref">hypercoil.init.freqfilter</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.iirfilter.html#module-hypercoil.init.iirfilter"><code class="xref">hypercoil.init.iirfilter</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.laplace.html#module-hypercoil.init.laplace"><code class="xref">hypercoil.init.laplace</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.mapparam.html#module-hypercoil.init.mapparam"><code class="xref">hypercoil.init.mapparam</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.mpbl.html#module-hypercoil.init.mpbl"><code class="xref">hypercoil.init.mpbl</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.semidefinite.html#module-hypercoil.init.semidefinite"><code class="xref">hypercoil.init.semidefinite</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.sylo.html#module-hypercoil.init.sylo"><code class="xref">hypercoil.init.sylo</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.init.toeplitz.html#module-hypercoil.init.toeplitz"><code class="xref">hypercoil.init.toeplitz</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="loss.html#module-hypercoil.loss"><code class="xref">hypercoil.loss</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="neuro.html#module-hypercoil.neuro"><code class="xref">hypercoil.neuro</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.neuro.synth.html#module-hypercoil.neuro.synth"><code class="xref">hypercoil.neuro.synth</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="nn.html#module-hypercoil.nn"><code class="xref">hypercoil.nn</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.activation.html#module-hypercoil.nn.activation"><code class="xref">hypercoil.nn.activation</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.atlas.html#module-hypercoil.nn.atlas"><code class="xref">hypercoil.nn.atlas</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.confound.html#module-hypercoil.nn.confound"><code class="xref">hypercoil.nn.confound</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.cov.html#module-hypercoil.nn.cov"><code class="xref">hypercoil.nn.cov</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.iirfilter.html#module-hypercoil.nn.iirfilter"><code class="xref">hypercoil.nn.iirfilter</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.interpolate.html#module-hypercoil.nn.interpolate"><code class="xref">hypercoil.nn.interpolate</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.recombinator.html#module-hypercoil.nn.recombinator"><code class="xref">hypercoil.nn.recombinator</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.resid.Residualise.html#module-hypercoil.nn.resid.Residualise"><code class="xref">hypercoil.nn.resid.Residualise</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.semidefinite.html#module-hypercoil.nn.semidefinite"><code class="xref">hypercoil.nn.semidefinite</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.sylo.html#module-hypercoil.nn.sylo"><code class="xref">hypercoil.nn.sylo</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.tsconv.html#module-hypercoil.nn.tsconv"><code class="xref">hypercoil.nn.tsconv</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api/hypercoil.nn.vertcom.html#module-hypercoil.nn.vertcom"><code class="xref">hypercoil.nn.vertcom</code></a></td><td>
        <em></em></td></tr>
    </table>
 
@@ -383,7 +588,7 @@
     
 <p class="copyright">
 
-    &copy; Copyright 2021, the development team.<br>
+    &copy; Copyright 2022-, the development team.<br>
 
 </p>
 
@@ -392,7 +597,7 @@
   <div class="footer-item">
     
 <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.3.<br>
 </p>
 
   </div>

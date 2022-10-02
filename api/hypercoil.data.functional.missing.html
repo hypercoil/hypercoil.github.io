@@ -35,6 +35,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.data.functional.missing';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -2913,57 +2914,12 @@
 <h1>Missing values<a class="headerlink" href="#missing-values" title="Permalink to this heading">#</a></h1>
 <section id="nanfill">
 <h2><code class="docutils literal notranslate"><span class="pre">nanfill</span></code><a class="headerlink" href="#nanfill" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.nanfill">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">nanfill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L110-L153"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.nanfill" title="Permalink to this definition">#</a></dt>
-<dd><p>Populate all missing or invalid values in a tensor.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong><span class="classifier">Tensor or np.ndarray</span></dt><dd><p>Tensor that potentially contains missing or invalid data denoted as
-NaN.</p>
-</dd>
-<dt><strong>fill</strong><span class="classifier">float, None, or Tensor/ndarray (default None)</span></dt><dd><p>Value(s) used to replace NaN entries in the input tensor. If this is
-None, then this operation does nothing. If this is a tensor, it must
-be broadcastable against the missing part of the input tensor. If this
-is the string ‘mean’, then every NaN entry is replaced with the mean
-of non-NaN entries.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>data</strong><span class="classifier">Tensor or np.ndarray</span></dt><dd><p>Input tensor with missing or invalid values populated.</p>
-</dd>
-<dt><strong>nanmask</strong><span class="classifier">Tensor or np.ndarray</span></dt><dd><p>Boolean tensor indicating the cells where NaN entries were previously
-located (returned so that they can be restored later if desired).</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 <section id="fillnan">
 <h2><code class="docutils literal notranslate"><span class="pre">fillnan</span></code><a class="headerlink" href="#fillnan" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.fillnan">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">fillnan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nanmask</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L566-L569"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.fillnan" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
 </section>
 <section id="extend-to-max-size">
 <h2><code class="docutils literal notranslate"><span class="pre">extend_to_max_size</span></code><a class="headerlink" href="#extend-to-max-size" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.data.functional.extend_to_max_size">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.data.functional.</span></span><span class="sig-name descname"><span class="pre">extend_to_max_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/hypercoil/data/functional.py#L281-L295"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.functional.extend_to_max_size" title="Permalink to this definition">#</a></dt>
-<dd><p>Extend all tensors in a list until their sizes are equal to the size
-of the largest tensor along each axis. Any new entries created via
-extension are marked with NaN to denote that they were missing from
-the input; they can be populated by chaining this with a call to
-<cite>nanfill</cite>.</p>
-</dd></dl>
-
 </section>
 </section>
 
@@ -3065,7 +3021,7 @@ the input; they can be populated by chaining this with a call to
   <div class="footer-item">
     
 <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.0.post0.<br>
 </p>
 
   </div>

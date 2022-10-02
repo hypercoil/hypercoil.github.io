@@ -35,6 +35,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.norm.ConstraintViolation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -90,8 +91,8 @@
   
 
   
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image">
-    <img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
   
   
 </a>
@@ -112,6 +113,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../installation.html">
                         Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../overview.html">
+                        Technical overview
                     </a>
                 </li>
                 
@@ -203,6 +211,13 @@
                 
 
                 <li class="nav-item">
+                    <a class="nav-link" href="../overview.html">
+                        Technical overview
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
                     <a class="nav-link" href="../diffprog.html">
                         Framework
                     </a>
@@ -252,257 +267,6 @@
   <div class="bd-toc-item navbar-nav">
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../data.html">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     data
-    </span>
-   </code>
-   : Data engineering
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.data.bids.html">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       bids
-      </span>
-     </code>
-     : BIDS interfaces
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-2">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.bids.fmriprep_references.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         fmriprep_references
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.bids.fMRIPrepDataset.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         fMRIPrepDataset
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.bids.LightBIDSLayout.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         LightBIDSLayout
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.bids.BIDSObjectFactory.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         BIDSObjectFactory
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.bids.LightBIDSObject.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         LightBIDSObject
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="hypercoil.data.collate.html">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       collate
-      </span>
-     </code>
-     : Batch collation functionality
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.data.dataref.html">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dataref
-      </span>
-     </code>
-     : Data references
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-3">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.dataref.DataReference.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         DataReference
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.dataref.DataQuery.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         DataQuery
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.dataref.data_references.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         data_references
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.data.dataset.html">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dataset
-      </span>
-     </code>
-     : Referenced datasets
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-4">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.dataset.ReferencedDataset.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         ReferencedDataset
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.dataset.ReferencedDataLoader.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         ReferencedDataLoader
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.data.functional.html">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       functional
-      </span>
-     </code>
-     : Data transform functions
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-5">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.general.html">
-       General use
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.filesystem.html">
-       I/O and filesystem
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.tensor.html">
-       Tensor casting and binding
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.dataframe.html">
-       Data frames
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.neuroimage.html">
-       Neuroimaging datasets
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.metadata.html">
-       Metadata
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.missing.html">
-       Missing values
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.functional.timeseries.html">
-       Time series
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.data.hcp.html">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       hcp
-      </span>
-     </code>
-     : HCP interfaces
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-6">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.data.hcp.hcp_references.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         hcp_references
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
   <a class="reference internal" href="../engine.html">
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -511,47 +275,12 @@
    </code>
    : Differentiable engine
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-7">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.engine.accumulate.html">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       accumulate
-      </span>
-     </code>
-     : Local gradient accumulation
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-8">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.engine.accumulate.Accumulator.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         Accumulator
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.engine.accumulate.AccumulatingFunction.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         AccumulatingFunction
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
+  <ul class="simple">
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -563,8 +292,8 @@
    </code>
    : Benchmarks and evaluation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-9">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -580,8 +309,8 @@
    </code>
    : Functions and functionals
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-10">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -595,8 +324,8 @@
      </code>
      : Activation functions
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-11">
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-4">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -649,8 +378,8 @@
      </code>
      : Centre of mass
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-12">
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-5">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -693,6 +422,41 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
+    <a class="reference internal" href="hypercoil.functional.connectopy.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       connectopy
+      </span>
+     </code>
+     : Connectopic manifolds
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.connectopy.laplacian_eigenmaps.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         laplacian_eigenmaps
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.connectopy.diffusion_mapping.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         diffusion_mapping
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="hypercoil.functional.cov.html">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -701,8 +465,8 @@
      </code>
      : Covariances and correlations
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-13">
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-7">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -800,41 +564,6 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.functional.connectopy.html">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       connectopy
-      </span>
-     </code>
-     : Connectopic manifolds
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.connectopy.laplacian_eigenmaps.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         laplacian_eigenmaps
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.connectopy.diffusion_mapping.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         diffusion_mapping
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
     <a class="reference internal" href="hypercoil.functional.fourier.html">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -843,8 +572,8 @@
      </code>
      : Frequency-domain filter
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-15">
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-8">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -943,8 +672,8 @@
      </code>
      : Graphs and networks
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-16">
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-9">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1007,8 +736,8 @@
      </code>
      : Interpolation and imputation
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-17">
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-10">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1020,7 +749,17 @@
          hybrid_interpolate
         </span>
        </code>
-       : Weighted + spectral interpolation
+       : Linear + spectral interpolation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.interpolate.linear_interpolate.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         linear_interpolate
+        </span>
+       </code>
+       : Linear interpolation
       </a>
      </li>
      <li class="toctree-l3">
@@ -1052,8 +791,8 @@
      </code>
      : Parameterised kernels
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-18">
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-11">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1063,6 +802,24 @@
        <code class="docutils literal notranslate">
         <span class="pre">
          linear_kernel
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.param_norm.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         param_norm
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.linear_distance.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         linear_distance
         </span>
        </code>
       </a>
@@ -1112,6 +869,24 @@
        </code>
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.cov_kernel.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         cov_kernel
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.kernel.corr_kernel.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         corr_kernel
+        </span>
+       </code>
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -1123,14 +898,14 @@
      </code>
      : Matrix operations
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-19">
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-12">
      <i class="fas fa-chevron-down">
      </i>
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.matrix.invert_spd.html">
+      <a class="reference internal" href="hypercoil.functional.matrix.cholesky_invert.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          invert_spd
@@ -1184,10 +959,28 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.matrix.diag_embed.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         diag_embed
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.matrix.fill_diagonal.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          fill_diagonal
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.matrix.toeplitz_2d.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         toeplitz_2d
         </span>
        </code>
       </a>
@@ -1248,8 +1041,8 @@
      </code>
      : Positive semidefinite cone
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-20">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-13">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1311,6 +1104,194 @@
     </ul>
    </li>
    <li class="toctree-l2 has-children">
+    <a class="reference internal" href="hypercoil.functional.sparse.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       sparse
+      </span>
+     </code>
+     : Sparse matrix operations
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.spdiagmm.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         spdiagmm
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.dspdmm.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         dspdmm
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.spspmm_full.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         spspmm_full
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.topk.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         topk
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.as_topk.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         as_topk
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.full_as_topk.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         full_as_topk
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.sparse_astype.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         sparse_astype
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.trace_spspmm.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         trace_spspmm
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.spspmm.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         spspmm
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.spsp_pairdiff.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         spsp_pairdiff
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.select_indices.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         select_indices
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.topkx.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         topkx
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.sp_block_serialise.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         sp_block_serialise
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.splr_hadamard.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         splr_hadamard
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.spsp_innerpaired.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         spsp_innerpaired
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.topk_to_bcoo.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         topk_to_bcoo
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.topk_diagzero.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         topk_diagzero
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.topk_diagreplace.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         diagreplace
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sparse.block_serialise.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         block_serialise
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="hypercoil.functional.sphere.html">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -1319,12 +1300,21 @@
      </code>
      : Spherical coordinates
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-21">
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-15">
      <i class="fas fa-chevron-down">
      </i>
     </label>
     <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.sphere.spherical_geodesic.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         spherical_geodesic
+        </span>
+       </code>
+      </a>
+     </li>
      <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.sphere.sphere_to_normals.html">
        <code class="docutils literal notranslate">
@@ -1339,15 +1329,6 @@
        <code class="docutils literal notranslate">
         <span class="pre">
          sphere_to_latlong
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.sphere.spherical_geodesic.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spherical_geodesic
         </span>
        </code>
       </a>
@@ -1400,8 +1381,8 @@
      </code>
      : Symmetric matrix maps
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-22">
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-16">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1453,35 +1434,26 @@
      </code>
      : Time series convolution
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-23">
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-17">
      <i class="fas fa-chevron-down">
      </i>
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.tsconv.conv.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         conv
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.tsconv.tsconv2d.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          tsconv2d
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.basisconv2d.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         basisconv2d
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.tsconv.polyconv2d.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         polyconv2d
         </span>
        </code>
       </a>
@@ -1496,10 +1468,28 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.tsconv.basisconv2d.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         basisconv2d
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="hypercoil.functional.tsconv.polychan.html">
        <code class="docutils literal notranslate">
         <span class="pre">
          polychan
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.tsconv.polyconv2d.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         polyconv2d
         </span>
        </code>
       </a>
@@ -1515,8 +1505,8 @@
      </code>
      : Miscellaneous
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-24">
+    <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-18">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1540,10 +1530,10 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.wmean.html">
+      <a class="reference internal" href="hypercoil.functional.utils.mask_tensor.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         wmean
+         mask_tensor
         </span>
        </code>
       </a>
@@ -1567,28 +1557,72 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.sparse_mm.html">
+      <a class="reference internal" href="hypercoil.functional.utils.amplitude_apply.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         sparse_mm
+         amplitude_apply
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="hypercoil.functional.window.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       window
+      </span>
+     </code>
+     : Random windowing
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.window.sample_windows.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         sample_windows
         </span>
        </code>
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.sparse_rcmul.html">
+      <a class="reference internal" href="hypercoil.functional.window.sample_nonoverlapping_windows_existing_ax.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         sparse_rcmul
+         sample_nonoverlapping_windows_existing_ax
         </span>
        </code>
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.functional.utils.orient_and_conform.html">
+      <a class="reference internal" href="hypercoil.functional.window.sample_nonoverlapping_windows_new_ax.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         orient_and_conform
+         sample_nonoverlapping_windows_new_ax
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.window.sample_overlapping_windows_new_ax.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         sample_overlapping_windows_new_ax
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.functional.window.sample_overlapping_windows_existing_ax.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         sample_overlapping_windows_existing_ax
         </span>
        </code>
       </a>
@@ -1606,8 +1640,8 @@
    </code>
    : Initialisation schemes
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-20">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1621,8 +1655,8 @@
      </code>
      : Atlas initialisation
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-26">
+    <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-21">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1729,8 +1763,8 @@
      </code>
      : Base initialisations
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-27">
+    <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-22">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1818,8 +1852,8 @@
      </code>
      : Domain mapper base classes
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-28">
+    <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-23">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1900,8 +1934,8 @@
      </code>
      : Domain mappers
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-29">
+    <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-24">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -1971,8 +2005,8 @@
      </code>
      : Frequency band init
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-30">
+    <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-25">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2047,8 +2081,8 @@
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-31">
+    <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-26">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2102,8 +2136,8 @@
    </code>
    : Loss and regularisation
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-32">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -2342,8 +2376,8 @@
    </code>
    : Neuroscience data utilities
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-33">
+  <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-28">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -2357,8 +2391,8 @@
      </code>
      : Data synthesis
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-34">
+    <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-29">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2430,8 +2464,8 @@
    </code>
    : Neural network modules
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-35">
+  <input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-30">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -2445,8 +2479,8 @@
      </code>
      : Activation functions as modules
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-36">
+    <input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-31">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2461,6 +2495,16 @@
        : Correlation normalisation
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="hypercoil.nn.activation.Isochor.html">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Isochor
+        </span>
+       </code>
+       : Isochoric normalisation
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -2472,8 +2516,8 @@
      </code>
      : Atlas layers
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-37">
+    <input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-32">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2488,16 +2532,6 @@
        : Linear atlas layer
       </a>
      </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.atlas.AtlasAccumuline.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         AtlasAccumuline
-        </span>
-       </code>
-       : Linear atlas accumulator
-      </a>
-     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -2509,17 +2543,17 @@
      </code>
      : Covariance modules
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-38">
+    <input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-33">
      <i class="fas fa-chevron-down">
      </i>
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.cov._Cov.html">
+      <a class="reference internal" href="hypercoil.nn.cov.BaseCovariance.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         _Cov
+         BaseCovariance
         </span>
        </code>
        : Covariance base class
@@ -2610,8 +2644,8 @@
      </code>
      : Interpolation layers
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-39" name="toctree-checkbox-39" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-39">
+    <input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-34">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2626,10 +2660,10 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.interpolate.WeightedInterpolate.html">
+      <a class="reference internal" href="hypercoil.nn.interpolate.LinearInterpolate.html">
        <code class="docutils literal notranslate">
         <span class="pre">
-         WeightedInterpolate
+         LinearInterpolate
         </span>
        </code>
       </a>
@@ -2653,8 +2687,8 @@
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-40" name="toctree-checkbox-40" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-40">
+    <input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-35">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2664,15 +2698,6 @@
        <code class="docutils literal notranslate">
         <span class="pre">
          Recombinator
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.recombinator.QueryEncoder.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         QueryEncoder
         </span>
        </code>
       </a>
@@ -2689,50 +2714,6 @@
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="hypercoil.nn.select.html">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       select
-      </span>
-     </code>
-     : Model Selection
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-41" name="toctree-checkbox-41" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-41">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.select.ResponseFunctionLinearSelector.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         ResponseFunctionLinearSelector
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.select.LinearCombinationSelector.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         LinearCombinationSelector
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.select.EliminationSelector.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         EliminationSelector
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
     <a class="reference internal" href="hypercoil.nn.semidefinite.html">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -2740,8 +2721,8 @@
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-42" name="toctree-checkbox-42" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-42">
+    <input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-36">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2792,8 +2773,8 @@
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-43" name="toctree-checkbox-43" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-43">
+    <input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-37">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2827,8 +2808,8 @@
      </code>
      : Vertex compression
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-44" name="toctree-checkbox-44" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-44">
+    <input class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-38">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -2838,15 +2819,6 @@
        <code class="docutils literal notranslate">
         <span class="pre">
          VerticalCompression
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="hypercoil.nn.vertcom.vertical_compression.html">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         vertical_compression
         </span>
        </code>
       </a>
@@ -2873,8 +2845,8 @@
    </code>
    : Visualisation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-45" name="toctree-checkbox-45" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-45">
+  <input class="toctree-checkbox" id="toctree-checkbox-39" name="toctree-checkbox-39" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-39">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -2972,7 +2944,7 @@
   <div class="footer-item">
     
 <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.1.<br>
 </p>
 
   </div>
