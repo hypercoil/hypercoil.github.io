@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Examples &#8212; hypercoil prototype (unreleased) documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="WindowAmplifier" href="api/hypercoil.nn.window.WindowAmplifier.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="dark">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="installation.html">
+                        Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="overview.html">
+                        Technical overview
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="diffprog.html">
+                        Framework
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="modules.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="#">
+                        Examples
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="installation.html">
+                        Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="overview.html">
+                        Technical overview
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="diffprog.html">
+                        Framework
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="modules.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="#">
+                        Examples
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h1>
+<p>This is a first example of a real application of the differentiable programming paradigm in the context of mapping the brain’s functional connectivity. This example replicates the third experiment from our first preprint on this subject (“Covariance modelling”). The goal of this experiment is to create a simple, differentiable map of the dynamics of community structure in the brain’s functional connectome.</p>
+<p>The connectome is a graph of the brain’s functional connectivity, where each node represents a brain region and each edge represents the strength of the connection between two regions. The community structure of the connectome is a partition of the nodes into groups that are more strongly connected to each other than to nodes in other groups. The dynamics of community structure is the evolution of the community structure over time. Here, we use a simple operationalisation of the dynamics that tracks only whether a community is present or absent at each time point.</p>
+<p>This tutorial steps through the code for this experiment.</p>
+<section id="loading-the-dataset">
+<h2>Loading the dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this heading">#</a></h2>
+<p>In this tutorial, we’ll perform the experiment using a subset of the Midnight Scan Club (MSC) dataset. We select a subset of the dataset to expedite the processing steps, and because we can find a rich community structure even using only this subset. The MSC dataset is a collection of fMRI scans of 10 subjects, each performing a number of in-scanner tasks across 10 scanning sessions. Here, we use the first 3 resting-state scans from each subject.</p>
+<p>The MSC dataset is available from the OpenNeuro website. Below, we’re using a utility function to retrieve a version of the dataset that has already been preprocessed. The preprocessing includes, among other standard steps, dimensionality reduction using a 400-region parcellation (brain atlas) and denoising using a 36-parameter model of motion estimates and nuisance signals.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">hypercoil.engine.axisutil</span> <span class="kn">import</span> <span class="n">extend_to_max_size</span>
+<span class="kn">from</span> <span class="nn">hypercoil.neuro.data_msc</span> <span class="kn">import</span> <span class="n">minimal_msc_download</span>
+
+<span class="n">dataset_root</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">minimal_msc_download</span><span class="p">()</span><span class="si">}</span><span class="s2">/data/ts/&quot;</span>
+<span class="n">paths</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">dataset_root</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*ses-func0[1-3]*task-rest*ts.1D&quot;</span><span class="p">)</span>
+<span class="n">time_series</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">)</span>
+<span class="n">time_series</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">time_series</span><span class="p">)</span>
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">extend_to_max_size</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+<span class="k">assert</span> <span class="n">time_series</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">814</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-the-model">
+<h2>Defining the model<a class="headerlink" href="#defining-the-model" title="Permalink to this heading">#</a></h2>
+<p>Next, let’s define the model that will be learning the community structure. We need to define the model’s parameters, the model’s forward pass, and the model’s loss function. We begin here with the parameters. The model has two parameter tensors: one for the community structure and one for the dynamics of community structure. The community structure is a matrix of shape (n_nodes, n_communities), where each row represents a node and each column represents a community. The dynamics of community structure is a binary matrix of shape (n_time_points, n_communities), where each row represents a time point and each column represents a community.</p>
+<p>We want to learn a community structure that is common to all subjects and all scans in the dataset. However, we also want the dynamics to be specific to each scan. To achieve this, we define the community structure as a parameter tensor that is shared across all scans, and we define the dynamics as a parameter tensor that is specific to each scan. We can achieve this by defining the community structure as a parameter tensor of shape (n_nodes, n_communities), and the dynamics as a parameter tensor of shape (n_scans, n_time_points, n_communities). The first dimension of the dynamics tensor will be used to index the dynamics of each scan.</p>
+<p>We also want to impose some constraints on the values that the parameter tensors can take. For the community structure tensor, we’s ideally want each node to belong to exactly one community. But this would give us a combinatorial optimisation problem instead of a differentiable one, so we’ll relax this constraint to instead allow each node’s community assignment to be a categorical probability distribution over communities. We can achieve this by projecting the community structure tensor onto the probability simplex, which is the set of vectors whose elements are nonnegative and sum to 1.0. Behind the scenes, <code class="docutils literal notranslate"><span class="pre">hypercoil</span></code>’s <code class="docutils literal notranslate"><span class="pre">Probability</span> <span class="pre">SimplexParameter</span></code> implements this constraint using a softmax mapping.</p>
+<p>For the dynamics tensor, we’d ideally want to impose the constraint that each community is either present or absent at each time point – but again, we’ll relax this constraint for the sake of differentiability. We’ll instead allow the presence of each community at each time point to vary continuously in (0, 1) using a <code class="docutils literal notranslate"><span class="pre">MappedLogits</span></code> parameter. Later, we’ll introduce some regularisations that encourage the dynamics to be close to binary.</p>
+<p>The last model parameter is a scalar that sets the resolution of the community detection algorithm. This scalar, gamma, promotes discovery of more, smaller communities as it is increased. We won’t learn this parameter, but we’ll set it to a reasonable value for the purposes of this tutorial. In practice, we’ve found that a “default” value of 1 for gamma results in an unbalanced community structure that is dominated by a few large communities. We’ve found that a value of 5 for gamma results in a more balanced community structure.</p>
+<p>With that said, let’s implement the model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jax</span>
+<span class="kn">import</span> <span class="nn">equinox</span> <span class="k">as</span> <span class="nn">eqx</span>
+<span class="kn">from</span> <span class="nn">hypercoil.engine</span> <span class="kn">import</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">PyTree</span>
+<span class="kn">from</span> <span class="nn">hypercoil.init.mapparam</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MappedLogits</span><span class="p">,</span>
+    <span class="n">ProbabilitySimplexParameter</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">DynamicCommunityModel</span><span class="p">(</span><span class="n">eqx</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="n">n_nodes</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">n_communities</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">n_scans</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">n_time_points</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">gamma</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">affiliation</span><span class="p">:</span> <span class="n">Tensor</span>
+    <span class="n">dynamics</span><span class="p">:</span> <span class="n">Tensor</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">n_scans</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">n_communities</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">n_time_points</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">gamma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">init_scale_affiliation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">init_scale_dynamics</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">key</span><span class="p">:</span> <span class="s1">&#39;jax.random.PRNGKey&#39;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_nodes</span> <span class="o">=</span> <span class="n">n_nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_communities</span> <span class="o">=</span> <span class="n">n_communities</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_scans</span> <span class="o">=</span> <span class="n">n_scans</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_time_points</span> <span class="o">=</span> <span class="n">n_time_points</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">affiliation</span> <span class="o">=</span> <span class="n">init_scale_affiliation</span> <span class="o">*</span> <span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="n">key</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">n_communities</span><span class="p">))</span> <span class="o">+</span> <span class="mf">1.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span> <span class="o">=</span> <span class="n">init_scale_dynamics</span> <span class="o">*</span> <span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="n">key</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_scans</span><span class="p">,</span> <span class="n">n_communities</span><span class="p">,</span> <span class="n">n_time_points</span><span class="p">))</span> <span class="o">+</span> <span class="mf">0.5</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_series</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">model_forward</span><span class="p">(</span>
+            <span class="n">time_series</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">affiliation</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">parameterise_model</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">ProbabilitySimplexParameter</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;affiliation&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">MappedLogits</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;dynamics&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-the-loss-function">
+<h2>Defining the loss function<a class="headerlink" href="#defining-the-loss-function" title="Permalink to this heading">#</a></h2>
+<p>Next,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hypercoil.loss</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">LossScheme</span><span class="p">,</span>
+    <span class="n">LossApply</span><span class="p">,</span>
+    <span class="n">Loss</span><span class="p">,</span>
+    <span class="n">LossArgument</span><span class="p">,</span>
+    <span class="n">UnpackingLossArgument</span><span class="p">,</span>
+    <span class="n">ModularityLoss</span><span class="p">,</span>
+    <span class="n">SmoothnessLoss</span><span class="p">,</span>
+    <span class="n">BimodalSymmetricLoss</span><span class="p">,</span>
+    <span class="n">identity</span><span class="p">,</span>
+    <span class="n">sum_scalarise</span><span class="p">,</span>
+    <span class="n">mean_scalarise</span><span class="p">,</span>
+    <span class="n">vnorm_scalarise</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dynamic_community_loss</span><span class="p">(</span>
+    <span class="n">modularity_nu</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">smoothness_nu</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">dynamic_community_nu</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">bimodal_symmetric_nu</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LossScheme</span><span class="p">:</span>
+
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">LossScheme</span><span class="p">([</span>
+        <span class="n">LossApply</span><span class="p">(</span>
+            <span class="n">ModularityLoss</span><span class="p">(</span><span class="n">nu</span><span class="o">=</span><span class="n">modularity_nu</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Modularity&#39;</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="n">gamma</span><span class="p">),</span>
+            <span class="n">apply</span><span class="o">=</span><span class="k">lambda</span> <span class="n">arg</span><span class="p">:</span> <span class="n">UnpackingLossArgument</span><span class="p">(</span>
+                <span class="n">A</span><span class="o">=</span><span class="n">arg</span><span class="o">.</span><span class="n">corr_unparam</span><span class="p">,</span>
+                <span class="n">Q</span><span class="o">=</span><span class="n">arg</span><span class="o">.</span><span class="n">affiliation</span><span class="p">,</span>
+            <span class="p">)),</span>
+        <span class="n">LossApply</span><span class="p">(</span>
+            <span class="n">Loss</span><span class="p">(</span>
+                <span class="n">nu</span><span class="o">=</span><span class="n">dynamic_community_nu</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="s1">&#39;DynamicCommunities&#39;</span><span class="p">,</span>
+                <span class="n">score</span><span class="o">=</span><span class="n">identity</span><span class="p">,</span>
+                <span class="n">scalarisation</span><span class="o">=</span><span class="n">mean_scalarise</span><span class="p">(</span>
+                    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">inner</span><span class="o">=</span><span class="n">sum_scalarise</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+            <span class="n">apply</span><span class="o">=</span><span class="k">lambda</span> <span class="n">arg</span><span class="p">:</span> <span class="o">-</span><span class="p">(</span><span class="n">arg</span><span class="o">.</span><span class="n">coaffiliation</span> <span class="o">*</span> <span class="n">arg</span><span class="o">.</span><span class="n">modularity</span><span class="p">)</span>
+        <span class="p">),</span>
+        <span class="n">LossScheme</span><span class="p">([</span>
+            <span class="n">SmoothnessLoss</span><span class="p">(</span>
+                <span class="n">nu</span><span class="o">=</span><span class="n">smoothness_nu</span><span class="p">,</span>
+                <span class="n">scalarisation</span><span class="o">=</span><span class="n">mean_scalarise</span><span class="p">(</span>
+                    <span class="n">inner</span><span class="o">=</span><span class="n">vnorm_scalarise</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+            <span class="p">),</span>
+            <span class="n">BimodalSymmetricLoss</span><span class="p">(</span><span class="n">nu</span><span class="o">=</span><span class="n">bimodal_symmetric_nu</span><span class="p">,</span> <span class="n">modes</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="p">],</span> <span class="n">apply</span><span class="o">=</span><span class="k">lambda</span> <span class="n">arg</span><span class="p">:</span> <span class="n">arg</span><span class="o">.</span><span class="n">dynamics</span><span class="p">)</span>
+    <span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">loss</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-the-forward-pass">
+<h2>Defining the forward pass<a class="headerlink" href="#defining-the-forward-pass" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hypercoil.engine</span> <span class="kn">import</span> <span class="n">_to_jax_array</span>
+<span class="kn">from</span> <span class="nn">hypercoil.functional</span> <span class="kn">import</span> <span class="n">corr</span><span class="p">,</span> <span class="n">modularity_matrix</span><span class="p">,</span> <span class="n">coaffiliation</span>
+
+<span class="k">def</span> <span class="nf">model_forward</span><span class="p">(</span>
+    <span class="n">time_series</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">affiliation</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">dynamics</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+    <span class="c1"># Ensure that all data tensors and parameters are JAX arrays.</span>
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">_to_jax_array</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>
+    <span class="n">affiliation</span> <span class="o">=</span> <span class="n">_to_jax_array</span><span class="p">(</span><span class="n">affiliation</span><span class="p">)</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">_to_jax_array</span><span class="p">(</span><span class="n">dynamics</span><span class="p">)</span>
+
+    <span class="c1"># Compute the correlation matrix for each scan.</span>
+    <span class="n">corr_unparam</span> <span class="o">=</span> <span class="n">corr</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>
+    <span class="n">corr_param</span> <span class="o">=</span> <span class="n">corr</span><span class="p">(</span><span class="n">time_series</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="n">dynamics</span><span class="p">)</span>
+
+    <span class="c1"># Compute the modularity matrix for each scan.</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">modularity_matrix</span><span class="p">(</span>
+        <span class="n">corr_param</span><span class="p">,</span>
+        <span class="n">normalise_modularity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">gamma</span><span class="o">=</span><span class="n">gamma</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># Compute the community co-affiliation matrix.</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">coaffiliation</span><span class="p">(</span>
+        <span class="n">affiliation</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+        <span class="n">normalise_coaffiliation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Build arguments for the loss function.</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">LossArgument</span><span class="p">(</span>
+        <span class="n">corr_unparam</span><span class="o">=</span><span class="n">corr_unparam</span><span class="p">,</span>
+        <span class="n">corr_param</span><span class="o">=</span><span class="n">corr_param</span><span class="p">,</span>
+        <span class="n">affiliation</span><span class="o">=</span><span class="n">affiliation</span><span class="p">,</span>
+        <span class="n">dynamics</span><span class="o">=</span><span class="n">dynamics</span><span class="p">,</span>
+        <span class="n">modularity</span><span class="o">=</span><span class="n">B</span><span class="p">,</span>
+        <span class="n">coaffiliation</span><span class="o">=</span><span class="n">H</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">args</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-the-optimisation-loop">
+<h2>Defining the optimisation loop<a class="headerlink" href="#defining-the-optimisation-loop" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span> <span class="nn">optax</span>
+
+
+<span class="k">def</span> <span class="nf">init_optimiser</span><span class="p">(</span><span class="n">lr</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">PyTree</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">optax</span><span class="o">.</span><span class="n">GradientTransformation</span><span class="p">:</span>
+    <span class="n">optim</span> <span class="o">=</span> <span class="n">optax</span><span class="o">.</span><span class="n">adam</span><span class="p">(</span><span class="n">lr</span><span class="p">)</span>
+    <span class="n">optim_state</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">eqx</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">eqx</span><span class="o">.</span><span class="n">is_inexact_array</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">optim</span><span class="p">,</span> <span class="n">optim_state</span>
+
+
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">PyTree</span><span class="p">,</span>
+    <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">loss_scheme</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+    <span class="n">optim</span><span class="p">:</span> <span class="n">optax</span><span class="o">.</span><span class="n">GradientTransformation</span><span class="p">,</span>
+    <span class="n">optim_state</span><span class="p">:</span> <span class="n">PyTree</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">key</span><span class="p">:</span> <span class="s1">&#39;jax.random.PRNGKey&#39;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PyTree</span><span class="p">,</span> <span class="n">optax</span><span class="o">.</span><span class="n">OptState</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">loss_fn</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">model_forward</span><span class="p">(</span>
+            <span class="nb">input</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">affiliation</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">dynamics</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">gamma</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">loss_scheme</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">meta</span><span class="p">),</span> <span class="n">grads</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">filter_value_and_grad</span><span class="p">(</span>
+        <span class="n">loss_fn</span><span class="p">,</span> <span class="n">has_aux</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">model</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">updates</span><span class="p">,</span> <span class="n">optim_state</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">eqx</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="n">eqx</span><span class="o">.</span><span class="n">is_inexact_array</span><span class="p">),</span>
+        <span class="n">optim_state</span><span class="p">,</span>
+        <span class="n">eqx</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">eqx</span><span class="o">.</span><span class="n">is_inexact_array</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">apply_updates</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">updates</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">optim_state</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">meta</span>
+</pre></div>
+</div>
+</section>
+<section id="train-the-model">
+<h2>Train the model<a class="headerlink" href="#train-the-model" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure the hyperparameters.</span>
+<span class="n">n_communities</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">n_time_points</span> <span class="o">=</span> <span class="mi">814</span>
+<span class="n">n_nodes</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">n_scans</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">modularity_nu</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dynamic_community_nu</span> <span class="o">=</span> <span class="mf">2e-3</span>
+<span class="n">smoothness_nu</span> <span class="o">=</span> <span class="mf">.2</span>
+<span class="n">bimodal_symmetric_nu</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">max_epoch</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">PRNGKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">key_model</span><span class="p">,</span> <span class="n">key_train</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="c1"># Initialise the model.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">DynamicCommunityModel</span><span class="p">(</span>
+    <span class="n">n_nodes</span><span class="o">=</span><span class="n">n_nodes</span><span class="p">,</span>
+    <span class="n">n_scans</span><span class="o">=</span><span class="n">n_scans</span><span class="p">,</span>
+    <span class="n">n_communities</span><span class="o">=</span><span class="n">n_communities</span><span class="p">,</span>
+    <span class="n">n_time_points</span><span class="o">=</span><span class="n">n_time_points</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="o">=</span><span class="n">gamma</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="n">key_model</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">parameterise_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c1"># Initialise the loss function.</span>
+<span class="n">loss_scheme</span> <span class="o">=</span> <span class="n">dynamic_community_loss</span><span class="p">(</span>
+    <span class="n">modularity_nu</span><span class="o">=</span><span class="n">modularity_nu</span><span class="p">,</span>
+    <span class="n">smoothness_nu</span><span class="o">=</span><span class="n">smoothness_nu</span><span class="p">,</span>
+    <span class="n">dynamic_community_nu</span><span class="o">=</span><span class="n">dynamic_community_nu</span><span class="p">,</span>
+    <span class="n">bimodal_symmetric_nu</span><span class="o">=</span><span class="n">bimodal_symmetric_nu</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="o">=</span><span class="n">gamma</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Initialise the optimiser.</span>
+<span class="n">optim</span><span class="p">,</span> <span class="n">optim_state</span> <span class="o">=</span> <span class="n">init_optimiser</span><span class="p">(</span><span class="n">lr</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+
+<span class="c1"># Train the model.</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_epoch</span><span class="p">):</span>
+    <span class="n">key_epoch</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">fold_in</span><span class="p">(</span><span class="n">key_train</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
+    <span class="n">model</span><span class="p">,</span> <span class="n">optim_state</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">filter_jit</span><span class="p">(</span><span class="n">update</span><span class="p">)(</span>
+        <span class="n">model</span><span class="p">,</span>
+        <span class="n">time_series</span><span class="p">,</span>
+        <span class="n">loss_scheme</span><span class="p">,</span>
+        <span class="n">optim</span><span class="p">,</span>
+        <span class="n">optim_state</span><span class="p">,</span>
+        <span class="n">key</span><span class="o">=</span><span class="n">key_epoch</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">meta</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-the-dataset">
+   Loading the dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-the-model">
+   Defining the model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-the-loss-function">
+   Defining the loss function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-the-forward-pass">
+   Defining the forward pass
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-the-optimisation-loop">
+   Defining the optimisation loop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-the-model">
+   Train the model
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="_sources/examples.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2022-, the development team.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.3.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>
