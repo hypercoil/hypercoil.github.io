@@ -1,288 +1,307 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" data-theme="dark">
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>entropy: Categorical entropy &#8212; hypercoil prototype (unreleased) documentation</title>
-  <script>
+  
+  
+  
+  <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.entropy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="kl_divergence: Kullback-Leibler divergence" href="hypercoil.loss.kl_divergence.html" />
     <link rel="prev" title="log_det_gram: Gram log-determinant loss" href="hypercoil.loss.log_det_gram.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="dark">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
-  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
   <label class="overlay overlay-primary" for="__primary"></label>
-
   
-  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
   <label class="overlay overlay-secondary" for="__secondary"></label>
-
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
-      
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    </div>
+</form></div>
   </div>
-
   
-  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
-      <span class="fa-solid fa-bars"></span>
+    <span class="fa-solid fa-bars"></span>
   </label>
-  <div id="navbar-start">
-    
-    
   
-
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
 
 <a class="navbar-brand logo" href="../index.html">
-
   
   
   
   
+    
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>`);</script>
   
   
-  
-
-  
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
-    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
-  
-  
-</a>
+</a></div>
     
   </div>
-
+  
   
   <div class="col-lg-9 navbar-header-items">
-    <div id="navbar-center" class="mr-auto">
+    
+    <div class="me-auto navbar-header-items__center">
       
-      <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
-        
-                <li class="nav-item">
-                    <a class="nav-link" href="../installation.html">
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
                         Installation
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../overview.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../overview.html">
                         Technical overview
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../diffprog.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../diffprog.html">
                         Framework
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item current active">
-                    <a class="nav-link" href="../modules.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../modules.html">
                         API reference
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../examples.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples.html">
                         Examples
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
-    </ul>
-</nav>
-      </div>
+  </ul>
+</nav></div>
       
     </div>
-
-    <div id="navbar-end">
-      <div class="navbar-end-item navbar-end__search-button-container">
-        
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-      </div>
+    
+    
+    <div class="navbar-header-items__end">
       
-      <div class="navbar-end-item">
-        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
-    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
-    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
-    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
-</span>
-      </div>
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
       
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-      </ul>
-      </div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
       
     </div>
+    
   </div>
-
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
 
   
-  <div class="search-button-container--mobile">
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-  </div>
-
-  
-  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
       <span class="fa-solid fa-outdent"></span>
-  </label>
+    </label>
   
-
 </div>
-  </nav>
-  
 
+    </nav>
+  
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       <div class="bd-sidebar-primary bd-sidebar">
         
+
   
   <div class="sidebar-header-items sidebar-primary__section">
     
     
       <div class="sidebar-header-items__center">
-      
-      <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
         
-                <li class="nav-item">
-                    <a class="nav-link" href="../installation.html">
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
                         Installation
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../overview.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../overview.html">
                         Technical overview
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../diffprog.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../diffprog.html">
                         Framework
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item current active">
-                    <a class="nav-link" href="../modules.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../modules.html">
                         API reference
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../examples.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples.html">
                         Examples
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
-    </ul>
-</nav>
-      </div>
-      
+  </ul>
+</nav></div>
+        
       </div>
     
-
     
     
-    <div class="sidebar-header-items__end">
-      
-      <div class="navbar-end-item">
-        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
-    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
-    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
-    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
-</span>
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
       </div>
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-      </ul>
-      </div>
-      
-    </div>
     
   </div>
-
   
-  <div class="sidebar-start-items sidebar-primary__section">
-    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">
-    Section Navigation
-  </p>
-  <div class="bd-toc-item navbar-nav">
-    <ul class="current nav bd-sidenav">
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../engine.html"><code class="docutils literal notranslate"><span class="pre">engine</span></code>: Differentiable engine</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="simple">
 </ul>
 </li>
@@ -620,382 +639,155 @@
 </ul>
 </li>
 </ul>
-
-  </div>
-</nav>
+</div>
+</nav></div>
     </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
   
+  <div id="rtd-footer-container"></div>
 
-  
-  <div class="sidebar-end-items sidebar-primary__section">
-    <div class="sidebar-end-items__item">
-    </div>
-  </div>
 
       </div>
-      <main class="bd-main">
+      
+      <main id="main-content" class="bd-main">
         
         
-        <div class="bd-content">
-          <div class="bd-article-container">
-            
-            <div class="bd-header-article">
-                
-            </div>
-            
-            
-            <article class="bd-article" role="main">
+          <div class="bd-content">
+            <div class="bd-article-container">
               
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../modules.html" class="nav-link">API reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../loss.html" class="nav-link"><code class="docutils literal notranslate"><span class="pre">loss</span></code>: Loss and regularisation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><code class="docutils literal notranslate"><span class="pre">entropy</span></code>: Categorical entropy</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section id="entropy-categorical-entropy">
 <h1><code class="docutils literal notranslate"><span class="pre">entropy</span></code>: Categorical entropy<a class="headerlink" href="#entropy-categorical-entropy" title="Permalink to this heading">#</a></h1>
 <section id="entropy">
 <h2><code class="docutils literal notranslate"><span class="pre">entropy</span></code><a class="headerlink" href="#entropy" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.loss.entropy">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">PRNGKey</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L596-L624"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.entropy" title="Permalink to this definition">#</a></dt>
-<dd><p>Entropy of a categorical distribution or set of categorical distributions.</p>
-<p>This function operates on probability tensors. For a version that operates
-on logits, see <a class="reference internal" href="#hypercoil.loss.entropy_logit" title="hypercoil.loss.entropy_logit"><code class="xref py py-func docutils literal notranslate"><span class="pre">entropy_logit()</span></code></a>.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor containing probabilities or logits for each category.</p>
-</dd>
-<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the entropy.</p>
-</dd>
-<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
-</dd>
-<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed probability-weighted surprise is
-computed for each element of the input tensor. Otherwise, the entropy
-is computed over the specified axis or axes.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>Tensor</dt><dd><p>Entropy score for each set of observations.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.loss.entropy_logit">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">entropy_logit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">PRNGKey</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L626-L653"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.entropy_logit" title="Permalink to this definition">#</a></dt>
-<dd><p>Project logits in the input matrix onto the probability simplex, and then
-compute the entropy of the resulting categorical distribution.</p>
-<p>This function operates on logit tensors. For a version that operates on
-probabilities, see <a class="reference internal" href="#hypercoil.loss.entropy" title="hypercoil.loss.entropy"><code class="xref py py-func docutils literal notranslate"><span class="pre">entropy()</span></code></a>.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor containing probabilities or logits for each category.</p>
-</dd>
-<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the entropy.</p>
-</dd>
-<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
-</dd>
-<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed probability-weighted surprise is
-computed for each element of the input tensor. Otherwise, the entropy
-is computed over the specified axis or axes.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>Tensor</dt><dd><p>Entropy score for each set of observations.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 <section id="entropyloss">
 <h2><code class="docutils literal notranslate"><span class="pre">EntropyLoss</span></code><a class="headerlink" href="#entropyloss" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.EntropyLoss">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">EntropyLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L756-L795"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.EntropyLoss" title="Permalink to this definition">#</a></dt>
-<dd><p>Loss based on the entropy of a categorical distribution.</p>
-<p>This operates on probability tensors. For a version that operates on
-logits, see <a class="reference internal" href="#hypercoil.loss.EntropyLogitLoss" title="hypercoil.loss.EntropyLogitLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">EntropyLogitLoss</span></code></a>.</p>
-<div class="admonition-entropy admonition">
-<p class="admonition-title">Entropy</p>
-<p>The entropy of a categorical distribution <span class="math notranslate nohighlight">\(A\)</span> is defined as</p>
-<p><span class="math notranslate nohighlight">\(-\mathbf{1}^\intercal \left(A \circ \log A\right) \mathbf{1}\)</span></p>
-<p>(where <span class="math notranslate nohighlight">\(\log\)</span> denotes the elementwise logarithm).</p>
-<a class="reference internal image-reference" href="../_images/entropysimplex.svg"><img alt="../_images/entropysimplex.svg" class="align-center" src="../_images/entropysimplex.svg" width="250" /></a>
-<p><em>Cartoon schematic of the contours of an entropy-like function over
-categorical distributions. The function attains its maximum for the
-distribution in which all outcomes are equiprobable. The function can
-become smaller without bound away from this maximum. The superposed
-triangle represents the probability simplex. By pre-transforming the
-penalised weights to constrain them to the simplex, the entropy
-function is bounded and attains a separate minimum for each
-deterministic distribution.</em></p>
-<p>Penalising the entropy promotes concentration of weight into a single
-category. This has applications in problem settings such as
-parcellation, when more deterministic parcel assignments are desired.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Entropy is a concave function. Minimising it without constraint
-affords an unbounded capacity for reducing the loss. This is almost
-certainly undesirable. For this reason, it is recommended that some
-constraint be imposed on the input set when placing a penalty on
-entropy. One possibility is using a
-<a class="reference internal" href="hypercoil.init.mapparam.ProbabilitySimplexParameter.html"><span class="doc">probability simplex parameter mapper</span></a>
-to first project the input weights onto the probability simplex.</p>
-</div>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
-specified, but it is recommended to ensure that the loss function can
-be identified in the context of a reporting utilities. If not
-explicitly specified, the name will be inferred from the class name
-and the name of the scoring function.</p>
-</dd>
-<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
-to the loss value before it is returned. This can be used to
-modulate the relative contributions of different loss functions to
-the overall loss value. It can also be used to implement a
-schedule for the loss function, by dynamically adjusting the
-multiplier over the course of training.</p>
-</dd>
-<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the entropy.</p>
-</dd>
-<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
-</dd>
-<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed probability-weighted surprise is
-computed for each element of the input tensor. Otherwise, the entropy
-is computed over the specified axis or axes.</p>
-</dd>
-<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
-returned by the scoring function. This function should take a
-single argument, which is a tensor of arbitrary shape, and return
-a single scalar value. By default, the mean
-scalarisation is used.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.EntropyLogitLoss">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">EntropyLogitLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L797-L836"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.EntropyLogitLoss" title="Permalink to this definition">#</a></dt>
-<dd><p>Loss based on the entropy of a categorical distribution.</p>
-<p>This operates on logit tensors. For a version that operates on
-probabilities, see <a class="reference internal" href="#hypercoil.loss.EntropyLoss" title="hypercoil.loss.EntropyLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">EntropyLoss</span></code></a>.</p>
-<div class="admonition-entropy admonition">
-<p class="admonition-title">Entropy</p>
-<p>The entropy of a categorical distribution <span class="math notranslate nohighlight">\(A\)</span> is defined as</p>
-<p><span class="math notranslate nohighlight">\(-\mathbf{1}^\intercal \left(A \circ \log A\right) \mathbf{1}\)</span></p>
-<p>(where <span class="math notranslate nohighlight">\(\log\)</span> denotes the elementwise logarithm).</p>
-<a class="reference internal image-reference" href="../_images/entropysimplex.svg"><img alt="../_images/entropysimplex.svg" class="align-center" src="../_images/entropysimplex.svg" width="250" /></a>
-<p><em>Cartoon schematic of the contours of an entropy-like function over
-categorical distributions. The function attains its maximum for the
-distribution in which all outcomes are equiprobable. The function can
-become smaller without bound away from this maximum. The superposed
-triangle represents the probability simplex. By pre-transforming the
-penalised weights to constrain them to the simplex, the entropy
-function is bounded and attains a separate minimum for each
-deterministic distribution.</em></p>
-<p>Penalising the entropy promotes concentration of weight into a single
-category. This has applications in problem settings such as
-parcellation, when more deterministic parcel assignments are desired.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Entropy is a concave function. Minimising it without constraint
-affords an unbounded capacity for reducing the loss. This is almost
-certainly undesirable. For this reason, it is recommended that some
-constraint be imposed on the input set when placing a penalty on
-entropy. One possibility is using a
-<a class="reference internal" href="hypercoil.init.mapparam.ProbabilitySimplexParameter.html"><span class="doc">probability simplex parameter mapper</span></a>
-to first project the input weights onto the probability simplex.</p>
-</div>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
-specified, but it is recommended to ensure that the loss function can
-be identified in the context of a reporting utilities. If not
-explicitly specified, the name will be inferred from the class name
-and the name of the scoring function.</p>
-</dd>
-<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
-to the loss value before it is returned. This can be used to
-modulate the relative contributions of different loss functions to
-the overall loss value. It can also be used to implement a
-schedule for the loss function, by dynamically adjusting the
-multiplier over the course of training.</p>
-</dd>
-<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the entropy.</p>
-</dd>
-<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
-</dd>
-<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed probability-weighted surprise is
-computed for each element of the input tensor. Otherwise, the entropy
-is computed over the specified axis or axes.</p>
-</dd>
-<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
-returned by the scoring function. This function should take a
-single argument, which is a tensor of arbitrary shape, and return
-a single scalar value. By default, the mean
-scalarisation is used.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 </section>
 
 
-            </article>
-            
-            
-            
-          </div>
-          
-          
-          
-            <div class="bd-sidebar-secondary bd-toc">
+                </article>
               
-<div class="toc-item">
-  
-<div class="tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-</div>
-<nav id="bd-toc-nav" class="page-toc">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#entropy">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     entropy
-    </span>
-   </code>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.loss.entropy">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       entropy()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.loss.entropy_logit">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       entropy_logit()
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#entropyloss">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     EntropyLoss
-    </span>
-   </code>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.loss.EntropyLoss">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       EntropyLoss
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.loss.EntropyLogitLoss">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       EntropyLogitLoss
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-</nav>
-</div>
-
-<div class="toc-item">
-  
-<div id="searchbox"></div>
-</div>
-
-<div class="toc-item">
-  
-</div>
-
-<div class="toc-item">
-  
-<div class="tocsection sourcelink">
-    <a href="../_sources/api/hypercoil.loss.entropy.rst.txt">
-        <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-</div>
-
-</div>
-
+              
+              
             </div>
-          
-          
-        </div>
-        <footer class="bd-footer-content">
-          <div class="bd-footer-content__inner">
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy"><code class="docutils literal notranslate"><span class="pre">entropy</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropyloss"><code class="docutils literal notranslate"><span class="pre">EntropyLoss</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/api/hypercoil.loss.entropy.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
             
           </div>
-        </footer>
+          <footer class="bd-footer-content">
+            
+          </footer>
         
       </main>
     </div>
   </div>
-
   
-    
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-  <footer class="bd-footer"><div class="bd-footer__inner container">
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
   
-  <div class="footer-item">
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
     
-<p class="copyright">
-
-    &copy; Copyright 2022-, the development team.<br>
-
-</p>
-
-  </div>
+      © Copyright 2022-, the development team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    <br/>
+  </p>
+</div>
+      
+    </div>
   
-  <div class="footer-item">
-    
-<p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.3.<br>
-</p>
-
-  </div>
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
   
 </div>
+
   </footer>
   </body>
 </html>

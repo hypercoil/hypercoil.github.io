@@ -1,41 +1,41 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" data-theme="dark">
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>atlasmixins: Atlas mixins &#8212; hypercoil prototype (unreleased) documentation</title>
-  <script>
+  
+  
+  
+  <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.init.atlasmixins';</script>
@@ -43,245 +43,265 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="base: Base initialisations" href="hypercoil.init.base.html" />
     <link rel="prev" title="AtlasInitialiser" href="hypercoil.init.atlas.AtlasInitialiser.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="dark">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
-  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
   <label class="overlay overlay-primary" for="__primary"></label>
-
   
-  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
   <label class="overlay overlay-secondary" for="__secondary"></label>
-
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
-      
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    </div>
+</form></div>
   </div>
-
   
-  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
-      <span class="fa-solid fa-bars"></span>
+    <span class="fa-solid fa-bars"></span>
   </label>
-  <div id="navbar-start">
-    
-    
   
-
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
 
 <a class="navbar-brand logo" href="../index.html">
-
   
   
   
   
+    
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>`);</script>
   
   
-  
-
-  
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
-    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
-  
-  
-</a>
+</a></div>
     
   </div>
-
+  
   
   <div class="col-lg-9 navbar-header-items">
-    <div id="navbar-center" class="mr-auto">
+    
+    <div class="me-auto navbar-header-items__center">
       
-      <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
-        
-                <li class="nav-item">
-                    <a class="nav-link" href="../installation.html">
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
                         Installation
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../overview.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../overview.html">
                         Technical overview
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../diffprog.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../diffprog.html">
                         Framework
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item current active">
-                    <a class="nav-link" href="../modules.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../modules.html">
                         API reference
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../examples.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples.html">
                         Examples
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
-    </ul>
-</nav>
-      </div>
+  </ul>
+</nav></div>
       
     </div>
-
-    <div id="navbar-end">
-      <div class="navbar-end-item navbar-end__search-button-container">
-        
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-      </div>
+    
+    
+    <div class="navbar-header-items__end">
       
-      <div class="navbar-end-item">
-        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
-    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
-    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
-    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
-</span>
-      </div>
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
       
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-      </ul>
-      </div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
       
     </div>
+    
   </div>
-
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
 
   
-  <div class="search-button-container--mobile">
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-  </div>
-
-  
-  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
       <span class="fa-solid fa-outdent"></span>
-  </label>
+    </label>
   
-
 </div>
-  </nav>
-  
 
+    </nav>
+  
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       <div class="bd-sidebar-primary bd-sidebar">
         
+
   
   <div class="sidebar-header-items sidebar-primary__section">
     
     
       <div class="sidebar-header-items__center">
-      
-      <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
         
-                <li class="nav-item">
-                    <a class="nav-link" href="../installation.html">
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
                         Installation
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../overview.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../overview.html">
                         Technical overview
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../diffprog.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../diffprog.html">
                         Framework
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item current active">
-                    <a class="nav-link" href="../modules.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../modules.html">
                         API reference
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../examples.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples.html">
                         Examples
-                    </a>
-                </li>
+                      </a>
+                    </li>
                 
-    </ul>
-</nav>
-      </div>
-      
+  </ul>
+</nav></div>
+        
       </div>
     
-
     
     
-    <div class="sidebar-header-items__end">
-      
-      <div class="navbar-end-item">
-        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
-    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
-    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
-    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
-</span>
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
       </div>
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-      </ul>
-      </div>
-      
-    </div>
     
   </div>
-
   
-  <div class="sidebar-start-items sidebar-primary__section">
-    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">
-    Section Navigation
-  </p>
-  <div class="bd-toc-item navbar-nav">
-    <ul class="current nav bd-sidenav">
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../engine.html"><code class="docutils literal notranslate"><span class="pre">engine</span></code>: Differentiable engine</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="simple">
 </ul>
 </li>
@@ -619,766 +639,175 @@
 </ul>
 </li>
 </ul>
-
-  </div>
-</nav>
+</div>
+</nav></div>
     </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
   
+  <div id="rtd-footer-container"></div>
 
-  
-  <div class="sidebar-end-items sidebar-primary__section">
-    <div class="sidebar-end-items__item">
-    </div>
-  </div>
 
       </div>
-      <main class="bd-main">
+      
+      <main id="main-content" class="bd-main">
         
         
-        <div class="bd-content">
-          <div class="bd-article-container">
-            
-            <div class="bd-header-article">
-                
-            </div>
-            
-            
-            <article class="bd-article" role="main">
+          <div class="bd-content">
+            <div class="bd-article-container">
               
-  <section id="module-hypercoil.init.atlasmixins">
-<span id="atlasmixins-atlas-mixins"></span><h1><code class="docutils literal notranslate"><span class="pre">atlasmixins</span></code>: Atlas mixins<a class="headerlink" href="#module-hypercoil.init.atlasmixins" title="Permalink to this heading">#</a></h1>
-<p>Mixins for designing atlas classes.</p>
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../modules.html" class="nav-link">API reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../init.html" class="nav-link"><code class="docutils literal notranslate"><span class="pre">init</span></code>: Initialisation schemes</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><code class="docutils literal notranslate"><span class="pre">atlasmixins</span></code>: Atlas mixins</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="atlasmixins-atlas-mixins">
+<h1><code class="docutils literal notranslate"><span class="pre">atlasmixins</span></code>: Atlas mixins<a class="headerlink" href="#atlasmixins-atlas-mixins" title="Permalink to this heading">#</a></h1>
 <section id="referencemixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~ReferenceMixin</span></code><a class="headerlink" href="#referencemixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._VolumeObjectReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_VolumeObjectReferenceMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L501-L517"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._VolumeObjectReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to load a reference into an atlas class.</p>
-<p>For use when a NIfTI image object is already provided as the
-<code class="docutils literal notranslate"><span class="pre">ref_pointer</span></code> argument.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._SurfaceObjectReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_SurfaceObjectReferenceMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L519-L535"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._SurfaceObjectReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to load a reference into an atlas class.</p>
-<p>For use when a CIfTI image object is already provided as the
-<code class="docutils literal notranslate"><span class="pre">ref_pointer</span></code> argument.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._VolumeSingleReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_VolumeSingleReferenceMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L537-L554"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._VolumeSingleReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to load a reference into an atlas class.</p>
-<p>For use when the <code class="docutils literal notranslate"><span class="pre">ref_pointer</span></code> object references a single path to a
-volumetric image on disk.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._SurfaceSingleReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_SurfaceSingleReferenceMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L556-L573"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._SurfaceSingleReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to load a reference into an atlas class.</p>
-<p>For use when the <code class="docutils literal notranslate"><span class="pre">ref_pointer</span></code> object references a single path to a
-surface image on disk.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._VolumeMultiReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_VolumeMultiReferenceMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L575-L601"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._VolumeMultiReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to load a reference into an atlas class.</p>
-<p>For use when the <code class="docutils literal notranslate"><span class="pre">ref_pointer</span></code> object is an iterable of paths to
-volumetric images on disk.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._PhantomReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_PhantomReferenceMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L603-L636"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._PhantomReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to load a reference into an atlas class.</p>
-<p>For use when the data content of the reference is unimportant, for
-instance when instances of the atlas class are to be initialised from a
-distribution rather than from an existing reference. The reference is
-still used for inferring dimensions of the atlas and input images.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._CIfTIReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_CIfTIReferenceMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L658-L691"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._CIfTIReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use if an atlas uses a CIfTI as its reference. This class implements the
-additional methods <code class="docutils literal notranslate"><span class="pre">axes</span></code> and <code class="docutils literal notranslate"><span class="pre">model_axis</span></code>, which facilitate access to
-CIfTI model axes. Note that this is <em>not</em> a substitute for a reference
-loader mixin like <code class="docutils literal notranslate"><span class="pre">_ObjectReferenceMixin</span></code> or <code class="docutils literal notranslate"><span class="pre">_SingleReferenceMixin</span></code>.</p>
-<p class="rubric">Methods</p>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>to_image</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </section>
 <section id="maskmixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~MaskMixin</span></code><a class="headerlink" href="#maskmixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._LogicMaskMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_LogicMaskMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L693-L736"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._LogicMaskMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to create an overall mask that specifies atlas inclusion status of
-spatial locations.</p>
-<p>For use when the mask source is either a path on the file system
-containing Boolean-valued data or a nested logical expression tree
-(comprising operation nodes such as <code class="docutils literal notranslate"><span class="pre">MaskIntersection</span></code> or
-<code class="docutils literal notranslate"><span class="pre">MaskThreshold</span></code> with filesystem paths as leaf nodes).</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._CortexSubcortexCIfTIMaskMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_CortexSubcortexCIfTIMaskMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L738-L763"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._CortexSubcortexCIfTIMaskMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to create an overall mask that specifies atlas inclusion status of
-spatial locations.</p>
-<p>For use when creating a CIfTI atlas with separate cortical and subcortical
-compartments, and when the provided mask source indicates medial wall
-regions of the cortical surface marked for exclusion from the atlas.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._FromNullMaskMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_FromNullMaskMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L765-L788"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._FromNullMaskMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to create an overall mask that specifies atlas inclusion status of
-spatial locations.</p>
-<p>For use when automatically creating a mask by excluding all background-
-or null-valued (typically 0-valued) spatial locations from the reference.
-For single-volume references (typically discrete-valued), this mixin
-creates a mask that includes all locations not labelled as background.
-For multi-volume references (often continuous-valued), this mixin
-creates a mask that includes all locations that are greater than or equal
-to the provided source parameter after taking the sum across volumes.</p>
-</dd></dl>
-
 </section>
 <section id="compartmentmixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~CompartmentMixin</span></code><a class="headerlink" href="#compartmentmixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._SingleCompartmentMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_SingleCompartmentMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L790-L813"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._SingleCompartmentMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to isolate spatial subcompartments of the overall atlas such that each
-has separate label sets.</p>
-<p>For use when no isolation is desired, and the entire atlased region is a
-single compartment.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._MultiCompartmentMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_MultiCompartmentMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L819-L856"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._MultiCompartmentMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to isolate spatial subcompartments of the overall atlas such that each
-has separate label sets.</p>
-<p>For use when isolation into multiple compartments is desired. With this
-mixin, each extra keyword argument passed to the atlas constructor is
-interpreted as a name-mask path pair defining an atlas compartment.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._CortexSubcortexCIfTICompartmentMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_CortexSubcortexCIfTICompartmentMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L858-L916"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._CortexSubcortexCIfTICompartmentMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to isolate spatial subcompartments of the overall atlas such that each
-has separate label sets.</p>
-<p>For use when creating a CIfTI-based atlas with separate subcompartments
-for the left and right cortical hemispheres and for subcortical locations.</p>
-</dd></dl>
-
 </section>
 <section id="labelmixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~LabelMixin</span></code><a class="headerlink" href="#labelmixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._DiscreteLabelMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_DiscreteLabelMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L918-L959"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._DiscreteLabelMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to decode label sets present in an atlas and to create a linear map
-representation of the atlas.</p>
-<p>For use when the label sets are encoded as discrete values in a single
-reference volume or surface.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._ContinuousLabelMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_ContinuousLabelMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L961-L1005"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._ContinuousLabelMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to decode label sets present in an atlas and to create a linear map
-representation of the atlas.</p>
-<p>For use when the label sets are encoded across multiple volumes. This is
-necessary for continuous-valued atlases or atlases with overlapping
-labels, but is also a valid encoding scheme for discrete-valued atlases.
-If the reference uses a single volume or surface, use
-<code class="docutils literal notranslate"><span class="pre">DiscreteLabelMixin</span></code> instead.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._DirichletLabelMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_DirichletLabelMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L1007-L1055"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._DirichletLabelMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to decode label sets present in an atlas and to create a linear map
-representation of the atlas.</p>
-<p>For use when the linear map is to be initialised from a Dirichlet
-distribution rather than a reference. This requires the prior existence of
-a dictionary attribute called <code class="docutils literal notranslate"><span class="pre">compartment_labels</span></code> for the Atlas object,
-whose key-value pairs associate to each atlas compartment an integer
-number of labels. It additionally requires a second key-value mapping
-<code class="docutils literal notranslate"><span class="pre">init</span></code>, whose entries associate to each atlas compartment the Dirichlet
-distribution from which that compartment’s parcel assignment probability
-distributions are to be sampled. These mappings can be instantiated in the
-atlas class’s constructor method, potentially from user arguments.</p>
-</dd></dl>
-
 </section>
 <section id="meshmixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~MeshMixin</span></code><a class="headerlink" href="#meshmixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._VolumetricMeshMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_VolumetricMeshMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L1057-L1097"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._VolumetricMeshMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Used to establish a coordinate system over the linear map representations
-of the atlas.</p>
-<p>For use when the atlas reference comprises evenly spaced volumetric
-samples (i.e., voxels).</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._VertexCIfTIMeshMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_VertexCIfTIMeshMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L1099-L1145"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._VertexCIfTIMeshMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Used to establish a coordinate system over the linear map representations
-of the atlas.</p>
-<p>For use when the atlas reference is a CIfTI that includes some samples
-associated to cortical surface meshes. This mixin establishes a spherical
-topology for cortical samples and a Euclidean topology for subcortical
-samples.</p>
-</dd></dl>
-
 </section>
 <section id="convmixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~ConvMixin</span></code><a class="headerlink" href="#convmixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._EvenlySampledConvMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_EvenlySampledConvMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L1147-L1174"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._EvenlySampledConvMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Used to spatially convolve atlas parcels for smoothing.</p>
-<p>This mixin is currently unsupported and likely will not function without
-substantial extra code, although it is likely to perform better under
-many conditions. Its use is not currently advised.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._SpatialConvMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_SpatialConvMixin</span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L1176-L1223"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._SpatialConvMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Used to spatially convolve atlas parcels for smoothing.</p>
-<p>For use when a coordinate mesh is available for the atlas and either
-Euclidean or spherical topologies are assigned to each of its
-compartments.</p>
-</dd></dl>
-
 </section>
 <section id="abstractions">
 <h2>Abstractions<a class="headerlink" href="#abstractions" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.Reference">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">Reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L116-L295"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.Reference" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">axobj</span></code></dt><dd><p>Thanks to Chris Markiewicz for tutorials that shaped this implementation.</p>
-</dd>
-<dt><strong>data</strong></dt><dd></dd>
-<dt><strong>dataobj</strong></dt><dd></dd>
-<dt><strong>header</strong></dt><dd></dd>
-<dt><strong>model_axobj</strong></dt><dd></dd>
-<dt><strong>model_shape</strong></dt><dd></dd>
-<dt><strong>model_zooms</strong></dt><dd></dd>
-<dt><strong>modelobj</strong></dt><dd></dd>
-<dt><strong>ndim</strong></dt><dd></dd>
-<dt><strong>nifti_header</strong></dt><dd></dd>
-<dt><strong>other_axes</strong></dt><dd></dd>
-<dt><strong>shape</strong></dt><dd></dd>
-<dt><strong>zooms</strong></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>cache_dataobj</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>cache_modelobj</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>cifti_model_axes</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>dataobj_from_imobj</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>imobj_from_pointer</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>load_imobj</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>purge_cache</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.Mask">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">Mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L297-L377"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.Mask" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong></dt><dd></dd>
-<dt><strong>shape</strong></dt><dd></dd>
-<dt><strong>size</strong></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>map_to_masked</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.Compartment">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">Compartment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L379-L422"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.Compartment" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong></dt><dd></dd>
-<dt><strong>mask_array</strong></dt><dd></dd>
-<dt><strong>shape</strong></dt><dd></dd>
-<dt><strong>size</strong></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>dynamic_slice_map</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>map_to_masked</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins.CompartmentSet">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">CompartmentSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlasmixins.py#L424-L490"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins.CompartmentSet" title="Permalink to this definition">#</a></dt>
-<dd><p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">map_to_contiguous</span></code>()</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>dynamic_slice_map</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>get</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>items</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>keys</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>values</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </section>
 </section>
 
 
-            </article>
-            
-            
-            
-          </div>
-          
-          
-          
-            <div class="bd-sidebar-secondary bd-toc">
+                </article>
               
-<div class="toc-item">
-  
-<div class="tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-</div>
-<nav id="bd-toc-nav" class="page-toc">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#referencemixin">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     ~ReferenceMixin
-    </span>
-   </code>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._VolumeObjectReferenceMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _VolumeObjectReferenceMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._SurfaceObjectReferenceMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _SurfaceObjectReferenceMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._VolumeSingleReferenceMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _VolumeSingleReferenceMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._SurfaceSingleReferenceMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _SurfaceSingleReferenceMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._VolumeMultiReferenceMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _VolumeMultiReferenceMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._PhantomReferenceMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _PhantomReferenceMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._CIfTIReferenceMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _CIfTIReferenceMixin
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#maskmixin">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     ~MaskMixin
-    </span>
-   </code>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._LogicMaskMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _LogicMaskMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._CortexSubcortexCIfTIMaskMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _CortexSubcortexCIfTIMaskMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._FromNullMaskMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _FromNullMaskMixin
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#compartmentmixin">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     ~CompartmentMixin
-    </span>
-   </code>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._SingleCompartmentMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _SingleCompartmentMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._MultiCompartmentMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _MultiCompartmentMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._CortexSubcortexCIfTICompartmentMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _CortexSubcortexCIfTICompartmentMixin
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#labelmixin">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     ~LabelMixin
-    </span>
-   </code>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._DiscreteLabelMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _DiscreteLabelMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._ContinuousLabelMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _ContinuousLabelMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._DirichletLabelMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _DirichletLabelMixin
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#meshmixin">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     ~MeshMixin
-    </span>
-   </code>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._VolumetricMeshMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _VolumetricMeshMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._VertexCIfTIMeshMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _VertexCIfTIMeshMixin
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convmixin">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     ~ConvMixin
-    </span>
-   </code>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._EvenlySampledConvMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _EvenlySampledConvMixin
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._SpatialConvMixin">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       _SpatialConvMixin
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#abstractions">
-   Abstractions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.Reference">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       Reference
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.Mask">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       Mask
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.Compartment">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       Compartment
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hypercoil.init.atlasmixins.CompartmentSet">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       CompartmentSet
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-</nav>
-</div>
-
-<div class="toc-item">
-  
-<div id="searchbox"></div>
-</div>
-
-<div class="toc-item">
-  
-</div>
-
-<div class="toc-item">
-  
-<div class="tocsection sourcelink">
-    <a href="../_sources/api/hypercoil.init.atlasmixins.rst.txt">
-        <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-</div>
-
-</div>
-
+              
+              
             </div>
-          
-          
-        </div>
-        <footer class="bd-footer-content">
-          <div class="bd-footer-content__inner">
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencemixin"><code class="docutils literal notranslate"><span class="pre">~ReferenceMixin</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maskmixin"><code class="docutils literal notranslate"><span class="pre">~MaskMixin</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compartmentmixin"><code class="docutils literal notranslate"><span class="pre">~CompartmentMixin</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#labelmixin"><code class="docutils literal notranslate"><span class="pre">~LabelMixin</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meshmixin"><code class="docutils literal notranslate"><span class="pre">~MeshMixin</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convmixin"><code class="docutils literal notranslate"><span class="pre">~ConvMixin</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstractions">Abstractions</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/api/hypercoil.init.atlasmixins.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
             
           </div>
-        </footer>
+          <footer class="bd-footer-content">
+            
+          </footer>
         
       </main>
     </div>
   </div>
-
   
-    
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-  <footer class="bd-footer"><div class="bd-footer__inner container">
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
   
-  <div class="footer-item">
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
     
-<p class="copyright">
-
-    &copy; Copyright 2022-, the development team.<br>
-
-</p>
-
-  </div>
+      © Copyright 2022-, the development team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    <br/>
+  </p>
+</div>
+      
+    </div>
   
-  <div class="footer-item">
-    
-<p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.3.<br>
-</p>
-
-  </div>
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
   
 </div>
+
   </footer>
   </body>
 </html>
