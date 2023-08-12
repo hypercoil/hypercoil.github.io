@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.connectopy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,9 +703,187 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">connectopy</span></code>: Generalised connectopy<a class="headerlink" href="#connectopy-generalised-connectopy" title="Permalink to this heading">#</a></h1>
 <section id="connectopy">
 <h2><code class="docutils literal notranslate"><span class="pre">connectopy</span></code><a class="headerlink" href="#connectopy" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.connectopy">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">connectopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dissimilarity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affinity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progressive_theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L1914-L1950"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.connectopy" title="Permalink to this definition">#</a></dt>
+<dd><p>Generalised connectopic functional, for computing different kinds of
+connectopic maps.</p>
+<div class="admonition-connectopic-functional admonition">
+<p class="admonition-title">Connectopic functional</p>
+<p>Given an affinity matrix A, the connectopic functional is the
+objective</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{1}^\intercal \left( \mathbf{A} \circ S_\theta(\mathbf{Q}) \right) \mathbf{1}\)</span></p>
+<p>for a pairwise function S. The default pairwise function is the square
+of the L2 distance. The columns of the Q that minimises the objective
+are the learned connectopic maps.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you’re using this for a well-characterised connectopic map with a
+closed-form or algorithmically optimised solution, such as Laplacian
+eigenmaps or many forms of community detection, then in most cases you
+would be better off directly computing exact maps rather than using
+this functional to approximate them.</p>
+<p>Because this operation attempts to learn all of the maps that jointly
+minimise the objective in a single shot rather than using iterative
+projection, it is more prone to misalignment than a projective approach
+for eigendecomposition-based maps.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Note that a connectopic loss is often insufficient on its own as a
+loss. It should be combined with appropriate projections and
+constraints, for instance to ensure the learned maps are zero-centred
+and orthogonal.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Q :</strong> <span class="math notranslate nohighlight">\((D, C)\)</span></dt><dd><p>D denotes the number of vertices in the affinity matrix
+and C denotes the number of proposed maps.</p>
+</dd>
+<dt><strong>A :</strong> <span class="math notranslate nohighlight">\((D, D)\)</span></dt><dd><p>As above.</p>
+</dd>
+<dt><strong>D :</strong> <span class="math notranslate nohighlight">\((D, D)\)</span></dt><dd><p>As above.</p>
+</dd>
+<dt><strong>theta :</strong> <span class="math notranslate nohighlight">\((C)\)</span> or <span class="math notranslate nohighlight">\((C, C)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>Q</strong><span class="classifier">tensor</span></dt><dd><p>Proposed connectopies or maps.</p>
+</dd>
+<dt><strong>A</strong><span class="classifier">tensor</span></dt><dd><p>Affinity matrix.</p>
+</dd>
+<dt><strong>D</strong><span class="classifier">tensor or None (default None)</span></dt><dd><p>If this argument is provided, then the affinity matrix is first
+transformed as <span class="math notranslate nohighlight">\(D A D^\intercal\)</span>. For instance, setting D to
+a diagonal matrix whose entries are the reciprocal of the square root
+of vertex degrees corresponds to learning eigenmaps of a normalised
+graph Laplacian.</p>
+</dd>
+<dt><strong>theta</strong><span class="classifier">tensor, float, or None (default None)</span></dt><dd><p>Parameterisation of the pairwise dissimilarity function.</p>
+</dd>
+<dt><strong>omega</strong><span class="classifier">tensor, float, or None (default None)</span></dt><dd><p>Optional parameterisation of the affinity function, if one is
+provided.</p>
+</dd>
+<dt><strong>dissimilarity</strong><span class="classifier">callable</span></dt><dd><p>Function to compute dissimilarity between latent coordinates induced
+by the proposed connectopies. By default, the square of the L2
+distance is used. The callable must accept <code class="docutils literal notranslate"><span class="pre">Q</span></code> and <code class="docutils literal notranslate"><span class="pre">theta</span></code> as
+arguments. (<code class="docutils literal notranslate"><span class="pre">theta</span></code> may be unused.)</p>
+</dd>
+<dt><strong>affinity</strong><span class="classifier">callable or None (default None)</span></dt><dd><p>If an affinity function is provided, then the image of argument A
+under this function is the affinity matrix. Otherwise, argument A is
+the affinity matrix.</p>
+</dd>
+<dt><strong>progressive_theta</strong><span class="classifier">bool (default False)</span></dt><dd><p>When this is True, a <code class="docutils literal notranslate"><span class="pre">theta</span></code> is generated such that the last map in
+<code class="docutils literal notranslate"><span class="pre">Q</span></code> has a weight of 1, the second-to-last has a weight of 2, and so
+on. This can be used to encourage the last column to correspond to the
+least important connectopic map and the first column to correspond to
+the most important connectopic map.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>Tensor</dt><dd><p>Connectopic functional value.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="connectopyloss">
 <h2><code class="docutils literal notranslate"><span class="pre">ConnectopyLoss</span></code><a class="headerlink" href="#connectopyloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.ConnectopyLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">ConnectopyLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1740-L1814"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.ConnectopyLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Generalised connectopic functional, for computing different kinds of
+connectopic maps.</p>
+<div class="admonition-connectopic-functional admonition">
+<p class="admonition-title">Connectopic functional</p>
+<p>Given an affinity matrix A, the connectopic functional is the
+objective</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{1}^\intercal \left( \mathbf{A} \circ S_\theta(\mathbf{Q}) \right) \mathbf{1}\)</span></p>
+<p>for a pairwise function S. The default pairwise function is the square
+of the L2 distance. The columns of the Q that minimises the objective
+are the learned connectopic maps.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you’re using this for a well-characterised connectopic map with a
+closed-form or algorithmically optimised solution, such as Laplacian
+eigenmaps or many forms of community detection, then in most cases you
+would be better off directly computing exact maps rather than using
+this functional to approximate them.</p>
+<p>Because this operation attempts to learn all of the maps that jointly
+minimise the objective in a single shot rather than using iterative
+projection, it is more prone to misalignment than a projective approach
+for eigendecomposition-based maps.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Note that a connectopic loss is often insufficient on its own as a
+loss. It should be combined with appropriate projections and
+constraints, for instance to ensure the learned maps are zero-centred
+and orthogonal.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>theta</strong><span class="classifier">tensor, float, or None (default None)</span></dt><dd><p>Parameterisation of the pairwise dissimilarity function.</p>
+</dd>
+<dt><strong>omega</strong><span class="classifier">tensor, float, or None (default None)</span></dt><dd><p>Optional parameterisation of the affinity function, if one is
+provided.</p>
+</dd>
+<dt><strong>dissimilarity</strong><span class="classifier">callable</span></dt><dd><p>Function to compute dissimilarity between latent coordinates induced
+by the proposed connectopies. By default, the square of the L2
+distance is used. The callable must accept <code class="docutils literal notranslate"><span class="pre">Q</span></code> and <code class="docutils literal notranslate"><span class="pre">theta</span></code> as
+arguments. (<code class="docutils literal notranslate"><span class="pre">theta</span></code> may be unused.)</p>
+</dd>
+<dt><strong>affinity</strong><span class="classifier">callable or None (default None)</span></dt><dd><p>If an affinity function is provided, then the image of argument A
+under this function is the affinity matrix. Otherwise, argument A is
+the affinity matrix.</p>
+</dd>
+<dt><strong>progressive_theta</strong><span class="classifier">bool (default False)</span></dt><dd><p>When this is True, a <code class="docutils literal notranslate"><span class="pre">theta</span></code> is generated such that the last map in
+<code class="docutils literal notranslate"><span class="pre">Q</span></code> has a weight of 1, the second-to-last has a weight of 2, and so
+on. This can be used to encourage the last column to correspond to the
+least important connectopic map and the first column to correspond to
+the most important connectopic map.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(Q, A[, D, theta, omega, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +904,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectopy"><code class="docutils literal notranslate"><span class="pre">connectopy</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectopyloss"><code class="docutils literal notranslate"><span class="pre">ConnectopyLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectopy"><code class="docutils literal notranslate"><span class="pre">connectopy</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.connectopy"><code class="docutils literal notranslate"><span class="pre">connectopy()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectopyloss"><code class="docutils literal notranslate"><span class="pre">ConnectopyLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.ConnectopyLoss"><code class="docutils literal notranslate"><span class="pre">ConnectopyLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -702,9 +702,96 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">batch_corr</span></code>: Batch-axis correlation<a class="headerlink" href="#batch-corr-batch-axis-correlation" title="Permalink to this heading">#</a></h1>
 <section id="batch-corr">
 <h2><code class="docutils literal notranslate"><span class="pre">batch_corr</span></code><a class="headerlink" href="#batch-corr" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.batch_corr">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">batch_corr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'auto'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_sig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L1295-L1332"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.batch_corr" title="Permalink to this definition">#</a></dt>
+<dd><p>Correlation over the batch dimension.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>X</strong><span class="classifier">tensor</span></dt><dd><p>Tensor block containing measures to be correlated with those in <code class="docutils literal notranslate"><span class="pre">N</span></code>.</p>
+</dd>
+<dt><strong>N</strong><span class="classifier">tensor</span></dt><dd><p>Vector of measures with which the measures in <code class="docutils literal notranslate"><span class="pre">X</span></code> are to be
+correlated.</p>
+</dd>
+<dt><strong>tol</strong><span class="classifier">nonnegative float or <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> (default 0)</span></dt><dd><p>Tolerance for correlations. Only correlation values above <code class="docutils literal notranslate"><span class="pre">tol</span></code> are
+counted. If this is set to <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>, a tolerance is computed for the
+batch size given the significance level in <code class="docutils literal notranslate"><span class="pre">tol_sig</span></code>.</p>
+</dd>
+<dt><strong>tol_sig</strong><span class="classifier">float in (0, 1)</span></dt><dd><p>Significance level for correlation tolerance. Used only if <code class="docutils literal notranslate"><span class="pre">tol</span></code> is
+set to <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>.</p>
+</dd>
+<dt><strong>abs</strong><span class="classifier">bool (default True)</span></dt><dd><p>Use the absolute value of correlations. If this is being used as a loss
+function, the model’s weights will thus be updated to shrink all
+batchwise correlations toward zero.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>tensor</dt><dd><p>Absolute correlation of each vector in <code class="docutils literal notranslate"><span class="pre">X</span></code> with <code class="docutils literal notranslate"><span class="pre">N</span></code>, after
+thresholding at <cite>tol</cite>. Note that, if you want the original
+correlations back, you will have to add <code class="docutils literal notranslate"><span class="pre">tol</span></code> to any nonzero
+correlations.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="batchcorrelationloss">
 <h2><code class="docutils literal notranslate"><span class="pre">BatchCorrelationLoss</span></code><a class="headerlink" href="#batchcorrelationloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.BatchCorrelationLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">BatchCorrelationLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1374-L1428"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.BatchCorrelationLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Batch correlation loss.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>tol</strong><span class="classifier">nonnegative float or <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> (default 0)</span></dt><dd><p>Tolerance for correlations. Only correlation values above <code class="docutils literal notranslate"><span class="pre">tol</span></code> are
+counted. If this is set to <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>, a tolerance is computed for the
+batch size given the significance level in <code class="docutils literal notranslate"><span class="pre">tol_sig</span></code>.</p>
+</dd>
+<dt><strong>tol_sig</strong><span class="classifier">float in (0, 1)</span></dt><dd><p>Significance level for correlation tolerance. Used only if <code class="docutils literal notranslate"><span class="pre">tol</span></code> is
+set to <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>.</p>
+</dd>
+<dt><strong>abs</strong><span class="classifier">bool (default True)</span></dt><dd><p>Use the absolute value of correlations. If this is being used as a loss
+function, the model’s weights will thus be updated to shrink all
+batchwise correlations toward zero.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(X, N, *[, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +812,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-corr"><code class="docutils literal notranslate"><span class="pre">batch_corr</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batchcorrelationloss"><code class="docutils literal notranslate"><span class="pre">BatchCorrelationLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-corr"><code class="docutils literal notranslate"><span class="pre">batch_corr</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.batch_corr"><code class="docutils literal notranslate"><span class="pre">batch_corr()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batchcorrelationloss"><code class="docutils literal notranslate"><span class="pre">BatchCorrelationLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.BatchCorrelationLoss"><code class="docutils literal notranslate"><span class="pre">BatchCorrelationLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

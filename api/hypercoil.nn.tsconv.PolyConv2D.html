@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.tsconv.PolyConv2D';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -346,6 +347,64 @@ document.write(`
                   
   <section id="polyconv2d">
 <h1><code class="docutils literal notranslate"><span class="pre">PolyConv2D</span></code><a class="headerlink" href="#polyconv2d" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.nn.tsconv.PolyConv2D">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.nn.tsconv.</span></span><span class="sig-name descname"><span class="pre">PolyConv2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/nn/tsconv.py#L92-L187"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.tsconv.PolyConv2D" title="Permalink to this definition">#</a></dt>
+<dd><p>2D convolution over a polynomial expansion of an input signal.</p>
+<p>In a degree-K polynomial convolution, each channel of the input dataset is
+mapped across K channels, and raised to the ith power at the ith channel.
+The convolution kernel’s ith input channel thus views the input dataset
+raised to the ith power.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((N, *, P, O)\)</span></dt><dd><p>N denotes batch size, <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of
+intervening dimensions, P denotes number of data channels
+or variables, O denotes number of time points or
+observations per channel.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((N, *, C_{out}, P, O)\)</span></dt><dd><p><span class="math notranslate nohighlight">\(C_{out}\)</span> denotes number of output channels.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>degree</strong><span class="classifier">int (default 2)</span></dt><dd><p>Maximum degree of the polynomial expansion.</p>
+</dd>
+<dt><strong>out_channels</strong><span class="classifier">int (default 1)</span></dt><dd><p>Number of output channels produced by the convolution.</p>
+</dd>
+<dt><strong>memory</strong><span class="classifier">int (default 3)</span></dt><dd><p>Kernel memory. The number of previous observations viewable by the
+kernel.</p>
+</dd>
+<dt><strong>kernel_width</strong><span class="classifier">int (default 1)</span></dt><dd><p>Number of adjoining variables simultaneously viewed by the kernel.
+Unless the variables are ordered and evenly sampled, this should either
+be 1 or P. Setting this equal to 1 applies the same kernel to all
+variables, while setting it equal to P applies a unique kernel for
+each variable.</p>
+</dd>
+<dt><strong>padding</strong><span class="classifier">int or None (default None)</span></dt><dd><p>Number of zero-padding frames added to both sides of the input.</p>
+</dd>
+<dt><strong>bias</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that a learnable bias should be added channel-wise to the
+output.</p>
+</dd>
+<dt><strong>include_const</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that a constant term should be included in the polynomial
+expansion. This is almost equivalent to <cite>bias</cite>, and it is advised to
+use <cite>bias</cite> instead because it both is more efficient and exhibits more
+appropriate edge behaviours.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>weight</strong><span class="classifier">Tensor</span></dt><dd><p>Learnable kernel weights for polynomial convolution.</p>
+</dd>
+<dt><strong>bias</strong><span class="classifier">Tensor</span></dt><dd><p>Learnable bias for polynomial convolution.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -358,6 +417,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.tsconv.PolyConv2D"><code class="docutils literal notranslate"><span class="pre">PolyConv2D()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

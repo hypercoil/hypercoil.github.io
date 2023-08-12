@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.init.semidefinite.TangencyInitialiser';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -707,9 +708,63 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">TangencyInitialiser</span></code><a class="headerlink" href="#tangencyinitialiser" title="Permalink to this heading">#</a></h1>
 <section id="tangency-init">
 <h2><code class="docutils literal notranslate"><span class="pre">tangency_init</span></code><a class="headerlink" href="#tangency-init" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.init.semidefinite.tangency_init">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.init.semidefinite.</span></span><span class="sig-name descname"><span class="pre">tangency_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">init_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_specs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/semidefinite.py#L92-L141"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.semidefinite.tangency_init" title="Permalink to this definition">#</a></dt>
+<dd><p>Initialise points of tangency for projection between the positive
+semidefinite cone and a tangent subspace.</p>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>init_data :</strong> <span class="math notranslate nohighlight">\((N, *, D, D)\)</span> or <span class="math notranslate nohighlight">\((N, *, obs, C)\)</span>
+N denotes the number of observations over which each mean
+is computed. If the axis attribute of the mean
+specifications are configured appropriately, N need not
+correspond to the first axis of the input dataset.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>init_data</strong><span class="classifier">Tensor</span></dt><dd><p>Input dataset over which each mean is to be estimated.</p>
+</dd>
+<dt><strong>mean_specs</strong><span class="classifier">list(<code class="docutils literal notranslate"><span class="pre">_SemidefiniteMean</span></code> objects)</span></dt><dd><p>List of specifications for estimating a measure of central tendency in
+the positive semidefinite cone. <code class="docutils literal notranslate"><span class="pre">_SemidefiniteMean</span></code> subclasses are
+found at
+<a class="reference internal" href="hypercoil.init.semidefinite.SemidefiniteMean.html"><span class="doc">hypercoil.init.semidefinite</span></a>.</p>
+</dd>
+<dt><strong>std</strong><span class="classifier">float</span></dt><dd><p>Standard deviation of the positive semidefinite noise added to each
+channel of the weight matrix. This can be used to ensure that
+different channels initialised from the same mean receive different
+gradients and differentiate from one another.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>Tensor</dt><dd><p>The initialised tensor.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="id1">
 <h2><code class="docutils literal notranslate"><span class="pre">TangencyInitialiser</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.semidefinite.TangencyInitialiser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.semidefinite.</span></span><span class="sig-name descname"><span class="pre">TangencyInitialiser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/semidefinite.py#L143-L202"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.semidefinite.TangencyInitialiser" title="Permalink to this definition">#</a></dt>
+<dd><p>Initialise points of tangency for projection between the positive
+semidefinite cone and a tangent subspace.</p>
+<p>See <a class="reference internal" href="#hypercoil.init.semidefinite.tangency_init" title="hypercoil.init.semidefinite.tangency_init"><code class="xref py py-func docutils literal notranslate"><span class="pre">tangency_init()</span></code></a> for argument details.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">init</span></code>(model, *[, mapper, std, where, key])</p></td>
+<td><p>Initialise a parameter using the specified initialiser and mapper.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -730,8 +785,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tangency-init"><code class="docutils literal notranslate"><span class="pre">tangency_init</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">TangencyInitialiser</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tangency-init"><code class="docutils literal notranslate"><span class="pre">tangency_init</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.semidefinite.tangency_init"><code class="docutils literal notranslate"><span class="pre">tangency_init()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">TangencyInitialiser</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.semidefinite.TangencyInitialiser"><code class="docutils literal notranslate"><span class="pre">TangencyInitialiser</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

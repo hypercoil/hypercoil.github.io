@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.sphere.spherical_geodesic';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,45 @@ document.write(`
                   
   <section id="spherical-geodesic">
 <h1><code class="docutils literal notranslate"><span class="pre">spherical_geodesic</span></code><a class="headerlink" href="#spherical-geodesic" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.sphere.spherical_geodesic">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.sphere.</span></span><span class="sig-name descname"><span class="pre">spherical_geodesic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/sphere.py#L82-L138"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.sphere.spherical_geodesic" title="Permalink to this definition">#</a></dt>
+<dd><p>Geodesic great-circle distance between two sets of spherical coordinates
+formatted as normal vectors.</p>
+<p>This is not a haversine distance, although the result is identical. Please
+ensure that input vectors are expressed as normals and not as latitude/
+longitude pairs. Because this uses a cross-product in the computation, it
+works only with 2-spheres.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X :</strong> <span class="math notranslate nohighlight">\((*, N_X, 3)\)</span>
+<strong>Y :</strong> <span class="math notranslate nohighlight">\((*, N_Y, 3)\)</span>
+<strong>Output :</strong> <span class="math notranslate nohighlight">\((*, N_X, N_Y)\)</span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor containing coordinates on a sphere formatted as surface-normal
+vectors in Euclidean coordinates. Distances are computed between each
+coordinate in X and each coordinate in Y.</p>
+</dd>
+<dt><strong>Y</strong><span class="classifier">Tensor or None (default X)</span></dt><dd><p>As X. If a second tensor is not provided, then distances are computed
+between every pair of points in X.</p>
+</dd>
+<dt><strong>r</strong><span class="classifier">float</span></dt><dd><p>Radius of the sphere. We could just get this from X or Y, but we
+don’t.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dist</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor containing pairwise great-circle distances between each
+coordinate in X and each coordinate in Y.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +757,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.sphere.spherical_geodesic"><code class="docutils literal notranslate"><span class="pre">spherical_geodesic()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

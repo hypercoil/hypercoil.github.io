@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.sparse.spsp_innerpaired';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,26 @@ document.write(`
                   
   <section id="spsp-innerpaired">
 <h1><code class="docutils literal notranslate"><span class="pre">spsp_innerpaired</span></code><a class="headerlink" href="#spsp-innerpaired" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.sparse.spsp_innerpaired">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.sparse.</span></span><span class="sig-name descname"><span class="pre">spsp_innerpaired</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BCOO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BCOO</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/sparse.py#L914-L952"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.sparse.spsp_innerpaired" title="Permalink to this definition">#</a></dt>
+<dd><p>Positive definite nondegenerate symmetric bilinear forms with sparse
+arguments.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The array dimension signature of this operation is informally</p>
+<p><span class="math notranslate nohighlight">\(\mathbb{R}^{m \times p} \times \mathbb{R}^{m \times p} \rightarrow \mathbb{R}^{m}\)</span></p>
+<p>while that of <code class="docutils literal notranslate"><span class="pre">spspmm</span></code> is</p>
+<p><span class="math notranslate nohighlight">\(\mathbb{R}^{m \times p} \times \mathbb{R}^{n \times p} \rightarrow \mathbb{R}^{m \times n}\)</span></p>
+<p>Every argument in <code class="docutils literal notranslate"><span class="pre">lhs</span></code> is thus paired with one in <code class="docutils literal notranslate"><span class="pre">rhs</span></code>. If your
+data do not fit this schema, then use <code class="docutils literal notranslate"><span class="pre">spspmm</span></code> instead.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">rhs</span></code> is not specified, then this computes a squared vector norm.</p>
+</div>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +738,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.sparse.spsp_innerpaired"><code class="docutils literal notranslate"><span class="pre">spsp_innerpaired()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

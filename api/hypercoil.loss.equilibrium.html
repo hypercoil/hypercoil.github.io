@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.equilibrium';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,9 +703,268 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">equilibrium</span></code>: Equilibrium loss<a class="headerlink" href="#equilibrium-equilibrium-loss" title="Permalink to this heading">#</a></h1>
 <section id="equilibrium">
 <h2><code class="docutils literal notranslate"><span class="pre">equilibrium</span></code><a class="headerlink" href="#equilibrium" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.equilibrium">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">equilibrium</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(-1,</span> <span class="pre">-2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L971-L995"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.equilibrium" title="Permalink to this definition">#</a></dt>
+<dd><p>Compute the parcel equilibrium.</p>
+<p>The equilibrium scores the deviation of the total weight assigned to each
+parcel or level from the mean weight assigned to each parcel or level. It
+can be used to encourage the model to learn parcels that are balanced in
+size.</p>
+<p>This function operates on probability tensors. For a version that operates
+on logits, see <a class="reference internal" href="#hypercoil.loss.equilibrium_logit" title="hypercoil.loss.equilibrium_logit"><code class="xref py py-func docutils literal notranslate"><span class="pre">equilibrium_logit()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X: Tensor</strong></dt><dd><p>A tensor of probabilities (or masses of another kind).</p>
+</dd>
+<dt><strong>level_axis: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes over which to compute the equilibrium. Within each
+data instance or weight channel, all elements along the specified axis
+or axes should correspond to a single level or parcel. The default is
+-1.</p>
+</dd>
+<dt><strong>prob_axis: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes over which to compute the probabilities (logit version
+only). The default is -2. In general the union of <code class="docutils literal notranslate"><span class="pre">level_axis</span></code> and
+<code class="docutils literal notranslate"><span class="pre">prob_axis</span></code> should be the same as <code class="docutils literal notranslate"><span class="pre">instance_axes</span></code>.</p>
+</dd>
+<dt><strong>instance_axes: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes corresponding to a single data instance or weight
+channel. This should be a superset of <cite>level_axis</cite>. The default is
+(-1, -2).</p>
+</dd>
+<dt><strong>keepdims: bool, optional</strong></dt><dd><p>As in <code class="xref py py-func docutils literal notranslate"><span class="pre">jax.numpy.sum()</span></code>. The default is True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>A tensor of equilibrium scores for each parcel or level.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.equilibrium_logit">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">equilibrium_logit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prob_axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(-1,</span> <span class="pre">-2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L997-L1026"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.equilibrium_logit" title="Permalink to this definition">#</a></dt>
+<dd><p>Project logits in the input matrix onto the probability simplex, and then
+compute the parcel equilibrium.</p>
+<p>The equilibrium scores the deviation of the total weight assigned to each
+parcel or level from the mean weight assigned to each parcel or level. It
+can be used to encourage the model to learn parcels that are balanced in
+size.</p>
+<p>This function operates on logits. For a version that operates on
+probabilities, see <a class="reference internal" href="#hypercoil.loss.equilibrium" title="hypercoil.loss.equilibrium"><code class="xref py py-func docutils literal notranslate"><span class="pre">equilibrium()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X: Tensor</strong></dt><dd><p>A tensor of probabilities (or masses of another kind).</p>
+</dd>
+<dt><strong>level_axis: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes over which to compute the equilibrium. Within each
+data instance or weight channel, all elements along the specified axis
+or axes should correspond to a single level or parcel. The default is
+-1.</p>
+</dd>
+<dt><strong>prob_axis: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes over which to compute the probabilities (logit version
+only). The default is -2. In general the union of <code class="docutils literal notranslate"><span class="pre">level_axis</span></code> and
+<code class="docutils literal notranslate"><span class="pre">prob_axis</span></code> should be the same as <code class="docutils literal notranslate"><span class="pre">instance_axes</span></code>.</p>
+</dd>
+<dt><strong>instance_axes: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes corresponding to a single data instance or weight
+channel. This should be a superset of <cite>level_axis</cite>. The default is
+(-1, -2).</p>
+</dd>
+<dt><strong>keepdims: bool, optional</strong></dt><dd><p>As in <code class="xref py py-func docutils literal notranslate"><span class="pre">jax.numpy.sum()</span></code>. The default is True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>A tensor of equilibrium scores for each parcel or level.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="equilibriumloss">
 <h2><code class="docutils literal notranslate"><span class="pre">EquilibriumLoss</span></code><a class="headerlink" href="#equilibriumloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.EquilibriumLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">EquilibriumLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1136-L1191"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.EquilibriumLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Mass equilibrium loss.</p>
+<p>This loss operates on unmapped mass tensors. For a version that operates
+on logits, see <a class="reference internal" href="#hypercoil.loss.EquilibriumLogitLoss" title="hypercoil.loss.EquilibriumLogitLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumLogitLoss</span></code></a>.</p>
+<p>The equilibrium scores the deviation of the total weight assigned to each
+parcel or level from the mean weight assigned to each parcel or level. It
+can be used to encourage the model to learn parcels that are balanced in
+size.</p>
+<p>Loss functions to favour equal weight across one dimension of a tensor
+whose slices are masses.</p>
+<div class="admonition-equilibrium admonition">
+<p class="admonition-title">Equilibrium</p>
+<p>The equilibrium loss of a mass tensor <span class="math notranslate nohighlight">\(A\)</span> is defined as</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{1}^\intercal \left[\left(A \mathbf{1}\right) \circ \left(A \mathbf{1}\right) \right]\)</span></p>
+<p>Th equilibrium loss has applications in the context of parcellation
+tensors. A parcellation tensor is one whose rows correspond to features
+(e.g., voxels, time points, frequency bins, or network nodes) and whose
+columns correspond to parcels. Element <span class="math notranslate nohighlight">\(i, j\)</span> in this tensor
+accordingly indexes the assignment of feature <span class="math notranslate nohighlight">\(j\)</span> to parcel
+<span class="math notranslate nohighlight">\(i\)</span>. Examples of parcellation tensors might include atlases that
+map voxels to regions or affiliation matrices that map graph vertices
+to communities. It is often desirable to constrain feature-parcel
+assignments to <span class="math notranslate nohighlight">\([0, k]\)</span> for some <span class="math notranslate nohighlight">\(k\)</span> and ensure that the
+sum over each feature’s assignment is always <span class="math notranslate nohighlight">\(k\)</span>. (Otherwise, the
+unnormalised loss could be improved by simply shrinking all weights.)
+For this reason, we can either normalise the loss or situate the
+parcellation tensor in the probability simplex using a
+<a class="reference internal" href="hypercoil.init.mapparam.ProbabilitySimplexParameter.html"><span class="doc">multi-logit (softmax) domain mapper</span></a>.</p>
+<p>The equilibrium loss attains a minimum when parcels are equal in their
+total weight. It has a trivial and uninteresting minimum where all
+parcel assignments are equiprobable for all features. Other minima,
+which might be of greater interest, occur where each feature is
+deterministically assigned to a single parcel. These minima can be
+favoured by using the equilibrium in conjunction with a penalty on the
+<a class="reference internal" href="hypercoil.loss.entropy.html"><span class="doc">entropy</span></a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>level_axis: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes over which to compute the equilibrium. Within each
+data instance or weight channel, all elements along the specified axis
+or axes should correspond to a single level or parcel. The default is
+-1.</p>
+</dd>
+<dt><strong>prob_axis: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes over which to compute the probabilities (logit version
+only). The default is -2. In general the union of <code class="docutils literal notranslate"><span class="pre">level_axis</span></code> and
+<code class="docutils literal notranslate"><span class="pre">prob_axis</span></code> should be the same as <code class="docutils literal notranslate"><span class="pre">instance_axes</span></code>.</p>
+</dd>
+<dt><strong>instance_axes: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes corresponding to a single data instance or weight
+channel. This should be a superset of <cite>level_axis</cite>. The default is
+(-1, -2).</p>
+</dd>
+<dt><strong>keepdims: bool, optional</strong></dt><dd><p>As in <code class="xref py py-func docutils literal notranslate"><span class="pre">jax.numpy.sum()</span></code>. The default is True.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean square
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(X, *[, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.EquilibriumLogitLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">EquilibriumLogitLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1193-L1252"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.EquilibriumLogitLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Mass equilibrium loss.</p>
+<p>This loss operates on logits. For a version that operates on unmapped
+mass tensors, see <a class="reference internal" href="#hypercoil.loss.EquilibriumLoss" title="hypercoil.loss.EquilibriumLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">EquilibriumLoss</span></code></a>.</p>
+<p>The equilibrium scores the deviation of the total weight assigned to each
+parcel or level from the mean weight assigned to each parcel or level. It
+can be used to encourage the model to learn parcels that are balanced in
+size.</p>
+<p>Loss functions to favour equal weight across one dimension of a tensor
+whose slices are masses.</p>
+<div class="admonition-equilibrium admonition">
+<p class="admonition-title">Equilibrium</p>
+<p>The equilibrium loss of a mass tensor <span class="math notranslate nohighlight">\(A\)</span> is defined as</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{1}^\intercal \left[\left(A \mathbf{1}\right) \circ \left(A \mathbf{1}\right) \right]\)</span></p>
+<p>Th equilibrium loss has applications in the context of parcellation
+tensors. A parcellation tensor is one whose rows correspond to features
+(e.g., voxels, time points, frequency bins, or network nodes) and whose
+columns correspond to parcels. Element <span class="math notranslate nohighlight">\(i, j\)</span> in this tensor
+accordingly indexes the assignment of feature <span class="math notranslate nohighlight">\(j\)</span> to parcel
+<span class="math notranslate nohighlight">\(i\)</span>. Examples of parcellation tensors might include atlases that
+map voxels to regions or affiliation matrices that map graph vertices
+to communities. It is often desirable to constrain feature-parcel
+assignments to <span class="math notranslate nohighlight">\([0, k]\)</span> for some <span class="math notranslate nohighlight">\(k\)</span> and ensure that the
+sum over each feature’s assignment is always <span class="math notranslate nohighlight">\(k\)</span>. (Otherwise, the
+unnormalised loss could be improved by simply shrinking all weights.)
+For this reason, we can either normalise the loss or situate the
+parcellation tensor in the probability simplex using a
+<a class="reference internal" href="hypercoil.init.mapparam.ProbabilitySimplexParameter.html"><span class="doc">multi-logit (softmax) domain mapper</span></a>.</p>
+<p>The equilibrium loss attains a minimum when parcels are equal in their
+total weight. It has a trivial and uninteresting minimum where all
+parcel assignments are equiprobable for all features. Other minima,
+which might be of greater interest, occur where each feature is
+deterministically assigned to a single parcel. These minima can be
+favoured by using the equilibrium in conjunction with a penalty on the
+<a class="reference internal" href="hypercoil.loss.entropy.html"><span class="doc">entropy</span></a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>level_axis: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes over which to compute the equilibrium. Within each
+data instance or weight channel, all elements along the specified axis
+or axes should correspond to a single level or parcel. The default is
+-1.</p>
+</dd>
+<dt><strong>prob_axis: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes over which to compute the probabilities (logit version
+only). The default is -2. In general the union of <code class="docutils literal notranslate"><span class="pre">level_axis</span></code> and
+<code class="docutils literal notranslate"><span class="pre">prob_axis</span></code> should be the same as <code class="docutils literal notranslate"><span class="pre">instance_axes</span></code>.</p>
+</dd>
+<dt><strong>instance_axes: int or sequence of ints, optional</strong></dt><dd><p>The axis or axes corresponding to a single data instance or weight
+channel. This should be a superset of <cite>level_axis</cite>. The default is
+(-1, -2).</p>
+</dd>
+<dt><strong>keepdims: bool, optional</strong></dt><dd><p>As in <code class="xref py py-func docutils literal notranslate"><span class="pre">jax.numpy.sum()</span></code>. The default is True.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(X, *[, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +985,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium"><code class="docutils literal notranslate"><span class="pre">equilibrium</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibriumloss"><code class="docutils literal notranslate"><span class="pre">EquilibriumLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium"><code class="docutils literal notranslate"><span class="pre">equilibrium</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.equilibrium"><code class="docutils literal notranslate"><span class="pre">equilibrium()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.equilibrium_logit"><code class="docutils literal notranslate"><span class="pre">equilibrium_logit()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibriumloss"><code class="docutils literal notranslate"><span class="pre">EquilibriumLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.EquilibriumLoss"><code class="docutils literal notranslate"><span class="pre">EquilibriumLoss</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.EquilibriumLogitLoss"><code class="docutils literal notranslate"><span class="pre">EquilibriumLogitLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

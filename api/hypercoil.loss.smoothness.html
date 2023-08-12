@@ -702,9 +702,100 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">smoothness</span></code>: Backwards differences<a class="headerlink" href="#smoothness-backwards-differences" title="Permalink to this heading">#</a></h1>
 <section id="smoothness">
 <h2><code class="docutils literal notranslate"><span class="pre">smoothness</span></code><a class="headerlink" href="#smoothness" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.smoothness">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">smoothness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L218-L243"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.smoothness" title="Permalink to this definition">#</a></dt>
+<dd><p>Smoothness score function.</p>
+<p>This loss penalises large or sudden changes in the input tensor. It is
+currently a thin wrapper around <code class="docutils literal notranslate"><span class="pre">jax.numpy.diff</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function returns both positive and negative values, and so
+should probably not be used with a scalarisation map like
+<code class="docutils literal notranslate"><span class="pre">mean_scalarise</span></code> or <code class="docutils literal notranslate"><span class="pre">sum_scalarise</span></code>. Instead, maps like
+<code class="docutils literal notranslate"><span class="pre">meansq_scalarise</span></code> or <code class="docutils literal notranslate"><span class="pre">vnorm_scalarise</span></code> with either the <code class="docutils literal notranslate"><span class="pre">p=1</span></code>
+or <code class="docutils literal notranslate"><span class="pre">p=inf</span></code> options might be more appropriate.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor.</p>
+</dd>
+<dt><strong>n: int, optional (default: 1)</strong></dt><dd><p>Number of times to differentiate using the backwards differences
+method.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int, optional (default: -1)</span></dt><dd><p>Axis defining the slice of the input tensor over which differences
+are computed</p>
+</dd>
+<dt><strong>pad_value</strong><span class="classifier">float, optional (default: None)</span></dt><dd><p>Arguments to <code class="docutils literal notranslate"><span class="pre">jnp.diff</span></code>. Values to prepend to the input along the
+specified axis before computing the difference.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="smoothnessloss">
 <h2><code class="docutils literal notranslate"><span class="pre">SmoothnessLoss</span></code><a class="headerlink" href="#smoothnessloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.SmoothnessLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">SmoothnessLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L476-L531"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.SmoothnessLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Smoothness loss function.</p>
+<p>This loss penalises large or sudden changes in the input tensor. It is
+currently a thin wrapper around <code class="docutils literal notranslate"><span class="pre">jax.numpy.diff</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function returns both positive and negative values, and so
+should probably not be used with a scalarisation map like
+<code class="docutils literal notranslate"><span class="pre">mean_scalarise</span></code> or <code class="docutils literal notranslate"><span class="pre">sum_scalarise</span></code>. Instead, maps like
+<code class="docutils literal notranslate"><span class="pre">meansq_scalarise</span></code> or <code class="docutils literal notranslate"><span class="pre">vnorm_scalarise</span></code> with either the <code class="docutils literal notranslate"><span class="pre">p=1</span></code>
+or <code class="docutils literal notranslate"><span class="pre">p=inf</span></code> options might be more appropriate.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>n: int, optional (default: 1)</strong></dt><dd><p>Number of times to differentiate using the backwards differences
+method.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int, optional (default: -1)</span></dt><dd><p>Axis defining the slice of the input tensor over which differences
+are computed</p>
+</dd>
+<dt><strong>pad_value</strong><span class="classifier">float, optional (default: None)</span></dt><dd><p>Arguments to <code class="docutils literal notranslate"><span class="pre">jnp.diff</span></code>. Values to prepend to the input along the
+specified axis before computing the difference.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the L1 norm
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(X, *[, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +816,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothness"><code class="docutils literal notranslate"><span class="pre">smoothness</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothnessloss"><code class="docutils literal notranslate"><span class="pre">SmoothnessLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothness"><code class="docutils literal notranslate"><span class="pre">smoothness</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.smoothness"><code class="docutils literal notranslate"><span class="pre">smoothness()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothnessloss"><code class="docutils literal notranslate"><span class="pre">SmoothnessLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.SmoothnessLoss"><code class="docutils literal notranslate"><span class="pre">SmoothnessLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

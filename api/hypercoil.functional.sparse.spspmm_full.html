@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.sparse.spspmm_full';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,19 @@ document.write(`
                   
   <section id="spspmm-full">
 <h1><code class="docutils literal notranslate"><span class="pre">spspmm_full</span></code><a class="headerlink" href="#spspmm-full" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.sparse.spspmm_full">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.sparse.</span></span><span class="sig-name descname"><span class="pre">spspmm_full</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BCOO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BCOO</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/sparse.py#L221-L242"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.sparse.spspmm_full" title="Permalink to this definition">#</a></dt>
+<dd><p>Matrix multiplication of a top-k format sparse matrix with another sparse
+matrix in the top-k format. Returns a full matrix.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that this implementation of the matrix multiplication operation
+returns
+<span class="math notranslate nohighlight">\(A B^\intercal\)</span> for LHS <span class="math notranslate nohighlight">\(A\)</span> and RHS <span class="math notranslate nohighlight">\(B\)</span>.</p>
+</div>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +731,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.sparse.spspmm_full"><code class="docutils literal notranslate"><span class="pre">spspmm_full()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

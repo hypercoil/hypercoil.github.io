@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.activation.amplitude_atanh';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,38 @@ document.write(`
                   
   <section id="amplitude-atanh">
 <h1><code class="docutils literal notranslate"><span class="pre">amplitude_atanh</span></code><a class="headerlink" href="#amplitude-atanh" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.activation.amplitude_atanh">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.activation.</span></span><span class="sig-name descname"><span class="pre">amplitude_atanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/activation.py#L216-L246"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.activation.amplitude_atanh" title="Permalink to this definition">#</a></dt>
+<dd><p>Inverse hyperbolic tangent (hyperbolic arctangent) activation function
+applied to the amplitude only.</p>
+<p>The amplitude (absolute value) of the input is transformed according to</p>
+<p><span class="math notranslate nohighlight">\(\mathrm{arctanh} x\)</span></p>
+<p>while the phase (complex argument) is preserved. This function maps the
+open unit disc in the complex plane into the entire complex plane: the
+origin is mapped to itself and the circumference is mapped to infinity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><p>As this activation function is applied elementwise, it
+conserves dimension; the output will be of the same shape as
+the input.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>input</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor whose amplitude is to be transformed elementwise by the
+hyperbolic arctangent function.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">Tensor</span></dt><dd><p>Transformed input tensor.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +750,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.activation.amplitude_atanh"><code class="docutils literal notranslate"><span class="pre">amplitude_atanh()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

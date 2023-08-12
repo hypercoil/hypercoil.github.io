@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.second_moment';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,9 +703,278 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">second_moment</span></code>: Second moments<a class="headerlink" href="#second-moment-second-moments" title="Permalink to this heading">#</a></h1>
 <section id="second-moment">
 <h2><code class="docutils literal notranslate"><span class="pre">second_moment</span></code><a class="headerlink" href="#second-moment" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.second_moment">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">second_moment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standardise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_normalise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L1165-L1189"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.second_moment" title="Permalink to this definition">#</a></dt>
+<dd><p>Compute the second moment of a dataset.</p>
+<p>Given an input matrix <span class="math notranslate nohighlight">\(T\)</span> and a weight matrix <span class="math notranslate nohighlight">\(A\)</span>, the second
+moment is computed as</p>
+<p><span class="math notranslate nohighlight">\(\left[ A \circ \left (T - \frac{AT}{A\mathbf{1}} \right )^2  \right] \frac{\mathbf{1}}{A \mathbf{1}}\)</span></p>
+<p>The term <span class="math notranslate nohighlight">\(\frac{AT}{A\mathbf{1}}\)</span> can also be precomputed and passed
+as the <cite>mu</cite> argument to the <a class="reference internal" href="#hypercoil.loss.second_moment_centred" title="hypercoil.loss.second_moment_centred"><code class="xref py py-func docutils literal notranslate"><span class="pre">second_moment_centred()</span></code></a> function. If the
+mean is already known, it is more efficient to use that function.
+Otherwise, the <a class="reference internal" href="#hypercoil.loss.second_moment" title="hypercoil.loss.second_moment"><code class="xref py py-func docutils literal notranslate"><span class="pre">second_moment()</span></code></a> function will compute the mean
+internally.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X: Tensor</strong></dt><dd><p>A tensor of observations.</p>
+</dd>
+<dt><strong>weight: Tensor</strong></dt><dd><p>A tensor of weights.</p>
+</dd>
+<dt><strong>standardise: bool, optional</strong></dt><dd><p>If True, z-score the input matrix before computing the second moment.
+The default is False.</p>
+</dd>
+<dt><strong>skip_normalise: bool, optional</strong></dt><dd><p>If True, do not include normalisation by the sum of the weights in the
+computation. In practice, this seems to work better than computing the
+actual second moment. Instead of computing the second moment, this
+corresponds to computed a weighted mean squared error about the mean.
+The default is False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.second_moment_centred">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">second_moment_centred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standardise_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standardise_mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_normalise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L1191-L1218"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.second_moment_centred" title="Permalink to this definition">#</a></dt>
+<dd><p>Compute the second moment of a dataset about a specified mean.</p>
+<p>Given an input matrix <span class="math notranslate nohighlight">\(T\)</span> and a weight matrix <span class="math notranslate nohighlight">\(A\)</span>, the second
+moment is computed as</p>
+<p><span class="math notranslate nohighlight">\(\left[ A \circ \left (T - \frac{AT}{A\mathbf{1}} \right )^2  \right] \frac{\mathbf{1}}{A \mathbf{1}}\)</span></p>
+<p>The term <span class="math notranslate nohighlight">\(\frac{AT}{A\mathbf{1}}\)</span> can also be precomputed and passed
+as the <cite>mu</cite> argument to the <a class="reference internal" href="#hypercoil.loss.second_moment_centred" title="hypercoil.loss.second_moment_centred"><code class="xref py py-func docutils literal notranslate"><span class="pre">second_moment_centred()</span></code></a> function. If the
+mean is already known, it is more efficient to use that function.
+Otherwise, the <a class="reference internal" href="#hypercoil.loss.second_moment" title="hypercoil.loss.second_moment"><code class="xref py py-func docutils literal notranslate"><span class="pre">second_moment()</span></code></a> function will compute the mean
+internally.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X: Tensor</strong></dt><dd><p>A tensor of observations.</p>
+</dd>
+<dt><strong>weight: Tensor</strong></dt><dd><p>A tensor of weights.</p>
+</dd>
+<dt><strong>standardise_data: bool, optional</strong></dt><dd><p>If True, z-score the input matrix before computing the second moment.
+The default is False.</p>
+</dd>
+<dt><strong>standardise_mu: bool, optional</strong></dt><dd><p>If True, z-score the mean matrix <code class="docutils literal notranslate"><span class="pre">mu</span></code> before computing the second
+moment. The default is False.</p>
+</dd>
+<dt><strong>skip_normalise: bool, optional</strong></dt><dd><p>If True, do not include normalisation by the sum of the weights in the
+computation. In practice, this seems to work better than computing the
+actual second moment. Instead of computing the second moment, this
+corresponds to computed a weighted mean squared error about the mean.
+The default is False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="secondmomentloss">
 <h2><code class="docutils literal notranslate"><span class="pre">SecondMomentLoss</span></code><a class="headerlink" href="#secondmomentloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.SecondMomentLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">SecondMomentLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1254-L1309"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.SecondMomentLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Second moment loss.</p>
+<p>Given an input matrix <span class="math notranslate nohighlight">\(T\)</span> and a weight matrix <span class="math notranslate nohighlight">\(A\)</span>, the second
+moment is computed as</p>
+<p><span class="math notranslate nohighlight">\(\left[ A \circ \left (T - \frac{AT}{A\mathbf{1}} \right )^2  \right] \frac{\mathbf{1}}{A \mathbf{1}}\)</span></p>
+<p>The term <span class="math notranslate nohighlight">\(\frac{AT}{A\mathbf{1}}\)</span> can also be precomputed and passed
+as the <cite>mu</cite> argument to the <a class="reference internal" href="#hypercoil.loss.second_moment_centred" title="hypercoil.loss.second_moment_centred"><code class="xref py py-func docutils literal notranslate"><span class="pre">second_moment_centred()</span></code></a> function. If the
+mean is already known, it is more efficient to use that function.
+Otherwise, the <a class="reference internal" href="#hypercoil.loss.second_moment" title="hypercoil.loss.second_moment"><code class="xref py py-func docutils literal notranslate"><span class="pre">second_moment()</span></code></a> function will compute the mean
+internally.</p>
+<p>Regularise the second moment, e.g. to favour a dimension reduction mapping
+that is internally homogeneous.</p>
+<div class="admonition-second-moment admonition">
+<p class="admonition-title">Second Moment</p>
+<p>Second moment losses are based on a reduction of the second moment
+quantity</p>
+<p><span class="math notranslate nohighlight">\(\left[ A \circ \left (T - \frac{AT}{A\mathbf{1}} \right )^2  \right] \frac{\mathbf{1}}{A \mathbf{1}}\)</span></p>
+<p>where the division operator is applied elementwise with broadcasting
+and the difference operator is applied via broadcasting. The
+broadcasting operations involved in the core computation – estimating
+a weighted mean and then computing the weighted sum of squares about
+that mean – are illustrated in the below cartoon.</p>
+<a class="reference internal image-reference" href="../_images/secondmomentloss.svg"><img alt="../_images/secondmomentloss.svg" class="align-center" src="../_images/secondmomentloss.svg" width="300" /></a>
+<p><em>Illustration of the most memory-intensive stage of loss computation.
+The lavender tensor represents the weighted mean, the blue tensor the
+original observations, and the green tensor the weights (which might
+correspond to a dimension reduction mapping such as a parcellation).</em></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In practice, we’ve found that using the actual second moment loss often
+results in large and uneven parcels. Accordingly, an unnormalised
+extension of the second moment (which omits the normalisation
+<span class="math notranslate nohighlight">\(\frac{1}{A \mathbf{1}}\)</span>) is also available. This unnormalised
+quantity is equivalent to the weighted mean squared error about each
+weighted mean. In practice, we’ve found that this quantity works better
+for most of our use cases.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This loss can have a very large memory footprint, because it requires
+computing an intermediate tensor with dimensions equal to the number
+of rows in the linear mapping, multiplied by the number of columns in
+the linear mapping, multiplied by the number of columns in the
+dataset.</p>
+<p>When using this loss to learn a parcellation on voxelwise time series,
+the full computation will certainly be much too large to fit in GPU
+memory. Fortunately, because much of the computation is elementwise, it
+can be broken down along multiple axes without affecting the result.
+This tensor slicing is implemented automatically in the
+<span class="xref std std-doc">ReactiveTerminal</span>
+class. Use extreme caution with <code class="docutils literal notranslate"><span class="pre">ReactiveTerminals</span></code>, as improper use
+can result in destruction of the computational graph.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>standardise: bool, optional</strong></dt><dd><p>If True, z-score the input matrix before computing the second moment.
+The default is False.</p>
+</dd>
+<dt><strong>skip_normalise: bool, optional</strong></dt><dd><p>If True, do not include normalisation by the sum of the weights in the
+computation. In practice, this seems to work better than computing the
+actual second moment. Instead of computing the second moment, this
+corresponds to computed a weighted mean squared error about the mean.
+The default is False.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(X, weight, *[, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.SecondMomentCentredLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">SecondMomentCentredLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1311-L1372"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.SecondMomentCentredLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Second moment loss centred on a precomputed mean.</p>
+<p>Given an input matrix <span class="math notranslate nohighlight">\(T\)</span> and a weight matrix <span class="math notranslate nohighlight">\(A\)</span>, the second
+moment is computed as</p>
+<p><span class="math notranslate nohighlight">\(\left[ A \circ \left (T - \frac{AT}{A\mathbf{1}} \right )^2  \right] \frac{\mathbf{1}}{A \mathbf{1}}\)</span></p>
+<p>The term <span class="math notranslate nohighlight">\(\frac{AT}{A\mathbf{1}}\)</span> can also be precomputed and passed
+as the <cite>mu</cite> argument to the <a class="reference internal" href="#hypercoil.loss.second_moment_centred" title="hypercoil.loss.second_moment_centred"><code class="xref py py-func docutils literal notranslate"><span class="pre">second_moment_centred()</span></code></a> function. If the
+mean is already known, it is more efficient to use that function.
+Otherwise, the <a class="reference internal" href="#hypercoil.loss.second_moment" title="hypercoil.loss.second_moment"><code class="xref py py-func docutils literal notranslate"><span class="pre">second_moment()</span></code></a> function will compute the mean
+internally.</p>
+<p>Regularise the second moment, e.g. to favour a dimension reduction mapping
+that is internally homogeneous.</p>
+<div class="admonition-second-moment admonition">
+<p class="admonition-title">Second Moment</p>
+<p>Second moment losses are based on a reduction of the second moment
+quantity</p>
+<p><span class="math notranslate nohighlight">\(\left[ A \circ \left (T - \frac{AT}{A\mathbf{1}} \right )^2  \right] \frac{\mathbf{1}}{A \mathbf{1}}\)</span></p>
+<p>where the division operator is applied elementwise with broadcasting
+and the difference operator is applied via broadcasting. The
+broadcasting operations involved in the core computation – estimating
+a weighted mean and then computing the weighted sum of squares about
+that mean – are illustrated in the below cartoon.</p>
+<a class="reference internal image-reference" href="../_images/secondmomentloss.svg"><img alt="../_images/secondmomentloss.svg" class="align-center" src="../_images/secondmomentloss.svg" width="300" /></a>
+<p><em>Illustration of the most memory-intensive stage of loss computation.
+The lavender tensor represents the weighted mean, the blue tensor the
+original observations, and the green tensor the weights (which might
+correspond to a dimension reduction mapping such as a parcellation).</em></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In practice, we’ve found that using the actual second moment loss often
+results in large and uneven parcels. Accordingly, an unnormalised
+extension of the second moment (which omits the normalisation
+<span class="math notranslate nohighlight">\(\frac{1}{A \mathbf{1}}\)</span>) is also available. This unnormalised
+quantity is equivalent to the weighted mean squared error about each
+weighted mean. In practice, we’ve found that this quantity works better
+for most of our use cases.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This loss can have a very large memory footprint, because it requires
+computing an intermediate tensor with dimensions equal to the number
+of rows in the linear mapping, multiplied by the number of columns in
+the linear mapping, multiplied by the number of columns in the
+dataset.</p>
+<p>When using this loss to learn a parcellation on voxelwise time series,
+the full computation will certainly be much too large to fit in GPU
+memory. Fortunately, because much of the computation is elementwise, it
+can be broken down along multiple axes without affecting the result.
+This tensor slicing is implemented automatically in the
+<span class="xref std std-doc">ReactiveTerminal</span>
+class. Use extreme caution with <code class="docutils literal notranslate"><span class="pre">ReactiveTerminals</span></code>, as improper use
+can result in destruction of the computational graph.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>standardise: bool, optional</strong></dt><dd><p>If True, z-score the input matrix before computing the second moment.
+The default is False.</p>
+</dd>
+<dt><strong>skip_normalise: bool, optional</strong></dt><dd><p>If True, do not include normalisation by the sum of the weights in the
+computation. In practice, this seems to work better than computing the
+actual second moment. Instead of computing the second moment, this
+corresponds to computed a weighted mean squared error about the mean.
+The default is False.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(X, weight, mu, *[, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +995,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-moment"><code class="docutils literal notranslate"><span class="pre">second_moment</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secondmomentloss"><code class="docutils literal notranslate"><span class="pre">SecondMomentLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-moment"><code class="docutils literal notranslate"><span class="pre">second_moment</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.second_moment"><code class="docutils literal notranslate"><span class="pre">second_moment()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.second_moment_centred"><code class="docutils literal notranslate"><span class="pre">second_moment_centred()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secondmomentloss"><code class="docutils literal notranslate"><span class="pre">SecondMomentLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.SecondMomentLoss"><code class="docutils literal notranslate"><span class="pre">SecondMomentLoss</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.SecondMomentCentredLoss"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentredLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

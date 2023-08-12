@@ -702,9 +702,173 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">bregman_divergence</span></code>: Bregman divergences<a class="headerlink" href="#bregman-divergence-bregman-divergences" title="Permalink to this heading">#</a></h1>
 <section id="bregman-divergence">
 <h2><code class="docutils literal notranslate"><span class="pre">bregman_divergence</span></code><a class="headerlink" href="#bregman-divergence" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.bregman_divergence">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">bregman_divergence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L838-L859"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.bregman_divergence" title="Permalink to this definition">#</a></dt>
+<dd><p>Bregman divergence score function.</p>
+<p>This function computes the Bregman divergence between the input tensor
+and the target tensor, induced according to the convex function <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<p>For a version of this function that operates on logits, see
+<a class="reference internal" href="#hypercoil.loss.bregman_divergence_logit" title="hypercoil.loss.bregman_divergence_logit"><code class="xref py py-func docutils literal notranslate"><span class="pre">bregman_divergence_logit()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor.</p>
+</dd>
+<dt><strong>Y</strong><span class="classifier">Tensor</span></dt><dd><p>Target tensor.</p>
+</dd>
+<dt><strong>f</strong><span class="classifier">Callable</span></dt><dd><p>Convex function to induce the Bregman divergence.</p>
+</dd>
+<dt><strong>f_dim</strong><span class="classifier">int</span></dt><dd><p>Dimension of arguments to <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Bregman divergence score for each set of observations.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.bregman_divergence_logit">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">bregman_divergence_logit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L861-L884"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.bregman_divergence_logit" title="Permalink to this definition">#</a></dt>
+<dd><p>Bregman divergence score function for logits.</p>
+<p>This function computes the Bregman divergence between the input tensor
+and the target tensor, induced according to the convex function <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<p>This function operates on logits. For the standard version of this
+function, see <a class="reference internal" href="#hypercoil.loss.bregman_divergence" title="hypercoil.loss.bregman_divergence"><code class="xref py py-func docutils literal notranslate"><span class="pre">bregman_divergence()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor.</p>
+</dd>
+<dt><strong>Y</strong><span class="classifier">Tensor</span></dt><dd><p>Target tensor.</p>
+</dd>
+<dt><strong>f</strong><span class="classifier">Callable</span></dt><dd><p>Convex function to induce the Bregman divergence.</p>
+</dd>
+<dt><strong>f_dim</strong><span class="classifier">int</span></dt><dd><p>Dimension of arguments to <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Bregman divergence score for each set of observations.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="bregmandivergenceloss">
 <h2><code class="docutils literal notranslate"><span class="pre">BregmanDivergenceLoss</span></code><a class="headerlink" href="#bregmandivergenceloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.BregmanDivergenceLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">BregmanDivergenceLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1056-L1094"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.BregmanDivergenceLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Loss based on the Bregman divergence between two categorical
+distributions.</p>
+<p>This operates on unmapped tensors. For a version that operates on logits
+logits, see <a class="reference internal" href="#hypercoil.loss.BregmanDivergenceLogitLoss" title="hypercoil.loss.BregmanDivergenceLogitLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">BregmanDivergenceLogitLoss</span></code></a>.</p>
+<p>This function computes the Bregman divergence between the input tensor
+and the target tensor, induced according to the convex function <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd></dd>
+<dt><strong>———-</strong></dt><dd></dd>
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor.</p>
+</dd>
+<dt><strong>Y</strong><span class="classifier">Tensor</span></dt><dd><p>Target tensor.</p>
+</dd>
+<dt><strong>f</strong><span class="classifier">Callable</span></dt><dd><p>Convex function to induce the Bregman divergence.</p>
+</dd>
+<dt><strong>f_dim</strong><span class="classifier">int</span></dt><dd><p>Dimension of arguments to <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Bregman divergence score for each set of observations.</p>
+</dd>
+<dt>scalarisation: Callable</dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.BregmanDivergenceLogitLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">BregmanDivergenceLogitLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1096-L1134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.BregmanDivergenceLogitLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Loss based on the Bregman divergence between two categorical
+distributions.</p>
+<p>This operates on logits. For a version that operates on unmapped
+probabilities, see <a class="reference internal" href="#hypercoil.loss.BregmanDivergenceLoss" title="hypercoil.loss.BregmanDivergenceLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">BregmanDivergenceLoss</span></code></a>.</p>
+<p>This function computes the Bregman divergence between the input tensor
+and the target tensor, induced according to the convex function <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd></dd>
+<dt><strong>———-</strong></dt><dd></dd>
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor.</p>
+</dd>
+<dt><strong>Y</strong><span class="classifier">Tensor</span></dt><dd><p>Target tensor.</p>
+</dd>
+<dt><strong>f</strong><span class="classifier">Callable</span></dt><dd><p>Convex function to induce the Bregman divergence.</p>
+</dd>
+<dt><strong>f_dim</strong><span class="classifier">int</span></dt><dd><p>Dimension of arguments to <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Bregman divergence score for each set of observations.</p>
+</dd>
+<dt>scalarisation: Callable</dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +889,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bregman-divergence"><code class="docutils literal notranslate"><span class="pre">bregman_divergence</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bregmandivergenceloss"><code class="docutils literal notranslate"><span class="pre">BregmanDivergenceLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bregman-divergence"><code class="docutils literal notranslate"><span class="pre">bregman_divergence</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.bregman_divergence"><code class="docutils literal notranslate"><span class="pre">bregman_divergence()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.bregman_divergence_logit"><code class="docutils literal notranslate"><span class="pre">bregman_divergence_logit()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bregmandivergenceloss"><code class="docutils literal notranslate"><span class="pre">BregmanDivergenceLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.BregmanDivergenceLoss"><code class="docutils literal notranslate"><span class="pre">BregmanDivergenceLoss</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.BregmanDivergenceLogitLoss"><code class="docutils literal notranslate"><span class="pre">BregmanDivergenceLogitLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

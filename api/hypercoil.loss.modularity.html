@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.modularity';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,9 +703,210 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">modularity</span></code>: Relaxed modularity<a class="headerlink" href="#modularity-relaxed-modularity" title="Permalink to this heading">#</a></h1>
 <section id="modularity">
 <h2><code class="docutils literal notranslate"><span class="pre">modularity</span></code><a class="headerlink" href="#modularity" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.modularity">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">modularity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_diag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L1952-L2001"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.modularity" title="Permalink to this definition">#</a></dt>
+<dd><p>Modularity functional.</p>
+<p>The connectopies that minimise the modularity functional define a
+community structure for the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Q :</strong> <span class="math notranslate nohighlight">\((D, C)\)</span></dt><dd><p>D denotes the number of vertices in the affinity matrix
+and C denotes the number of proposed maps.</p>
+</dd>
+<dt><strong>A :</strong> <span class="math notranslate nohighlight">\((D, D)\)</span></dt><dd><p>As above.</p>
+</dd>
+<dt><strong>D :</strong> <span class="math notranslate nohighlight">\((D, D)\)</span></dt><dd><p>As above.</p>
+</dd>
+<dt><strong>theta :</strong> <span class="math notranslate nohighlight">\((C)\)</span> or <span class="math notranslate nohighlight">\((C, C)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>Q</strong><span class="classifier">tensor</span></dt><dd><p>Proposed connectopies or maps.</p>
+</dd>
+<dt><strong>A</strong><span class="classifier">tensor</span></dt><dd><p>Affinity matrix.</p>
+</dd>
+<dt><strong>D</strong><span class="classifier">tensor or None (default None)</span></dt><dd><p>If this argument is provided, then the affinity matrix is first
+transformed as <span class="math notranslate nohighlight">\(D A D^\intercal\)</span>. For instance, setting D to
+a diagonal matrix whose entries are the reciprocal of the square root
+of vertex degrees corresponds to learning eigenmaps of a normalised
+graph Laplacian.</p>
+</dd>
+<dt><strong>theta</strong><span class="classifier">tensor, float, or None (default None)</span></dt><dd><p>Parameterisation of the pairwise dissimilarity function.</p>
+</dd>
+<dt><strong>omega</strong><span class="classifier">tensor, float, or None (default None)</span></dt><dd><p>Optional parameterisation of the affinity function, if one is
+provided.</p>
+</dd>
+<dt><strong>dissimilarity</strong><span class="classifier">callable</span></dt><dd><p>Function to compute dissimilarity between latent coordinates induced
+by the proposed connectopies. By default, the square of the L2
+distance is used. The callable must accept <code class="docutils literal notranslate"><span class="pre">Q</span></code> and <code class="docutils literal notranslate"><span class="pre">theta</span></code> as
+arguments. (<code class="docutils literal notranslate"><span class="pre">theta</span></code> may be unused.)</p>
+</dd>
+<dt><strong>affinity</strong><span class="classifier">callable or None (default None)</span></dt><dd><p>If an affinity function is provided, then the image of argument A
+under this function is the affinity matrix. Otherwise, argument A is
+the affinity matrix.</p>
+</dd>
+<dt><strong>gamma</strong><span class="classifier">float (default 1.)</span></dt><dd><p>Modularity parameter. Takes the place of the <code class="docutils literal notranslate"><span class="pre">omega</span></code> argument in
+<code class="docutils literal notranslate"><span class="pre">connectopy</span></code>.</p>
+</dd>
+<dt><strong>exclude_diag</strong><span class="classifier">bool (default True)</span></dt><dd><p>If True, then the diagonal of the affinity matrix is set to zero.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>Tensor</dt><dd><p>Connectopic functional value.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="modularityloss">
 <h2><code class="docutils literal notranslate"><span class="pre">ModularityLoss</span></code><a class="headerlink" href="#modularityloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.ModularityLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">ModularityLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1816-L1876"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.ModularityLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Differentiable relaxation of the Girvan-Newman modularity.</p>
+<p>This relaxation supports non-deterministic assignments of vertices to
+communities and non-assortative linkages between communities. It reverts
+to standard behaviour when the inputs it is provided are standard (i.e.,
+deterministic and associative).</p>
+<div class="admonition-girvan-newman-modularity-relaxation admonition">
+<p class="admonition-title">Girvan-Newman Modularity Relaxation</p>
+<p>The relaxed modularity loss is defined as the negative sum of all
+entries in the Hadamard (elementwise) product between the modularity
+matrix and the coaffiliation matrix.</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{L}_Q = -\nu_Q \mathbf{1}^\intercal \left( B \circ H \right) \mathbf{1}\)</span></p>
+<a class="reference internal image-reference" href="../_images/modularityloss.svg"><img alt="../_images/modularityloss.svg" class="align-center" src="../_images/modularityloss.svg" width="500" /></a>
+<ul class="simple">
+<li><p>The modularity matrix <span class="math notranslate nohighlight">\(B\)</span> is the difference between the
+observed connectivity matrix <span class="math notranslate nohighlight">\(A\)</span> and the expected connectivity
+matrix under some null model that assumes no community structure,
+<span class="math notranslate nohighlight">\(P\)</span>: <span class="math notranslate nohighlight">\(B = A - \gamma P\)</span>.</p>
+<ul>
+<li><p>The community resolution parameter <span class="math notranslate nohighlight">\(\gamma\)</span> essentially
+determines the scale of the community structure that optimises the
+relaxed modularity loss.</p></li>
+<li><p>By default, we use the Girvan-Newman null model
+<span class="math notranslate nohighlight">\(P_{GN} = \frac{A \mathbf{1} \mathbf{1}^\intercal A}{\mathbf{1}^\intercal A \mathbf{1}}\)</span>,
+which can be interpreted as the expected weight of connections
+between each pair of vertices if all existing edges are cut and
+then randomly rewired.</p></li>
+<li><p>Note that <span class="math notranslate nohighlight">\(A \mathbf{1}\)</span> is the in-degree of the adjacency
+matrix and <span class="math notranslate nohighlight">\(\mathbf{1}^\intercal A\)</span> is its out-degree, and
+the two are transposes of one another for symmetric <span class="math notranslate nohighlight">\(A\)</span>.
+Also note that the denominator
+<span class="math notranslate nohighlight">\(\mathbf{1}^\intercal A \mathbf{1}\)</span> is twice the number of
+edges for an undirected graph.)</p></li>
+</ul>
+</li>
+<li><p>The coaffiliation matrix <span class="math notranslate nohighlight">\(H\)</span> is calculated as
+<span class="math notranslate nohighlight">\(H = C_{in} L C_{out}^\intercal\)</span>, where
+<span class="math notranslate nohighlight">\(C_{in} \in \mathbb{R}^{(v_{in} \times c)}\)</span> and
+<span class="math notranslate nohighlight">\(C_{out} \in \mathbb{R}^{(v_{out} \times c)}\)</span> are proposed
+assignment weights of in-vertices and out-vertices to communities.
+<span class="math notranslate nohighlight">\(L \in \mathbb{R}^{c \times c)}\)</span> is the proposed coupling
+matrix among each pair of communities and defaults to identity to
+represent associative structure.</p>
+<ul>
+<li><p>Note that, when <span class="math notranslate nohighlight">\(C_{in} = C_{out}\)</span> is deterministically in
+<span class="math notranslate nohighlight">\(\{0, 1\}\)</span> and <span class="math notranslate nohighlight">\(L = I\)</span>, this term reduces to the
+familiar delta-function notation for the true Girvan-Newman
+modularity.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Penalising this favours a weight that induces a modular community
+structure on the input matrix – or, an input matrix whose structure
+is reasonably accounted for by the proposed community affiliation
+weights.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>To conform with the network community interpretation of this loss
+function, parameters representing the community affiliation <span class="math notranslate nohighlight">\(C\)</span>
+and coupling <span class="math notranslate nohighlight">\(L\)</span> matrices can be pre-transformed. Mapping the
+community affiliation matrix <span class="math notranslate nohighlight">\(C\)</span> through a
+<span class="xref std std-doc">softmax</span>
+function along the community axis lends the affiliation matrix the
+intuitive interpretation of distributions over communities, or a
+quantification of the uncertainty of each vertex’s community
+assignment. Similarly, the coupling matrix can be pre-transformed
+through a
+<span class="xref std std-doc">sigmoid</span>
+to constrain inter-community couplings to <span class="math notranslate nohighlight">\((0, 1)\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because the community affiliation matrices <span class="math notranslate nohighlight">\(C\)</span> induce
+parcellations, we can regularise them using parcellation losses. For
+instance, penalising the
+<a class="reference internal" href="hypercoil.loss.entropy.html"><span class="doc">entropy</span></a>
+will promote a solution wherein each node’s community assignment
+probability distribution is concentrated in a single community.
+Similarly, using parcel
+<a class="reference internal" href="hypercoil.loss.equilibrium.html"><span class="doc">equilibrium</span></a> will favour a solution
+wherein communities are of similar sizes.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>theta</strong><span class="classifier">tensor, float, or None (default None)</span></dt><dd><p>Parameterisation of the pairwise dissimilarity function.</p>
+</dd>
+<dt><strong>omega</strong><span class="classifier">tensor, float, or None (default None)</span></dt><dd><p>Optional parameterisation of the affinity function, if one is
+provided.</p>
+</dd>
+<dt><strong>dissimilarity</strong><span class="classifier">callable</span></dt><dd><p>Function to compute dissimilarity between latent coordinates induced
+by the proposed connectopies. By default, the square of the L2
+distance is used. The callable must accept <code class="docutils literal notranslate"><span class="pre">Q</span></code> and <code class="docutils literal notranslate"><span class="pre">theta</span></code> as
+arguments. (<code class="docutils literal notranslate"><span class="pre">theta</span></code> may be unused.)</p>
+</dd>
+<dt><strong>affinity</strong><span class="classifier">callable or None (default None)</span></dt><dd><p>If an affinity function is provided, then the image of argument A
+under this function is the affinity matrix. Otherwise, argument A is
+the affinity matrix.</p>
+</dd>
+<dt><strong>gamma</strong><span class="classifier">float (default 1.)</span></dt><dd><p>Modularity parameter. Takes the place of the <code class="docutils literal notranslate"><span class="pre">omega</span></code> argument in
+<code class="docutils literal notranslate"><span class="pre">connectopy</span></code>.</p>
+</dd>
+<dt><strong>exclude_diag</strong><span class="classifier">bool (default True)</span></dt><dd><p>If True, then the diagonal of the affinity matrix is set to zero.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(Q, A[, D, theta, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +927,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modularity"><code class="docutils literal notranslate"><span class="pre">modularity</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modularityloss"><code class="docutils literal notranslate"><span class="pre">ModularityLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modularity"><code class="docutils literal notranslate"><span class="pre">modularity</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.modularity"><code class="docutils literal notranslate"><span class="pre">modularity()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modularityloss"><code class="docutils literal notranslate"><span class="pre">ModularityLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.ModularityLoss"><code class="docutils literal notranslate"><span class="pre">ModularityLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

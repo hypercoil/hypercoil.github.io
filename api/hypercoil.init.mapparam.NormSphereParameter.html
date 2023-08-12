@@ -705,6 +705,62 @@ document.write(`
                   
   <section id="normsphereparameter">
 <h1><code class="docutils literal notranslate"><span class="pre">NormSphereParameter</span></code><a class="headerlink" href="#normsphereparameter" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.mapparam.NormSphereParameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.mapparam.</span></span><span class="sig-name descname"><span class="pre">NormSphereParameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/mapparam.py#L620-L716"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.mapparam.NormSphereParameter" title="Permalink to this definition">#</a></dt>
+<dd><p>Parameter whose constituent vectors are projected onto a sphere of some
+fixed norm.</p>
+<p>Note that this will only work for proper convex norms. (It will obviously
+not work for the L0 norm, for example.)</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The normalisation procedure is a simple division operation. Thus, it
+will not work for many matrix norms.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>model</strong><span class="classifier">PyTree</span></dt><dd><p>The model to which the parameter belongs.</p>
+</dd>
+<dt><strong>where</strong><span class="classifier">Callable</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">equinox.tree_at</span></code>: a function that takes a model (or generally
+a PyTree) and returns the parameter tensor to be mapped. For example:
+<code class="docutils literal notranslate"><span class="pre">where</span> <span class="pre">=</span> <span class="pre">lambda</span> <span class="pre">mlp:</span> <span class="pre">mlp.layers[-1].linear.weight</span></code>. By default, the
+<code class="docutils literal notranslate"><span class="pre">weight</span></code> attribute of the model is retrieved.</p>
+</dd>
+<dt><strong>handler</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">OutOfDomainHandler</span></code> object (default <a class="reference internal" href="hypercoil.init.mapparam.Clip.html#hypercoil.init.mapparam.Clip" title="hypercoil.init.mapparam.Clip"><code class="xref py py-class docutils literal notranslate"><span class="pre">Clip</span></code></a>)</span></dt><dd><p>Object specifying a method for handling out-of-domain entries.</p>
+</dd>
+<dt><strong>loc</strong><span class="classifier">float or tensor</span></dt><dd><p>Location of the centre of the norm sphere. By default, the sphere is
+centred at the origin (<code class="docutils literal notranslate"><span class="pre">loc=0</span></code>).</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float (default 1)</span></dt><dd><p>Scale of the norm sphere. By default, the unit norm sphere
+(<code class="docutils literal notranslate"><span class="pre">scale=1</span></code>) is used.</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">int, str, or tensor</span></dt><dd><p>Norm order argument passed to <code class="docutils literal notranslate"><span class="pre">jnp.linalg.norm</span></code>. If this is
+a tensor of symmetric positive semidefinite matrices, then a
+Mahalanobis-like ellipse norm is computed using those matrices. (No
+matrix inversion is performed.) By default, the Euclidean norm is
+used.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int or tuple(int)</span></dt><dd><p>Axis or axis tuple over which the norm is computed. Every slice along
+the specified axis or axis tuple of the mapped tensor is rescaled so
+that its norm is equal to <code class="docutils literal notranslate"><span class="pre">scale</span></code> in the specified <code class="docutils literal notranslate"><span class="pre">norm</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>image_map_impl</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>preimage_map_impl</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +773,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.mapparam.NormSphereParameter"><code class="docutils literal notranslate"><span class="pre">NormSphereParameter</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

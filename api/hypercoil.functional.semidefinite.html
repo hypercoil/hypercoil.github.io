@@ -698,8 +698,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="semidefinite-positive-semidefinite-cone">
-<h1><code class="docutils literal notranslate"><span class="pre">semidefinite</span></code>: Positive semidefinite cone<a class="headerlink" href="#semidefinite-positive-semidefinite-cone" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.functional.semidefinite">
+<span id="semidefinite-positive-semidefinite-cone"></span><h1><code class="docutils literal notranslate"><span class="pre">semidefinite</span></code>: Positive semidefinite cone<a class="headerlink" href="#module-hypercoil.functional.semidefinite" title="Permalink to this heading">#</a></h1>
+<p>Differentiable projection from the positive semidefinite cone into a proper
+subspace tangent to the Riemann manifold.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Nearly all operations here, as currently implemented, exhibit numerical
+instability in both forward and backward passes.</p>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.semidefinite.tangent_project_spd.html"><code class="docutils literal notranslate"><span class="pre">tangent_project_spd</span></code></a></li>

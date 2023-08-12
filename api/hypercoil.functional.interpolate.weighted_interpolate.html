@@ -705,6 +705,61 @@ document.write(`
                   
   <section id="weighted-interpolate">
 <h1><code class="docutils literal notranslate"><span class="pre">weighted_interpolate</span></code><a class="headerlink" href="#weighted-interpolate" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.interpolate.weighted_interpolate">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.interpolate.</span></span><span class="sig-name descname"><span class="pre">weighted_interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_stage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_stage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'auto'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_to_kernel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/interpolate.py#L448-L490"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.interpolate.weighted_interpolate" title="Permalink to this definition">#</a></dt>
+<dd><p>Interpolate unseen time frames as a weighted average of neighbours.</p>
+<p>Interpolation proceeds iteratively over progressively longer window sizes.
+It first defines a convolutional weighting/window kernel for the current
+window size, and then sets the values of unseen time frames to the
+convolution of seen time frames with this kernel, and marks those time
+frames as seen for the next iteration. Iteration proceeds either until the
+specified maximum stage or until every unseen frame is imputed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In practice, for a square window kernel, the weighted interpolation is
+similar to a nearest-neighbour interpolation with very inefficient
+implementation.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">tensor</span></dt><dd><p>Time series data.</p>
+</dd>
+<dt><strong>mask</strong><span class="classifier">boolean tensor</span></dt><dd><p>Boolean tensor indicating whether the value in each frame of the input
+time series is observed. <code class="docutils literal notranslate"><span class="pre">True</span></code> indicates that the original data are
+“good” or observed, while <code class="docutils literal notranslate"><span class="pre">False</span></code> indicates that they are “bad” or
+missing and flags them for interpolation.</p>
+</dd>
+<dt><strong>start_stage</strong><span class="classifier">int</span></dt><dd><p>The first stage of weighted interpolation. The meaning of this is
+governed by the <code class="docutils literal notranslate"><span class="pre">map_to_kernel</span></code> argument. If no <code class="docutils literal notranslate"><span class="pre">map_to_kernel</span></code>
+argument is otherwise specified, it sets the initial size of a boxcar
+window for averaging. (A value of 1 corresponds to averaging over the
+current frame, together with 1 frame in each of the forward and
+reverse directions.)</p>
+</dd>
+<dt><strong>max_stage</strong><span class="classifier">int or None (default None)</span></dt><dd><p>The final stage of weighted interpolation. The meaning of this is
+governed by the <code class="docutils literal notranslate"><span class="pre">map_to_kernel</span></code> argument. If no <code class="docutils literal notranslate"><span class="pre">map_to_kernel</span></code>
+argument is otherwise specified, it sets the maximum size of a boxcar
+window for averaging. By default, no maximum size is specified, and
+iteration proceeds until every unseen time point is imputed.</p>
+</dd>
+<dt><strong>map_to_kernel</strong><span class="classifier">callable(int -&gt; tensor)</span></dt><dd><p>A function that uses the integer value of the current stage to create
+a convolutional kernel for weighting of neighbours. By default, a
+boxcar window that includes the current frame, together with <code class="docutils literal notranslate"><span class="pre">stage</span></code>
+frames in each of the forward and backward directions, is returned.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Input dataset with missing frames imputed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +772,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.interpolate.weighted_interpolate"><code class="docutils literal notranslate"><span class="pre">weighted_interpolate()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

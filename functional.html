@@ -695,8 +695,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="functional-functions-and-functionals">
-<h1><code class="docutils literal notranslate"><span class="pre">functional</span></code>: Functions and functionals<a class="headerlink" href="#functional-functions-and-functionals" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.functional">
+<span id="functional-functions-and-functionals"></span><h1><code class="docutils literal notranslate"><span class="pre">functional</span></code>: Functions and functionals<a class="headerlink" href="#module-hypercoil.functional" title="Permalink to this heading">#</a></h1>
+<p>Functional interfaces.</p>
+<p>Functionals and neural network modules (in
+<a class="reference internal" href="nn.html"><span class="doc">hypercoil.nn</span></a>)
+constitute the elementary atoms of a differentiable program or
+computational graph. All operations are composable and differentiable
+unless explicitly specified.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.functional.activation.html"><code class="docutils literal notranslate"><span class="pre">activation</span></code>: Activation functions</a><ul>
@@ -786,7 +792,10 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.matrix.squareform.html"><code class="docutils literal notranslate"><span class="pre">squareform</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.functional.resid.residualise.html"><code class="docutils literal notranslate"><span class="pre">residualise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.functional.resid.residualise.html"><code class="docutils literal notranslate"><span class="pre">residualise</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.resid.residualise.html#hypercoil.functional.resid.residualise"><code class="docutils literal notranslate"><span class="pre">residualise()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.functional.semidefinite.html"><code class="docutils literal notranslate"><span class="pre">semidefinite</span></code>: Positive semidefinite cone</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.semidefinite.tangent_project_spd.html"><code class="docutils literal notranslate"><span class="pre">tangent_project_spd</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.semidefinite.cone_project_spd.html"><code class="docutils literal notranslate"><span class="pre">cone_project_spd</span></code></a></li>
@@ -797,6 +806,7 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.functional.sparse.html"><code class="docutils literal notranslate"><span class="pre">sparse</span></code>: Sparse matrix operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.sparse.html#top-k-bcoo-format">Top-k BCOO format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.sparse.random_sparse.html"><code class="docutils literal notranslate"><span class="pre">random_sparse</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.sparse.spdiagmm.html"><code class="docutils literal notranslate"><span class="pre">spdiagmm</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.sparse.dspdmm.html"><code class="docutils literal notranslate"><span class="pre">dspdmm</span></code></a></li>
@@ -828,7 +838,10 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.sphere.euclidean_conv.html"><code class="docutils literal notranslate"><span class="pre">euclidean_conv</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.functional.sylo.html"><code class="docutils literal notranslate"><span class="pre">sylo</span></code>: Sylo function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.functional.sylo.html"><code class="docutils literal notranslate"><span class="pre">sylo</span></code>: Sylo function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.sylo.html#hypercoil.functional.sylo.sylo"><code class="docutils literal notranslate"><span class="pre">sylo()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.functional.symmap.html"><code class="docutils literal notranslate"><span class="pre">symmap</span></code>: Symmetric matrix maps</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.symmap.symmap.html"><code class="docutils literal notranslate"><span class="pre">symmap</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/hypercoil.functional.symmap.symexp.html"><code class="docutils literal notranslate"><span class="pre">symexp</span></code></a></li>

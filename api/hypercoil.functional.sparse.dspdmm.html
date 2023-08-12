@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.sparse.dspdmm';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,16 @@ document.write(`
                   
   <section id="dspdmm">
 <h1><code class="docutils literal notranslate"><span class="pre">dspdmm</span></code><a class="headerlink" href="#dspdmm" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.sparse.dspdmm">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.sparse.</span></span><span class="sig-name descname"><span class="pre">dspdmm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BCOO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">BCOO</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/sparse.py#L244-L257"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.sparse.dspdmm" title="Permalink to this definition">#</a></dt>
+<dd><p>Left and right matrix multiplication of a top-k format sparse matrix with
+a diagonal matrix. Returns a sparse matrix in the top-k format. For a
+sparse matrix X and a diagonal matrix D, the result is</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{D} \mathbf{X} \mathbf{D}\]</div>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +728,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.sparse.dspdmm"><code class="docutils literal notranslate"><span class="pre">dspdmm()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

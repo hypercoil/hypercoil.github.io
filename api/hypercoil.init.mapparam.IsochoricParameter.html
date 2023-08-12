@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.init.mapparam.IsochoricParameter';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,64 @@ document.write(`
                   
   <section id="isochoricparameter">
 <h1><code class="docutils literal notranslate"><span class="pre">IsochoricParameter</span></code><a class="headerlink" href="#isochoricparameter" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.mapparam.IsochoricParameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.mapparam.</span></span><span class="sig-name descname"><span class="pre">IsochoricParameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/mapparam.py#L874-L945"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.mapparam.IsochoricParameter" title="Permalink to this definition">#</a></dt>
+<dd><p>Parameter representing an ellipsoid of fixed volume.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This parameter mapping requires the original parameter to be square
+and symmetric along its last 2 axes. The parameter is further forced
+to be positive definite.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>model</strong><span class="classifier">PyTree</span></dt><dd><p>The model to which the parameter belongs.</p>
+</dd>
+<dt><strong>where</strong><span class="classifier">Callable</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">equinox.tree_at</span></code>: a function that takes a model (or generally
+a PyTree) and returns the parameter tensor to be mapped. For example:
+<code class="docutils literal notranslate"><span class="pre">where</span> <span class="pre">=</span> <span class="pre">lambda</span> <span class="pre">mlp:</span> <span class="pre">mlp.layers[-1].linear.weight</span></code>. By default, the
+<code class="docutils literal notranslate"><span class="pre">weight</span></code> attribute of the model is retrieved.</p>
+</dd>
+<dt><strong>volume</strong><span class="classifier">nonnegative float (default 1)</span></dt><dd><p>Parameter volume. The determinant of the parameter is set to this
+value.</p>
+</dd>
+<dt><strong>max_condition</strong><span class="classifier">float <span class="math notranslate nohighlight">\(\in [1, \infty)\)</span> or None (default None)</span></dt><dd><p>Maximum permissible condition number of the parameter. This can be
+used to constrain the eccentricity of isochoric ellipsoids. To enforce
+this maximum, the eigenvalues of the original parameter are replaced
+with a convex combination of the original eigenvalues and a vector of
+ones such that the largest eigenvalue is no more than
+<code class="docutils literal notranslate"><span class="pre">max_condition</span></code> times the smallest eigenvalue. Note that a
+<code class="docutils literal notranslate"><span class="pre">max_condition</span></code> of 1 will always return (a potentially isotropically
+scaled) identity.</p>
+</dd>
+<dt><strong>softmax_temp</strong><span class="classifier">float or None (default None)</span></dt><dd><p>If this is provided, then the eigenvalues of the original parameter
+are passed through a softmax with the specified temperature before any
+other processing.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>max_condition</strong></dt><dd></dd>
+<dt><strong>softmax_temp</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>image_map_impl</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>preimage_map_impl</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +776,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.mapparam.IsochoricParameter"><code class="docutils literal notranslate"><span class="pre">IsochoricParameter</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

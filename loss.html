@@ -695,138 +695,349 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="loss-loss-and-regularisation">
-<h1><code class="docutils literal notranslate"><span class="pre">loss</span></code>: Loss and regularisation<a class="headerlink" href="#loss-loss-and-regularisation" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.loss">
+<span id="loss-loss-and-regularisation"></span><h1><code class="docutils literal notranslate"><span class="pre">loss</span></code>: Loss and regularisation<a class="headerlink" href="#module-hypercoil.loss" title="Permalink to this heading">#</a></h1>
+<p>Loss functions and regularisations.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">loss</span></code> submodule is a collection of implementations of differentiable
+functions that map from arbitrary inputs to scalar-valued outputs. These
+scalar outputs can provide a starting point for a backward pass through a
+differentiable program model. Functionality is provided for various measures
+of interest to functional brain mapping and other contexts.</p>
+<p>Helper wrappers allow packaging of multiple loss objectives in a single call.
+Each wrapped objective can be selectively applied to a subset of input tensors
+using
+<span class="xref std std-doc">LossApply</span>,
+<span class="xref std std-doc">LossArgument</span>, and
+<span class="xref std std-doc">LossScheme</span>
+functionality.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.Loss.html"><code class="docutils literal notranslate"><span class="pre">Loss</span></code>: Base class for scalar-valued losses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.ParameterisedLoss.html"><code class="docutils literal notranslate"><span class="pre">ParameterisedLoss</span></code>: Extensible class for custom parameterised losses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.MSELoss.html"><code class="docutils literal notranslate"><span class="pre">MSELoss</span></code>: Mean squared error</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.NormedLoss.html"><code class="docutils literal notranslate"><span class="pre">NormedLoss</span></code>: Normed parameter regularisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.identity.html"><code class="docutils literal notranslate"><span class="pre">identity</span></code>: Identity function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.zero.html"><code class="docutils literal notranslate"><span class="pre">zero</span></code>: Zero function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.difference.html"><code class="docutils literal notranslate"><span class="pre">difference</span></code>: Elementwise difference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.Loss.html"><code class="docutils literal notranslate"><span class="pre">Loss</span></code>: Base class for scalar-valued losses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.Loss.html#hypercoil.loss.Loss"><code class="docutils literal notranslate"><span class="pre">Loss</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.ParameterisedLoss.html"><code class="docutils literal notranslate"><span class="pre">ParameterisedLoss</span></code>: Extensible class for custom parameterised losses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.ParameterisedLoss.html#hypercoil.loss.ParameterisedLoss"><code class="docutils literal notranslate"><span class="pre">ParameterisedLoss</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.MSELoss.html"><code class="docutils literal notranslate"><span class="pre">MSELoss</span></code>: Mean squared error</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.MSELoss.html#hypercoil.loss.MSELoss"><code class="docutils literal notranslate"><span class="pre">MSELoss</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.NormedLoss.html"><code class="docutils literal notranslate"><span class="pre">NormedLoss</span></code>: Normed parameter regularisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.NormedLoss.html#hypercoil.loss.NormedLoss"><code class="docutils literal notranslate"><span class="pre">NormedLoss</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.identity.html"><code class="docutils literal notranslate"><span class="pre">identity</span></code>: Identity function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.identity.html#hypercoil.loss.identity"><code class="docutils literal notranslate"><span class="pre">identity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.zero.html"><code class="docutils literal notranslate"><span class="pre">zero</span></code>: Zero function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.zero.html#hypercoil.loss.zero"><code class="docutils literal notranslate"><span class="pre">zero()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.difference.html"><code class="docutils literal notranslate"><span class="pre">difference</span></code>: Elementwise difference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.difference.html#hypercoil.loss.difference"><code class="docutils literal notranslate"><span class="pre">difference()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.constraint_violation.html"><code class="docutils literal notranslate"><span class="pre">constraint_violation</span></code>: Soft constraints</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.constraint_violation.html#constraint-violation"><code class="docutils literal notranslate"><span class="pre">constraint_violation</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.constraint_violation.html#constraintviolationloss"><code class="docutils literal notranslate"><span class="pre">ConstraintViolationLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.constraint_violation.html#constraint-violation"><code class="docutils literal notranslate"><span class="pre">constraint_violation</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.constraint_violation.html#hypercoil.loss.constraint_violation"><code class="docutils literal notranslate"><span class="pre">constraint_violation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.constraint_violation.html#constraintviolationloss"><code class="docutils literal notranslate"><span class="pre">ConstraintViolationLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.constraint_violation.html#hypercoil.loss.ConstraintViolationLoss"><code class="docutils literal notranslate"><span class="pre">ConstraintViolationLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.unilateral_loss.html"><code class="docutils literal notranslate"><span class="pre">unilateral_loss</span></code>: Unilateral penalties</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.unilateral_loss.html#unilateral-loss"><code class="docutils literal notranslate"><span class="pre">unilateral_loss</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.unilateral_loss.html#unilateralloss"><code class="docutils literal notranslate"><span class="pre">UnilateralLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.unilateral_loss.html#unilateral-loss"><code class="docutils literal notranslate"><span class="pre">unilateral_loss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.unilateral_loss.html#hypercoil.loss.unilateral_loss"><code class="docutils literal notranslate"><span class="pre">unilateral_loss()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.unilateral_loss.html#unilateralloss"><code class="docutils literal notranslate"><span class="pre">UnilateralLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.unilateral_loss.html#hypercoil.loss.UnilateralLoss"><code class="docutils literal notranslate"><span class="pre">UnilateralLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.hinge_loss.html"><code class="docutils literal notranslate"><span class="pre">hinge_loss</span></code>: SVM hinge loss</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.hinge_loss.html#hinge-loss"><code class="docutils literal notranslate"><span class="pre">hinge_loss</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.hinge_loss.html#hingeloss"><code class="docutils literal notranslate"><span class="pre">HingeLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.hinge_loss.html#hinge-loss"><code class="docutils literal notranslate"><span class="pre">hinge_loss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.hinge_loss.html#hypercoil.loss.hinge_loss"><code class="docutils literal notranslate"><span class="pre">hinge_loss()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.hinge_loss.html#hingeloss"><code class="docutils literal notranslate"><span class="pre">HingeLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.hinge_loss.html#hypercoil.loss.HingeLoss"><code class="docutils literal notranslate"><span class="pre">HingeLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.smoothness.html"><code class="docutils literal notranslate"><span class="pre">smoothness</span></code>: Backwards differences</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.smoothness.html#smoothness"><code class="docutils literal notranslate"><span class="pre">smoothness</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.smoothness.html#smoothnessloss"><code class="docutils literal notranslate"><span class="pre">SmoothnessLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.smoothness.html#smoothness"><code class="docutils literal notranslate"><span class="pre">smoothness</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.smoothness.html#hypercoil.loss.smoothness"><code class="docutils literal notranslate"><span class="pre">smoothness()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.smoothness.html#smoothnessloss"><code class="docutils literal notranslate"><span class="pre">SmoothnessLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.smoothness.html#hypercoil.loss.SmoothnessLoss"><code class="docutils literal notranslate"><span class="pre">SmoothnessLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.bimodal_symmetric.html"><code class="docutils literal notranslate"><span class="pre">bimodal_symmetric</span></code>: Minimal distance from 2 modes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.bimodal_symmetric.html#bimodal-symmetric"><code class="docutils literal notranslate"><span class="pre">bimodal_symmetric</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.bimodal_symmetric.html#bimodalsymmetricloss"><code class="docutils literal notranslate"><span class="pre">BimodalSymmetricLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.bimodal_symmetric.html#bimodal-symmetric"><code class="docutils literal notranslate"><span class="pre">bimodal_symmetric</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.bimodal_symmetric.html#hypercoil.loss.bimodal_symmetric"><code class="docutils literal notranslate"><span class="pre">bimodal_symmetric()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.bimodal_symmetric.html#bimodalsymmetricloss"><code class="docutils literal notranslate"><span class="pre">BimodalSymmetricLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.bimodal_symmetric.html#hypercoil.loss.BimodalSymmetricLoss"><code class="docutils literal notranslate"><span class="pre">BimodalSymmetricLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.det_gram.html"><code class="docutils literal notranslate"><span class="pre">det_gram</span></code>: Gramian determinant</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.det_gram.html#det-gram"><code class="docutils literal notranslate"><span class="pre">det_gram</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.det_gram.html#gramdeterminantloss"><code class="docutils literal notranslate"><span class="pre">GramDeterminantLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.det_gram.html#det-gram"><code class="docutils literal notranslate"><span class="pre">det_gram</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.det_gram.html#hypercoil.loss.det_gram"><code class="docutils literal notranslate"><span class="pre">det_gram()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.det_gram.html#gramdeterminantloss"><code class="docutils literal notranslate"><span class="pre">GramDeterminantLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.det_gram.html#hypercoil.loss.GramDeterminantLoss"><code class="docutils literal notranslate"><span class="pre">GramDeterminantLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.log_det_gram.html"><code class="docutils literal notranslate"><span class="pre">log_det_gram</span></code>: Gram log-determinant loss</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.log_det_gram.html#log-det-gram"><code class="docutils literal notranslate"><span class="pre">log_det_gram</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.log_det_gram.html#gramlogdeterminantloss"><code class="docutils literal notranslate"><span class="pre">GramLogDeterminantLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.log_det_gram.html#log-det-gram"><code class="docutils literal notranslate"><span class="pre">log_det_gram</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.log_det_gram.html#hypercoil.loss.log_det_gram"><code class="docutils literal notranslate"><span class="pre">log_det_gram()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.log_det_gram.html#gramlogdeterminantloss"><code class="docutils literal notranslate"><span class="pre">GramLogDeterminantLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.log_det_gram.html#hypercoil.loss.GramLogDeterminantLoss"><code class="docutils literal notranslate"><span class="pre">GramLogDeterminantLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.entropy.html"><code class="docutils literal notranslate"><span class="pre">entropy</span></code>: Categorical entropy</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.entropy.html#entropy"><code class="docutils literal notranslate"><span class="pre">entropy</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.entropy.html#entropyloss"><code class="docutils literal notranslate"><span class="pre">EntropyLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.entropy.html#entropy"><code class="docutils literal notranslate"><span class="pre">entropy</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy"><code class="docutils literal notranslate"><span class="pre">entropy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy_logit"><code class="docutils literal notranslate"><span class="pre">entropy_logit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.entropy.html#entropyloss"><code class="docutils literal notranslate"><span class="pre">EntropyLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.EntropyLoss"><code class="docutils literal notranslate"><span class="pre">EntropyLoss</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.EntropyLogitLoss"><code class="docutils literal notranslate"><span class="pre">EntropyLogitLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.kl_divergence.html"><code class="docutils literal notranslate"><span class="pre">kl_divergence</span></code>: Kullback-Leibler divergence</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.kl_divergence.html#kl-divergence"><code class="docutils literal notranslate"><span class="pre">kl_divergence</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.kl_divergence.html#kldivergenceloss"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.kl_divergence.html#kl-divergence"><code class="docutils literal notranslate"><span class="pre">kl_divergence</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.kl_divergence.html#hypercoil.loss.kl_divergence"><code class="docutils literal notranslate"><span class="pre">kl_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.kl_divergence.html#hypercoil.loss.kl_divergence_logit"><code class="docutils literal notranslate"><span class="pre">kl_divergence_logit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.kl_divergence.html#kldivergenceloss"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.kl_divergence.html#hypercoil.loss.KLDivergenceLoss"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLoss</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.kl_divergence.html#hypercoil.loss.KLDivergenceLogitLoss"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLogitLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.js_divergence.html"><code class="docutils literal notranslate"><span class="pre">js_divergence</span></code>: Jensen-Shannon divergence</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.js_divergence.html#js-divergence"><code class="docutils literal notranslate"><span class="pre">js_divergence</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.js_divergence.html#jsdivergenceloss"><code class="docutils literal notranslate"><span class="pre">JSDivergenceLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.js_divergence.html#js-divergence"><code class="docutils literal notranslate"><span class="pre">js_divergence</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.js_divergence.html#hypercoil.loss.js_divergence"><code class="docutils literal notranslate"><span class="pre">js_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.js_divergence.html#hypercoil.loss.js_divergence_logit"><code class="docutils literal notranslate"><span class="pre">js_divergence_logit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.js_divergence.html#jsdivergenceloss"><code class="docutils literal notranslate"><span class="pre">JSDivergenceLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.js_divergence.html#hypercoil.loss.JSDivergenceLoss"><code class="docutils literal notranslate"><span class="pre">JSDivergenceLoss</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.js_divergence.html#hypercoil.loss.JSDivergenceLogitLoss"><code class="docutils literal notranslate"><span class="pre">JSDivergenceLogitLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.bregman_divergence.html"><code class="docutils literal notranslate"><span class="pre">bregman_divergence</span></code>: Bregman divergences</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.bregman_divergence.html#bregman-divergence"><code class="docutils literal notranslate"><span class="pre">bregman_divergence</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.bregman_divergence.html#bregmandivergenceloss"><code class="docutils literal notranslate"><span class="pre">BregmanDivergenceLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.bregman_divergence.html#bregman-divergence"><code class="docutils literal notranslate"><span class="pre">bregman_divergence</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.bregman_divergence.html#hypercoil.loss.bregman_divergence"><code class="docutils literal notranslate"><span class="pre">bregman_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.bregman_divergence.html#hypercoil.loss.bregman_divergence_logit"><code class="docutils literal notranslate"><span class="pre">bregman_divergence_logit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.bregman_divergence.html#bregmandivergenceloss"><code class="docutils literal notranslate"><span class="pre">BregmanDivergenceLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.bregman_divergence.html#hypercoil.loss.BregmanDivergenceLoss"><code class="docutils literal notranslate"><span class="pre">BregmanDivergenceLoss</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.bregman_divergence.html#hypercoil.loss.BregmanDivergenceLogitLoss"><code class="docutils literal notranslate"><span class="pre">BregmanDivergenceLogitLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html"><code class="docutils literal notranslate"><span class="pre">equilibrium</span></code>: Equilibrium loss</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#equilibrium"><code class="docutils literal notranslate"><span class="pre">equilibrium</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#equilibriumloss"><code class="docutils literal notranslate"><span class="pre">EquilibriumLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#equilibrium"><code class="docutils literal notranslate"><span class="pre">equilibrium</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium"><code class="docutils literal notranslate"><span class="pre">equilibrium()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium_logit"><code class="docutils literal notranslate"><span class="pre">equilibrium_logit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#equilibriumloss"><code class="docutils literal notranslate"><span class="pre">EquilibriumLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.EquilibriumLoss"><code class="docutils literal notranslate"><span class="pre">EquilibriumLoss</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.EquilibriumLogitLoss"><code class="docutils literal notranslate"><span class="pre">EquilibriumLogitLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.second_moment.html"><code class="docutils literal notranslate"><span class="pre">second_moment</span></code>: Second moments</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.second_moment.html#second-moment"><code class="docutils literal notranslate"><span class="pre">second_moment</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.second_moment.html#secondmomentloss"><code class="docutils literal notranslate"><span class="pre">SecondMomentLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.second_moment.html#second-moment"><code class="docutils literal notranslate"><span class="pre">second_moment</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.second_moment.html#hypercoil.loss.second_moment"><code class="docutils literal notranslate"><span class="pre">second_moment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.second_moment.html#hypercoil.loss.second_moment_centred"><code class="docutils literal notranslate"><span class="pre">second_moment_centred()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.auto_tol.html"><code class="docutils literal notranslate"><span class="pre">auto_tol</span></code>: Significance tolerance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.second_moment.html#secondmomentloss"><code class="docutils literal notranslate"><span class="pre">SecondMomentLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.second_moment.html#hypercoil.loss.SecondMomentLoss"><code class="docutils literal notranslate"><span class="pre">SecondMomentLoss</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.second_moment.html#hypercoil.loss.SecondMomentCentredLoss"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentredLoss</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.auto_tol.html"><code class="docutils literal notranslate"><span class="pre">auto_tol</span></code>: Significance tolerance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.auto_tol.html#hypercoil.loss.auto_tol"><code class="docutils literal notranslate"><span class="pre">auto_tol()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.batch_corr.html"><code class="docutils literal notranslate"><span class="pre">batch_corr</span></code>: Batch-axis correlation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.batch_corr.html#batch-corr"><code class="docutils literal notranslate"><span class="pre">batch_corr</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.batch_corr.html#batchcorrelationloss"><code class="docutils literal notranslate"><span class="pre">BatchCorrelationLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.batch_corr.html#batch-corr"><code class="docutils literal notranslate"><span class="pre">batch_corr</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.batch_corr.html#hypercoil.loss.batch_corr"><code class="docutils literal notranslate"><span class="pre">batch_corr()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.batch_corr.html#batchcorrelationloss"><code class="docutils literal notranslate"><span class="pre">BatchCorrelationLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.batch_corr.html#hypercoil.loss.BatchCorrelationLoss"><code class="docutils literal notranslate"><span class="pre">BatchCorrelationLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.qcfc.html"><code class="docutils literal notranslate"><span class="pre">qcfc</span></code>: QC-FC measures and loss</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.qcfc.html#qcfc"><code class="docutils literal notranslate"><span class="pre">qcfc</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.qcfc.html#qcfcloss"><code class="docutils literal notranslate"><span class="pre">QCFCLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.qcfc.html#qcfc"><code class="docutils literal notranslate"><span class="pre">qcfc</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.qcfc.html#hypercoil.loss.qcfc"><code class="docutils literal notranslate"><span class="pre">qcfc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.qcfc.html#qcfcloss"><code class="docutils literal notranslate"><span class="pre">QCFCLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.qcfc.html#hypercoil.loss.QCFCLoss"><code class="docutils literal notranslate"><span class="pre">QCFCLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.reference_tether.html"><code class="docutils literal notranslate"><span class="pre">reference_tether</span></code>: Spatial tether to reference points</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.reference_tether.html#reference-tether"><code class="docutils literal notranslate"><span class="pre">reference_tether</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.reference_tether.html#referencetetherloss"><code class="docutils literal notranslate"><span class="pre">ReferenceTetherLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.reference_tether.html#reference-tether"><code class="docutils literal notranslate"><span class="pre">reference_tether</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.reference_tether.html#hypercoil.loss.reference_tether"><code class="docutils literal notranslate"><span class="pre">reference_tether()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.reference_tether.html#referencetetherloss"><code class="docutils literal notranslate"><span class="pre">ReferenceTetherLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.reference_tether.html#hypercoil.loss.ReferenceTetherLoss"><code class="docutils literal notranslate"><span class="pre">ReferenceTetherLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.interhemispheric_tether.html"><code class="docutils literal notranslate"><span class="pre">interhemispheric_tether</span></code>: Inter-hemispheric tethering loss</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.interhemispheric_tether.html#interhemispheric-tether"><code class="docutils literal notranslate"><span class="pre">interhemispheric_tether</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.interhemispheric_tether.html#interhemispherictetherloss"><code class="docutils literal notranslate"><span class="pre">InterhemisphericTetherLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.interhemispheric_tether.html#interhemispheric-tether"><code class="docutils literal notranslate"><span class="pre">interhemispheric_tether</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.interhemispheric_tether.html#hypercoil.loss.interhemispheric_tether"><code class="docutils literal notranslate"><span class="pre">interhemispheric_tether()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.interhemispheric_tether.html#interhemispherictetherloss"><code class="docutils literal notranslate"><span class="pre">InterhemisphericTetherLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.interhemispheric_tether.html#hypercoil.loss.InterhemisphericTetherLoss"><code class="docutils literal notranslate"><span class="pre">InterhemisphericTetherLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.compactness.html"><code class="docutils literal notranslate"><span class="pre">compactness</span></code>: Compactness</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.compactness.html#compactness"><code class="docutils literal notranslate"><span class="pre">compactness</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.compactness.html#compactnessloss"><code class="docutils literal notranslate"><span class="pre">CompactnessLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.compactness.html#compactness"><code class="docutils literal notranslate"><span class="pre">compactness</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.compactness.html#hypercoil.loss.compactness"><code class="docutils literal notranslate"><span class="pre">compactness()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.compactness.html#compactnessloss"><code class="docutils literal notranslate"><span class="pre">CompactnessLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.compactness.html#hypercoil.loss.CompactnessLoss"><code class="docutils literal notranslate"><span class="pre">CompactnessLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.dispersion.html"><code class="docutils literal notranslate"><span class="pre">dispersion</span></code>: Vector dispersion</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.dispersion.html#dispersion"><code class="docutils literal notranslate"><span class="pre">dispersion</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.dispersion.html#dispersionloss"><code class="docutils literal notranslate"><span class="pre">DispersionLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.dispersion.html#dispersion"><code class="docutils literal notranslate"><span class="pre">dispersion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.dispersion.html#hypercoil.loss.dispersion"><code class="docutils literal notranslate"><span class="pre">dispersion()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.dispersion.html#dispersionloss"><code class="docutils literal notranslate"><span class="pre">DispersionLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.dispersion.html#hypercoil.loss.DispersionLoss"><code class="docutils literal notranslate"><span class="pre">DispersionLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.multivariate_kurtosis.html"><code class="docutils literal notranslate"><span class="pre">multivariate_kurtosis</span></code>: Time series stationarity</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.multivariate_kurtosis.html#multivariate-kurtosis"><code class="docutils literal notranslate"><span class="pre">multivariate_kurtosis</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.multivariate_kurtosis.html#multivariatekurtosis"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.multivariate_kurtosis.html#multivariate-kurtosis"><code class="docutils literal notranslate"><span class="pre">multivariate_kurtosis</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.multivariate_kurtosis.html#hypercoil.loss.multivariate_kurtosis"><code class="docutils literal notranslate"><span class="pre">multivariate_kurtosis()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.multivariate_kurtosis.html#multivariatekurtosis"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.multivariate_kurtosis.html#hypercoil.loss.MultivariateKurtosis"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.connectopy.html"><code class="docutils literal notranslate"><span class="pre">connectopy</span></code>: Generalised connectopy</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.connectopy.html#connectopy"><code class="docutils literal notranslate"><span class="pre">connectopy</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.connectopy.html#connectopyloss"><code class="docutils literal notranslate"><span class="pre">ConnectopyLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.connectopy.html#connectopy"><code class="docutils literal notranslate"><span class="pre">connectopy</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.connectopy.html#hypercoil.loss.connectopy"><code class="docutils literal notranslate"><span class="pre">connectopy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.connectopy.html#connectopyloss"><code class="docutils literal notranslate"><span class="pre">ConnectopyLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.connectopy.html#hypercoil.loss.ConnectopyLoss"><code class="docutils literal notranslate"><span class="pre">ConnectopyLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.modularity.html"><code class="docutils literal notranslate"><span class="pre">modularity</span></code>: Relaxed modularity</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.modularity.html#modularity"><code class="docutils literal notranslate"><span class="pre">modularity</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.modularity.html#modularityloss"><code class="docutils literal notranslate"><span class="pre">ModularityLoss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.modularity.html#modularity"><code class="docutils literal notranslate"><span class="pre">modularity</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.modularity.html#hypercoil.loss.modularity"><code class="docutils literal notranslate"><span class="pre">modularity()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.sum_scalarise.html"><code class="docutils literal notranslate"><span class="pre">sum_scalarise</span></code>: Sum scalarisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.mean_scalarise.html"><code class="docutils literal notranslate"><span class="pre">mean_scalarise</span></code>: Mean scalarisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.meansq_scalarise.html"><code class="docutils literal notranslate"><span class="pre">meansq_scalarise</span></code>: Squared mean scalarisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.max_scalarise.html"><code class="docutils literal notranslate"><span class="pre">max_scalarise</span></code>: Maximum-value scalarisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.norm_scalarise.html"><code class="docutils literal notranslate"><span class="pre">norm_scalarise</span></code>: Norm scalarisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.vnorm_scalarise.html"><code class="docutils literal notranslate"><span class="pre">vnorm_scalarise</span></code>: Vector norm scalarisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.wmean_scalarise.html"><code class="docutils literal notranslate"><span class="pre">wmean_scalarise</span></code>: Weighted mean scalarisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.selfwmean_scalarise.html"><code class="docutils literal notranslate"><span class="pre">selfwmean_scalarise</span></code>: Self-weighted mean scalarisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scheme.LossApply.html"><code class="docutils literal notranslate"><span class="pre">LossApply</span></code>: Selectively apply loss to parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scheme.LossScheme.html"><code class="docutils literal notranslate"><span class="pre">LossScheme</span></code>: Scheme for multiple losses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.modularity.html#modularityloss"><code class="docutils literal notranslate"><span class="pre">ModularityLoss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.modularity.html#hypercoil.loss.ModularityLoss"><code class="docutils literal notranslate"><span class="pre">ModularityLoss</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.sum_scalarise.html"><code class="docutils literal notranslate"><span class="pre">sum_scalarise</span></code>: Sum scalarisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.scalarise.sum_scalarise.html#hypercoil.loss.scalarise.sum_scalarise"><code class="docutils literal notranslate"><span class="pre">sum_scalarise()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.mean_scalarise.html"><code class="docutils literal notranslate"><span class="pre">mean_scalarise</span></code>: Mean scalarisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.scalarise.mean_scalarise.html#hypercoil.loss.scalarise.mean_scalarise"><code class="docutils literal notranslate"><span class="pre">mean_scalarise()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.meansq_scalarise.html"><code class="docutils literal notranslate"><span class="pre">meansq_scalarise</span></code>: Squared mean scalarisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.scalarise.meansq_scalarise.html#hypercoil.loss.scalarise.meansq_scalarise"><code class="docutils literal notranslate"><span class="pre">meansq_scalarise()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.max_scalarise.html"><code class="docutils literal notranslate"><span class="pre">max_scalarise</span></code>: Maximum-value scalarisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.scalarise.max_scalarise.html#hypercoil.loss.scalarise.max_scalarise"><code class="docutils literal notranslate"><span class="pre">max_scalarise()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.norm_scalarise.html"><code class="docutils literal notranslate"><span class="pre">norm_scalarise</span></code>: Norm scalarisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.scalarise.norm_scalarise.html#hypercoil.loss.scalarise.norm_scalarise"><code class="docutils literal notranslate"><span class="pre">norm_scalarise()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.vnorm_scalarise.html"><code class="docutils literal notranslate"><span class="pre">vnorm_scalarise</span></code>: Vector norm scalarisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.scalarise.vnorm_scalarise.html#hypercoil.loss.scalarise.vnorm_scalarise"><code class="docutils literal notranslate"><span class="pre">vnorm_scalarise()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.wmean_scalarise.html"><code class="docutils literal notranslate"><span class="pre">wmean_scalarise</span></code>: Weighted mean scalarisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.scalarise.wmean_scalarise.html#hypercoil.loss.scalarise.wmean_scalarise"><code class="docutils literal notranslate"><span class="pre">wmean_scalarise()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scalarise.selfwmean_scalarise.html"><code class="docutils literal notranslate"><span class="pre">selfwmean_scalarise</span></code>: Self-weighted mean scalarisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.scalarise.selfwmean_scalarise.html#hypercoil.loss.scalarise.selfwmean_scalarise"><code class="docutils literal notranslate"><span class="pre">selfwmean_scalarise()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scheme.LossApply.html"><code class="docutils literal notranslate"><span class="pre">LossApply</span></code>: Selectively apply loss to parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.scheme.LossApply.html#hypercoil.loss.scheme.LossApply"><code class="docutils literal notranslate"><span class="pre">LossApply</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scheme.LossScheme.html"><code class="docutils literal notranslate"><span class="pre">LossScheme</span></code>: Scheme for multiple losses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.scheme.LossScheme.html#hypercoil.loss.scheme.LossScheme"><code class="docutils literal notranslate"><span class="pre">LossScheme</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>

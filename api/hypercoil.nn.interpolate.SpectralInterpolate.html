@@ -705,6 +705,81 @@ document.write(`
                   
   <section id="spectralinterpolate">
 <h1><code class="docutils literal notranslate"><span class="pre">SpectralInterpolate</span></code><a class="headerlink" href="#spectralinterpolate" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.nn.interpolate.SpectralInterpolate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.interpolate.</span></span><span class="sig-name descname"><span class="pre">SpectralInterpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/nn/interpolate.py#L21-L54"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.interpolate.SpectralInterpolate" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="hypercoil.functional.interpolate.spectral_interpolate.html"><span class="doc">Spectral interpolation</span></a>
+module.</p>
+<p>Given a time series with missing or corrupt observations, this operation
+estimates the time series frequency spectra by proxy of projections onto
+sine and cosine basis functions, and then uses the frequency spectrum
+estimates as basis function weights in the reconstruction of missing
+observations.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Users of this approach must be advised that the missing observations
+result in non-orthogonal basis functions, and accordingly the variance
+captured by different frequency bins might be shared.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is inspired by
+<a class="reference external" href="https://github.com/MidnightScanClub/MSCcodebase/blob/master/Processing/FCPROCESS_MSC.m">previous work from Anish Mitra and Jonathan Power</a>
+which in turn is inspired by the Lomb-Scargle periodogram.</p>
+</div>
+<p>This method is used to temporarily interpolate over time points flagged
+for omission due to high artefact content, so as to reduce disruptions to
+the autocorrelation structure introduced by either artefactual outliers or
+zeroing (or arguably linearly interpolating) those outliers. This is
+useful for operations such as filtering and convolution for which the
+autocorrelation structure of the data is relevant. It should not be used
+for operations in which the autocorrelation structure plays no role, such
+as covariance estimation, for which the weights of missing observations
+can easily be set to 0.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">spectral_interpolate</span></code> expects batched input <code class="docutils literal notranslate"><span class="pre">data</span></code> and <code class="docutils literal notranslate"><span class="pre">tmask</span></code>
+arguments. If your inputs are not batched, <code class="docutils literal notranslate"><span class="pre">unsqueeze</span></code> their first
+dimension before providing them as inputs.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the input time series contains either no or all missing
+observations, then the output time series will be identical to the
+input time series.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>oversampling_frequency</strong><span class="classifier">float (default 8)</span></dt><dd><p>Determines the number of frequency bins to use when estimating the
+sine and cosine spectra. 1 indicates that the number of bins should be
+the same as in a Fourier transform, while larger values indicate that
+frequency bins should be oversampled.</p>
+</dd>
+<dt><strong>maximum_frequency</strong><span class="classifier">float (default 1)</span></dt><dd><p>Maximum frequency bin to consider in the fit, as a fraction of
+Nyquist.</p>
+</dd>
+<dt><strong>sampling_period</strong><span class="classifier">float (default 1)</span></dt><dd><p>Period separating consecutive samples in <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+</dd>
+<dt><strong>frequency_thresh</strong><span class="classifier">float (default 0.3)</span></dt><dd><p>Because of the non-orthogonality of the basis functions, spurious
+variance will often be captured in the spectral estimates. To control
+this spurious variance, all frequency bins whose estimates are less
+than <code class="docutils literal notranslate"><span class="pre">frequency_thresh</span></code>, as a fraction of the maximum estimate
+across all bins, are set to 0.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(input, mask, *[, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +792,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.interpolate.SpectralInterpolate"><code class="docutils literal notranslate"><span class="pre">SpectralInterpolate</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

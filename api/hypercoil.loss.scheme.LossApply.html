@@ -700,6 +700,39 @@ document.write(`
                   
   <section id="lossapply-selectively-apply-loss-to-parameters">
 <h1><code class="docutils literal notranslate"><span class="pre">LossApply</span></code>: Selectively apply loss to parameters<a class="headerlink" href="#lossapply-selectively-apply-loss-to-parameters" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.scheme.LossApply">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.scheme.</span></span><span class="sig-name descname"><span class="pre">LossApply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/scheme.py#L47-L97"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.scheme.LossApply" title="Permalink to this definition">#</a></dt>
+<dd><p>Callable loss function wrapper that composes the loss with a selector or
+other pretransformation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>loss</strong><span class="classifier">callable</span></dt><dd><p>Loss function to apply.</p>
+</dd>
+<dt><strong>apply</strong><span class="classifier">callable</span></dt><dd><p>Callable that pretransforms the input to the loss. This can be used
+as a selector, so that different entries in a
+<a class="reference internal" href="hypercoil.loss.scheme.LossScheme.html"><span class="doc">LossScheme</span></a> are applied
+to different combinations of weights, inputs, and outputs. One use
+case is filtering the inputs to a <code class="docutils literal notranslate"><span class="pre">LossScheme</span></code> and forwarding only
+the ones relevant to the loss function at hand.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(*pparams, key, **params)</p></td>
+<td><p>Evaluate the loss applied to the output of the <code class="docutils literal notranslate"><span class="pre">apply</span></code> operation.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply</span></code>()</p></td>
+<td><p>For an argument sequence, unpack if it's a singleton sequence, and otherwise return the sequence.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -712,6 +745,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.scheme.LossApply"><code class="docutils literal notranslate"><span class="pre">LossApply</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

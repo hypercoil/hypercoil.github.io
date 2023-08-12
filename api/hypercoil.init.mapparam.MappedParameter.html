@@ -705,6 +705,57 @@ document.write(`
                   
   <section id="mappedparameter">
 <h1><code class="docutils literal notranslate"><span class="pre">MappedParameter</span></code><a class="headerlink" href="#mappedparameter" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.mapparam.MappedParameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.mapparam.</span></span><span class="sig-name descname"><span class="pre">MappedParameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/mapparam.py#L28-L123"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.mapparam.MappedParameter" title="Permalink to this definition">#</a></dt>
+<dd><p>A transformed version of a parameter tensor.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">MappedParameter</span></code> wraps and replaces a standard parameter in a model.
+Subclasses can implement image (forward transformation) and preimage
+(often right inverse transformation) maps to transform the parameter
+tensor. At instantiation, the original parameter is mapped under the
+preimage map. It can thereafter be accessed in the <code class="docutils literal notranslate"><span class="pre">original</span></code> field of
+the <code class="docutils literal notranslate"><span class="pre">MappedParameter</span></code>. Accessing the parameter instead accesses the
+tranformation of the original parameter under the image map.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Rather than first instantiating a new <code class="docutils literal notranslate"><span class="pre">MappedParameter</span></code> and then
+creating an updated model, it is also possible to directly create an
+updated model that immediatelycontains the <code class="docutils literal notranslate"><span class="pre">MappedParameter</span></code> using
+the <code class="docutils literal notranslate"><span class="pre">map</span></code> class method.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>model</strong><span class="classifier">PyTree</span></dt><dd><p>The model to which the parameter belongs.</p>
+</dd>
+<dt><strong>where</strong><span class="classifier">Callable</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">equinox.tree_at</span></code>: a function that takes a model (or generally
+a PyTree) and returns the parameter tensor to be mapped. For example:
+<code class="docutils literal notranslate"><span class="pre">where</span> <span class="pre">=</span> <span class="pre">lambda</span> <span class="pre">mlp:</span> <span class="pre">mlp.layers[-1].linear.weight</span></code>. By default, the
+<code class="docutils literal notranslate"><span class="pre">weight</span></code> attribute of the model is retrieved.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">map</span></code>(model, *pparams[, where])</p></td>
+<td><p>Create an updated version of a model that contains the mapped parameter.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>image_map</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>preimage_map</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +768,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.mapparam.MappedParameter"><code class="docutils literal notranslate"><span class="pre">MappedParameter</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

@@ -705,6 +705,26 @@ document.write(`
                   
   <section id="toeplitz-2d">
 <h1><code class="docutils literal notranslate"><span class="pre">toeplitz_2d</span></code><a class="headerlink" href="#toeplitz-2d" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.matrix.toeplitz_2d">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.matrix.</span></span><span class="sig-name descname"><span class="pre">toeplitz_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/matrix.py#L371-L421"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.matrix.toeplitz_2d" title="Permalink to this definition">#</a></dt>
+<dd><p>Construct a 2D Toeplitz matrix from a column and row vector.</p>
+<p>Based on the second method posted by &#64;mattjj and evaluated by
+&#64;blakehechtman here:
+<a class="github reference external" href="https://github.com/google/jax/issues/1646#issuecomment-1139044324">google/jax#1646</a>
+Apparently this method underperforms on TPU. But given that TPUs are
+only available for Google, this is probably not a big deal.</p>
+<p>Our method is more flexible in that it admits Toeplitz matrices without
+circulant structure. Our API is also closer to that of the scipy toeplitz
+function. We also support a fill value for the matrix. See
+<a class="reference internal" href="hypercoil.functional.matrix.toeplitz.html#hypercoil.functional.matrix.toeplitz" title="hypercoil.functional.matrix.toeplitz"><code class="xref py py-func docutils literal notranslate"><span class="pre">toeplitz()</span></code></a> for complete API documentation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use the <a class="reference internal" href="hypercoil.functional.matrix.toeplitz.html#hypercoil.functional.matrix.toeplitz" title="hypercoil.functional.matrix.toeplitz"><code class="xref py py-func docutils literal notranslate"><span class="pre">toeplitz()</span></code></a> function for an API that supports any number
+of leading dimensions.</p>
+</div>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +737,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.matrix.toeplitz_2d"><code class="docutils literal notranslate"><span class="pre">toeplitz_2d()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

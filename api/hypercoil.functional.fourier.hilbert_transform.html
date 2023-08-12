@@ -705,6 +705,42 @@ document.write(`
                   
   <section id="hilbert-transform">
 <h1><code class="docutils literal notranslate"><span class="pre">hilbert_transform</span></code><a class="headerlink" href="#hilbert-transform" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.fourier.hilbert_transform">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.fourier.</span></span><span class="sig-name descname"><span class="pre">hilbert_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/fourier.py#L267-L285"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.fourier.hilbert_transform" title="Permalink to this definition">#</a></dt>
+<dd><p>Hilbert transform of an input signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">tensor</span></dt><dd><p>Input tensor.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int (default -1)</span></dt><dd><p>Axis along which the transform is applied.</p>
+</dd>
+<dt><strong>n</strong><span class="classifier">int (default None)</span></dt><dd><p>Number of frequency components; dimension of the Fourier transform.
+This defaults to the size of the input along the transform axis.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Output tensor.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="hypercoil.functional.fourier.analytic_signal.html#hypercoil.functional.fourier.analytic_signal" title="hypercoil.functional.fourier.analytic_signal"><code class="xref py py-func docutils literal notranslate"><span class="pre">analytic_signal()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="#hypercoil.functional.fourier.hilbert_transform" title="hypercoil.functional.fourier.hilbert_transform"><code class="xref py py-func docutils literal notranslate"><span class="pre">hilbert_transform()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="hypercoil.functional.fourier.envelope.html#hypercoil.functional.fourier.envelope" title="hypercoil.functional.fourier.envelope"><code class="xref py py-func docutils literal notranslate"><span class="pre">envelope()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="hypercoil.functional.fourier.instantaneous_phase.html#hypercoil.functional.fourier.instantaneous_phase" title="hypercoil.functional.fourier.instantaneous_phase"><code class="xref py py-func docutils literal notranslate"><span class="pre">instantaneous_phase()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="hypercoil.functional.fourier.instantaneous_frequency.html#hypercoil.functional.fourier.instantaneous_frequency" title="hypercoil.functional.fourier.instantaneous_frequency"><code class="xref py py-func docutils literal notranslate"><span class="pre">instantaneous_frequency()</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="hypercoil.functional.fourier.env_inst.html#hypercoil.functional.fourier.env_inst" title="hypercoil.functional.fourier.env_inst"><code class="xref py py-func docutils literal notranslate"><span class="pre">env_inst()</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +753,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.fourier.hilbert_transform"><code class="docutils literal notranslate"><span class="pre">hilbert_transform()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

@@ -698,8 +698,36 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="residualise">
-<h1><code class="docutils literal notranslate"><span class="pre">Residualise</span></code><a class="headerlink" href="#residualise" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.nn.resid.Residualise">
+<span id="residualise"></span><h1><code class="docutils literal notranslate"><span class="pre">Residualise</span></code><a class="headerlink" href="#module-hypercoil.nn.resid.Residualise" title="Permalink to this heading">#</a></h1>
+<p>Residualise a tensor block via ordinary linear least squares.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">torch</span></code>, we have found in some cases that the
+least-squares fit returned was incorrect for reasons that are not
+clear. (Incorrect results are returned by
+<code class="docutils literal notranslate"><span class="pre">torch.linalg.lstsq</span></code>, although correct results are returned if
+<code class="docutils literal notranslate"><span class="pre">torch.linalg.pinv</span></code> is used instead.) Verify that results are
+reasonable when using this operation.</p>
+<p>It is not clear whether the same is true for <code class="docutils literal notranslate"><span class="pre">jax</span></code>. Caution is
+advised.</p>
+</div>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">#</a></h2>
+<dl class="simple">
+<dt>rowvar<span class="classifier">bool (default True)</span></dt><dd><p>Indicates that the last axis of the input tensor is the observation
+axis and the penultimate axis is the variable axis. If False, then this
+relationship is transposed.</p>
+</dd>
+<dt>l2<span class="classifier">float (default 0.0)</span></dt><dd><p>L2 regularisation parameter. If non-zero, the least-squares solution
+will be regularised by adding a penalty term to the cost function.</p>
+</dd>
+<dt>return_mode<span class="classifier">Literal[‘residual’, ‘orthogonal’] (default ‘residual’)</span></dt><dd><p>Indicates whether the residual or orthogonal tensor should be
+returned. The orthogonal tensor is the projection of <cite>Y</cite> onto the
+span of <cite>X</cite> (i.e., the least-squares solution).</p>
+</dd>
+</dl>
+</section>
 </section>
 
 
@@ -712,6 +740,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

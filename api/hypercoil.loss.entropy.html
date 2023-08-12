@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.entropy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,9 +703,208 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">entropy</span></code>: Categorical entropy<a class="headerlink" href="#entropy-categorical-entropy" title="Permalink to this heading">#</a></h1>
 <section id="entropy">
 <h2><code class="docutils literal notranslate"><span class="pre">entropy</span></code><a class="headerlink" href="#entropy" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.entropy">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L595-L623"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.entropy" title="Permalink to this definition">#</a></dt>
+<dd><p>Entropy of a categorical distribution or set of categorical distributions.</p>
+<p>This function operates on probability tensors. For a version that operates
+on logits, see <a class="reference internal" href="#hypercoil.loss.entropy_logit" title="hypercoil.loss.entropy_logit"><code class="xref py py-func docutils literal notranslate"><span class="pre">entropy_logit()</span></code></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor containing probabilities or logits for each category.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the entropy.</p>
+</dd>
+<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
+</dd>
+<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed probability-weighted surprise is
+computed for each element of the input tensor. Otherwise, the entropy
+is computed over the specified axis or axes.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Entropy score for each set of observations.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.entropy_logit">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">entropy_logit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L625-L652"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.entropy_logit" title="Permalink to this definition">#</a></dt>
+<dd><p>Project logits in the input matrix onto the probability simplex, and then
+compute the entropy of the resulting categorical distribution.</p>
+<p>This function operates on logit tensors. For a version that operates on
+probabilities, see <a class="reference internal" href="#hypercoil.loss.entropy" title="hypercoil.loss.entropy"><code class="xref py py-func docutils literal notranslate"><span class="pre">entropy()</span></code></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor containing probabilities or logits for each category.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the entropy.</p>
+</dd>
+<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
+</dd>
+<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed probability-weighted surprise is
+computed for each element of the input tensor. Otherwise, the entropy
+is computed over the specified axis or axes.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Entropy score for each set of observations.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="entropyloss">
 <h2><code class="docutils literal notranslate"><span class="pre">EntropyLoss</span></code><a class="headerlink" href="#entropyloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.EntropyLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">EntropyLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L761-L800"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.EntropyLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Loss based on the entropy of a categorical distribution.</p>
+<p>This operates on probability tensors. For a version that operates on
+logits, see <a class="reference internal" href="#hypercoil.loss.EntropyLogitLoss" title="hypercoil.loss.EntropyLogitLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">EntropyLogitLoss</span></code></a>.</p>
+<div class="admonition-entropy admonition">
+<p class="admonition-title">Entropy</p>
+<p>The entropy of a categorical distribution <span class="math notranslate nohighlight">\(A\)</span> is defined as</p>
+<p><span class="math notranslate nohighlight">\(-\mathbf{1}^\intercal \left(A \circ \log A\right) \mathbf{1}\)</span></p>
+<p>(where <span class="math notranslate nohighlight">\(\log\)</span> denotes the elementwise logarithm).</p>
+<a class="reference internal image-reference" href="../_images/entropysimplex.svg"><img alt="../_images/entropysimplex.svg" class="align-center" src="../_images/entropysimplex.svg" width="250" /></a>
+<p><em>Cartoon schematic of the contours of an entropy-like function over
+categorical distributions. The function attains its maximum for the
+distribution in which all outcomes are equiprobable. The function can
+become smaller without bound away from this maximum. The superposed
+triangle represents the probability simplex. By pre-transforming the
+penalised weights to constrain them to the simplex, the entropy
+function is bounded and attains a separate minimum for each
+deterministic distribution.</em></p>
+<p>Penalising the entropy promotes concentration of weight into a single
+category. This has applications in problem settings such as
+parcellation, when more deterministic parcel assignments are desired.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Entropy is a concave function. Minimising it without constraint
+affords an unbounded capacity for reducing the loss. This is almost
+certainly undesirable. For this reason, it is recommended that some
+constraint be imposed on the input set when placing a penalty on
+entropy. One possibility is using a
+<a class="reference internal" href="hypercoil.init.mapparam.ProbabilitySimplexParameter.html"><span class="doc">probability simplex parameter mapper</span></a>
+to first project the input weights onto the probability simplex.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the entropy.</p>
+</dd>
+<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
+</dd>
+<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed probability-weighted surprise is
+computed for each element of the input tensor. Otherwise, the entropy
+is computed over the specified axis or axes.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.EntropyLogitLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">EntropyLogitLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L802-L841"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.EntropyLogitLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Loss based on the entropy of a categorical distribution.</p>
+<p>This operates on logit tensors. For a version that operates on
+probabilities, see <a class="reference internal" href="#hypercoil.loss.EntropyLoss" title="hypercoil.loss.EntropyLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">EntropyLoss</span></code></a>.</p>
+<div class="admonition-entropy admonition">
+<p class="admonition-title">Entropy</p>
+<p>The entropy of a categorical distribution <span class="math notranslate nohighlight">\(A\)</span> is defined as</p>
+<p><span class="math notranslate nohighlight">\(-\mathbf{1}^\intercal \left(A \circ \log A\right) \mathbf{1}\)</span></p>
+<p>(where <span class="math notranslate nohighlight">\(\log\)</span> denotes the elementwise logarithm).</p>
+<a class="reference internal image-reference" href="../_images/entropysimplex.svg"><img alt="../_images/entropysimplex.svg" class="align-center" src="../_images/entropysimplex.svg" width="250" /></a>
+<p><em>Cartoon schematic of the contours of an entropy-like function over
+categorical distributions. The function attains its maximum for the
+distribution in which all outcomes are equiprobable. The function can
+become smaller without bound away from this maximum. The superposed
+triangle represents the probability simplex. By pre-transforming the
+penalised weights to constrain them to the simplex, the entropy
+function is bounded and attains a separate minimum for each
+deterministic distribution.</em></p>
+<p>Penalising the entropy promotes concentration of weight into a single
+category. This has applications in problem settings such as
+parcellation, when more deterministic parcel assignments are desired.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Entropy is a concave function. Minimising it without constraint
+affords an unbounded capacity for reducing the loss. This is almost
+certainly undesirable. For this reason, it is recommended that some
+constraint be imposed on the input set when placing a penalty on
+entropy. One possibility is using a
+<a class="reference internal" href="hypercoil.init.mapparam.ProbabilitySimplexParameter.html"><span class="doc">probability simplex parameter mapper</span></a>
+to first project the input weights onto the probability simplex.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the entropy.</p>
+</dd>
+<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
+</dd>
+<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed probability-weighted surprise is
+computed for each element of the input tensor. Otherwise, the entropy
+is computed over the specified axis or axes.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +925,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy"><code class="docutils literal notranslate"><span class="pre">entropy</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropyloss"><code class="docutils literal notranslate"><span class="pre">EntropyLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy"><code class="docutils literal notranslate"><span class="pre">entropy</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.entropy"><code class="docutils literal notranslate"><span class="pre">entropy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.entropy_logit"><code class="docutils literal notranslate"><span class="pre">entropy_logit()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropyloss"><code class="docutils literal notranslate"><span class="pre">EntropyLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.EntropyLoss"><code class="docutils literal notranslate"><span class="pre">EntropyLoss</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.EntropyLogitLoss"><code class="docutils literal notranslate"><span class="pre">EntropyLogitLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

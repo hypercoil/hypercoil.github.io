@@ -702,9 +702,116 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">constraint_violation</span></code>: Soft constraints<a class="headerlink" href="#constraint-violation-soft-constraints" title="Permalink to this heading">#</a></h1>
 <section id="constraint-violation">
 <h2><code class="docutils literal notranslate"><span class="pre">constraint_violation</span></code><a class="headerlink" href="#constraint-violation" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.constraint_violation">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">constraint_violation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast_against_input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L124-L153"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.constraint_violation" title="Permalink to this definition">#</a></dt>
+<dd><p>Constraint violation score function.</p>
+<p>This loss uses a set of constraint functions and evaluates them on its
+input. If a constraint evaluates to 0 or less, then it is considered to
+be satisfied and no penalty is applied. Otherwise, a score is returned
+in proportion to the maximum violation of any constraint.</p>
+<p>For example, using the identity constraint penalises only positive
+elements (equivalent to <a class="reference internal" href="hypercoil.loss.unilateral_loss.html#hypercoil.loss.unilateral_loss" title="hypercoil.loss.unilateral_loss"><code class="xref py py-func docutils literal notranslate"><span class="pre">unilateral_loss()</span></code></a>), while <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">-x</span></code>
+penalises only negative elements.
+<code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">tensor([1,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">-2])</span> <span class="pre">&#64;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">2</span></code> applies the specified affine
+function as a constraint.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Because of broadcasting rules, the results of constraint computations
+are not necessarily the same shape as the input, and the output of
+this function will be the same shape as the largest constraint. This
+might lead to unexpected scaling of different constraints, and so the
+<code class="docutils literal notranslate"><span class="pre">broadcast_against_input</span></code> option is provided to broadcast all
+outputs against the input shape. In the future, we might add an option
+that normalises each constraint violation by the number of elements
+in the output.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor.</p>
+</dd>
+<dt><strong>constraints</strong><span class="classifier">Sequence[Callable[[Tensor], Tensor]]</span></dt><dd><p>Iterable containing constraint functions.</p>
+</dd>
+<dt><strong>broadcast_against_input</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, broadcast all constraint outputs against the input shape.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Maximum constraint violation score for each element.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="constraintviolationloss">
 <h2><code class="docutils literal notranslate"><span class="pre">ConstraintViolationLoss</span></code><a class="headerlink" href="#constraintviolationloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.ConstraintViolationLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">ConstraintViolationLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L345-L395"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.ConstraintViolationLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Loss function for constraint violations.</p>
+<p>This loss uses a set of constraint functions and evaluates them on its
+input. If a constraint evaluates to 0 or less, then it is considered to
+be satisfied and no penalty is applied. Otherwise, a score is returned
+in proportion to the maximum violation of any constraint.</p>
+<p>For example, using the identity constraint penalises only positive
+elements (equivalent to <a class="reference internal" href="hypercoil.loss.unilateral_loss.html#hypercoil.loss.unilateral_loss" title="hypercoil.loss.unilateral_loss"><code class="xref py py-func docutils literal notranslate"><span class="pre">unilateral_loss()</span></code></a>), while <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">-x</span></code>
+penalises only negative elements.
+<code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">tensor([1,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">-2])</span> <span class="pre">&#64;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">2</span></code> applies the specified affine
+function as a constraint.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Because of broadcasting rules, the results of constraint computations
+are not necessarily the same shape as the input, and the output of
+this function will be the same shape as the largest constraint. This
+might lead to unexpected scaling of different constraints, and so the
+<code class="docutils literal notranslate"><span class="pre">broadcast_against_input</span></code> option is provided to broadcast all
+outputs against the input shape. In the future, we might add an option
+that normalises each constraint violation by the number of elements
+in the output.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>constraints</strong><span class="classifier">Sequence[Callable[[Tensor], Tensor]]</span></dt><dd><p>Iterable containing constraint functions.</p>
+</dd>
+<dt><strong>broadcast_against_input</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, broadcast all constraint outputs against the input shape.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(X, *[, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +832,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constraint-violation"><code class="docutils literal notranslate"><span class="pre">constraint_violation</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constraintviolationloss"><code class="docutils literal notranslate"><span class="pre">ConstraintViolationLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constraint-violation"><code class="docutils literal notranslate"><span class="pre">constraint_violation</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.constraint_violation"><code class="docutils literal notranslate"><span class="pre">constraint_violation()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constraintviolationloss"><code class="docutils literal notranslate"><span class="pre">ConstraintViolationLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.ConstraintViolationLoss"><code class="docutils literal notranslate"><span class="pre">ConstraintViolationLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.cov.UnaryCovarianceUW';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,77 @@ document.write(`
                   
   <section id="unarycovarianceuw">
 <h1><code class="docutils literal notranslate"><span class="pre">UnaryCovarianceUW</span></code><a class="headerlink" href="#unarycovarianceuw" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.nn.cov.UnaryCovarianceUW">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.cov.</span></span><span class="sig-name descname"><span class="pre">UnaryCovarianceUW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/nn/cov.py#L633-L674"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.cov.UnaryCovarianceUW" title="Permalink to this definition">#</a></dt>
+<dd><p>Covariance measures of a single tensor, without learnable weights.</p>
+<p>The input tensor is interpreted as a set of multivariate observations.
+A covariance estimator computes some measure of statistical dependence
+among the variables in each observation, with the potential addition of
+stochastic noise and dropout to re-weight observations and regularise the
+model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((N, *, C, O)\)</span></dt><dd><p>N denotes batch size, <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of
+intervening dimensions, C denotes number of data channels
+or variables, O denotes number of time points or
+observations per channel</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((N, *, W, C, C)\)</span></dt><dd><p>W denotes number of sets of weights.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>estimator</strong><span class="classifier">callable</span></dt><dd><p>Covariance estimator, e.g. from
+<a class="reference internal" href="hypercoil.functional.cov.html"><span class="doc">hypercoil.functional.cov</span></a>. The
+estimator must be unary: it should accept a single tensor rather than
+multiple tensors. Some available options are:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="hypercoil.functional.cov.cov.html"><span class="doc">cov</span></a>: Raw empirical covariance.</p></li>
+<li><p><a class="reference internal" href="hypercoil.functional.cov.corr.html"><span class="doc">corr</span></a>: Pearson correlation.</p></li>
+<li><p><a class="reference internal" href="hypercoil.functional.cov.precision.html"><span class="doc">precision</span></a>: Precision.</p></li>
+<li><p><a class="reference internal" href="hypercoil.functional.cov.partialcorr.html"><span class="doc">partialcorr</span></a>:
+Partial correlation.</p></li>
+</ul>
+</dd>
+<dt><strong>dim</strong><span class="classifier">int</span></dt><dd><p>Number of observations <cite>O</cite> per data instance. This determines the
+dimension of each slice of the covariance weight tensor.</p>
+</dd>
+<dt><strong>min_lag , max_lag</strong><span class="classifier">int or None (default 0)</span></dt><dd><p>Minimum and maximum lags to include in the weight matrix. If these
+parameters are not None, the structure of the weight matrix is
+constrained to allow nonzero entries only along diagonals that are a
+maximum offset of (<code class="docutils literal notranslate"><span class="pre">min_lag</span></code>, <code class="docutils literal notranslate"><span class="pre">max_lag</span></code>) from the main diagonal.
+The default value of 0 permits weights only along the main diagonal.</p>
+</dd>
+<dt><strong>out_channels</strong><span class="classifier">int (default 1)</span></dt><dd><p>Number of weight sets <code class="docutils literal notranslate"><span class="pre">W</span></code> to include. For each weight set, the
+module produces an output channel.</p>
+</dd>
+<dt><strong>rowvar</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that the last axis of the input tensor is the observation
+axis and the penultimate axis is the variable axis. If False, then
+this relationship is transposed.</p>
+</dd>
+<dt><strong>biased</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that the biased normalisation (i.e., division by <cite>N</cite> in the
+unweighted case) should be performed. By default, normalisation of the
+covariance is unbiased (i.e., division by <cite>N - 1</cite>).</p>
+</dd>
+<dt><strong>ddof</strong><span class="classifier">int or None (default None)</span></dt><dd><p>Degrees of freedom for normalisation. If this is specified, it
+overrides the normalisation factor automatically determined using the
+<code class="docutils literal notranslate"><span class="pre">biased</span></code> parameter.</p>
+</dd>
+<dt><strong>l2</strong><span class="classifier">nonnegative float (default 0)</span></dt><dd><p>L2 regularisation term to add to the maximum likelihood estimate of
+the covariance matrix. This can be set to a positive value to obtain
+intermediate for estimating the regularised inverse covariance or to
+an ensure that the covariance matrix is non-singular (if, for
+instance, it needs to be inverted or projected into a tangent
+space).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +789,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.cov.UnaryCovarianceUW"><code class="docutils literal notranslate"><span class="pre">UnaryCovarianceUW</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

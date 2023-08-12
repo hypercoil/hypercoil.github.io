@@ -695,106 +695,367 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="init-initialisation-schemes">
-<h1><code class="docutils literal notranslate"><span class="pre">init</span></code>: Initialisation schemes<a class="headerlink" href="#init-initialisation-schemes" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.init">
+<span id="init-initialisation-schemes"></span><h1><code class="docutils literal notranslate"><span class="pre">init</span></code>: Initialisation schemes<a class="headerlink" href="#module-hypercoil.init" title="Permalink to this heading">#</a></h1>
+<p>Parameter initialisation schemes.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">init</span></code> submodule contains functionality for initialising (neural
+network) module parameters to reasonable defaults.</p>
+<p>In the differentiable programming setting, initialisation provides a path for
+integrating <strong>domain expertise</strong> into neural network models. The
+initialisation schemes and routines provided here present a transparent
+framework for incorporating the discipline’s existing best practices as
+starting points for a differentiable workflow.</p>
+<p>For example, the routines here enable the
+<a class="reference internal" href="api/hypercoil.nn.atlas.AtlasLinear.html"><span class="doc">linear atlas layer</span></a>
+to be initialised as most available volumetric and surface-based neuroimaging
+parcellations. Modifications can be applied easily to promote better learning
+signals. For the case of the atlas layer, for instance, hard parcels can be
+smoothed (in either Euclidean or
+<a class="reference internal" href="api/hypercoil.functional.sphere.html"><span class="doc">spherical topology</span></a>
+) or constrained to the
+<a class="reference internal" href="api/hypercoil.init.mapparam.ProbabilitySimplexParameter.html"><span class="doc">probability simplex</span></a>
+(using a softmax domain transformation) to change the properties of the
+gradients they receive.</p>
+<p>Also available are more general initialisation schemes for use cases where a
+clean slate is desired as a starting point. For example, a random
+<a class="reference internal" href="api/hypercoil.init.dirichlet.html"><span class="doc">Dirichlet initialisation</span></a>
+, when combined with a
+<a class="reference internal" href="api/hypercoil.init.mapparam.ProbabilitySimplexParameter.html"><span class="doc">probability simplex projection</span></a>
+, lends columns in a parcellation matrix the intuitive interpretation of
+probability distributions over parcels.</p>
+<p>Most initialisation scheme classes (eventually, all) can be combined with a
+<a class="reference internal" href="api/hypercoil.init.mapparam.html"><span class="doc">parameter mapping</span></a>.
+If a parameter mapping is used to initialise a compatible module’s parameters,
+the parameters are internally stored by the module as “original parameters”
+and then transformed through the mapping before they interact with inputs.
+Some schemes are paired with a mapping by default. For instance,
+<a class="reference internal" href="api/hypercoil.init.dirichlet.html"><span class="doc">Dirichlet initialisation</span></a>
+is by default paired with a
+<span class="xref std std-doc">probability simplex projection</span>
+domain to constrain Dirichlet-initialised weights to always be valid
+probability distributions.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Any and all APIs here are experimental and subject to change. Test
+coverage is inadequate and extreme discretion is warranted when using this
+functionality. Please report any bugs by opening an issue.</p>
+</div>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.atlas.html"><code class="docutils literal notranslate"><span class="pre">atlas</span></code>: Atlas initialisation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.BaseAtlas.html"><code class="docutils literal notranslate"><span class="pre">BaseAtlas</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitBaseAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitBaseAtlas</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.DiscreteVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">DiscreteVolumetricAtlas</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.MultiVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">MultiVolumetricAtlas</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.MultifileVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">MultifileVolumetricAtlas</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html"><code class="docutils literal notranslate"><span class="pre">CortexSubcortexCIfTIAtlas</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitVolumetricAtlas</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitSurfaceAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitSurfaceAtlas</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.AtlasInitialiser.html"><code class="docutils literal notranslate"><span class="pre">AtlasInitialiser</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.BaseAtlas.html"><code class="docutils literal notranslate"><span class="pre">BaseAtlas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlas.BaseAtlas.html#hypercoil.init.atlas.BaseAtlas"><code class="docutils literal notranslate"><span class="pre">BaseAtlas</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.atlas.BaseAtlas.html#hypercoil.init.atlas.BaseAtlas.__call__"><code class="docutils literal notranslate"><span class="pre">BaseAtlas.__call__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitBaseAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitBaseAtlas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitBaseAtlas.html#hypercoil.init.atlas.DirichletInitBaseAtlas"><code class="docutils literal notranslate"><span class="pre">DirichletInitBaseAtlas</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitBaseAtlas.html#hypercoil.init.atlas.DirichletInitBaseAtlas.__call__"><code class="docutils literal notranslate"><span class="pre">DirichletInitBaseAtlas.__call__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.DiscreteVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">DiscreteVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlas.DiscreteVolumetricAtlas.html#hypercoil.init.atlas.DiscreteVolumetricAtlas"><code class="docutils literal notranslate"><span class="pre">DiscreteVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.atlas.DiscreteVolumetricAtlas.html#hypercoil.init.atlas.DiscreteVolumetricAtlas.__call__"><code class="docutils literal notranslate"><span class="pre">DiscreteVolumetricAtlas.__call__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.MultiVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">MultiVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlas.MultiVolumetricAtlas.html#hypercoil.init.atlas.MultiVolumetricAtlas"><code class="docutils literal notranslate"><span class="pre">MultiVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.atlas.MultiVolumetricAtlas.html#hypercoil.init.atlas.MultiVolumetricAtlas.__call__"><code class="docutils literal notranslate"><span class="pre">MultiVolumetricAtlas.__call__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.MultifileVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">MultifileVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlas.MultifileVolumetricAtlas.html#hypercoil.init.atlas.MultifileVolumetricAtlas"><code class="docutils literal notranslate"><span class="pre">MultifileVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.atlas.MultifileVolumetricAtlas.html#hypercoil.init.atlas.MultifileVolumetricAtlas.__call__"><code class="docutils literal notranslate"><span class="pre">MultifileVolumetricAtlas.__call__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html"><code class="docutils literal notranslate"><span class="pre">CortexSubcortexCIfTIAtlas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html#hypercoil.init.atlas.CortexSubcortexCIfTIAtlas"><code class="docutils literal notranslate"><span class="pre">CortexSubcortexCIfTIAtlas</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.html#hypercoil.init.atlas.CortexSubcortexCIfTIAtlas.__call__"><code class="docutils literal notranslate"><span class="pre">CortexSubcortexCIfTIAtlas.__call__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitVolumetricAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitVolumetricAtlas.html#hypercoil.init.atlas.DirichletInitVolumetricAtlas"><code class="docutils literal notranslate"><span class="pre">DirichletInitVolumetricAtlas</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitVolumetricAtlas.html#hypercoil.init.atlas.DirichletInitVolumetricAtlas.__call__"><code class="docutils literal notranslate"><span class="pre">DirichletInitVolumetricAtlas.__call__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitSurfaceAtlas.html"><code class="docutils literal notranslate"><span class="pre">DirichletInitSurfaceAtlas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitSurfaceAtlas.html#hypercoil.init.atlas.DirichletInitSurfaceAtlas"><code class="docutils literal notranslate"><span class="pre">DirichletInitSurfaceAtlas</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.atlas.DirichletInitSurfaceAtlas.html#hypercoil.init.atlas.DirichletInitSurfaceAtlas.__call__"><code class="docutils literal notranslate"><span class="pre">DirichletInitSurfaceAtlas.__call__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlas.AtlasInitialiser.html"><code class="docutils literal notranslate"><span class="pre">AtlasInitialiser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlas.AtlasInitialiser.html#hypercoil.init.atlas.AtlasInitialiser"><code class="docutils literal notranslate"><span class="pre">AtlasInitialiser</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.atlas.AtlasInitialiser.html#hypercoil.init.atlas.AtlasInitialiser.__call__"><code class="docutils literal notranslate"><span class="pre">AtlasInitialiser.__call__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html"><code class="docutils literal notranslate"><span class="pre">atlasmixins</span></code>: Atlas mixins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#referencemixin"><code class="docutils literal notranslate"><span class="pre">~ReferenceMixin</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#maskmixin"><code class="docutils literal notranslate"><span class="pre">~MaskMixin</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#compartmentmixin"><code class="docutils literal notranslate"><span class="pre">~CompartmentMixin</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#labelmixin"><code class="docutils literal notranslate"><span class="pre">~LabelMixin</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#meshmixin"><code class="docutils literal notranslate"><span class="pre">~MeshMixin</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#convmixin"><code class="docutils literal notranslate"><span class="pre">~ConvMixin</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#abstractions">Abstractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#referencemixin"><code class="docutils literal notranslate"><span class="pre">~ReferenceMixin</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._VolumeObjectReferenceMixin"><code class="docutils literal notranslate"><span class="pre">_VolumeObjectReferenceMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._SurfaceObjectReferenceMixin"><code class="docutils literal notranslate"><span class="pre">_SurfaceObjectReferenceMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._VolumeSingleReferenceMixin"><code class="docutils literal notranslate"><span class="pre">_VolumeSingleReferenceMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._SurfaceSingleReferenceMixin"><code class="docutils literal notranslate"><span class="pre">_SurfaceSingleReferenceMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._VolumeMultiReferenceMixin"><code class="docutils literal notranslate"><span class="pre">_VolumeMultiReferenceMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._PhantomReferenceMixin"><code class="docutils literal notranslate"><span class="pre">_PhantomReferenceMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#maskmixin"><code class="docutils literal notranslate"><span class="pre">~MaskMixin</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._LogicMaskMixin"><code class="docutils literal notranslate"><span class="pre">_LogicMaskMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._CortexSubcortexCIfTIMaskMixin"><code class="docutils literal notranslate"><span class="pre">_CortexSubcortexCIfTIMaskMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._FromNullMaskMixin"><code class="docutils literal notranslate"><span class="pre">_FromNullMaskMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#compartmentmixin"><code class="docutils literal notranslate"><span class="pre">~CompartmentMixin</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._SingleCompartmentMixin"><code class="docutils literal notranslate"><span class="pre">_SingleCompartmentMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._MultiCompartmentMixin"><code class="docutils literal notranslate"><span class="pre">_MultiCompartmentMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._CortexSubcortexCIfTICompartmentMixin"><code class="docutils literal notranslate"><span class="pre">_CortexSubcortexCIfTICompartmentMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#labelmixin"><code class="docutils literal notranslate"><span class="pre">~LabelMixin</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._DiscreteLabelMixin"><code class="docutils literal notranslate"><span class="pre">_DiscreteLabelMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._ContinuousLabelMixin"><code class="docutils literal notranslate"><span class="pre">_ContinuousLabelMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._DirichletLabelMixin"><code class="docutils literal notranslate"><span class="pre">_DirichletLabelMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#meshmixin"><code class="docutils literal notranslate"><span class="pre">~MeshMixin</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._VolumetricMeshMixin"><code class="docutils literal notranslate"><span class="pre">_VolumetricMeshMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._VertexCIfTIMeshMixin"><code class="docutils literal notranslate"><span class="pre">_VertexCIfTIMeshMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#convmixin"><code class="docutils literal notranslate"><span class="pre">~ConvMixin</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._EvenlySampledConvMixin"><code class="docutils literal notranslate"><span class="pre">_EvenlySampledConvMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins._SpatialConvMixin"><code class="docutils literal notranslate"><span class="pre">_SpatialConvMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#abstractions">Abstractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins.Reference"><code class="docutils literal notranslate"><span class="pre">Reference</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins.Mask"><code class="docutils literal notranslate"><span class="pre">Mask</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins.Compartment"><code class="docutils literal notranslate"><span class="pre">Compartment</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.atlasmixins.html#hypercoil.init.atlasmixins.CompartmentSet"><code class="docutils literal notranslate"><span class="pre">CompartmentSet</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.base.html"><code class="docutils literal notranslate"><span class="pre">base</span></code>: Base initialisations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.from_distr_init.html"><code class="docutils literal notranslate"><span class="pre">from_distr_init</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.constant_init.html"><code class="docutils literal notranslate"><span class="pre">constant_init</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.identity_init.html"><code class="docutils literal notranslate"><span class="pre">identity_init</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.MappedInitialiser.html"><code class="docutils literal notranslate"><span class="pre">MappedInitialiser</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.DistributionInitialiser.html"><code class="docutils literal notranslate"><span class="pre">DistributionInitialiser</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.IdentityInitialiser.html"><code class="docutils literal notranslate"><span class="pre">IdentityInitialiser</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.from_distr_init.html"><code class="docutils literal notranslate"><span class="pre">from_distr_init</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.base.from_distr_init.html#hypercoil.init.base.from_distr_init"><code class="docutils literal notranslate"><span class="pre">from_distr_init()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.constant_init.html"><code class="docutils literal notranslate"><span class="pre">constant_init</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.base.constant_init.html#hypercoil.init.base.constant_init"><code class="docutils literal notranslate"><span class="pre">constant_init()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.identity_init.html"><code class="docutils literal notranslate"><span class="pre">identity_init</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.base.identity_init.html#hypercoil.init.base.identity_init"><code class="docutils literal notranslate"><span class="pre">identity_init()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.MappedInitialiser.html"><code class="docutils literal notranslate"><span class="pre">MappedInitialiser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.base.MappedInitialiser.html#hypercoil.init.base.MappedInitialiser"><code class="docutils literal notranslate"><span class="pre">MappedInitialiser</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.DistributionInitialiser.html"><code class="docutils literal notranslate"><span class="pre">DistributionInitialiser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.base.DistributionInitialiser.html#hypercoil.init.base.DistributionInitialiser"><code class="docutils literal notranslate"><span class="pre">DistributionInitialiser()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.base.IdentityInitialiser.html"><code class="docutils literal notranslate"><span class="pre">IdentityInitialiser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.base.IdentityInitialiser.html#hypercoil.init.base.IdentityInitialiser"><code class="docutils literal notranslate"><span class="pre">IdentityInitialiser</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.deltaplus.html"><code class="docutils literal notranslate"><span class="pre">deltaplus</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.deltaplus.html#deltaplus-init"><code class="docutils literal notranslate"><span class="pre">deltaplus_init</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.deltaplus.html#deltaplusinitialiser"><code class="docutils literal notranslate"><span class="pre">DeltaPlusInitialiser</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.deltaplus.html#deltaplus-init"><code class="docutils literal notranslate"><span class="pre">deltaplus_init</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.deltaplus.html#hypercoil.init.deltaplus.deltaplus_init"><code class="docutils literal notranslate"><span class="pre">deltaplus_init()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.deltaplus.html#deltaplusinitialiser"><code class="docutils literal notranslate"><span class="pre">DeltaPlusInitialiser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.deltaplus.html#hypercoil.init.deltaplus.DeltaPlusInitialiser"><code class="docutils literal notranslate"><span class="pre">DeltaPlusInitialiser</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.dirichlet.html"><code class="docutils literal notranslate"><span class="pre">dirichlet</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.dirichlet.html#dirichlet-init"><code class="docutils literal notranslate"><span class="pre">dirichlet_init</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.dirichlet.html#dirichletinitialiser"><code class="docutils literal notranslate"><span class="pre">DirichletInitialiser</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.dirichlet.html#dirichlet-init"><code class="docutils literal notranslate"><span class="pre">dirichlet_init</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.dirichlet.html#hypercoil.init.dirichlet.dirichlet_init"><code class="docutils literal notranslate"><span class="pre">dirichlet_init()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.dirichlet.html#dirichletinitialiser"><code class="docutils literal notranslate"><span class="pre">DirichletInitialiser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.dirichlet.html#hypercoil.init.dirichlet.DirichletInitialiser"><code class="docutils literal notranslate"><span class="pre">DirichletInitialiser</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.freqfilter.html"><code class="docutils literal notranslate"><span class="pre">freqfilter</span></code>: Frequency band init</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.freqfilter.FreqFilterSpec.html"><code class="docutils literal notranslate"><span class="pre">FreqFilterSpec</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.freqfilter.FreqFilterSpec.html"><code class="docutils literal notranslate"><span class="pre">FreqFilterSpec</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.freqfilter.FreqFilterSpec.html#hypercoil.init.freqfilter.FreqFilterSpec"><code class="docutils literal notranslate"><span class="pre">FreqFilterSpec</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.freqfilter.FreqFilterSpec.html#hypercoil.init.freqfilter.FreqFilterSpec.initialise_spectrum"><code class="docutils literal notranslate"><span class="pre">FreqFilterSpec.initialise_spectrum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.freqfilter.FreqFilterSpec.html#hypercoil.init.freqfilter.FreqFilterSpec.get_clamps"><code class="docutils literal notranslate"><span class="pre">FreqFilterSpec.get_clamps()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.iirfilter.html"><code class="docutils literal notranslate"><span class="pre">iirfilter</span></code>: IIR filter init</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.iirfilter.html#iirfilterspec"><code class="docutils literal notranslate"><span class="pre">IIRFilterSpec</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.iirfilter.html#iirfilterspec"><code class="docutils literal notranslate"><span class="pre">IIRFilterSpec</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.iirfilter.html#hypercoil.init.iirfilter.IIRFilterSpec"><code class="docutils literal notranslate"><span class="pre">IIRFilterSpec</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.iirfilter.html#hypercoil.init.iirfilter.IIRFilterSpec.initialise_coefs"><code class="docutils literal notranslate"><span class="pre">IIRFilterSpec.initialise_coefs()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.laplace.html"><code class="docutils literal notranslate"><span class="pre">laplace</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.laplace.html#laplace-init"><code class="docutils literal notranslate"><span class="pre">laplace_init</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.laplace.html#laplaceinitialiser"><code class="docutils literal notranslate"><span class="pre">LaplaceInitialiser</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.laplace.html#laplace-init"><code class="docutils literal notranslate"><span class="pre">laplace_init</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.laplace.html#hypercoil.init.laplace.laplace_init"><code class="docutils literal notranslate"><span class="pre">laplace_init()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.laplace.html#laplaceinitialiser"><code class="docutils literal notranslate"><span class="pre">LaplaceInitialiser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.laplace.html#hypercoil.init.laplace.LaplaceInitialiser"><code class="docutils literal notranslate"><span class="pre">LaplaceInitialiser</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.mapparam.html"><code class="docutils literal notranslate"><span class="pre">mapparam</span></code>: Mapped parameters and parameter maps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.MappedParameter.html"><code class="docutils literal notranslate"><span class="pre">MappedParameter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.DomainMappedParameter.html"><code class="docutils literal notranslate"><span class="pre">DomainMappedParameter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.IdentityMappedParameter.html"><code class="docutils literal notranslate"><span class="pre">IdentityMappedParameter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.AffineMappedParameter.html"><code class="docutils literal notranslate"><span class="pre">AffineMappedParameter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.TanhMappedParameter.html"><code class="docutils literal notranslate"><span class="pre">TanhMappedParameter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.AmplitudeTanhMappedParameter.html"><code class="docutils literal notranslate"><span class="pre">AmplitudeTanhMappedParameter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.MappedLogits.html"><code class="docutils literal notranslate"><span class="pre">MappedLogits</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.NormSphereParameter.html"><code class="docutils literal notranslate"><span class="pre">NormSphereParameter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.ProbabilitySimplexParameter.html"><code class="docutils literal notranslate"><span class="pre">ProbabilitySimplexParameter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.AmplitudeProbabilitySimplexParameter.html"><code class="docutils literal notranslate"><span class="pre">AmplitudeProbabilitySimplexParameter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.OrthogonalParameter.html"><code class="docutils literal notranslate"><span class="pre">OrthogonalParameter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.IsochoricParameter.html"><code class="docutils literal notranslate"><span class="pre">IsochoricParameter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.Clip.html"><code class="docutils literal notranslate"><span class="pre">Clip</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.Renormalise.html"><code class="docutils literal notranslate"><span class="pre">Renormalise</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.ForcePositiveDefinite.html"><code class="docutils literal notranslate"><span class="pre">ForcePositiveDefinite</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.PhaseAmplitudeMixin.html"><code class="docutils literal notranslate"><span class="pre">PhaseAmplitudeMixin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.MappedParameter.html"><code class="docutils literal notranslate"><span class="pre">MappedParameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.MappedParameter.html#hypercoil.init.mapparam.MappedParameter"><code class="docutils literal notranslate"><span class="pre">MappedParameter</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.mpbl.html"><code class="docutils literal notranslate"><span class="pre">mpbl</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.DomainMappedParameter.html"><code class="docutils literal notranslate"><span class="pre">DomainMappedParameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.DomainMappedParameter.html#hypercoil.init.mapparam.DomainMappedParameter"><code class="docutils literal notranslate"><span class="pre">DomainMappedParameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.IdentityMappedParameter.html"><code class="docutils literal notranslate"><span class="pre">IdentityMappedParameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.IdentityMappedParameter.html#hypercoil.init.mapparam.IdentityMappedParameter"><code class="docutils literal notranslate"><span class="pre">IdentityMappedParameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.AffineMappedParameter.html"><code class="docutils literal notranslate"><span class="pre">AffineMappedParameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.AffineMappedParameter.html#hypercoil.init.mapparam.AffineMappedParameter"><code class="docutils literal notranslate"><span class="pre">AffineMappedParameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.TanhMappedParameter.html"><code class="docutils literal notranslate"><span class="pre">TanhMappedParameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.TanhMappedParameter.html#hypercoil.init.mapparam.TanhMappedParameter"><code class="docutils literal notranslate"><span class="pre">TanhMappedParameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.AmplitudeTanhMappedParameter.html"><code class="docutils literal notranslate"><span class="pre">AmplitudeTanhMappedParameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.AmplitudeTanhMappedParameter.html#hypercoil.init.mapparam.AmplitudeTanhMappedParameter"><code class="docutils literal notranslate"><span class="pre">AmplitudeTanhMappedParameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.MappedLogits.html"><code class="docutils literal notranslate"><span class="pre">MappedLogits</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.MappedLogits.html#hypercoil.init.mapparam.MappedLogits"><code class="docutils literal notranslate"><span class="pre">MappedLogits</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.NormSphereParameter.html"><code class="docutils literal notranslate"><span class="pre">NormSphereParameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.NormSphereParameter.html#hypercoil.init.mapparam.NormSphereParameter"><code class="docutils literal notranslate"><span class="pre">NormSphereParameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.ProbabilitySimplexParameter.html"><code class="docutils literal notranslate"><span class="pre">ProbabilitySimplexParameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.ProbabilitySimplexParameter.html#hypercoil.init.mapparam.ProbabilitySimplexParameter"><code class="docutils literal notranslate"><span class="pre">ProbabilitySimplexParameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.AmplitudeProbabilitySimplexParameter.html"><code class="docutils literal notranslate"><span class="pre">AmplitudeProbabilitySimplexParameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.AmplitudeProbabilitySimplexParameter.html#hypercoil.init.mapparam.AmplitudeProbabilitySimplexParameter"><code class="docutils literal notranslate"><span class="pre">AmplitudeProbabilitySimplexParameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.OrthogonalParameter.html"><code class="docutils literal notranslate"><span class="pre">OrthogonalParameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.OrthogonalParameter.html#hypercoil.init.mapparam.OrthogonalParameter"><code class="docutils literal notranslate"><span class="pre">OrthogonalParameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.IsochoricParameter.html"><code class="docutils literal notranslate"><span class="pre">IsochoricParameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.IsochoricParameter.html#hypercoil.init.mapparam.IsochoricParameter"><code class="docutils literal notranslate"><span class="pre">IsochoricParameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.Clip.html"><code class="docutils literal notranslate"><span class="pre">Clip</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.Clip.html#hypercoil.init.mapparam.Clip"><code class="docutils literal notranslate"><span class="pre">Clip</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.Renormalise.html"><code class="docutils literal notranslate"><span class="pre">Renormalise</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.Renormalise.html#hypercoil.init.mapparam.Renormalise"><code class="docutils literal notranslate"><span class="pre">Renormalise</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.ForcePositiveDefinite.html"><code class="docutils literal notranslate"><span class="pre">ForcePositiveDefinite</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.ForcePositiveDefinite.html#hypercoil.init.mapparam.ForcePositiveDefinite"><code class="docutils literal notranslate"><span class="pre">ForcePositiveDefinite</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mapparam.PhaseAmplitudeMixin.html"><code class="docutils literal notranslate"><span class="pre">PhaseAmplitudeMixin</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.mapparam.PhaseAmplitudeMixin.html#hypercoil.init.mapparam.PhaseAmplitudeMixin"><code class="docutils literal notranslate"><span class="pre">PhaseAmplitudeMixin</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.mpbl.html"><code class="docutils literal notranslate"><span class="pre">mpbl</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.mpbl.html#hypercoil.init.mpbl.maximum_potential_bipartite_lattice"><code class="docutils literal notranslate"><span class="pre">maximum_potential_bipartite_lattice()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.semidefinite.html"><code class="docutils literal notranslate"><span class="pre">semidefinite</span></code></a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.semidefinite.TangencyInitialiser.html"><code class="docutils literal notranslate"><span class="pre">TangencyInitialiser</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.TangencyInitialiser.html#tangency-init"><code class="docutils literal notranslate"><span class="pre">tangency_init</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.TangencyInitialiser.html#id1"><code class="docutils literal notranslate"><span class="pre">TangencyInitialiser</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.TangencyInitialiser.html#tangency-init"><code class="docutils literal notranslate"><span class="pre">tangency_init</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.semidefinite.TangencyInitialiser.html#hypercoil.init.semidefinite.tangency_init"><code class="docutils literal notranslate"><span class="pre">tangency_init()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.TangencyInitialiser.html#id1"><code class="docutils literal notranslate"><span class="pre">TangencyInitialiser</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.semidefinite.TangencyInitialiser.html#hypercoil.init.semidefinite.TangencyInitialiser"><code class="docutils literal notranslate"><span class="pre">TangencyInitialiser</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html"><code class="docutils literal notranslate"><span class="pre">SemidefiniteMean</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#spdeuclideanmean"><code class="docutils literal notranslate"><span class="pre">SPDEuclideanMean</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#spdharmonicmean"><code class="docutils literal notranslate"><span class="pre">SPDHarmonicMean</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#spdlogeuclideanmean"><code class="docutils literal notranslate"><span class="pre">SPDLogEuclideanMean</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#spdgeometricmean"><code class="docutils literal notranslate"><span class="pre">SPDGeometricMean</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#spdeuclideanmean"><code class="docutils literal notranslate"><span class="pre">SPDEuclideanMean</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#hypercoil.init.semidefinite.SPDEuclideanMean"><code class="docutils literal notranslate"><span class="pre">SPDEuclideanMean</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#spdharmonicmean"><code class="docutils literal notranslate"><span class="pre">SPDHarmonicMean</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#hypercoil.init.semidefinite.SPDHarmonicMean"><code class="docutils literal notranslate"><span class="pre">SPDHarmonicMean</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#spdlogeuclideanmean"><code class="docutils literal notranslate"><span class="pre">SPDLogEuclideanMean</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#hypercoil.init.semidefinite.SPDLogEuclideanMean"><code class="docutils literal notranslate"><span class="pre">SPDLogEuclideanMean</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#spdgeometricmean"><code class="docutils literal notranslate"><span class="pre">SPDGeometricMean</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.init.semidefinite.SemidefiniteMean.html#hypercoil.init.semidefinite.SPDGeometricMean"><code class="docutils literal notranslate"><span class="pre">SPDGeometricMean</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.sylo.html"><code class="docutils literal notranslate"><span class="pre">sylo</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.sylo.html#sylo-init"><code class="docutils literal notranslate"><span class="pre">sylo_init</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.sylo.html#syloinitialiser"><code class="docutils literal notranslate"><span class="pre">SyloInitialiser</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.sylo.html#sylo-init"><code class="docutils literal notranslate"><span class="pre">sylo_init</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.sylo.html#hypercoil.init.sylo.sylo_init"><code class="docutils literal notranslate"><span class="pre">sylo_init()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.toeplitz.html"><code class="docutils literal notranslate"><span class="pre">toeplitz</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.sylo.html#syloinitialiser"><code class="docutils literal notranslate"><span class="pre">SyloInitialiser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.init.sylo.html#hypercoil.init.sylo.SyloInitialiser"><code class="docutils literal notranslate"><span class="pre">SyloInitialiser</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.init.toeplitz.html"><code class="docutils literal notranslate"><span class="pre">toeplitz</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.init.toeplitz.html#hypercoil.init.toeplitz.ToeplitzInitialiser"><code class="docutils literal notranslate"><span class="pre">ToeplitzInitialiser</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>

@@ -705,6 +705,68 @@ document.write(`
                   
   <section id="topkx">
 <h1><code class="docutils literal notranslate"><span class="pre">topkx</span></code><a class="headerlink" href="#topkx" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.sparse.topkx">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.sparse.</span></span><span class="sig-name descname"><span class="pre">topkx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retnums</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(0,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'abs&gt;'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'abs&lt;&gt;'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'&lt;'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'abs&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_indices_over_channel_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">BCOO</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/sparse.py#L704-L812"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.sparse.topkx" title="Permalink to this definition">#</a></dt>
+<dd><p>Transform a function that produces a full matrix so that it instead
+produces a sparse matrix in the top-k format.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The transformed function produces as an intermediate result a full
+matrix. Thus, this transformation will not reduce the memory usage of
+the function.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The transformed function is compatible with JIT compilation only if
+<code class="docutils literal notranslate"><span class="pre">auto_index</span></code> is False. Indices can be obtained in a separate step
+using the <a class="reference internal" href="hypercoil.functional.sparse.select_indices.html#hypercoil.functional.sparse.select_indices" title="hypercoil.functional.sparse.select_indices"><code class="xref py py-func docutils literal notranslate"><span class="pre">select_indices()</span></code></a> function.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The transformed function requires an additional first argument, which
+depends on the value of <code class="docutils literal notranslate"><span class="pre">auto_index</span></code>. If <code class="docutils literal notranslate"><span class="pre">auto_index</span></code> is True, the
+first argument should be the value of k. Otherwise, the first argument
+should be the indices of the top k elements.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>f</strong><span class="classifier">Callable</span></dt><dd><p>The function to transform.</p>
+</dd>
+<dt><strong>retnums</strong><span class="classifier">Sequence[int] (default: (0,))</span></dt><dd><p>The indices of the return values to be converted to the top-k format.</p>
+</dd>
+<dt><strong>auto_index</strong><span class="classifier">bool (default: False)</span></dt><dd><p>If True, the indices of the return values will be automatically
+generated by the transformed function.</p>
+</dd>
+<dt><strong>indices</strong><span class="classifier">Tensor (default: None)</span></dt><dd><p>The indices of the nonzero entries in the top-k format. If None, then
+the indices are sampled from the output of the function according to
+the thresholding operation.</p>
+</dd>
+<dt><strong>threshold_type</strong><span class="classifier">one of ‘abs&gt;’, ‘abs&lt;’, ‘&gt;’, ‘&lt;’ (default: ‘abs&gt;’)</span></dt><dd><p>The type of thresholding operation to perform.</p>
+</dd>
+<dt><strong>fix_indices_over_channel_dims</strong><span class="classifier">bool (default: True)</span></dt><dd><p>If True, then the indices of nonzero entries that are returned will
+be fixed over all channel dimensions. If False, then the indices of
+nonzero entries that are returned are allowed to vary over all channel
+dimensions.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Callable</dt><dd><p>The transformed function. Any tensor return values specified by
+<code class="docutils literal notranslate"><span class="pre">retnums</span></code> will be returned in the top-k sparse format when the
+transformed function is called. If <code class="docutils literal notranslate"><span class="pre">auto_index</span></code> is True, then the
+transformed function takes an additional first argument, which is the
+value of k to use in the top-k selection. Otherwise, the transformed
+function takes an additional first argument, which is the indices of
+the top k entries to include in the output.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +779,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.sparse.topkx"><code class="docutils literal notranslate"><span class="pre">topkx()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

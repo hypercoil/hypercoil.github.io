@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.atlas.AtlasLinear';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,114 @@ document.write(`
                   
   <section id="atlaslinear-linear-atlas-layer">
 <h1><code class="docutils literal notranslate"><span class="pre">AtlasLinear</span></code>: Linear atlas layer<a class="headerlink" href="#atlaslinear-linear-atlas-layer" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.nn.atlas.AtlasLinear">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.atlas.</span></span><span class="sig-name descname"><span class="pre">AtlasLinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/nn/atlas.py#L69-L279"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.atlas.AtlasLinear" title="Permalink to this definition">#</a></dt>
+<dd><p>Time series extraction from an atlas via a linear map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((N, *, V, T)\)</span></dt><dd><p>N denotes batch size, <cite>*</cite> denotes any number of intervening
+dimensions, V denotes total number of voxels or spatial
+locations, T denotes number of time points or observations.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((N, *, L, T)\)</span></dt><dd><p>L denotes number of labels in the provided atlas.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To initialise the atlas linear module from a pre-defined atlas, use
+the class method <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_atlas()</span></code> or the
+<a class="reference internal" href="hypercoil.init.atlas.AtlasInitialiser.html#hypercoil.init.atlas.AtlasInitialiser" title="hypercoil.init.atlas.AtlasInitialiser"><code class="xref py py-class docutils literal notranslate"><span class="pre">hypercoil.init.atlas.AtlasInitialiser</span></code></a> class after defining
+the atlas as a <a class="reference internal" href="hypercoil.init.atlas.BaseAtlas.html#hypercoil.init.atlas.BaseAtlas" title="hypercoil.init.atlas.BaseAtlas"><code class="xref py py-class docutils literal notranslate"><span class="pre">hypercoil.init.atlas.BaseAtlas</span></code></a> instance.</p>
+<p>If the module is initialised withouth an atlas, the atlas linear
+module will be initialised from a Dirichlet distribution with
+concentration <span class="math notranslate nohighlight">\(50\)</span> for each label.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>n_locations</strong><span class="classifier">Dict[str, int]</span></dt><dd><p>Number of locations (e.g., voxels or vertices) in each compartment.</p>
+</dd>
+<dt><strong>n_labels</strong><span class="classifier">Dict[str, int]</span></dt><dd><p>Number of labels in each compartment.</p>
+</dd>
+<dt><strong>limits</strong><span class="classifier">Dict[str, Tuple[int, int]], optional (default=None)</span></dt><dd><p>Limits of each compartment. The first element of the tuple denotes the
+lower limit and the second element denotes the size, i.e., the number
+of locations in the compartment – <em>not</em> the upper limit. If None, the
+limits are set to the default values, which are defined using the
+cumulative sum of the number of locations in each compartment.</p>
+</dd>
+<dt><strong>decoder</strong><span class="classifier">Optional[Dict[str, Tensor]], optional (default=None)</span></dt><dd><p>Decoder for labels in each compartment. The decoder is an
+integer-valued tensor that defines the map from row numbers to label
+numbers. If None, the decoder corresponds to the identity map – i.e.,
+the row numbers are the same as the label numbers.</p>
+</dd>
+<dt><strong>normalisation</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'mean'</span></code>, <code class="docutils literal notranslate"><span class="pre">'absmean'</span></code>, <code class="docutils literal notranslate"><span class="pre">'zscore'</span></code>, <code class="docutils literal notranslate"><span class="pre">'psc'</span></code>, or None (default <code class="docutils literal notranslate"><span class="pre">'mean'</span></code>)</span></dt><dd><p>Strategy for normalising across voxels and generating a representative
+time series for each label.</p>
+<ul class="simple">
+<li><p>None or <code class="docutils literal notranslate"><span class="pre">sum</span></code>: No normalisation, i.e., use the weighted sum over
+voxel time series.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean</span></code>: Compute the weighted mean over voxel time series.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">absmean</span></code>: Compute the weighted mean over voxel time series,
+treating any negative voxel weights as though they were positive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zscore</span></code>: Transform the sum of time series such that its temporal
+mean is 0 and its temporal standard deviation is 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">psc</span></code>: Transform the time series such that its value indicates the
+percent signal change from the mean.</p></li>
+</ul>
+</dd>
+<dt><strong>forward_mode</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'map'</span></code> or <code class="docutils literal notranslate"><span class="pre">'project'</span></code></span></dt><dd><p>Strategy for extracting regional time series from parcels.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'map'</span></code>: Simple linear map. Given a compartment atlas
+<span class="math notranslate nohighlight">\(A \in \mathbb{R}^{(L \times V)}\)</span>
+and a vertex-wise or voxel-wise input time series
+<span class="math notranslate nohighlight">\(T_{in} \in \mathbb{R}^{(V \times T)}\)</span>, returns</p>
+<p><span class="math notranslate nohighlight">\(T_{out} = A T_{in}\)</span>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'project'</span></code>: Projection using a linear least-squares fit. Given a
+compartment atlas
+<span class="math notranslate nohighlight">\(A \in \mathbb{R}^{(L \times V)}\)</span>
+and a vertex-wise or voxel-wise input time series
+<span class="math notranslate nohighlight">\(T_{in} \in \mathbb{R}^{(V \times T)}\)</span>, returns</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}
+T_{out} &amp;= \min_{X \in \mathbb{R}^{(L \times T)}} \| A^\intercal X - T_{in} \|_F\\&amp;= \left(A A^\intercal\right)^{-1} A T_{in}
+\end{aligned}\end{aligned}\end{align} \]</div>
+</li>
+</ul>
+</dd>
+<dt><strong>concatenate</strong><span class="classifier">bool, optional (default=True)</span></dt><dd><p>Whether to concatenate the output time series across compartments.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>normalisation</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(input[, normalisation, ...])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_atlas</span></code>(atlas[, normalisation, ...])</p></td>
+<td><p>Initialise the atlas module from an instance of a <code class="docutils literal notranslate"><span class="pre">BaseAtlas</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>set_default_limits</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +826,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.atlas.AtlasLinear"><code class="docutils literal notranslate"><span class="pre">AtlasLinear</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

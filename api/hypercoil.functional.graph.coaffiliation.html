@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.graph.coaffiliation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,69 @@ document.write(`
                   
   <section id="coaffiliation-community-coaffiliation">
 <h1><code class="docutils literal notranslate"><span class="pre">coaffiliation</span></code>: Community coaffiliation<a class="headerlink" href="#coaffiliation-community-coaffiliation" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.graph.coaffiliation">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.graph.</span></span><span class="sig-name descname"><span class="pre">coaffiliation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_diag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise_coaffiliation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/graph.py#L222-L262"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.graph.coaffiliation" title="Permalink to this definition">#</a></dt>
+<dd><p>Coaffiliation of vertices under a community structure.</p>
+<p>Given community affiliation matrices
+<span class="math notranslate nohighlight">\(C^{(i)} \in \mathbb{R}^{I \times C}\)</span> for source nodes and
+<span class="math notranslate nohighlight">\(C^{(o)} \in \mathbb{R}^{O \times C}\)</span> for sink nodes, and given a
+matrix of inter-community coupling coefficients
+<span class="math notranslate nohighlight">\(\Omega \in \mathbb{R}^{C \times C}\)</span>, the coaffiliation
+<span class="math notranslate nohighlight">\(H \in \mathbb{R}^{I \times O}\)</span> is computed as</p>
+<p><span class="math notranslate nohighlight">\(H = C^{(i)} \Omega C^{(o)\intercal}\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>C_i :</strong> <span class="math notranslate nohighlight">\((*, I, C)\)</span></dt><dd><p><cite>*</cite> denotes any number of preceding dimensions, I denotes
+number of vertices in the source set, and C denotes the
+total number of communities in the proposed partition.</p>
+</dd>
+<dt><strong>C_o :</strong> <span class="math notranslate nohighlight">\((*, I, C)\)</span></dt><dd><p>O denotes number of vertices in the sink set. If the same
+set of vertices emits and receives edges, then
+<span class="math notranslate nohighlight">\(I = O\)</span>.</p>
+</dd>
+<dt><strong>L :</strong> <span class="math notranslate nohighlight">\((*, C, C)\)</span></dt><dd><p>As above.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, I, O)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>C</strong><span class="classifier">Tensor</span></dt><dd><p>Community affiliation of vertices in the source set. Each slice is a
+matrix <span class="math notranslate nohighlight">\(C^{(i)} \in \mathbb{R}^{I \ times C}\)</span> that encodes the
+uncertainty in each vertex’s community assignment. <span class="math notranslate nohighlight">\(C^{(i)}_{jk}\)</span>
+denotes the probability that vertex j is assigned to community k. If
+this is binary-valued, then it reflects a deterministic assignment.</p>
+</dd>
+<dt><strong>C_o</strong><span class="classifier">Tensor or None (default None)</span></dt><dd><p>Community affiliation of vertices in the sink set. If None, then it is
+assumed that the source and sink sets are the same, and <code class="docutils literal notranslate"><span class="pre">C_o</span></code> is set
+equal to <code class="docutils literal notranslate"><span class="pre">C_i</span></code>.</p>
+</dd>
+<dt><strong>L</strong><span class="classifier">Tensor or None (default None)</span></dt><dd><p>The inter-community coupling matrix <span class="math notranslate nohighlight">\(\Omega\)</span>, mapping the
+probability of affiliation between communities. Each entry
+<span class="math notranslate nohighlight">\(L_{ij}\)</span> encodes the probability of a vertex in community i
+connecting with a vertex in community j. If None, then a strictly
+assortative structure is assumed (equivalent to L equals identity),
+under which nodes in the same community preferentially coaffiliate
+while nodes in different communities remain disaffiliated.</p>
+</dd>
+<dt><strong>exclude_diag</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that self-links are not factored into the coaffiliation.</p>
+</dd>
+<dt><strong>normalise_coaffiliation</strong><span class="classifier">bool (default False)</span></dt><dd><p>Normalise all community assignment weights to max out at 1.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>C</strong><span class="classifier">Tensor</span></dt><dd><p>Coaffiliation matrix for each input community structure.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +781,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.graph.coaffiliation"><code class="docutils literal notranslate"><span class="pre">coaffiliation()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

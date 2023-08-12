@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.matrix.expand_outer';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,61 @@ document.write(`
                   
   <section id="expand-outer">
 <h1><code class="docutils literal notranslate"><span class="pre">expand_outer</span></code><a class="headerlink" href="#expand-outer" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.matrix.expand_outer">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.matrix.</span></span><span class="sig-name descname"><span class="pre">expand_outer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'cross'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'skew'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/matrix.py#L232-L300"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.matrix.expand_outer" title="Permalink to this definition">#</a></dt>
+<dd><p>Multiply out a left and a right generator matrix as an outer product.</p>
+<p>The rank of the output is limited according to the inner dimensions of the
+input generators. This approach can be used to produce a low-rank output
+or to share the generators’ parameters across the rows and columns of the
+output matrix.</p>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>L :</strong> <span class="math notranslate nohighlight">\((*, H, rank)\)</span></dt><dd><p>H denotes the height of the expanded matrix, and rank
+denotes its maximum rank. <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of
+preceding dimensions.</p>
+</dd>
+<dt><strong>R :</strong> <span class="math notranslate nohighlight">\((*, W, rank)\)</span></dt><dd><p>W denotes the width of the expanded matrix.</p>
+</dd>
+<dt><strong>C :</strong> <span class="math notranslate nohighlight">\((*, rank, rank)\)</span></dt><dd><p>As above.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, H, W)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>L</strong><span class="classifier">Tensor</span></dt><dd><p>Left generator of a low-rank matrix (<span class="math notranslate nohighlight">\(L R^\intercal\)</span>).</p>
+</dd>
+<dt><strong>R</strong><span class="classifier">Tensor or None (default None)</span></dt><dd><p>Right generator of a low-rank matrix (<span class="math notranslate nohighlight">\(L R^\intercal\)</span>). If this
+is None, then the output matrix is symmetric <span class="math notranslate nohighlight">\(L L^\intercal\)</span>.</p>
+</dd>
+<dt><strong>C</strong><span class="classifier">Tensor or None (default None)</span></dt><dd><p>Coupling term. If this is specified, each outer product expansion is
+modulated by a corresponding coefficient in the coupling matrix.
+Providing a vector is equivalent to providing a diagonal coupling
+matrix. This term can, for instance, be used to toggle between
+positive and negative semidefinite outputs.</p>
+</dd>
+<dt><strong>symmetry</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'cross'</span></code>, <code class="docutils literal notranslate"><span class="pre">'skew'</span></code>, or None (default None)</span></dt><dd><p>Symmetry constraint imposed on the generated low-rank template matrix.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cross</span></code> enforces symmetry by replacing the initial expansion with
+the average of the initial expansion and its transpose,
+<span class="math notranslate nohighlight">\(\frac{1}{2} \left( L R^\intercal + R L^\intercal \right)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skew</span></code> enforces skew-symmetry by subtracting from the initial
+expansion its transpose,
+<span class="math notranslate nohighlight">\(\frac{1}{2} \left( L R^\intercal - R L^\intercal \right)\)</span></p></li>
+<li><p>Otherwise, no explicit symmetry constraint is imposed. Symmetry can
+also be enforced by passing None for R or by passing the same input
+for R and L. (This approach also guarantees that the output is
+positive semidefinite.)</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +773,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.matrix.expand_outer"><code class="docutils literal notranslate"><span class="pre">expand_outer()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

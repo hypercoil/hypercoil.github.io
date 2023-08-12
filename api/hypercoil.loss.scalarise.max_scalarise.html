@@ -700,6 +700,96 @@ document.write(`
                   
   <section id="max-scalarise-maximum-value-scalarisation">
 <h1><code class="docutils literal notranslate"><span class="pre">max_scalarise</span></code>: Maximum-value scalarisation<a class="headerlink" href="#max-scalarise-maximum-value-scalarisation" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.scalarise.max_scalarise">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.scalarise.</span></span><span class="sig-name descname"><span class="pre">max_scalarise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/scalarise.py#L224-L257"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.scalarise.max_scalarise" title="Permalink to this definition">#</a></dt>
+<dd><p>Transform a tensor-valued function to a scalar-valued function by taking
+the maximum of the tensor.</p>
+<p>This may be more appropriate than using the infinity norm, particularly
+for negative-valued loss functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function is a scalarisation map, which can be either used on its
+own or composed with other scalarisation maps to form a scalarisation.</p>
+<p>Composition is performed by passing the scalarisation map to be
+composed as the <code class="docutils literal notranslate"><span class="pre">inner</span></code> argument to the outer scalarisation map.
+This can be chained indefinitely.</p>
+<p>The <strong>output</strong> of a scalarisation map (or composition thereof) is a
+function that maps a tensor-valued function to a scalar-valued
+function. Be mindful of the signature of scalarisation maps: they do
+not themselves perform this map, but rather return a function that
+does.</p>
+<p>For example, the following are all valid scalarisations of a function
+<code class="docutils literal notranslate"><span class="pre">f</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">max_scalarise</span><span class="p">()(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">mean_scalarise</span><span class="p">(</span><span class="n">inner</span><span class="o">=</span><span class="n">max_scalarise</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">mean_scalarise</span><span class="p">(</span><span class="n">inner</span><span class="o">=</span><span class="n">vnorm_scalarise</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Calling the scalarised function will return a scalar value.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>inner</strong><span class="classifier">Callable, optional</span></dt><dd><p>The inner scalarisation map. If not specified, the identity map is
+used. For many scalarisation maps, the default settings for the inner
+map and the scalarisation axis amount to applying the scalarisation
+map over the entire tensor. Users are advised to verify the default
+settings for the inner map and the scalarisation axis.</p>
+</dd>
+<dt><strong>axis: Union[int, Sequence[int]], optional</strong></dt><dd><p>The axis or axes over which to apply the scalarisation map. If not
+specified, the scalarisation map is applied over the entire tensor,
+except in the cases of maps that are only defined over vectors or
+matrices (e.g., norm scalarisations). Check the default arguments to
+verify the default behaviour.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When composing scalarisation maps, the value of the <code class="docutils literal notranslate"><span class="pre">axis</span></code>
+argument will refer to the axis or axes of the reduced-rank tensor
+that is the output of the inner scalarisation map. For example,
+consider the following composition:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mean_scalarise</span><span class="p">(</span><span class="n">inner</span><span class="o">=</span><span class="n">max_scalarise</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">axis</span></code> argument of the outer scalarisation map refers to the
+<strong>third</strong> from last axis of the original tensor, which is the
+second from last axis of the tensor after the inner scalarisation
+map has been applied.</p>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">keepdims=True</span></code> for the inner scalarisations will result
+in the (perhaps more intuitive) behaviour of the <code class="docutils literal notranslate"><span class="pre">axis</span></code> argument
+referring to the axis or axes of the original tensor.</p>
+</div>
+</dd>
+<dt><strong>keepdims: bool, optional</strong></dt><dd><p>Whether to keep the reduced dimensions in the output. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the
+output will have the same number of dimensions as the input, each of
+singleton size. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, the output will have one fewer dimension
+than the input for each dimension over which the scalarisation map is
+applied.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It can be useful to set <code class="docutils literal notranslate"><span class="pre">keepdims=True</span></code> when composing
+scalarisation maps, as the <code class="docutils literal notranslate"><span class="pre">axis</span></code> argument can then be specified
+with reference to the original tensor rather than the reduced
+tensor, only setting <code class="docutils literal notranslate"><span class="pre">keepdims=False</span></code> for the outermost
+scalarisation map.</p>
+</div>
+</dd>
+<dt><strong>key</strong><span class="classifier">Optional[<code class="docutils literal notranslate"><span class="pre">jax.random.PRNGKey</span></code>]</span></dt><dd><p>An optional random number generator key. Unused; exists for
+conformance with potential future scalarisation maps that could inject
+randomness.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Callable[[Callable[…, Tensor]], Callable[…, float]]</dt><dd><p>The scalarisation transformation. This is a function that takes a
+tensor-valued function and returns a scalar-valued function.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -712,6 +802,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.scalarise.max_scalarise"><code class="docutils literal notranslate"><span class="pre">max_scalarise()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

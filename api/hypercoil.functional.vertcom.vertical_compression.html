@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.vertcom.vertical_compression';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -346,6 +347,47 @@ document.write(`
                   
   <section id="vertical-compression">
 <h1><code class="docutils literal notranslate"><span class="pre">vertical_compression</span></code><a class="headerlink" href="#vertical-compression" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.sylo.vertical_compression">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.sylo.</span></span><span class="sig-name descname"><span class="pre">vertical_compression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_compressor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_compressor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">renormalise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_diagonal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold_channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/sylo.py#L182-L257"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.sylo.vertical_compression" title="Permalink to this definition">#</a></dt>
+<dd><p>Vertically compress a matrix or matrix stack of dimensions
+<span class="math notranslate nohighlight">\(H_{in} \times W_{in} \rightarrow H_{out} \times W_{out}\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>input: Tensor</strong></dt><dd><p>Tensor to be compressed. This can be either a matrix of dimension
+<span class="math notranslate nohighlight">\(H_{in} \times W_{in}\)</span> or a stack of such matrices, for
+instance of dimension <span class="math notranslate nohighlight">\(N \times C \times H_{in} \times W_{in}\)</span>.</p>
+</dd>
+<dt><strong>row_compressor: Tensor</strong></dt><dd><p>Compressor for the rows of the input tensor. This should be a matrix
+of dimension <span class="math notranslate nohighlight">\(H_{out} \times H_{in}\)</span>.</p>
+</dd>
+<dt><strong>col_compressor: Tensor or None</strong></dt><dd><p>Compressor for the columns of the input tensor. This should be a
+matrix of dimension <span class="math notranslate nohighlight">\(W_{out} \times W_{in}\)</span>. If this is None,
+then symmetry is assumed: the column compressor and row compressor are
+the same.</p>
+</dd>
+<dt><strong>renormalise: bool</strong></dt><dd><p>If True, the output is renormalised to have standard deviation equal
+to that of the input. When <code class="docutils literal notranslate"><span class="pre">remove_diagonal=True</span></code>, the standard
+deviation also ignores the diagonal elements.</p>
+</dd>
+<dt><strong>remove_diagonal: bool</strong></dt><dd><p>If True, the diagonal elements of the input are removed before and
+after compression.</p>
+</dd>
+<dt><strong>sign: int or None</strong></dt><dd><p>If not None, this should be either 1 or -1. If -1, the output is
+multiplied by -1.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>output: Tensor</dt><dd><p>Compressed tensor.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -358,6 +400,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.sylo.vertical_compression"><code class="docutils literal notranslate"><span class="pre">vertical_compression()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

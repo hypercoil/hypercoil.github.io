@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.kl_divergence';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,9 +703,193 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">kl_divergence</span></code>: Kullback-Leibler divergence<a class="headerlink" href="#kl-divergence-kullback-leibler-divergence" title="Permalink to this heading">#</a></h1>
 <section id="kl-divergence">
 <h2><code class="docutils literal notranslate"><span class="pre">kl_divergence</span></code><a class="headerlink" href="#kl-divergence" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.kl_divergence">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">kl_divergence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L663-L693"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.kl_divergence" title="Permalink to this definition">#</a></dt>
+<dd><p>Kullback-Leibler divergence between two categorical distributions.</p>
+<p>This function operates on probability tensors. For a version that operates
+on logits, see <a class="reference internal" href="#hypercoil.loss.kl_divergence_logit" title="hypercoil.loss.kl_divergence_logit"><code class="xref py py-func docutils literal notranslate"><span class="pre">kl_divergence_logit()</span></code></a>.</p>
+<p>Adapted from <code class="docutils literal notranslate"><span class="pre">distrax</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The KL divergence is not symmetric, so this function returns
+<span class="math notranslate nohighlight">\(KL(P || Q)\)</span>. For a symmetric measure, see
+<a class="reference internal" href="hypercoil.loss.js_divergence.html#hypercoil.loss.js_divergence" title="hypercoil.loss.js_divergence"><code class="xref py py-func docutils literal notranslate"><span class="pre">js_divergence()</span></code></a>.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[KL(P || Q) = \sum_{x \in \mathcal{X}}^n P_x \log \frac{P_x}{Q_x}\]</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>P</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor parameterising the first categorical distribution.</p>
+</dd>
+<dt><strong>Q</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor parameterising the second categorical distribution.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the KL divergence.</p>
+</dd>
+<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
+</dd>
+<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed KL divergence is computed for
+each element of the input tensor. Otherwise, the KL divergence is
+computed over the specified axis or axes.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>KL divergence between the two distributions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.kl_divergence_logit">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">kl_divergence_logit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L695-L724"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.kl_divergence_logit" title="Permalink to this definition">#</a></dt>
+<dd><p>Kullback-Leibler divergence between two categorical distributions.</p>
+<p>This function operates on logits. For a version that operates on
+probabilities, see <a class="reference internal" href="#hypercoil.loss.kl_divergence" title="hypercoil.loss.kl_divergence"><code class="xref py py-func docutils literal notranslate"><span class="pre">kl_divergence()</span></code></a>.</p>
+<p>Adapted from <code class="docutils literal notranslate"><span class="pre">distrax</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The KL divergence is not symmetric, so this function returns
+<span class="math notranslate nohighlight">\(KL(P || Q)\)</span>. For a symmetric measure, see
+<a class="reference internal" href="hypercoil.loss.js_divergence.html#hypercoil.loss.js_divergence" title="hypercoil.loss.js_divergence"><code class="xref py py-func docutils literal notranslate"><span class="pre">js_divergence()</span></code></a>.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[KL(P || Q) = \sum_{x \in \mathcal{X}}^n P_x \log \frac{P_x}{Q_x}\]</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>P</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor parameterising the first categorical distribution.</p>
+</dd>
+<dt><strong>Q</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor parameterising the second categorical distribution.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the KL divergence.</p>
+</dd>
+<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
+</dd>
+<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed KL divergence is computed for
+each element of the input tensor. Otherwise, the KL divergence is
+computed over the specified axis or axes.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>KL divergence between the two distributions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="kldivergenceloss">
 <h2><code class="docutils literal notranslate"><span class="pre">KLDivergenceLoss</span></code><a class="headerlink" href="#kldivergenceloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.KLDivergenceLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">KLDivergenceLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L843-L883"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.KLDivergenceLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Loss based on the Kullback-Leibler divergence between two categorical
+distributions.</p>
+<p>This operates on probability tensors. For a version that operates on
+logits, see <a class="reference internal" href="#hypercoil.loss.KLDivergenceLogitLoss" title="hypercoil.loss.KLDivergenceLogitLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">KLDivergenceLogitLoss</span></code></a>.</p>
+<p>Adapted from <code class="docutils literal notranslate"><span class="pre">distrax</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The KL divergence is not symmetric, so this function returns
+<span class="math notranslate nohighlight">\(KL(P || Q)\)</span>. For a symmetric measure, see
+<a class="reference internal" href="hypercoil.loss.js_divergence.html#hypercoil.loss.js_divergence" title="hypercoil.loss.js_divergence"><code class="xref py py-func docutils literal notranslate"><span class="pre">js_divergence()</span></code></a>.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[KL(P || Q) = \sum_{x \in \mathcal{X}}^n P_x \log \frac{P_x}{Q_x}\]</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the KL divergence.</p>
+</dd>
+<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
+</dd>
+<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed KL divergence is computed for
+each element of the input tensor. Otherwise, the KL divergence is
+computed over the specified axis or axes.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.KLDivergenceLogitLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">KLDivergenceLogitLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L885-L925"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.KLDivergenceLogitLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Loss based on the Kullback-Leibler divergence between two categorical
+distributions.</p>
+<p>This operates on logit tensors. For a version that operates on
+probabilities, see <a class="reference internal" href="#hypercoil.loss.KLDivergenceLoss" title="hypercoil.loss.KLDivergenceLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">KLDivergenceLoss</span></code></a>.</p>
+<p>Adapted from <code class="docutils literal notranslate"><span class="pre">distrax</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The KL divergence is not symmetric, so this function returns
+<span class="math notranslate nohighlight">\(KL(P || Q)\)</span>. For a symmetric measure, see
+<a class="reference internal" href="hypercoil.loss.js_divergence.html#hypercoil.loss.js_divergence" title="hypercoil.loss.js_divergence"><code class="xref py py-func docutils literal notranslate"><span class="pre">js_divergence()</span></code></a>.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[KL(P || Q) = \sum_{x \in \mathcal{X}}^n P_x \log \frac{P_x}{Q_x}\]</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int or sequence of ints, optional (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</span></dt><dd><p>Axis or axes over which to compute the KL divergence.</p>
+</dd>
+<dt><strong>keepdims</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">jax.numpy.sum</span></code>.</p>
+</dd>
+<dt><strong>reduce</strong><span class="classifier">bool, optional (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</span></dt><dd><p>If this is False, then the unsummed KL divergence is computed for
+each element of the input tensor. Otherwise, the KL divergence is
+computed over the specified axis or axes.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +910,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kl-divergence"><code class="docutils literal notranslate"><span class="pre">kl_divergence</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kldivergenceloss"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kl-divergence"><code class="docutils literal notranslate"><span class="pre">kl_divergence</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.kl_divergence"><code class="docutils literal notranslate"><span class="pre">kl_divergence()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.kl_divergence_logit"><code class="docutils literal notranslate"><span class="pre">kl_divergence_logit()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kldivergenceloss"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.KLDivergenceLoss"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLoss</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.KLDivergenceLogitLoss"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLogitLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

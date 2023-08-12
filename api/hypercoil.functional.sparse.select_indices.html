@@ -705,6 +705,50 @@ document.write(`
                   
   <section id="select-indices">
 <h1><code class="docutils literal notranslate"><span class="pre">select_indices</span></code><a class="headerlink" href="#select-indices" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.sparse.select_indices">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.sparse.</span></span><span class="sig-name descname"><span class="pre">select_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'abs&gt;'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'abs&lt;&gt;'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'&lt;'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'abs&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k_reduction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'mean'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_indices_over_channel_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/sparse.py#L259-L345"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.sparse.select_indices" title="Permalink to this definition">#</a></dt>
+<dd><p>Select indices from a tensor (e.g., in preparation for sparsification).</p>
+<p>The input can be a boolean matrix, in which case the output contains the
+indices of True entries. The input can also be a matrix with values, in
+which case the output contains the indices of entries that survive the
+thresholding operation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not compatible with JIT compilation.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the input is batched or contains multiple channels, the <code class="docutils literal notranslate"><span class="pre">top_k</span></code>
+option will return separate indices for each channel and each batch
+element. Ensure that <code class="docutils literal notranslate"><span class="pre">top_k_reduction</span></code> is set to <code class="docutils literal notranslate"><span class="pre">'mean'</span></code> to
+obtain a single index across all batch elements (and potentially
+channels, according to <code class="docutils literal notranslate"><span class="pre">fix_indices_over_channel_dims</span></code>).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tensor</strong><span class="classifier">Tensor</span></dt><dd><p>The input tensor.</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float (default: 0.0)</span></dt><dd><p>The threshold value. Used only if the input matrices are matrices with
+values.</p>
+</dd>
+<dt><strong>threshold_type</strong><span class="classifier">one of ‘abs&gt;’, ‘abs&lt;’, ‘&gt;’, ‘&lt;’ (default: ‘abs&gt;’)</span></dt><dd><p>The type of thresholding operation to perform.</p>
+</dd>
+<dt><strong>top_k</strong><span class="classifier">bool (default: False)</span></dt><dd><p>If True, then the threshold value must be an integer, and the
+thresholding operation will be replaced by selection of the top k
+entries.</p>
+</dd>
+<dt><strong>fix_indices_over_channel_dims</strong><span class="classifier">bool (default: True)</span></dt><dd><p>If True, then the indices of nonzero entries that are returned will
+be fixed over all channel dimensions. If False, then the indices of
+nonzero entries that are returned are allowed to vary over all channel
+dimensions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +761,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.sparse.select_indices"><code class="docutils literal notranslate"><span class="pre">select_indices()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

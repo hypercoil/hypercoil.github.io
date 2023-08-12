@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.det_gram';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,9 +703,106 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">det_gram</span></code>: Gramian determinant<a class="headerlink" href="#det-gram-gramian-determinant" title="Permalink to this heading">#</a></h1>
 <section id="det-gram">
 <h2><code class="docutils literal notranslate"><span class="pre">det_gram</span></code><a class="headerlink" href="#det-gram" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.det_gram">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">det_gram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X:</span> <span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta:</span> <span class="pre">Tensor</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op:</span> <span class="pre">~typing.Callable</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">corr_kernel&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi:</span> <span class="pre">float</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi:</span> <span class="pre">float</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key:</span> <span class="pre">~jax._src.random.PRNGKey</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L401-L430"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.det_gram" title="Permalink to this definition">#</a></dt>
+<dd><p>Gramian determinant score function.</p>
+<p>This function computes the determinant of the Gram matrix of the input
+tensor, defined according to the kernel function <code class="docutils literal notranslate"><span class="pre">op</span></code>. The kernel
+function should always be a positive semi-definite function, and
+additional arguments are provided to ensure a non-singular (i.e.,
+strictly positive definite) matrix.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input tensor.</p>
+</dd>
+<dt><strong>theta</strong><span class="classifier">Tensor, optional (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</span></dt><dd><p>Kernel parameter tensor. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the kernel is assumed to
+be isotropic.</p>
+</dd>
+<dt><strong>op</strong><span class="classifier">Callable, optional (default: <code class="xref py py-func docutils literal notranslate"><span class="pre">corr_kernel()</span></code>)</span></dt><dd><p>Kernel function. By default, the Pearson correlation kernel is used.</p>
+</dd>
+<dt><strong>psi</strong><span class="classifier">float, optional (default: <code class="docutils literal notranslate"><span class="pre">0.</span></code>)</span></dt><dd><p>Kernel regularisation parameter. If <code class="docutils literal notranslate"><span class="pre">psi</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>, then the kernel
+matrix is regularised by adding <code class="docutils literal notranslate"><span class="pre">psi</span></code> to the diagonal. This can be
+used to ensure that the matrix is strictly positive definite.</p>
+</dd>
+<dt><strong>xi</strong><span class="classifier">float, optional (default: <code class="docutils literal notranslate"><span class="pre">0.</span></code>)</span></dt><dd><p>Kernel regularisation parameter. If <code class="docutils literal notranslate"><span class="pre">xi</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>, then the kernel
+matrix is regularised by stochastically adding samples from a uniform
+distribution with support <span class="math notranslate nohighlight">\(\psi - \xi, \xi\)</span> to the diagonal.
+This can be used to ensure that the matrix does not have degenerate
+eigenvalues. If <code class="docutils literal notranslate"><span class="pre">xi</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>, then <code class="docutils literal notranslate"><span class="pre">psi</span></code> must also be greater than
+<code class="docutils literal notranslate"><span class="pre">xi</span></code> and a key must be provided.</p>
+</dd>
+<dt><strong>key: PRNGKey, optional (default: ``None``)</strong></dt><dd><p>Random number generator key. This is only required if <code class="docutils literal notranslate"><span class="pre">xi</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Gramian determinant score for each set of observations.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="gramdeterminantloss">
 <h2><code class="docutils literal notranslate"><span class="pre">GramDeterminantLoss</span></code><a class="headerlink" href="#gramdeterminantloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.GramDeterminantLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">GramDeterminantLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L635-L673"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.GramDeterminantLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Loss based on the determinant of the Gram matrix.</p>
+<p>This function computes the determinant of the Gram matrix of the input
+tensor, defined according to the kernel function <code class="docutils literal notranslate"><span class="pre">op</span></code>. The kernel
+function should always be a positive semi-definite function, and
+additional arguments are provided to ensure a non-singular (i.e.,
+strictly positive definite) matrix.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>theta</strong><span class="classifier">Tensor, optional (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</span></dt><dd><p>Kernel parameter tensor. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the kernel is assumed to
+be isotropic.</p>
+</dd>
+<dt><strong>op</strong><span class="classifier">Callable, optional (default: <code class="xref py py-func docutils literal notranslate"><span class="pre">corr_kernel()</span></code>)</span></dt><dd><p>Kernel function. By default, the Pearson correlation kernel is used.</p>
+</dd>
+<dt><strong>psi</strong><span class="classifier">float, optional (default: <code class="docutils literal notranslate"><span class="pre">0.</span></code>)</span></dt><dd><p>Kernel regularisation parameter. If <code class="docutils literal notranslate"><span class="pre">psi</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>, then the kernel
+matrix is regularised by adding <code class="docutils literal notranslate"><span class="pre">psi</span></code> to the diagonal. This can be
+used to ensure that the matrix is strictly positive definite.</p>
+</dd>
+<dt><strong>xi</strong><span class="classifier">float, optional (default: <code class="docutils literal notranslate"><span class="pre">0.</span></code>)</span></dt><dd><p>Kernel regularisation parameter. If <code class="docutils literal notranslate"><span class="pre">xi</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>, then the kernel
+matrix is regularised by stochastically adding samples from a uniform
+distribution with support <span class="math notranslate nohighlight">\(\psi - \xi, \xi\)</span> to the diagonal.
+This can be used to ensure that the matrix does not have degenerate
+eigenvalues. If <code class="docutils literal notranslate"><span class="pre">xi</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>, then <code class="docutils literal notranslate"><span class="pre">psi</span></code> must also be greater than
+<code class="docutils literal notranslate"><span class="pre">xi</span></code> and a key must be provided.</p>
+</dd>
+<dt><strong>key: PRNGKey, optional (default: ``None``)</strong></dt><dd><p>Random number generator key. This is only required if <code class="docutils literal notranslate"><span class="pre">xi</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +823,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#det-gram"><code class="docutils literal notranslate"><span class="pre">det_gram</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gramdeterminantloss"><code class="docutils literal notranslate"><span class="pre">GramDeterminantLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#det-gram"><code class="docutils literal notranslate"><span class="pre">det_gram</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.det_gram"><code class="docutils literal notranslate"><span class="pre">det_gram()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gramdeterminantloss"><code class="docutils literal notranslate"><span class="pre">GramDeterminantLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.GramDeterminantLoss"><code class="docutils literal notranslate"><span class="pre">GramDeterminantLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

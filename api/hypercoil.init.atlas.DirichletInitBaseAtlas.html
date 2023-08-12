@@ -705,6 +705,91 @@ document.write(`
                   
   <section id="dirichletinitbaseatlas">
 <h1><code class="docutils literal notranslate"><span class="pre">DirichletInitBaseAtlas</span></code><a class="headerlink" href="#dirichletinitbaseatlas" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.atlas.DirichletInitBaseAtlas">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlas.</span></span><span class="sig-name descname"><span class="pre">DirichletInitBaseAtlas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlas.py#L396-L502"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlas.DirichletInitBaseAtlas" title="Permalink to this definition">#</a></dt>
+<dd><p>Abstract base class for atlases initialised from a Dirichlet distribution.
+See
+<a class="reference internal" href="hypercoil.init.atlas.BaseAtlas.html"><span class="doc">BaseAtlas</span></a>
+for general details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mask_source</strong></dt><dd><p>Source of data used to create an overall mask for the atlas.</p>
+</dd>
+<dt><strong>compartment_labels</strong><span class="classifier">dict(int)</span></dt><dd><p>Number of labels to initialise for each compartment.</p>
+</dd>
+<dt><strong>conc</strong><span class="classifier">float</span></dt><dd><p>If this is provided and <code class="docutils literal notranslate"><span class="pre">init</span></code> is not, then the Dirichlet
+distributions used to sample assignments of spatial locations to
+parcels are defined with the same concentration parameter, <code class="docutils literal notranslate"><span class="pre">conc</span></code>,
+for each parcel.</p>
+</dd>
+<dt><strong>template_image</strong></dt><dd><p>Template used to define the spatial dimensions and coordinates of the
+atlas. If this is not provided explicitly, then the mask source image
+is used by default.</p>
+</dd>
+<dt><strong>init</strong><span class="classifier">dict(Dirichlet)</span></dt><dd><p>Dict mapping from compartment names to the Dirichlet distributions
+used for parcel assignment initialisation in each compartment.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.atlas.DirichletInitBaseAtlas.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compartments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_bin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spherical_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlas.py#L297-L378"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlas.DirichletInitBaseAtlas.__call__" title="Permalink to this definition">#</a></dt>
+<dd><p>Compute transformed maps for selected atlas subcompartments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>compartments</strong><span class="classifier">iterable, False, or True (default True)</span></dt><dd><p>Compartments for which transformed maps should be computed. If
+this is set to False, then a single transformed map is returned
+for the combined compartment containing all spatial locations. If
+this is set to True, then a transformed map is returned for every
+defined compartment.</p>
+</dd>
+<dt><strong>normalise</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that maps should be spatially normalised such that the
+sum over all assignments to a parcel is equal to 1. When the map
+is used as a linear transformation, this option results in
+computation of a weighted average over each parcel.</p>
+</dd>
+<dt><strong>sigma</strong><span class="classifier">float or None (default None)</span></dt><dd><p>If this is not None, then spatial smoothing using a Gaussian
+kernel is applied over each parcel’s assignments. Distances are
+established by the atlas’s coordinate system and the topology of
+each compartment. The value of sigma establishes the width of the
+Gaussian kernel.</p>
+</dd>
+<dt><strong>noise</strong><span class="classifier">callable or None</span></dt><dd><p>If this is a callable, then it should be a mapping from a tensor
+to another tensor of the same dimensions. After spatial smoothing
+but before normalisation, this callable is applied to each map
+tensor to inject noise.</p>
+</dd>
+<dt><strong>max_bin</strong><span class="classifier">int (default 10000)</span></dt><dd><p>Because spatial smoothing has substantial memory overhead, this
+flag sets a ceiling on the number of spatial locations to be
+smoothed at a time.</p>
+</dd>
+<dt><strong>spherical_scale</strong><span class="classifier">float (default 1)</span></dt><dd><p>During spatial smoothing, the Gaussian kernel is scaled by this
+value for spherical coordinate systems only. This enables the use
+of different kernel widths for spherical and Euclidean
+coordinates.</p>
+</dd>
+<dt><strong>truncate</strong><span class="classifier">float</span></dt><dd><p>Maximum distance at which data points are convolved together
+during smoothing.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict(tensor)</dt><dd><p>Dictionary of transformed maps for each specified atlas
+compartment.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +802,19 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlas.DirichletInitBaseAtlas"><code class="docutils literal notranslate"><span class="pre">DirichletInitBaseAtlas</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlas.DirichletInitBaseAtlas.__call__"><code class="docutils literal notranslate"><span class="pre">DirichletInitBaseAtlas.__call__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

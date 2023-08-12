@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.cov.conditionalcov';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,103 @@ document.write(`
                   
   <section id="conditionalcov-conditional-covariance">
 <h1><code class="docutils literal notranslate"><span class="pre">conditionalcov</span></code>: Conditional covariance<a class="headerlink" href="#conditionalcov-conditional-covariance" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.cov.conditionalcov">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.cov.</span></span><span class="sig-name descname"><span class="pre">conditionalcov</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">require_nonsingular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/cov.py#L396-L431"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.cov.conditionalcov" title="Permalink to this definition">#</a></dt>
+<dd><p>Conditional covariance of variables in a tensor batch.</p>
+<p>The conditional covariance is the covariance of one set of variables X
+conditioned on another set of variables Y. The conditional covariance is
+computed from the covariance <span class="math notranslate nohighlight">\(\Sigma_{{XX}}\)</span> of X ,
+the covariance <span class="math notranslate nohighlight">\(\Sigma_{{YY}}\)</span> of Y, and the
+covariance <span class="math notranslate nohighlight">\(\Sigma_{{XY}}\)</span> between X and Y.
+It is defined as the Schur complement of <span class="math notranslate nohighlight">\(\Sigma_{{YY}}\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\Sigma_{X|Y} = \Sigma_{XX} - \Sigma_{XY} \Sigma_{YY}^{{-1}} \Sigma_{XY}^\intercal\)</span></p>
+<p>The conditional covariance is equivalent to the covariance of the first set
+of variables after residualising them with respect to the second set of
+variables (plus an intercept term). This can be interpreted as the
+covariance of variables of interest (the first set) after controlling for
+the effects of confounds or nuisance variables (the second set).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input X:</strong> <span class="math notranslate nohighlight">\((N, *, C_X, obs)\)</span> or <span class="math notranslate nohighlight">\((N, *, obs, C_X)\)</span></dt><dd><p>N denotes batch size, <cite>*</cite> denotes any number of
+intervening dimensions, <span class="math notranslate nohighlight">\(C_X\)</span> denotes number of data
+channels or variables to be correlated, obs denotes number
+of observations per channel</p>
+</dd>
+<dt><strong>Input Y:</strong> <span class="math notranslate nohighlight">\((N, *, C_Y, obs)\)</span> or <span class="math notranslate nohighlight">\((N, *, obs, C_Y)\)</span></dt><dd><p><span class="math notranslate nohighlight">\(C_Y\)</span> denotes number of data channels or variables
+to be correlated (or conditioned on)</p>
+</dd>
+<dt><strong>Weight :</strong> <span class="math notranslate nohighlight">\((obs)\)</span> or <span class="math notranslate nohighlight">\((obs, obs)\)</span></dt><dd><p>As above</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((N, *, C_X, C_Y)\)</span></dt><dd><p>As above</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor containing samples of multivariate observations, with those
+variables whose influence we wish to control for removed and separated
+out into tensor Y. Each slice along the last axis corresponds to an
+observation, and each slice along the penultimate axis corresponds to a
+data channel or more generally a variable.</p>
+</dd>
+<dt><strong>Y</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor containing samples of multivariate observations, limited to
+nuisance or confound variables whose influence we wish to control for.
+Each slice along the last axis corresponds to an observation, and each
+slice along the penultimate axis corresponds to a data channel or more
+generally a variable.</p>
+</dd>
+<dt><strong>require_nonsingular</strong><span class="classifier">bool</span></dt><dd><p>Indicates that the covariance must be nonsingular. If this is False,
+then the Moore-Penrose pseudoinverse is computed instead of the
+inverse.</p>
+</dd>
+<dt><strong>rowvar</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that the last axis of the input tensor is the observation
+axis and the penultimate axis is the variable axis. If False, then this
+relationship is transposed.</p>
+</dd>
+<dt><strong>bias</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that the biased normalisation (i.e., division by <cite>N</cite> in the
+unweighted case) should be performed. By default, normalisation of the
+covariance is unbiased (i.e., division by <cite>N - 1</cite>).</p>
+</dd>
+<dt><strong>ddof</strong><span class="classifier">int or None (default None)</span></dt><dd><p>Degrees of freedom for normalisation. If this is specified, it
+overrides the normalisation factor automatically determined using the
+<cite>bias</cite> parameter.</p>
+</dd>
+<dt><strong>weight</strong><span class="classifier">Tensor or None (default None)</span></dt><dd><p>Tensor containing importance or coupling weights for the observations.
+If this tensor is 1-dimensional, each entry weights the corresponding
+observation in the covariance computation. If it is 2-dimensional,
+then it must be square, symmetric, and positive semidefinite. In this
+case, diagonal entries again correspond to relative importances, while
+off-diagonal entries indicate coupling factors. For instance, a banded
+or multi-diagonal tensor can be used to specify inter-temporal
+coupling for a time series covariance.</p>
+</dd>
+<dt><strong>l2</strong><span class="classifier">nonnegative float (default 0)</span></dt><dd><p>L2 regularisation term to add to the maximum likelihood estimate of
+the covariance matrix. This can be set to a positive value to obtain
+an intermediate for estimating the regularised inverse covariance.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>sigma</strong><span class="classifier">Tensor</span></dt><dd><p>Conditional empirical covariance matrix of the variables in input
+tensor X conditioned on the variables in input tensor Y.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="hypercoil.functional.cov.conditionalcorr.html#hypercoil.functional.cov.conditionalcorr" title="hypercoil.functional.cov.conditionalcorr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conditionalcorr</span></code></a></dt><dd><p>Normalised conditional covariance (Pearson correlation)</p>
+</dd>
+<dt><a class="reference internal" href="hypercoil.functional.cov.partialcov.html#hypercoil.functional.cov.partialcov" title="hypercoil.functional.cov.partialcov"><code class="xref py py-obj docutils literal notranslate"><span class="pre">partialcov</span></code></a></dt><dd><p>Condition each variable on all other variables</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +815,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.cov.conditionalcov"><code class="docutils literal notranslate"><span class="pre">conditionalcov()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

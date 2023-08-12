@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.interhemispheric_tether';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,9 +703,123 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">interhemispheric_tether</span></code>: Inter-hemispheric tethering loss<a class="headerlink" href="#interhemispheric-tether-inter-hemispheric-tethering-loss" title="Permalink to this heading">#</a></h1>
 <section id="interhemispheric-tether">
 <h2><code class="docutils literal notranslate"><span class="pre">interhemispheric_tether</span></code><a class="headerlink" href="#interhemispheric-tether" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.interhemispheric_tether">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">interhemispheric_tether</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lh_coor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rh_coor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L1542-L1591"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.interhemispheric_tether" title="Permalink to this definition">#</a></dt>
+<dd><p>Distance of centres of mass of left-hemisphere parcels from corresponding
+right-hemisphere parcels. This can be used to promote a symmetric atlas.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is assumed that the first coordinate in <code class="docutils literal notranslate"><span class="pre">lh_coor</span></code> and <code class="docutils literal notranslate"><span class="pre">rh_coor</span></code>
+is the x-coordinate, and that the left hemisphere is on the opposite
+side of the x-axis from the right hemisphere.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lh</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor block containing the data for the left hemisphere. Each row is a
+collection of masses assigned to the single object or parcel, and each
+column denotes the distribution of masses across objects or parcels at
+a single spatial location.</p>
+</dd>
+<dt><strong>rh</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor block containing the data for the right hemisphere.</p>
+</dd>
+<dt><strong>lh_coor</strong><span class="classifier">Tensor</span></dt><dd><p>Coordinates of the spatial locations in each of the columns of <code class="docutils literal notranslate"><span class="pre">lh</span></code>.</p>
+</dd>
+<dt><strong>rh_coor</strong><span class="classifier">Tensor</span></dt><dd><p>Coordinates of the spatial locations in each of the columns of <code class="docutils literal notranslate"><span class="pre">rh</span></code>.</p>
+</dd>
+<dt><strong>radius</strong><span class="classifier">float (default 100)</span></dt><dd><p>Radius of the spherical manifold on which the coordinates are
+located.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Distance of the centres of mass of the objects in <code class="docutils literal notranslate"><span class="pre">lh</span></code> from the
+corresponding objects in <code class="docutils literal notranslate"><span class="pre">rh</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="interhemispherictetherloss">
 <h2><code class="docutils literal notranslate"><span class="pre">InterhemisphericTetherLoss</span></code><a class="headerlink" href="#interhemispherictetherloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.InterhemisphericTetherLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">InterhemisphericTetherLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1515-L1578"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.InterhemisphericTetherLoss" title="Permalink to this definition">#</a></dt>
+<dd><blockquote>
+<div><p>Loss function penalising distance between matched parcels or objects on
+opposite hemispheres.</p>
+<p>Displacement of centres of mass in one cortical hemisphere from
+corresponding centres of mass in the other cortical hemisphere.</p>
+<div class="admonition-hemispheric-tether admonition">
+<p class="admonition-title">Hemispheric Tether</p>
+<p>The hemispheric tether is defined as</p>
+<p>:math:<a href="#id1"><span class="problematic" id="id2">`</span></a>sum_{ell} left| ell_{LH, centre} - ell_{RH, centre}</p>
+</div>
+</div></blockquote>
+<p>ight|`</p>
+<blockquote>
+<div><blockquote>
+<div><p>where <span class="math notranslate nohighlight">\(\ell\)</span> denotes a pair of regions, one in each cortical
+hemisphere.</p>
+<a class="reference internal image-reference" href="../_images/spatialnull.gif"><img alt="../_images/spatialnull.gif" class="align-center" src="../_images/spatialnull.gif" style="width: 500px;" /></a>
+<p><cite>The symmetry of this spatial null model is enforced through a
+moderately strong hemispheric tether.</cite></p>
+</div></blockquote>
+<p>When an atlas is initialised with the same number of parcels in each
+cortical hemisphere compartment, the hemispheric tether can be used to
+approximately enforce symmetry and to enforce analogy between a pair of
+parcels in the two cortical hemispheres.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Currently, this loss only works in spherical surface space.</p>
+</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>lh_coor</strong><span class="classifier">Tensor</span></dt><dd><p>Coordinates of the spatial locations in each of the columns of <code class="docutils literal notranslate"><span class="pre">lh</span></code>.</p>
+</dd>
+<dt><strong>rh_coor</strong><span class="classifier">Tensor</span></dt><dd><p>Coordinates of the spatial locations in each of the columns of <code class="docutils literal notranslate"><span class="pre">rh</span></code>.</p>
+</dd>
+<dt><strong>radius</strong><span class="classifier">float (default 100)</span></dt><dd><p>Radius of the spherical manifold on which the coordinates are
+located.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(lh, rh[, lh_coor, rh_coor, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +840,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interhemispheric-tether"><code class="docutils literal notranslate"><span class="pre">interhemispheric_tether</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interhemispherictetherloss"><code class="docutils literal notranslate"><span class="pre">InterhemisphericTetherLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interhemispheric-tether"><code class="docutils literal notranslate"><span class="pre">interhemispheric_tether</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.interhemispheric_tether"><code class="docutils literal notranslate"><span class="pre">interhemispheric_tether()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interhemispherictetherloss"><code class="docutils literal notranslate"><span class="pre">InterhemisphericTetherLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.InterhemisphericTetherLoss"><code class="docutils literal notranslate"><span class="pre">InterhemisphericTetherLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

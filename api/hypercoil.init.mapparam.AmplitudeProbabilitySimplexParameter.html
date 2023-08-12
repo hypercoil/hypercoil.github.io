@@ -705,6 +705,41 @@ document.write(`
                   
   <section id="amplitudeprobabilitysimplexparameter">
 <h1><code class="docutils literal notranslate"><span class="pre">AmplitudeProbabilitySimplexParameter</span></code><a class="headerlink" href="#amplitudeprobabilitysimplexparameter" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.mapparam.AmplitudeProbabilitySimplexParameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.mapparam.</span></span><span class="sig-name descname"><span class="pre">AmplitudeProbabilitySimplexParameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/mapparam.py#L802-L836"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.mapparam.AmplitudeProbabilitySimplexParameter" title="Permalink to this definition">#</a></dt>
+<dd><p>Complex-valued parameter whose amplitudes are projected onto the
+probability simplex.</p>
+<p>The forward function is a softmax applied to the amplitudes. Note that
+the softmax function does not have a unique inverse; here we use the
+elementwise natural logarithm as an ‘inverse’.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>model</strong><span class="classifier">PyTree</span></dt><dd><p>The model to which the parameter belongs.</p>
+</dd>
+<dt><strong>where</strong><span class="classifier">Callable</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">equinox.tree_at</span></code>: a function that takes a model (or generally
+a PyTree) and returns the parameter tensor to be mapped. For example:
+<code class="docutils literal notranslate"><span class="pre">where</span> <span class="pre">=</span> <span class="pre">lambda</span> <span class="pre">mlp:</span> <span class="pre">mlp.layers[-1].linear.weight</span></code>. By default, the
+<code class="docutils literal notranslate"><span class="pre">weight</span></code> attribute of the model is retrieved.</p>
+</dd>
+<dt><strong>handler</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">OutOfDomainHandler</span></code> object (default <a class="reference internal" href="hypercoil.init.mapparam.Clip.html#hypercoil.init.mapparam.Clip" title="hypercoil.init.mapparam.Clip"><code class="xref py py-class docutils literal notranslate"><span class="pre">Clip</span></code></a>)</span></dt><dd><p>Object specifying a method for handling out-of-domain entries.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int (default -1)</span></dt><dd><p>Axis of tensors in the domain along which 1D slices are mapped to the
+probability simplex.</p>
+</dd>
+<dt><strong>minimum</strong><span class="classifier">nonnegative float (default 1e-3)</span></dt><dd><p>Lower prescribed bound on inputs to the elementwise natural logarithm.</p>
+</dd>
+<dt><strong>smoothing</strong><span class="classifier">nonnegative float (default 0)</span></dt><dd><p>For use when configuring the <code class="docutils literal notranslate"><span class="pre">original</span></code> parameter. Increasing the
+smoothing will result in a higher-entropy / more equiprobable image.</p>
+</dd>
+<dt><strong>temperature</strong><span class="classifier">nonnegative float (default 1)</span></dt><dd><p>Softmax temperature.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +752,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.mapparam.AmplitudeProbabilitySimplexParameter"><code class="docutils literal notranslate"><span class="pre">AmplitudeProbabilitySimplexParameter</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

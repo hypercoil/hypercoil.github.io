@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.activation.CorrelationNorm';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,72 @@ document.write(`
                   
   <section id="correlationnorm-correlation-normalisation">
 <h1><code class="docutils literal notranslate"><span class="pre">CorrelationNorm</span></code>: Correlation normalisation<a class="headerlink" href="#correlationnorm-correlation-normalisation" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.nn.activation.CorrelationNorm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.activation.</span></span><span class="sig-name descname"><span class="pre">CorrelationNorm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/nn/activation.py#L21-L47"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.activation.CorrelationNorm" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="hypercoil.functional.activation.corrnorm.html"><span class="doc">Correlation normalisation</span></a>
+module.</p>
+<p>Divide each entry <span class="math notranslate nohighlight">\(A_{ij}\)</span> of the input matrix <span class="math notranslate nohighlight">\(A\)</span> by the
+product of the signed square roots of the corresponding diagonals:</p>
+<p><span class="math notranslate nohighlight">\(\bar{A}_{ij} = A_{ij} \frac{\mathrm{sgn}(A_{ii} A_{jj})}{\sqrt{A_{ii}}\sqrt{A_{jj}} + \epsilon}\)</span></p>
+<p>This default behaviour, which maps a covariance matrix to a Pearson
+correlation matrix, can be overriden by providing a <code class="docutils literal notranslate"><span class="pre">factor</span></code> argument
+(detailed below). This activation function is also similar to a signed
+version of the normalisation operation for a graph Laplacian matrix.</p>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>input :</strong> <span class="math notranslate nohighlight">\((*, P, P)\)</span></dt><dd><p>P denotes the row and column dimensions of the input
+matrices. <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of additional
+dimensions.</p>
+</dd>
+<dt><strong>output :</strong> <span class="math notranslate nohighlight">\((*, P, P)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>input</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor to be normalised.</p>
+</dd>
+<dt><strong>factor</strong><span class="classifier">Tensor, iterable(Tensor, Tensor), or None (default None)</span></dt><dd><p>Normalisation factor.</p>
+<ul class="simple">
+<li><p>If this is not explicitly specified, it follows the default
+behaviour (division by the product of signed square roots.)</p></li>
+<li><p>If this is a tensor, <code class="docutils literal notranslate"><span class="pre">input</span></code> is directly divided by the
+provided tensor. This option is provided mostly for compatibility
+with non-square inputs.</p></li>
+<li><p>If this is a pair of tensors, then <code class="docutils literal notranslate"><span class="pre">input</span></code> is divided by their
+outer product.</p></li>
+</ul>
+</dd>
+<dt><strong>gradpath</strong><span class="classifier">str <code class="docutils literal notranslate"><span class="pre">'input'</span></code> or <code class="docutils literal notranslate"><span class="pre">'both'</span></code> (default <code class="docutils literal notranslate"><span class="pre">'both'</span></code>)</span></dt><dd><p>If this is set to <code class="docutils literal notranslate"><span class="pre">'input'</span></code> and the default normalisation behaviour
+is used, then gradient will be blocked from flowing backward through
+the computation of the normalisation factor from the input.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>Tensor</dt><dd><p>Normalised input.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>factor</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(input[, factor, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +784,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.activation.CorrelationNorm"><code class="docutils literal notranslate"><span class="pre">CorrelationNorm</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

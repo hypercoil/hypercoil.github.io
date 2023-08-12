@@ -705,6 +705,51 @@ document.write(`
                   
   <section id="mappedlogits">
 <h1><code class="docutils literal notranslate"><span class="pre">MappedLogits</span></code><a class="headerlink" href="#mappedlogits" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.mapparam.MappedLogits">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.mapparam.</span></span><span class="sig-name descname"><span class="pre">MappedLogits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/mapparam.py#L560-L618"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.mapparam.MappedLogits" title="Permalink to this definition">#</a></dt>
+<dd><p>Parameter mapped through a logistic function. The tensor values are thus
+constrained between 0 and 1, or more generally between 2 arbitrary finite
+real numbers.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>model</strong><span class="classifier">PyTree</span></dt><dd><p>The model to which the parameter belongs.</p>
+</dd>
+<dt><strong>where</strong><span class="classifier">Callable</span></dt><dd><p>As in <code class="docutils literal notranslate"><span class="pre">equinox.tree_at</span></code>: a function that takes a model (or generally
+a PyTree) and returns the parameter tensor to be mapped. For example:
+<code class="docutils literal notranslate"><span class="pre">where</span> <span class="pre">=</span> <span class="pre">lambda</span> <span class="pre">mlp:</span> <span class="pre">mlp.layers[-1].linear.weight</span></code>. By default, the
+<code class="docutils literal notranslate"><span class="pre">weight</span></code> attribute of the model is retrieved.</p>
+</dd>
+<dt><strong>preimage_bound</strong><span class="classifier">(float min, float max) (default -3, 3)</span></dt><dd><p>Minimum and maximum prescribed values for the preimage map. Note that
+these are not necessarily the same as the minimum and maximum (or
+infimum and supremum) attainable by the map itself. For example, it
+might be desirable to further truncate values to a range where the
+magnitude of the gradient is non-negligible.</p>
+</dd>
+<dt><strong>handler</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">OutOfDomainHandler</span></code> object (default <a class="reference internal" href="hypercoil.init.mapparam.Clip.html#hypercoil.init.mapparam.Clip" title="hypercoil.init.mapparam.Clip"><code class="xref py py-class docutils literal notranslate"><span class="pre">Clip</span></code></a>)</span></dt><dd><p>Object specifying a method for handling out-of-domain entries.</p>
+</dd>
+<dt><strong>loc</strong><span class="classifier">float (default None)</span></dt><dd><p>Location parameter for the logistic map. Zero is mapped to this value
+under the logistic map.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float (default 1)</span></dt><dd><p>Size of the interval mapped onto by the logistic map.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>image_map_impl</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>preimage_map_impl</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +762,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.mapparam.MappedLogits"><code class="docutils literal notranslate"><span class="pre">MappedLogits</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

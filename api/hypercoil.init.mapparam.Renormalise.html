@@ -705,6 +705,32 @@ document.write(`
                   
   <section id="renormalise">
 <h1><code class="docutils literal notranslate"><span class="pre">Renormalise</span></code><a class="headerlink" href="#renormalise" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.mapparam.Renormalise">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.mapparam.</span></span><span class="sig-name descname"><span class="pre">Renormalise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/mapparam.py#L182-L231"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.mapparam.Renormalise" title="Permalink to this definition">#</a></dt>
+<dd><p>Normalise entries in the specified tensor so that all are in an interval
+specified by bounds.</p>
+<p>Note that this handler is in general much more radical than clipping. In
+particular, if any entry at all is out of bounds, nearly all entries in
+the tensor will be edited, and a single extreme outlier can destroy the
+variance in the dataset. If you are considering using this because most of
+the data you expect to see will be outside of the prescribed domain,
+consider using a different domain first (for instance, using the <code class="docutils literal notranslate"><span class="pre">scale</span></code>
+parameter to accommodate a larger feasible interval).</p>
+<p>The normalisation procedure works by mapping the original range of
+observations, [<code class="docutils literal notranslate"><span class="pre">obs_min</span></code>, <code class="docutils literal notranslate"><span class="pre">obs_max</span></code>], to
+[max(<code class="docutils literal notranslate"><span class="pre">obs_min</span></code>, <code class="docutils literal notranslate"><span class="pre">lbound</span></code>), min(<code class="docutils literal notranslate"><span class="pre">obs_max</span></code>, <code class="docutils literal notranslate"><span class="pre">ubound</span></code>)] while
+preserving relative distances between observations.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply</span></code>(x, bound[, axis])</p></td>
+<td><p>Re-scale all values in the specified tensor to fall in the specified interval.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +743,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.mapparam.Renormalise"><code class="docutils literal notranslate"><span class="pre">Renormalise</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

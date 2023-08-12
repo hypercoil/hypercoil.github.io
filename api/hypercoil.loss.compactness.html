@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.compactness';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,9 +703,126 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">compactness</span></code>: Compactness<a class="headerlink" href="#compactness-compactness" title="Permalink to this heading">#</a></h1>
 <section id="compactness">
 <h2><code class="docutils literal notranslate"><span class="pre">compactness</span></code><a class="headerlink" href="#compactness" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.compactness">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">compactness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'inf'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">floor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L1593-L1625"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.compactness" title="Permalink to this definition">#</a></dt>
+<dd><p>Distance of masses in each object from the centre of mass of that object.</p>
+<p>A diffuse object will have a high score, while a compact object will
+have a low score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor block containing the data to be evaluated. Each row is a
+collection of masses assigned to the single object or parcel, and each
+column denotes the distribution of masses across objects or parcels at
+a single spatial location.</p>
+</dd>
+<dt><strong>coor</strong><span class="classifier">Tensor</span></dt><dd><p>Coordinates of the spatial locations in each of the columns of <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+</dd>
+<dt><strong>radius</strong><span class="classifier">float or None (default 100)</span></dt><dd><p>Radius of the spherical manifold on which the coordinates are
+located. If this is specified as None, it is assumed that the
+coordinates are in a space induced by the <code class="docutils literal notranslate"><span class="pre">norm</span></code> parameter.</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">int, float or ‘inf’ (default 2)</span></dt><dd><p>The norm to use to calculate the distance between the centres of mass
+and the masses. Ignored if <code class="docutils literal notranslate"><span class="pre">radius</span></code> is specified; in this case, the
+spherical geodesic distance is used.</p>
+</dd>
+<dt><strong>floor</strong><span class="classifier">float (default 0)</span></dt><dd><p>Minimum distance to be penalised. This can be used to avoid penalising
+masses that are already very close to the centre of mass.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Distance of the masses in each object from the centre of mass of that
+object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="compactnessloss">
 <h2><code class="docutils literal notranslate"><span class="pre">CompactnessLoss</span></code><a class="headerlink" href="#compactnessloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.CompactnessLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">CompactnessLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1580-L1642"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.CompactnessLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Loss function penalising distances between locations in a mass and the
+centroid of that mass.</p>
+<div class="admonition-compactness admonition">
+<p class="admonition-title">Compactness</p>
+<p>The compactness is defined as</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{1}^\intercal\left(A \circ \left\|C - \frac{AC}{A\mathbf{1}} \right\|_{cols} \right)\mathbf{1}\)</span></p>
+<p>Given a coordinate set <span class="math notranslate nohighlight">\(C\)</span> for the columns of a weight
+<span class="math notranslate nohighlight">\(A\)</span>, the compactness measures the weighted average norm of the
+displacement of each of the weight’s entries from its row’s centre of
+mass. (The centre of mass is expressed above as
+<span class="math notranslate nohighlight">\(\frac{AC}{A\mathbf{1}}\)</span>).</p>
+<a class="reference internal image-reference" href="../_images/compactloss.gif"><img alt="../_images/compactloss.gif" class="align-center" src="../_images/compactloss.gif" style="width: 200px;" /></a>
+<p><cite>In this simulation, the compactness loss is applied with a
+multi-logit domain mapper and without any other losses or
+regularisations. The weights collapse to compact but unstructured
+regions of the field.</cite></p>
+</div>
+<p>Penalising this quantity can promote more compact rows (i.e., concentrate
+the weight in each row over columns corresponding to coordinates close to
+the row’s spatial centre of mass).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This loss can have a large memory footprint, because it requires
+computing an intermediate tensor with dimensions equal to the number
+of rows in the weight, multiplied by the number of columns in the
+weight, multiplied by the dimension of the coordinate space.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>coor</strong><span class="classifier">Tensor</span></dt><dd><p>Coordinates of the spatial locations in each of the columns of <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+</dd>
+<dt><strong>radius</strong><span class="classifier">float or None (default 100)</span></dt><dd><p>Radius of the spherical manifold on which the coordinates are
+located. If this is specified as None, it is assumed that the
+coordinates are in a space induced by the <code class="docutils literal notranslate"><span class="pre">norm</span></code> parameter.</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">int, float or ‘inf’ (default 2)</span></dt><dd><p>The norm to use to calculate the distance between the centres of mass
+and the masses. Ignored if <code class="docutils literal notranslate"><span class="pre">radius</span></code> is specified; in this case, the
+spherical geodesic distance is used.</p>
+</dd>
+<dt><strong>floor</strong><span class="classifier">float (default 0)</span></dt><dd><p>Minimum distance to be penalised. This can be used to avoid penalising
+masses that are already very close to the centre of mass.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(X[, coor, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +843,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compactness"><code class="docutils literal notranslate"><span class="pre">compactness</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compactnessloss"><code class="docutils literal notranslate"><span class="pre">CompactnessLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compactness"><code class="docutils literal notranslate"><span class="pre">compactness</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.compactness"><code class="docutils literal notranslate"><span class="pre">compactness()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compactnessloss"><code class="docutils literal notranslate"><span class="pre">CompactnessLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.CompactnessLoss"><code class="docutils literal notranslate"><span class="pre">CompactnessLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.graph.girvan_newman_null';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,49 @@ document.write(`
                   
   <section id="girvan-newman-null">
 <h1><code class="docutils literal notranslate"><span class="pre">girvan_newman_null</span></code><a class="headerlink" href="#girvan-newman-null" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.graph.girvan_newman_null">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.graph.</span></span><span class="sig-name descname"><span class="pre">girvan_newman_null</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/functional/graph.py#L153-L177"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.graph.girvan_newman_null" title="Permalink to this definition">#</a></dt>
+<dd><p>Girvan-Newman null model for a tensor block.</p>
+<p>The Girvan-Newman null model is defined as the expected connection weight
+between each pair of vertices if all edges are cut and the resulting stubs
+then randomly rewired. For the vector of node in-degrees
+<span class="math notranslate nohighlight">\(k_i \in \mathbb{R}^I\)</span>, vector of node out-degrees
+<span class="math notranslate nohighlight">\(k_o \in \mathbb{R}^O\)</span>, and total edge weight
+<span class="math notranslate nohighlight">\(2m \in \mathbb{R}\)</span>, this yields the null model</p>
+<p><span class="math notranslate nohighlight">\(P_{GN} = \frac{1}{2m} k_i k_o^\intercal\)</span></p>
+<p>or, in terms of the adjacency matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{I \times O}\)</span></p>
+<p><span class="math notranslate nohighlight">\(P_{GN} = \frac{1}{\mathbf{1}^\intercal A \mathbf{1}} A \mathbf{1} \mathbf{1}^\intercal A\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((N, *, I, O)\)</span></dt><dd><p>N denotes batch size, <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of
+intervening dimensions, I denotes number of vertices in
+the source set and O denotes number of vertices in the
+sink set. If the same set of vertices emits and receives
+edges, then <span class="math notranslate nohighlight">\(I = O\)</span>.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((N, *, I, O)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>A</strong><span class="classifier">Tensor</span></dt><dd><p>Block of adjacency matrices for which the quantity of interest is to
+be computed.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>P</strong><span class="classifier">Tensor</span></dt><dd><p>Block comprising Girvan-Newman null matrices corresponding to each
+input adjacency matrix.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +761,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.graph.girvan_newman_null"><code class="docutils literal notranslate"><span class="pre">girvan_newman_null()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

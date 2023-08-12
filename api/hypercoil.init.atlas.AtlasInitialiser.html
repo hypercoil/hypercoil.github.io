@@ -705,6 +705,65 @@ document.write(`
                   
   <section id="atlasinitialiser">
 <h1><code class="docutils literal notranslate"><span class="pre">AtlasInitialiser</span></code><a class="headerlink" href="#atlasinitialiser" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.atlas.AtlasInitialiser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlas.</span></span><span class="sig-name descname"><span class="pre">AtlasInitialiser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlas.py#L1166-L1306"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlas.AtlasInitialiser" title="Permalink to this definition">#</a></dt>
+<dd><p>Voxel-to-label mapping initialisation.</p>
+<p>Initialise a tensor dictionary such that its entries characterise a set of
+matrices that each map a relevant subset of image voxels to a set of
+labels. The initialisation can use a previously existing atlas,
+instantiated as a subclass of
+<a class="reference internal" href="hypercoil.init.atlas.BaseAtlas.html"><span class="doc">BaseAtlas</span></a>
+with the option of blurring labels using pointwise spatial convolution or
+injecting noise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>atlas</strong><span class="classifier">Atlas object</span></dt><dd><p>Atlas object to use for tensor initialisation.</p>
+</dd>
+<dt><strong>normalise</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that maps should be spatially normalised such that the sum
+over all assignments to a parcel is equal to 1. When the map is used
+as a linear transformation, this option results in computation of a
+weighted average over each parcel.</p>
+</dd>
+<dt><strong>kernel_sigma</strong><span class="classifier">float or None (default None)</span></dt><dd><p>If this is not None, then spatial smoothing using a Gaussian kernel is
+applied over each parcel’s assignments. Distances are established by
+the atlas’s coordinate system and the topology of each compartment.
+The value of sigma establishes the width of the Gaussian kernel.</p>
+</dd>
+<dt><strong>noise_sigma</strong><span class="classifier">float or None (default None)</span></dt><dd><p>If this is not None, then Gaussian noise with the specified standard
+deviation is added to each label.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>kernel_sigma</strong></dt><dd></dd>
+<dt><strong>noise_sigma</strong></dt><dd></dd>
+<dt><strong>truncate</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.init.atlas.AtlasInitialiser.__call__" title="hypercoil.init.atlas.AtlasInitialiser.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(model, *[, where])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">init</span></code>(model, *[, mapper, normalise, max_bin, ...])</p></td>
+<td><p>Initialise a parameter using the specified initialiser and mapper.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.atlas.AtlasInitialiser.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PyTree</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'weight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PRNGKey</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/atlas.py#L1230-L1251"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlas.AtlasInitialiser.__call__" title="Permalink to this definition">#</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +776,19 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlas.AtlasInitialiser"><code class="docutils literal notranslate"><span class="pre">AtlasInitialiser</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlas.AtlasInitialiser.__call__"><code class="docutils literal notranslate"><span class="pre">AtlasInitialiser.__call__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

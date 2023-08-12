@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.NormedLoss';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -700,6 +701,58 @@ document.write(`
                   
   <section id="normedloss-normed-parameter-regularisation">
 <h1><code class="docutils literal notranslate"><span class="pre">NormedLoss</span></code>: Normed parameter regularisation<a class="headerlink" href="#normedloss-normed-parameter-regularisation" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.NormedLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">NormedLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L284-L343"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.NormedLoss" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="math notranslate nohighlight">\(L_p\)</span> norm regulariser.</p>
+<p>An example of how to compose elements to define a loss function. By
+default, this function flattens the input tensor and computes the
+<span class="math notranslate nohighlight">\(L_2\)</span> norm of the resulting vector. The dimensions to be flattened
+and the norm order can be specified using the <code class="docutils literal notranslate"><span class="pre">axis</span></code> and <code class="docutils literal notranslate"><span class="pre">p</span></code> arguments
+respectively. If the norm is computed over only a subset of axes, the
+remaining axes can be further reduced by specifying a scalarisation
+function using the <code class="docutils literal notranslate"><span class="pre">outer_scalarise</span></code> argument. By default, the outer
+scalarisation function is the mean function. Setting this to an identity
+function will result in a loss function that returns a vector of values
+for each observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>score: Callable</strong></dt><dd><p>The scoring function to be used to compute the loss value. This
+function should take a single argument, which is a tensor of
+arbitrary shape, and return a score value for each (potentially
+multivariate) observation in the tensor.    p: float
+The order of the norm to be computed. If <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">1</span></code>, the function
+computes the <span class="math notranslate nohighlight">\(L_1\)</span> Manhattan / city block norm. If <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">2</span></code>,
+the function computes the <span class="math notranslate nohighlight">\(L_2\)</span> Euclidean norm. If <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">inf</span></code>,
+the function computes the <span class="math notranslate nohighlight">\(L_\infty\)</span> maximum norm.</p>
+</dd>
+<dt><strong>axis: Optional[Union[int, Sequence[int]]]</strong></dt><dd><p>The axes to be flattened. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, all axes are flattened.</p>
+</dd>
+<dt><strong>outer_scalarise: Optional[Callable]</strong></dt><dd><p>The scalarisation function to be applied to any dimensions that are
+not flattened (i.e., those not specified in <code class="docutils literal notranslate"><span class="pre">axis</span></code>). If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+the mean function is used. If <code class="docutils literal notranslate"><span class="pre">axis</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, this argument is
+ignored. To return a vector of values for each observation, explicitly
+set this to an identity function.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -712,6 +765,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.NormedLoss"><code class="docutils literal notranslate"><span class="pre">NormedLoss</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

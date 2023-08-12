@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.dispersion';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,9 +703,98 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">dispersion</span></code>: Vector dispersion<a class="headerlink" href="#dispersion-vector-dispersion" title="Permalink to this heading">#</a></h1>
 <section id="dispersion">
 <h2><code class="docutils literal notranslate"><span class="pre">dispersion</span></code><a class="headerlink" href="#dispersion" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.loss.dispersion">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">dispersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X:</span> <span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">linear_distance&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key:</span> <span class="pre">~jax._src.random.PRNGKey</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/functional.py#L1627-L1653"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.dispersion" title="Permalink to this definition">#</a></dt>
+<dd><p>Dispersion of the centres of mass of objects in a tensor block.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This operates on precomputed centres of mass.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor block containing the data to be evaluated. Each row contains
+the centre of mass of a single object or parcel.</p>
+</dd>
+<dt><strong>metric</strong><span class="classifier">Callable</span></dt><dd><p>Function to calculate the distance between centres of mass. This
+should take either one or two arguments, and should return the
+distance between each pair of observations.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Tensor</dt><dd><p>Dispersion of the centres of mass of objects in a tensor block.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="dispersionloss">
 <h2><code class="docutils literal notranslate"><span class="pre">DispersionLoss</span></code><a class="headerlink" href="#dispersionloss" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.DispersionLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.</span></span><span class="sig-name descname"><span class="pre">DispersionLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/loss/nn.py#L1644-L1686"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.DispersionLoss" title="Permalink to this definition">#</a></dt>
+<dd><p>Loss function penalising proximity between vectors.</p>
+<p>Mutual separation among a set of vectors.</p>
+<div class="admonition-vector-dispersion admonition">
+<p class="admonition-title">Vector dispersion</p>
+<p>The dispersion among a set of vectors <span class="math notranslate nohighlight">\(v \in \mathcal{V}\)</span> is
+defined as</p>
+<p><span class="math notranslate nohighlight">\(\sum_{i, j} \mathrm{d}\left(v_i - v_j\right)\)</span></p>
+<p>for some measure of separation <span class="math notranslate nohighlight">\(\mathrm{d}\)</span>. (It is also
+valid to use a reduction other than the sum.)</p>
+</div>
+<p>This can be used as one half of a clustering loss. Such a clustering loss
+would promote mutual separation among centroids (between-cluster
+separation, imposed by the <code class="docutils literal notranslate"><span class="pre">VectorDispersion</span></code> loss) while also promoting
+proximity between observations and their closest centroids (within-cluster
+closeness, for instance using a
+<span class="xref std std-doc">norm loss</span> or
+<span class="xref std std-doc">compactness</span>
+if the clusters are associated with spatial coordinates).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name: str</strong></dt><dd><p>Designated name of the loss function. It is not required that this be
+specified, but it is recommended to ensure that the loss function can
+be identified in the context of a reporting utilities. If not
+explicitly specified, the name will be inferred from the class name
+and the name of the scoring function.</p>
+</dd>
+<dt><strong>nu: float</strong></dt><dd><p>Loss strength multiplier. This is a scalar multiplier that is applied
+to the loss value before it is returned. This can be used to
+modulate the relative contributions of different loss functions to
+the overall loss value. It can also be used to implement a
+schedule for the loss function, by dynamically adjusting the
+multiplier over the course of training.</p>
+</dd>
+<dt><strong>metric</strong><span class="classifier">Callable</span></dt><dd><p>Function to calculate the distance between centres of mass. This
+should take either one or two arguments, and should return the
+distance between each pair of observations.</p>
+</dd>
+<dt><strong>scalarisation: Callable</strong></dt><dd><p>The scalarisation function to be used to aggregate the values
+returned by the scoring function. This function should take a
+single argument, which is a tensor of arbitrary shape, and return
+a single scalar value. By default, the mean
+scalarisation is used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(X, *[, key])</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -725,8 +815,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dispersion"><code class="docutils literal notranslate"><span class="pre">dispersion</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dispersionloss"><code class="docutils literal notranslate"><span class="pre">DispersionLoss</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dispersion"><code class="docutils literal notranslate"><span class="pre">dispersion</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.dispersion"><code class="docutils literal notranslate"><span class="pre">dispersion()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dispersionloss"><code class="docutils literal notranslate"><span class="pre">DispersionLoss</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.DispersionLoss"><code class="docutils literal notranslate"><span class="pre">DispersionLoss</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

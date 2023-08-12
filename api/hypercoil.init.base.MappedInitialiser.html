@@ -705,6 +705,55 @@ document.write(`
                   
   <section id="mappedinitialiser">
 <h1><code class="docutils literal notranslate"><span class="pre">MappedInitialiser</span></code><a class="headerlink" href="#mappedinitialiser" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.base.MappedInitialiser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.base.</span></span><span class="sig-name descname"><span class="pre">MappedInitialiser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//hypercoil/init/base.py#L136-L243"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.base.MappedInitialiser" title="Permalink to this definition">#</a></dt>
+<dd><p>Parameter initialiser base class that also admits an optional
+<span class="xref std std-doc">parameter map</span>.</p>
+<p>This is useful for combining initialisation and re-parameterisation into a
+single step. The supplied parameter map should not be an instance but a
+class. If no map is supplied, the initialiser is applied as normal.</p>
+<p>This class must be subclassed to be used. Subclasses must implement the
+<code class="docutils literal notranslate"><span class="pre">_init</span></code> method, which takes a desired output shape (<code class="docutils literal notranslate"><span class="pre">shape</span></code>) and a
+random number generator key (<code class="docutils literal notranslate"><span class="pre">key</span></code>) and returns a tensor of the
+requested shape.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>To use an initialiser, do not instantiate it directly, but instead use
+the <code class="docutils literal notranslate"><span class="pre">init</span></code> method of the module class that uses it. This will apply
+the initialiser to the model parameter specified by <code class="docutils literal notranslate"><span class="pre">where</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The initialiser is first used to initialise the requested parameter,
+and the mapping function is thereafter applied to the resulting
+tensor. If the initialisation produces out-of-domain values for the
+mapping function, the tensor that is ultimately instantiated might
+not reflect the specifications of the initialiser, as the mapping
+function will automatically apply any out-of-domain handlers.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any extra keyword arguments to the <code class="docutils literal notranslate"><span class="pre">init</span></code> method are passed to the
+mapping function when it is applied.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mapper</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">init</span></code>(model, *[, mapper, where])</p></td>
+<td><p>Initialise a parameter using the specified initialiser and mapper.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +766,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.base.MappedInitialiser"><code class="docutils literal notranslate"><span class="pre">MappedInitialiser</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

@@ -38,6 +38,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=49c2a75d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.kernel.linear_kernel';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -705,6 +706,64 @@ document.write(`
                   
   <section id="linear-kernel">
 <h1><code class="docutils literal notranslate"><span class="pre">linear_kernel</span></code><a class="headerlink" href="#linear-kernel" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.kernel.linear_kernel">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.kernel.</span></span><span class="sig-name descname"><span class="pre">linear_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intermediate_indices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference external" href="https://github.com/hypercoil/hypercoil/tree/main//../functools.py#L190-L222"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.kernel.linear_kernel" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.kernel.</span></span><span class="sig-name descname"><span class="pre">linear_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BCOO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BCOO</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">BCOO</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intermediate_indices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">BCOO</span></span></span></dt>
+<dd><p>Parameterised linear kernel between input tensors.</p>
+<p>For tensors <span class="math notranslate nohighlight">\(X_0\)</span> and <span class="math notranslate nohighlight">\(X_1\)</span> containing features in column
+vectors, the parameterised linear kernel is</p>
+<p><span class="math notranslate nohighlight">\(K_{\theta}(X_0, X_1) = X_0^\intercal \theta X_1\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\theta\)</span> is the kernel parameter.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The inputs here are assumed to contain features in row vectors and
+observations in columns. This differs from the convention frequently
+used in the literature. However, this has the benefit of direct
+compatibility with the top-k sparse tensor format.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X0 :</strong> <span class="math notranslate nohighlight">\((*, N, P)\)</span> or <span class="math notranslate nohighlight">\((N, P, *)\)</span></dt><dd><p>N denotes number of observations, P denotes number of
+features, <cite>*</cite> denotes any number of additional dimensions.
+If the input is dense, then the last dimensions should be
+N and P; if it is sparse, then the first dimensions should
+be N and P.</p>
+</dd>
+<dt><strong>X1 :</strong> <span class="math notranslate nohighlight">\((*, M, P)\)</span> or  <span class="math notranslate nohighlight">\((M, P, *)\)</span></dt><dd><p>M denotes number of observations.</p>
+</dd>
+<dt><strong>theta :</strong> <span class="math notranslate nohighlight">\((*, P, P)\)</span> or <span class="math notranslate nohighlight">\((*, P)\)</span></dt><dd><p>As above.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, M, N)\)</span> or <span class="math notranslate nohighlight">\((M, N, *)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>X0</strong><span class="classifier">tensor</span></dt><dd><p>A feature tensor.</p>
+</dd>
+<dt><strong>X1</strong><span class="classifier">tensor or None</span></dt><dd><p>Second feature tensor. If not explicitly provided, the kernel of
+<code class="docutils literal notranslate"><span class="pre">X</span></code> with itself is computed.</p>
+</dd>
+<dt><strong>theta</strong><span class="classifier">tensor or None</span></dt><dd><p>Kernel parameter (generally a representation of a positive definite
+matrix). If not provided, defaults to identity (an unparameterised
+kernel). If the last two dimensions are the same size, they are used
+as a matrix parameter; if they are not, the final axis is instead
+used as the diagonal of the matrix.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>tensor</dt><dd><p>Kernel Gram matrix.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +776,16 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.kernel.linear_kernel"><code class="docutils literal notranslate"><span class="pre">linear_kernel()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
