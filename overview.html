@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -32,12 +32,13 @@
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=49c2a75d"></script>
+    <script src="_static/documentation_options.js?v=7bbc9f7b"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'overview';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -53,6 +54,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -93,7 +103,8 @@
     <span class="fa-solid fa-bars"></span>
   </label>
   
-  <div class="navbar-header-items__start">
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
   
@@ -103,17 +114,17 @@
   
   
   
+  
     
     
     
-    <img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark" alt="hypercoil prototype (unreleased) documentation - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-light" alt="hypercoil prototype (unreleased) documentation - Home"/>`);</script>
   
   
 </a></div>
     
   </div>
-  
   
   <div class="col-lg-9 navbar-header-items">
     
@@ -172,23 +183,25 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
         <div class="navbar-item">
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -199,18 +212,20 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
       <span class="fa-solid fa-outdent"></span>
     </label>
   
@@ -285,10 +300,10 @@ document.write(`
           <div class="navbar-item">
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -321,8 +336,8 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="index.html" class="nav-link" aria-label="Home">
@@ -347,10 +362,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="technical-overview">
-<h1>Technical overview<a class="headerlink" href="#technical-overview" title="Permalink to this heading">#</a></h1>
+<h1>Technical overview<a class="headerlink" href="#technical-overview" title="Link to this heading">#</a></h1>
 <p>This library is implemented using <a class="reference external" href="https://jax.readthedocs.io/en/latest/">JAX</a>, which combines a NumPy-like API with automatic differentiation and support for GPU acceleration. The library is designed to be modular and extensible, and to be used in conjunction with existing tools in the Python ecosystem. The library is currently under active development, and is not yet ready for use outside of research and development.</p>
 <section id="functional-and-nn-composable-differentiable-functionals">
-<h2><code class="docutils literal notranslate"><span class="pre">functional</span></code> and <code class="docutils literal notranslate"><span class="pre">nn</span></code>: composable differentiable functionals<a class="headerlink" href="#functional-and-nn-composable-differentiable-functionals" title="Permalink to this heading">#</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">functional</span></code> and <code class="docutils literal notranslate"><span class="pre">nn</span></code>: composable differentiable functionals<a class="headerlink" href="#functional-and-nn-composable-differentiable-functionals" title="Link to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">functional</span></code> module provides a set of composable differentiable functionals, which can be used to construct differentiable programs. Common steps in a functional neuroimaging workflow are provided as pre-defined functionals, including (among others):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cov</span></code> : Covariance estimation: empirical covariance, Pearson correlation, partial correlation, conditional correlation, and others</p></li>
@@ -365,26 +380,26 @@ document.write(`
 <p>The <code class="docutils literal notranslate"><span class="pre">nn</span></code> module provides a set of neural network layers that can be used to construct differentiable programs. These layers provide an alternative API to the <code class="docutils literal notranslate"><span class="pre">functional</span></code> module and also include more complicated parameterised functionals. They are implemented using the JAX-based <a class="reference external" href="https://docs.kidger.site/equinox/">Equinox</a> library.</p>
 </section>
 <section id="init-functional-parameterisation">
-<h2><code class="docutils literal notranslate"><span class="pre">init</span></code>: functional parameterisation<a class="headerlink" href="#init-functional-parameterisation" title="Permalink to this heading">#</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">init</span></code>: functional parameterisation<a class="headerlink" href="#init-functional-parameterisation" title="Link to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">init</span></code> module provides mechanisms for parameterising differentiable functionals without learning. This includes a set of pre-defined parameterisations that incorporate domain knowledge from functional neuroimaging. These components can be used to implement pre-existing workflows or to learn a new workflow starting from a pre-existing one.</p>
 <p>Parameterisation includes both initialisation and mapping to a constrained space. For example, the <code class="docutils literal notranslate"><span class="pre">init.atlas</span></code> module provides a set of parameterisations that correspond to different types of brain atlases, such as surface atlases, volumetric atlases, discrete parcellations, and probabilistic functional modes. Complementarily, the <code class="docutils literal notranslate"><span class="pre">init.mapparam</span></code> module uses transformations to constrain parameters to a particular subspace or manifold, such as the positive semidefinite cone, the sphere, or the probability simplex.</p>
 </section>
 <section id="loss-learning-signals">
-<h2><code class="docutils literal notranslate"><span class="pre">loss</span></code>: learning signals<a class="headerlink" href="#loss-learning-signals" title="Permalink to this heading">#</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">loss</span></code>: learning signals<a class="headerlink" href="#loss-learning-signals" title="Link to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">loss</span></code> module provides a set of learning signals (i.e., loss functions) that can be used to train differentiable programs. Loss functions are designed for use in combination with <a class="reference external" href="https://docs.kidger.site/equinox/api/filtering/filter-functions/">Equinox’s filters</a> and the excellent <a class="reference external" href="https://optax.readthedocs.io/en/latest/">optax library</a> for optimisation.</p>
 <p>Loss functions are implemented compositionally using a functional API, and comprise two components: a <em>score function</em> and a <em>scalarisation</em>. The score function maps tensors from a differentiable program to a tensor of scores, and the scalarisation maps the scores to a scalar loss. The <code class="docutils literal notranslate"><span class="pre">loss</span></code> module provides a set of pre-defined score functions and scalarisations with applications in functional neuroimaging and beyond.</p>
 </section>
 <section id="formula-functional-grammar">
-<h2><code class="docutils literal notranslate"><span class="pre">formula</span></code>: functional grammar<a class="headerlink" href="#formula-functional-grammar" title="Permalink to this heading">#</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">formula</span></code>: functional grammar<a class="headerlink" href="#formula-functional-grammar" title="Link to this heading">#</a></h2>
 <p>This library also includes an extensible functional grammar for various purposes. Internally, we use it to implement confound model specification, an FSLmaths-like API for image manipulation, and a syntax for addressing and filtering neural network parameters.</p>
 </section>
 <section id="viz-visualisation">
-<h2><code class="docutils literal notranslate"><span class="pre">viz</span></code>: visualisation<a class="headerlink" href="#viz-visualisation" title="Permalink to this heading">#</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">viz</span></code>: visualisation<a class="headerlink" href="#viz-visualisation" title="Link to this heading">#</a></h2>
 <p>Visualisation utilities will include (<em>inter alia</em>) a PyVista-based 3D visualisation API for plotting brain surfaces, atlases, and networks, and a set of utilities for plotting brain connectivity matrices. These utilities will be designed to automatically read information from differentiable models using a functional reporting system. This framework remains under development.</p>
 </section>
 </section>
 <section id="a-simple-example">
-<h1>A simple example<a class="headerlink" href="#a-simple-example" title="Permalink to this heading">#</a></h1>
+<h1>A simple example<a class="headerlink" href="#a-simple-example" title="Link to this heading">#</a></h1>
 <p>Here’s a small example that shows how the above modules can be combined to construct a simple differentiable program for first filtering a time series, next estimating its correlation conditioned on a confound model, and finally projecting the estimated covariance out of the positive semidefinite cone and into a tangent space. The model is then trained using a simple loss function that promotes correlations with a large magnitude.</p>
 <p>Note that this is not a particularly useful model, but it serves to illustrate the basic principles. (Astute readers will also remark several instances in the code of incorrect or oversimplified processing decisions. This is intentional, as this vignette is not intended to be instructional with regard to functional neuroimaging.)</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -597,6 +612,8 @@ document.write(`
               
               
               
+              
+              
             </div>
             
             
@@ -643,8 +660,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -662,7 +679,7 @@ document.write(`
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>
@@ -670,10 +687,11 @@ document.write(`
     </div>
   
   
+  
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
 </p></div>
       
     </div>

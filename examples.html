@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -32,12 +32,13 @@
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=49c2a75d"></script>
+    <script src="_static/documentation_options.js?v=7bbc9f7b"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -52,6 +53,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -92,7 +102,8 @@
     <span class="fa-solid fa-bars"></span>
   </label>
   
-  <div class="navbar-header-items__start">
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
   
@@ -102,17 +113,17 @@
   
   
   
+  
     
     
     
-    <img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark" alt="hypercoil prototype (unreleased) documentation - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-light" alt="hypercoil prototype (unreleased) documentation - Home"/>`);</script>
   
   
 </a></div>
     
   </div>
-  
   
   <div class="col-lg-9 navbar-header-items">
     
@@ -171,23 +182,25 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
         <div class="navbar-item">
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -198,18 +211,20 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
       <span class="fa-solid fa-outdent"></span>
     </label>
   
@@ -284,10 +299,10 @@ document.write(`
           <div class="navbar-item">
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -320,8 +335,8 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="index.html" class="nav-link" aria-label="Home">
@@ -346,12 +361,12 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h1>
+<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h1>
 <p>This is a first example of a real application of the differentiable programming paradigm in the context of mapping the brain’s functional connectivity. This example replicates the third experiment from our first preprint on this subject (“Covariance modelling”). The goal of this experiment is to create a simple, differentiable map of the dynamics of community structure in the brain’s functional connectome.</p>
 <p>The connectome is a graph of the brain’s functional connectivity, where each node represents a brain region and each edge represents the strength of the connection between two regions. The community structure of the connectome is a partition of the nodes into groups that are more strongly connected to each other than to nodes in other groups. The dynamics of community structure is the evolution of the community structure over time. Here, we use a simple operationalisation of the dynamics that tracks only whether a community is present or absent at each time point.</p>
 <p>This tutorial steps through the code for this experiment.</p>
 <section id="loading-the-dataset">
-<h2>Loading the dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this heading">#</a></h2>
+<h2>Loading the dataset<a class="headerlink" href="#loading-the-dataset" title="Link to this heading">#</a></h2>
 <p>In this tutorial, we’ll perform the experiment using a subset of the Midnight Scan Club (MSC) dataset. We select a subset of the dataset to expedite the processing steps, and because we can find a rich community structure even using only this subset. The MSC dataset is a collection of fMRI scans of 10 subjects, each performing a number of in-scanner tasks across 10 scanning sessions. Here, we use the first 3 resting-state scans from each subject.</p>
 <p>The MSC dataset is available from the OpenNeuro website. Below, we’re using a utility function to retrieve a version of the dataset that has already been preprocessed. The preprocessing includes, among other standard steps, dimensionality reduction using a 400-region parcellation (brain atlas) and denoising using a 36-parameter model of motion estimates and nuisance signals.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span>
@@ -371,7 +386,7 @@ document.write(`
 </div>
 </section>
 <section id="defining-the-model">
-<h2>Defining the model<a class="headerlink" href="#defining-the-model" title="Permalink to this heading">#</a></h2>
+<h2>Defining the model<a class="headerlink" href="#defining-the-model" title="Link to this heading">#</a></h2>
 <p>Next, let’s define the model that will be learning the community structure. We need to define the model’s parameters, the model’s forward pass, and the model’s loss function. We begin here with the parameters. The model has two parameter tensors: one for the community structure and one for the dynamics of community structure. The community structure is a matrix of shape (n_nodes, n_communities), where each row represents a node and each column represents a community. The dynamics of community structure is a binary matrix of shape (n_time_points, n_communities), where each row represents a time point and each column represents a community.</p>
 <p>We want to learn a community structure that is common to all subjects and all scans in the dataset. However, we also want the dynamics to be specific to each scan. To achieve this, we define the community structure as a parameter tensor that is shared across all scans, and we define the dynamics as a parameter tensor that is specific to each scan. We can achieve this by defining the community structure as a parameter tensor of shape (n_nodes, n_communities), and the dynamics as a parameter tensor of shape (n_scans, n_time_points, n_communities). The first dimension of the dynamics tensor will be used to index the dynamics of each scan.</p>
 <p>We also want to impose some constraints on the values that the parameter tensors can take. For the community structure tensor, we’s ideally want each node to belong to exactly one community. But this would give us a combinatorial optimisation problem instead of a differentiable one, so we’ll relax this constraint to instead allow each node’s community assignment to be a categorical probability distribution over communities. We can achieve this by projecting the community structure tensor onto the probability simplex, which is the set of vectors whose elements are nonnegative and sum to 1.0. Behind the scenes, <code class="docutils literal notranslate"><span class="pre">hypercoil</span></code>’s <code class="docutils literal notranslate"><span class="pre">Probability</span> <span class="pre">SimplexParameter</span></code> implements this constraint using a softmax mapping.</p>
@@ -439,7 +454,7 @@ document.write(`
 </div>
 </section>
 <section id="defining-the-loss-function">
-<h2>Defining the loss function<a class="headerlink" href="#defining-the-loss-function" title="Permalink to this heading">#</a></h2>
+<h2>Defining the loss function<a class="headerlink" href="#defining-the-loss-function" title="Link to this heading">#</a></h2>
 <p>Next,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hypercoil.loss</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">LossScheme</span><span class="p">,</span>
@@ -498,7 +513,7 @@ document.write(`
 </div>
 </section>
 <section id="defining-the-forward-pass">
-<h2>Defining the forward pass<a class="headerlink" href="#defining-the-forward-pass" title="Permalink to this heading">#</a></h2>
+<h2>Defining the forward pass<a class="headerlink" href="#defining-the-forward-pass" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hypercoil.engine</span> <span class="kn">import</span> <span class="n">_to_jax_array</span>
 <span class="kn">from</span> <span class="nn">hypercoil.functional</span> <span class="kn">import</span> <span class="n">corr</span><span class="p">,</span> <span class="n">modularity_matrix</span><span class="p">,</span> <span class="n">coaffiliation</span>
 
@@ -544,7 +559,7 @@ document.write(`
 </div>
 </section>
 <section id="defining-the-optimisation-loop">
-<h2>Defining the optimisation loop<a class="headerlink" href="#defining-the-optimisation-loop" title="Permalink to this heading">#</a></h2>
+<h2>Defining the optimisation loop<a class="headerlink" href="#defining-the-optimisation-loop" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Tuple</span>
 <span class="kn">import</span> <span class="nn">optax</span>
 
@@ -583,7 +598,7 @@ document.write(`
 </div>
 </section>
 <section id="train-the-model">
-<h2>Train the model<a class="headerlink" href="#train-the-model" title="Permalink to this heading">#</a></h2>
+<h2>Train the model<a class="headerlink" href="#train-the-model" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure the hyperparameters.</span>
 <span class="n">n_communities</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">n_time_points</span> <span class="o">=</span> <span class="mi">814</span>
@@ -649,6 +664,8 @@ document.write(`
               
               
               
+              
+              
             </div>
             
             
@@ -691,8 +708,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -710,7 +727,7 @@ document.write(`
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>
@@ -718,10 +735,11 @@ document.write(`
     </div>
   
   
+  
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
 </p></div>
       
     </div>
