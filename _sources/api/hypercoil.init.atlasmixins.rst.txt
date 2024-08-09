@@ -6,15 +6,11 @@
 ``~ReferenceMixin``
 -------------------
 
-.. autoclass:: _VolumeObjectReferenceMixin
+.. autoclass:: _ObjectReferenceMixin
 
-.. autoclass:: _SurfaceObjectReferenceMixin
+.. autoclass:: _SingleReferenceMixin
 
-.. autoclass:: _VolumeSingleReferenceMixin
-
-.. autoclass:: _SurfaceSingleReferenceMixin
-
-.. autoclass:: _VolumeMultiReferenceMixin
+.. autoclass:: _MultiReferenceMixin
 
 .. autoclass:: _PhantomReferenceMixin
 
@@ -60,14 +56,3 @@
 .. autoclass:: _EvenlySampledConvMixin
 
 .. autoclass:: _SpatialConvMixin
-
-Abstractions
-------------
-
-.. autoclass:: Reference
-
-.. autoclass:: Mask
-
-.. autoclass:: Compartment
-
-.. autoclass:: CompartmentSet

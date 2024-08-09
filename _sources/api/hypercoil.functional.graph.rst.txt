@@ -4,7 +4,7 @@
 .. automodule:: hypercoil.functional.graph
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    hypercoil.functional.graph.girvan_newman_null
    hypercoil.functional.graph.modularity_matrix

@@ -3,4 +3,10 @@
 
 .. automodule:: hypercoil.init.toeplitz
 
-.. autoclass:: ToeplitzInitialiser
+``toeplitz_init``
+-----------------
+.. autofunction:: toeplitz_init_
+
+``ToeplitzInit``
+----------------
+.. autoclass:: ToeplitzInit

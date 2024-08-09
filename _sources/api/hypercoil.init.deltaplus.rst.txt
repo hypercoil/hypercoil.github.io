@@ -5,8 +5,8 @@
 
 ``deltaplus_init``
 ------------------
-.. autofunction:: deltaplus_init
+.. autofunction:: deltaplus_init_
 
-``DeltaPlusInitialiser``
-------------------------
-.. autoclass:: DeltaPlusInitialiser
+``DeltaPlusInit``
+-----------------
+.. autoclass:: DeltaPlusInit

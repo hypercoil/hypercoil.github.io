@@ -4,7 +4,7 @@
 .. automodule:: hypercoil.functional.connectopy
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    hypercoil.functional.connectopy.laplacian_eigenmaps
    hypercoil.functional.connectopy.diffusion_mapping

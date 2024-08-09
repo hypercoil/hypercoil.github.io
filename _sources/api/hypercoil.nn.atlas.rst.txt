@@ -4,6 +4,7 @@
 .. automodule:: hypercoil.nn.atlas
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    hypercoil.nn.atlas.AtlasLinear
+   hypercoil.nn.atlas.AtlasAccumuline

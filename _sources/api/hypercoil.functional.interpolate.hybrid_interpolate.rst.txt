@@ -1,5 +1,5 @@
-``hybrid_interpolate``: Linear + spectral interpolation
-=======================================================
+``hybrid_interpolate``: Weighted + spectral interpolation
+=========================================================
 
 .. currentmodule:: hypercoil.functional.interpolate
 
