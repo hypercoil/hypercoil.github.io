@@ -701,224 +701,25 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-hypercoil.init.atlasmixins">
-<span id="atlasmixins-atlas-mixins"></span><h1><code class="docutils literal notranslate"><span class="pre">atlasmixins</span></code>: Atlas mixins<a class="headerlink" href="#module-hypercoil.init.atlasmixins" title="Permalink to this heading">#</a></h1>
-<p>Mixins for designing atlas classes.</p>
+  <section id="atlasmixins-atlas-mixins">
+<h1><code class="docutils literal notranslate"><span class="pre">atlasmixins</span></code>: Atlas mixins<a class="headerlink" href="#atlasmixins-atlas-mixins" title="Permalink to this heading">#</a></h1>
 <section id="referencemixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~ReferenceMixin</span></code><a class="headerlink" href="#referencemixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._ObjectReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_ObjectReferenceMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L439-L449"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._ObjectReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to load a reference into an atlas class.</p>
-<p>For use when a NIfTI image object is already provided as the
-<code class="docutils literal notranslate"><span class="pre">ref_pointer</span></code> argument.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._SingleReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_SingleReferenceMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L451-L462"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._SingleReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to load a reference into an atlas class.</p>
-<p>For use when the <code class="docutils literal notranslate"><span class="pre">ref_pointer</span></code> object references a single path to an
-image on disk.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._MultiReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_MultiReferenceMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L464-L480"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._MultiReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to load a reference into an atlas class.</p>
-<p>For use when the <code class="docutils literal notranslate"><span class="pre">ref_pointer</span></code> object is an iterable of paths to images
-on disk.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._PhantomReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_PhantomReferenceMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L482-L507"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._PhantomReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to load a reference into an atlas class.</p>
-<p>For use when the data content of the reference is unimportant, for
-instance when instances of the atlas class are to be initialised from a
-distribution rather than from an existing reference. The reference is
-still used for inferring dimensions of the atlas and input images.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._CIfTIReferenceMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_CIfTIReferenceMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L520-L562"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._CIfTIReferenceMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use if an atlas uses a CIfTI as its reference. This class implements the
-additional methods <code class="docutils literal notranslate"><span class="pre">axes</span></code> and <code class="docutils literal notranslate"><span class="pre">model_axis</span></code>, which facilitate access to
-CIfTI model axes. Note that this is <em>not</em> a substitute for a reference
-loader mixin like <code class="docutils literal notranslate"><span class="pre">_ObjectReferenceMixin</span></code> or <code class="docutils literal notranslate"><span class="pre">_SingleReferenceMixin</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">axes</span></code></dt><dd><p>Thanks to Chris Markiewicz for tutorials that shaped this implementation.</p>
-</dd>
-<dt><strong>model_axis</strong></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>to_image</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </section>
 <section id="maskmixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~MaskMixin</span></code><a class="headerlink" href="#maskmixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._LogicMaskMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_LogicMaskMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L564-L579"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._LogicMaskMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to create an overall mask that specifies atlas inclusion status of
-spatial locations.</p>
-<p>For use when the mask source is either a path on the file system
-containing Boolean-valued data or a nested logical expression tree
-(comprising operation nodes such as <code class="docutils literal notranslate"><span class="pre">MaskIntersection</span></code> or
-<code class="docutils literal notranslate"><span class="pre">MaskThreshold</span></code> with filesystem paths as leaf nodes).</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._CortexSubcortexCIfTIMaskMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_CortexSubcortexCIfTIMaskMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L581-L602"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._CortexSubcortexCIfTIMaskMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to create an overall mask that specifies atlas inclusion status of
-spatial locations.</p>
-<p>For use when creating a CIfTI atlas with separate cortical and subcortical
-compartments, and when the provided mask source indicates medial wall
-regions of the cortical surface marked for exclusion from the atlas.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._FromNullMaskMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_FromNullMaskMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L604-L624"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._FromNullMaskMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to create an overall mask that specifies atlas inclusion status of
-spatial locations.</p>
-<p>For use when automatically creating a mask by excluding all background-
-or null-valued (typically 0-valued) spatial locations from the reference.
-For single-volume references (typically discrete-valued), this mixin
-creates a mask that includes all locations not labelled as background.
-For multi-volume references (often continuous-valued), this mixin
-creates a mask that includes all locations that are greater than or equal
-to the provided source parameter after taking the sum across volumes.</p>
-</dd></dl>
-
 </section>
 <section id="compartmentmixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~CompartmentMixin</span></code><a class="headerlink" href="#compartmentmixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._SingleCompartmentMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_SingleCompartmentMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L626-L648"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._SingleCompartmentMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to isolate spatial subcompartments of the overall atlas such that each
-has separate label sets.</p>
-<p>For use when no isolation is desired, and the entire atlased region is a
-single compartment.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._MultiCompartmentMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_MultiCompartmentMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L654-L683"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._MultiCompartmentMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to isolate spatial subcompartments of the overall atlas such that each
-has separate label sets.</p>
-<p>For use when isolation into multiple compartments is desired. With this
-mixin, each extra keyword argument passed to the atlas constructor is
-interpreted as a name-mask path pair defining an atlas compartment.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._CortexSubcortexCIfTICompartmentMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_CortexSubcortexCIfTICompartmentMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L685-L747"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._CortexSubcortexCIfTICompartmentMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to isolate spatial subcompartments of the overall atlas such that each
-has separate label sets.</p>
-<p>For use when creating a CIfTI-based atlas with separate subcompartments
-for the left and right cortical hemispheres and for subcortical locations.</p>
-</dd></dl>
-
 </section>
 <section id="labelmixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~LabelMixin</span></code><a class="headerlink" href="#labelmixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._DiscreteLabelMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_DiscreteLabelMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L749-L795"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._DiscreteLabelMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to decode label sets present in an atlas and to create a linear map
-representation of the atlas.</p>
-<p>For use when the label sets are encoded as discrete values in a single
-reference volume or surface.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._ContinuousLabelMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_ContinuousLabelMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L797-L837"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._ContinuousLabelMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to decode label sets present in an atlas and to create a linear map
-representation of the atlas.</p>
-<p>For use when the label sets are encoded across multiple volumes. This is
-necessary for continuous-valued atlases or atlases with overlapping
-labels, but is also a valid encoding scheme for discrete-valued atlases.
-If the reference uses a single volume or surface, use
-<code class="docutils literal notranslate"><span class="pre">DiscreteLabelMixin</span></code> instead.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._DirichletLabelMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_DirichletLabelMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L839-L872"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._DirichletLabelMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Use to decode label sets present in an atlas and to create a linear map
-representation of the atlas.</p>
-<p>For use when the linear map is to be initialised from a Dirichlet
-distribution rather than a reference. This requires the prior existence of
-a dictionary attribute called <code class="docutils literal notranslate"><span class="pre">compartment_labels</span></code> for the Atlas object,
-whose key-value pairs associate to each atlas compartment an integer
-number of labels. It additionally requires a second key-value mapping
-<code class="docutils literal notranslate"><span class="pre">init</span></code>, whose entries associate to each atlas compartment the Dirichlet
-distribution from which that compartment’s parcel assignment probability
-distributions are to be sampled. These mappings can be instantiated in the
-atlas class’s constructor method, potentially from user arguments.</p>
-</dd></dl>
-
 </section>
 <section id="meshmixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~MeshMixin</span></code><a class="headerlink" href="#meshmixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._VolumetricMeshMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_VolumetricMeshMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L874-L906"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._VolumetricMeshMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Used to establish a coordinate system over the linear map representations
-of the atlas.</p>
-<p>For use when the atlas reference comprises evenly spaced volumetric
-samples (i.e., voxels).</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._VertexCIfTIMeshMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_VertexCIfTIMeshMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L908-L955"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._VertexCIfTIMeshMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Used to establish a coordinate system over the linear map representations
-of the atlas.</p>
-<p>For use when the atlas reference is a CIfTI that includes some samples
-associated to cortical surface meshes. This mixin establishes a spherical
-topology for cortical samples and a Euclidean topology for subcortical
-samples.</p>
-</dd></dl>
-
 </section>
 <section id="convmixin">
 <h2><code class="docutils literal notranslate"><span class="pre">~ConvMixin</span></code><a class="headerlink" href="#convmixin" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._EvenlySampledConvMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_EvenlySampledConvMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L957-L976"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._EvenlySampledConvMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Used to spatially convolve atlas parcels for smoothing.</p>
-<p>This mixin is currently unsupported and likely will not function without
-substantial extra code, although it is likely to perform better under
-many conditions. Its use is not currently advised.</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlasmixins._SpatialConvMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlasmixins.</span></span><span class="sig-name descname"><span class="pre">_SpatialConvMixin</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlasmixins.py#L978-L1007"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlasmixins._SpatialConvMixin" title="Permalink to this definition">#</a></dt>
-<dd><p>Used to spatially convolve atlas parcels for smoothing.</p>
-<p>For use when a coordinate mesh is available for the atlas and either
-Euclidean or spherical topologies are assigned to each of its
-compartments.</p>
-</dd></dl>
-
 </section>
 </section>
 
@@ -942,42 +743,12 @@ compartments.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencemixin"><code class="docutils literal notranslate"><span class="pre">~ReferenceMixin</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._ObjectReferenceMixin"><code class="docutils literal notranslate"><span class="pre">_ObjectReferenceMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._SingleReferenceMixin"><code class="docutils literal notranslate"><span class="pre">_SingleReferenceMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._MultiReferenceMixin"><code class="docutils literal notranslate"><span class="pre">_MultiReferenceMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._PhantomReferenceMixin"><code class="docutils literal notranslate"><span class="pre">_PhantomReferenceMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._CIfTIReferenceMixin"><code class="docutils literal notranslate"><span class="pre">_CIfTIReferenceMixin</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maskmixin"><code class="docutils literal notranslate"><span class="pre">~MaskMixin</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._LogicMaskMixin"><code class="docutils literal notranslate"><span class="pre">_LogicMaskMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._CortexSubcortexCIfTIMaskMixin"><code class="docutils literal notranslate"><span class="pre">_CortexSubcortexCIfTIMaskMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._FromNullMaskMixin"><code class="docutils literal notranslate"><span class="pre">_FromNullMaskMixin</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compartmentmixin"><code class="docutils literal notranslate"><span class="pre">~CompartmentMixin</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._SingleCompartmentMixin"><code class="docutils literal notranslate"><span class="pre">_SingleCompartmentMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._MultiCompartmentMixin"><code class="docutils literal notranslate"><span class="pre">_MultiCompartmentMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._CortexSubcortexCIfTICompartmentMixin"><code class="docutils literal notranslate"><span class="pre">_CortexSubcortexCIfTICompartmentMixin</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#labelmixin"><code class="docutils literal notranslate"><span class="pre">~LabelMixin</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._DiscreteLabelMixin"><code class="docutils literal notranslate"><span class="pre">_DiscreteLabelMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._ContinuousLabelMixin"><code class="docutils literal notranslate"><span class="pre">_ContinuousLabelMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._DirichletLabelMixin"><code class="docutils literal notranslate"><span class="pre">_DirichletLabelMixin</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meshmixin"><code class="docutils literal notranslate"><span class="pre">~MeshMixin</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._VolumetricMeshMixin"><code class="docutils literal notranslate"><span class="pre">_VolumetricMeshMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._VertexCIfTIMeshMixin"><code class="docutils literal notranslate"><span class="pre">_VertexCIfTIMeshMixin</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convmixin"><code class="docutils literal notranslate"><span class="pre">~ConvMixin</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._EvenlySampledConvMixin"><code class="docutils literal notranslate"><span class="pre">_EvenlySampledConvMixin</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlasmixins._SpatialConvMixin"><code class="docutils literal notranslate"><span class="pre">_SpatialConvMixin</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencemixin"><code class="docutils literal notranslate"><span class="pre">~ReferenceMixin</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maskmixin"><code class="docutils literal notranslate"><span class="pre">~MaskMixin</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compartmentmixin"><code class="docutils literal notranslate"><span class="pre">~CompartmentMixin</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#labelmixin"><code class="docutils literal notranslate"><span class="pre">~LabelMixin</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meshmixin"><code class="docutils literal notranslate"><span class="pre">~MeshMixin</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convmixin"><code class="docutils literal notranslate"><span class="pre">~ConvMixin</span></code></a></li>
 </ul>
   </nav></div>
 

@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.mvkurtosis.MultivariateKurtosis';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -704,51 +703,6 @@ document.write(`
                   
   <section id="multivariatekurtosis">
 <h1><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis</span></code><a class="headerlink" href="#multivariatekurtosis" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.mvkurtosis.MultivariateKurtosis">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.mvkurtosis.</span></span><span class="sig-name descname"><span class="pre">MultivariateKurtosis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensional_scaling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/mvkurtosis.py#L26-L63"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.mvkurtosis.MultivariateKurtosis" title="Permalink to this definition">#</a></dt>
-<dd><p>Multivariate kurtosis following Mardia, as used by Laumann and colleagues.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
-</dd>
-<dt><strong>l2</strong><span class="classifier">float (default 0)</span></dt><dd><p>L2 regularisation multiplier when computing the precision matrix.</p>
-</dd>
-<dt><strong>dimensional_scaling</strong><span class="classifier">bool (default False)</span></dt><dd><p>The expected multivariate kurtosis for a normally distributed,
-stationary process of infinite duration with d channels (or variables)
-is <span class="math notranslate nohighlight">\(d (d + 2)\)</span>. Setting this to true normalises for the process
-dimension by dividing the obtained kurtosis by <span class="math notranslate nohighlight">\(d (d + 2)\)</span>. This
-has no effect in determining the optimum.</p>
-</dd>
-<dt><strong>reduction</strong><span class="classifier">callable (default <code class="docutils literal notranslate"><span class="pre">torch.mean</span></code>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The vector of
-computed multivariate kurtosis values is passed into <code class="docutils literal notranslate"><span class="pre">reduction</span></code> to
-return a scalar.</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.mvkurtosis.MultivariateKurtosis.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.mvkurtosis.MultivariateKurtosis.forward" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate the loss function, and communicate the results to any
-listening sentry objects.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.mvkurtosis.MultivariateKurtosis.register_sentry">
-<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.mvkurtosis.MultivariateKurtosis.register_sentry" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.mvkurtosis.MultivariateKurtosis.register_action">
-<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.mvkurtosis.MultivariateKurtosis.register_action" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </section>
 
 
@@ -763,22 +717,6 @@ listening sentry objects.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.mvkurtosis.MultivariateKurtosis"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.mvkurtosis.MultivariateKurtosis.forward"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis.forward()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.mvkurtosis.MultivariateKurtosis.register_sentry"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis.register_sentry()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.mvkurtosis.MultivariateKurtosis.register_action"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

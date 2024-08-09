@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.connectopy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -704,85 +703,6 @@ document.write(`
                   
   <section id="connectopy-loss-functional">
 <h1>Connectopy loss functional<a class="headerlink" href="#connectopy-loss-functional" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.loss.connectopy.connectopy_loss">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.loss.connectopy.</span></span><span class="sig-name descname"><span class="pre">connectopy_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dissimilarity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affinity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/connectopy.py#L14-L97"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.connectopy.connectopy_loss" title="Permalink to this definition">#</a></dt>
-<dd><p>Connectopy loss, for computing different kinds of connectopic maps.</p>
-<div class="admonition-connectopic-loss-functional admonition">
-<p class="admonition-title">Connectopic loss functional</p>
-<p>Given an affinity matrix A, the connectopic loss minimises the objective</p>
-<p><span class="math notranslate nohighlight">\(\mathbf{1}^\intercal \left( \mathbf{A} \circ S_\theta(\mathbf{Q}) \right) \mathbf{1}\)</span></p>
-<p>for a pairwise function S. The default pairwise function is the square
-of the L2 distance. The columns of the Q that minimises the objective
-are the learned connectopic maps.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you’re using this for a well-characterised connectopic map with a
-closed-form or algorithmically optimised solution, such as Laplacian
-eigenmaps or many forms of community detection, then in most cases you
-would be better off directly computing exact maps rather than using this
-loss functional to approximate them.</p>
-<p>Because this operation attempts to learn all of the maps that jointly
-minimise the objective in a single shot rather than using iterative
-projection, it is more prone to misalignment than a projective approach
-for eigendecomposition-based maps.</p>
-</div>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>Note that the <code class="docutils literal notranslate"><span class="pre">connectopy_loss</span></code> is often insufficient on its own. It
-should be combined with appropriate constraints, for instance to ensure
-the learned maps are zero-centred and orthogonal.</p>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Dimension<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>Q :</strong> <span class="math notranslate nohighlight">\((D, C)\)</span></dt><dd><p>D denotes the number of vertices in the affinity matrix
-and C denotes the number of proposed maps.</p>
-</dd>
-<dt><strong>A :</strong> <span class="math notranslate nohighlight">\((D, D)\)</span></dt><dd><p>As above.</p>
-</dd>
-<dt><strong>D :</strong> <span class="math notranslate nohighlight">\((D, D)\)</span></dt><dd><p>As above.</p>
-</dd>
-<dt><strong>theta :</strong> <span class="math notranslate nohighlight">\((C)\)</span> or <span class="math notranslate nohighlight">\((C, C)\)</span></dt><dd><p>As above.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>Q</strong><span class="classifier">tensor</span></dt><dd><p>Proposed connectopies or maps.</p>
-</dd>
-<dt><strong>A</strong><span class="classifier">tensor</span></dt><dd><p>Affinity matrix.</p>
-</dd>
-<dt><strong>dissimilarity</strong><span class="classifier">callable</span></dt><dd><p>Function to compute dissimilarity between latent coordinates induced
-by the proposed connectopies. By default, the square of the L2
-distance is used. The callable must accept <code class="docutils literal notranslate"><span class="pre">Q</span></code> and <code class="docutils literal notranslate"><span class="pre">theta</span></code> as
-arguments. (<code class="docutils literal notranslate"><span class="pre">theta</span></code> may be unused.)</p>
-</dd>
-<dt><strong>affinity</strong><span class="classifier">callable or None (default None)</span></dt><dd><p>If an affinity function is provided, then the image of argument A
-under this function is the affinity matrix. Otherwise, argument A is
-the affinity matrix.</p>
-</dd>
-<dt><strong>D</strong><span class="classifier">tensor or None (default None)</span></dt><dd><p>If this argument is provided, then the affinity matrix is first
-transformed as <span class="math notranslate nohighlight">\(D A D^\intercal\)</span>. For instance, setting D to
-a diagonal matrix whose entries are the reciprocal of the square root
-of vertex degrees corresponds to learning eigenmaps of a normalised
-graph Laplacian.</p>
-</dd>
-<dt><strong>theta</strong><span class="classifier">tensor, float, or None (default None)</span></dt><dd><p>Scaling factors for the columns in <span class="math notranslate nohighlight">\(Q\)</span> when the loss is
-computed. By default, the last column has a weight of 1, the
-second-to-last has a weight of 2, and so on. This is used to encourage
-the last column to correspond to the least important eigenmap and the
-first column to correspond to the most important eigenmap.</p>
-</dd>
-<dt><strong>omega</strong><span class="classifier">tensor, float, or None (default None)</span></dt><dd><p>Optional parameterisation of the affinity function, if one is
-provided.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
@@ -797,17 +717,6 @@ provided.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.connectopy.connectopy_loss"><code class="docutils literal notranslate"><span class="pre">connectopy_loss()</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

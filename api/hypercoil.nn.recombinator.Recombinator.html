@@ -708,41 +708,6 @@ document.write(`
                   
   <section id="recombinator">
 <h1><code class="docutils literal notranslate"><span class="pre">Recombinator</span></code><a class="headerlink" href="#recombinator" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.nn.recombinator.Recombinator">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.nn.recombinator.</span></span><span class="sig-name descname"><span class="pre">Recombinator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positive_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/nn/recombinator.py#L14-L91"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.recombinator.Recombinator" title="Permalink to this definition">#</a></dt>
-<dd><p>Linear recombinator layer for feature maps. It should also be possible
-to substitute a 1x1 convolutional layer with similar results.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>in_channels: int</strong></dt><dd><p>Number of channels or feature maps input to the recombinator layer.</p>
-</dd>
-<dt><strong>out_channels: int</strong></dt><dd><p>Number of recombined channels or feature maps output by the
-recombinator layer.</p>
-</dd>
-<dt><strong>bias: bool</strong></dt><dd><p>If True, adds a learnable bias to the output.</p>
-</dd>
-<dt><strong>positive_only: bool (default False)</strong></dt><dd><p>If True, initialise with only positive weights.</p>
-</dd>
-<dt><strong>init: dict</strong></dt><dd><p>Dictionary of parameters to pass to the Kaiming initialisation
-function.
-Default: <code class="docutils literal notranslate"><span class="pre">{'nonlinearity':</span> <span class="pre">'linear'}</span></code></p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>weight: Tensor</strong></dt><dd><p>The learnable mixture matrix of the module of shape
-:math:<code class="docutils literal notranslate"><span class="pre">C_{in}</span> <span class="pre">\times</span> <span class="pre">C_{out}</span></code>.</p>
-</dd>
-<dt><strong>bias: Tensor</strong></dt><dd><p>The learnable bias of the module of shape <code class="docutils literal notranslate"><span class="pre">out_channels</span></code>.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
@@ -757,17 +722,6 @@ Default: <code class="docutils literal notranslate"><span class="pre">{'nonlinea
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.recombinator.Recombinator"><code class="docutils literal notranslate"><span class="pre">Recombinator()</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

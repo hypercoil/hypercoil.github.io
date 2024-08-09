@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.secondmoment';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,134 +701,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-hypercoil.loss.secondmoment">
-<span id="secondmoment-second-moment-based-losses"></span><h1><code class="docutils literal notranslate"><span class="pre">secondmoment</span></code>: Second moment-based losses<a class="headerlink" href="#module-hypercoil.loss.secondmoment" title="Permalink to this heading">#</a></h1>
-<p>Regularise the second moment, e.g. to favour a dimension reduction mapping
-that is internally homogeneous.</p>
-<div class="admonition-second-moment admonition">
-<p class="admonition-title">Second Moment</p>
-<p>Second moment losses are based on a reduction of the second moment
-quantity</p>
-<p><span class="math notranslate nohighlight">\(\left[ A \circ \left (T - \frac{AT}{A\mathbf{1}} \right )^2  \right] \frac{\mathbf{1}}{A \mathbf{1}}\)</span></p>
-<p>where the division operator is applied elementwise with broadcasting and
-the difference operator is applied via broadcasting. The broadcasting
-operations involved in the core computation – estimating a weighted mean
-and then computing the weighted sum of squares about that mean – are
-illustrated in the below cartoon.</p>
-<a class="reference internal image-reference" href="../_images/secondmomentloss.svg"><img alt="../_images/secondmomentloss.svg" class="align-center" src="../_images/secondmomentloss.svg" width="300" /></a>
-<p><em>Illustration of the most memory-intensive stage of loss computation. The
-lavender tensor represents the weighted mean, the blue tensor the
-original observations, and the green tensor the weights (which might
-correspond to a dimension reduction mapping such as a parcellation).</em></p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In practice, we’ve found that using the actual second moment loss often
-results in large and uneven parcels. Accordingly, an unnormalised
-extension of the second moment (which omits the normalisation
-<span class="math notranslate nohighlight">\(\frac{1}{A \mathbf{1}}\)</span>) is also available. This unnormalised
-quantity is equivalent to the weighted mean squared error about each
-weighted mean. In practice, we’ve found that this quantity works better
-for most of our use cases.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This loss can have a very large memory footprint, because it requires
-computing an intermediate tensor with dimensions equal to the number
-of rows in the linear mapping, multiplied by the number of columns in
-the linear mapping, multiplied by the number of columns in the
-dataset.</p>
-<p>When using this loss to learn a parcellation on voxelwise time series, the
-full computation will certainly be much too large to fit in GPU memory.
-Fortunately, because much of the computation is elementwise, it can be
-broken down along multiple axes without affecting the result. This tensor
-slicing is implemented automatically in the
-<span class="xref std std-doc">ReactiveTerminal</span>
-class. Use extreme caution with <code class="docutils literal notranslate"><span class="pre">ReactiveTerminals</span></code>, as improper use can
-result in destruction of the computational graph.</p>
-</div>
+  <section id="secondmoment-second-moment-based-losses">
+<h1><code class="docutils literal notranslate"><span class="pre">secondmoment</span></code>: Second moment-based losses<a class="headerlink" href="#secondmoment-second-moment-based-losses" title="Permalink to this heading">#</a></h1>
 <section id="secondmoment">
 <h2><code class="docutils literal notranslate"><span class="pre">SecondMoment</span></code><a class="headerlink" href="#secondmoment" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.secondmoment.SecondMoment">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.secondmoment.</span></span><span class="sig-name descname"><span class="pre">SecondMoment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standardise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_normalise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/secondmoment.py#L111-L157"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.secondmoment.SecondMoment" title="Permalink to this definition">#</a></dt>
-<dd><p>Compute the second moment of a dataset/linear mapping pair.</p>
-<p>The second moment loss is computed as a reduction of</p>
-<p><span class="math notranslate nohighlight">\(\left[ A \circ \left (T - \frac{AT}{A\mathbf{1}} \right )^2  \right] \frac{\mathbf{1}}{A \mathbf{1}}\)</span></p>
-<p>Given an input dataset <span class="math notranslate nohighlight">\(T\)</span> and a linear mapping <span class="math notranslate nohighlight">\(A\)</span>, the
-second moment loss measures the extent to which <span class="math notranslate nohighlight">\(A\)</span> tends to map
-similar inputs to the same output.</p>
-<p>Penalising this quantity can thus promote learning a linear mapping whose
-rows load onto similar feature sets.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This loss can have a very large memory footprint, because it requires
-computing an intermediate tensor with dimensions equal to the number
-of rows in the linear mapping, multiplied by the number of columns in
-the linear mapping, multiplied by the number of columns in the
-dataset.</p>
-</div>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
-</dd>
-<dt><strong>reduction</strong><span class="classifier">callable (default <cite>torch.mean</cite>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The output of
-the second moment loss is passed into <cite>reduction</cite> to return a scalar.</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods Documentation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.secondmoment.SecondMoment.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.secondmoment.SecondMoment.forward" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate the loss function, and communicate the results to any
-listening sentry objects.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.secondmoment.SecondMoment.register_sentry">
-<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.secondmoment.SecondMoment.register_sentry" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.secondmoment.SecondMoment.register_action">
-<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.secondmoment.SecondMoment.register_action" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </section>
 <section id="secondmomentcentred">
 <h2><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred</span></code><a class="headerlink" href="#secondmomentcentred" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.secondmoment.SecondMomentCentred">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.secondmoment.</span></span><span class="sig-name descname"><span class="pre">SecondMomentCentred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standardise_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standardise_mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_normalise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/secondmoment.py#L159-L177"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.secondmoment.SecondMomentCentred" title="Permalink to this definition">#</a></dt>
-<dd><p>Compute the second moment of a dataset/linear mapping pair about a
-specified mean.</p>
-<p class="rubric">Methods Documentation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.secondmoment.SecondMomentCentred.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.secondmoment.SecondMomentCentred.forward" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate the loss function, and communicate the results to any
-listening sentry objects.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.secondmoment.SecondMomentCentred.register_sentry">
-<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.secondmoment.SecondMomentCentred.register_sentry" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.secondmoment.SecondMomentCentred.register_action">
-<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.secondmoment.SecondMomentCentred.register_action" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </section>
 </section>
 
@@ -853,24 +731,8 @@ listening sentry objects.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secondmoment"><code class="docutils literal notranslate"><span class="pre">SecondMoment</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.secondmoment.SecondMoment"><code class="docutils literal notranslate"><span class="pre">SecondMoment</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.secondmoment.SecondMoment.forward"><code class="docutils literal notranslate"><span class="pre">SecondMoment.forward()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.secondmoment.SecondMoment.register_sentry"><code class="docutils literal notranslate"><span class="pre">SecondMoment.register_sentry()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.secondmoment.SecondMoment.register_action"><code class="docutils literal notranslate"><span class="pre">SecondMoment.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secondmomentcentred"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.secondmoment.SecondMomentCentred"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.secondmoment.SecondMomentCentred.forward"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred.forward()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.secondmoment.SecondMomentCentred.register_sentry"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred.register_sentry()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.secondmoment.SecondMomentCentred.register_action"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secondmoment"><code class="docutils literal notranslate"><span class="pre">SecondMoment</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secondmomentcentred"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred</span></code></a></li>
 </ul>
   </nav></div>
 

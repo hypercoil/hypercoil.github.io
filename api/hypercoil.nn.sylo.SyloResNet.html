@@ -708,42 +708,6 @@ document.write(`
                   
   <section id="syloresnet">
 <h1><code class="docutils literal notranslate"><span class="pre">SyloResNet</span></code><a class="headerlink" href="#syloresnet" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.nn.sylo.SyloResNet">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.nn.sylo.</span></span><span class="sig-name descname"><span class="pre">SyloResNet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim_sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lattice_order_sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_lattices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_multiplier=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression_init='svd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recombine=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm_layer=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlin=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block=&lt;class</span> <span class="pre">'hypercoil.nn.sylo.SyloResBlock'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">community_dim=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">potentials=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/nn/sylo.py#L514-L595"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.sylo.SyloResNet" title="Permalink to this definition">#</a></dt>
-<dd><p>Base class for all neural network modules.</p>
-<p>Your models should also subclass this class.</p>
-<p>Modules can also contain other Modules, allowing to nest them in
-a tree structure. You can assign the submodules as regular attributes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
-
-<span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>Submodules assigned in this way will be registered, and will have their
-parameters converted too when you call <code class="xref py py-meth docutils literal notranslate"><span class="pre">to()</span></code>, etc.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>As per the example above, an <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> call to the parent class
-must be made before assignment on the child.</p>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>training</strong> (<em>bool</em>) – Boolean represents whether this module is in training or
-evaluation mode.</p>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
@@ -758,17 +722,6 @@ evaluation mode.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.sylo.SyloResNet"><code class="docutils literal notranslate"><span class="pre">SyloResNet()</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

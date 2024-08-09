@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.determinant';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -702,246 +701,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-hypercoil.loss.determinant">
-<span id="determinant-log-determinant-based-losses"></span><h1><code class="docutils literal notranslate"><span class="pre">determinant</span></code>: Log determinant-based losses<a class="headerlink" href="#module-hypercoil.loss.determinant" title="Permalink to this heading">#</a></h1>
-<p>Loss functions using the determinant or log determinant.</p>
-<div class="admonition-log-det-corr admonition">
-<p class="admonition-title">Log-det-corr</p>
-<p>The log-det-corr loss among a set of vectors <span class="math notranslate nohighlight">\(X\)</span> is defined as the
-negative log-determinant of the correlation matrix of those vectors.</p>
-<p><span class="math notranslate nohighlight">\(-\log \det \mathrm{corr} X\)</span></p>
-<a class="reference internal image-reference" href="../_images/determinant.svg"><img alt="../_images/determinant.svg" class="align-center" src="../_images/determinant.svg" width="250" /></a>
-<p>Penalising the negative log-determinant of a correlation matrix can
-promote a degree of independence among the vectors being correlated.</p>
-</div>
-<p>Correlation matrices, which occur frequently in time series analysis, have
-several properties that make them well-suited for loss functions based on the
-determinant.</p>
-<p>First, correlation matrices are positive semidefinite, and accordingly their
-determinants will always be nonnegative. For positive semidefinite matrices,
-the log-determinant is a concave function and accordingly has a global maximum
-that can be identified using convex optimisation methods.</p>
-<p>Second, correlation matrices are normalised such that their determinant
-attains a maximum value of 1. This maximum corresponds to an identity
-correlation matrix, which in turn occurs when the vectors or time series input
-to the correlation are <strong>orthogonal</strong>. Thus, a strong determinant-based loss
-applied to a correlation matrix will seek an orthogonal basis of input
-vectors.</p>
-<p>In the parcellation setting, a weaker log-det-corr loss can be leveraged to
-promote relative independence of parcels. Combined with a
-<span class="xref std std-ref">second-moment loss</span>,
-a log-det-corr loss can be interpreted as inducing a clustering: the second
-moment loss favours internal similarity of clusters, while the log-det-corr
-loss favours separation of different clusters.</p>
-<p>Four loss classes are available:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Determinant</span></code> penalises the negative determinant of any (presumably
-positive definite) matrix.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">LogDet</span></code> penalises the negative log-determinant. This might be
-advantageous over the determinant because it is concave for positive
-definite matrices.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">DetCorr</span></code> is a convenience function that combines correlation computation
-with the negative determinant loss. It takes as input a set of vectors. It
-first computes the correlation matrix among those vectors and then returns
-the negative determinant of this matrix.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">LogDetCorr</span></code> is a convenience function like <code class="docutils literal notranslate"><span class="pre">DetCorr</span></code>; however, it
-returns the negative log determinant of the correlation matrix.</p></li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Determinant-based losses use <code class="docutils literal notranslate"><span class="pre">torch</span></code>’s determinant functionality, which
-itself uses the singular value decomposition in certain cases.
-Differentiation through SVD involves terms whose denominators include the
-differences between pairs of singular values. Thus, if two singular
-values of the input matrix are close together, the gradient can become
-unstable (and undefined if the singular values are identical). A simple
-<a class="reference internal" href="hypercoil.functional.matrix.recondition_eigenspaces.html"><span class="doc">matrix reconditioning</span></a>
-procedure is available for all operations involving the determinant to
-reduce the likelihood of degenerate eigenvalues.</p>
-</div>
+  <section id="determinant-log-determinant-based-losses">
+<h1><code class="docutils literal notranslate"><span class="pre">determinant</span></code>: Log determinant-based losses<a class="headerlink" href="#determinant-log-determinant-based-losses" title="Permalink to this heading">#</a></h1>
 <section id="logdetcorr">
 <h2><code class="docutils literal notranslate"><span class="pre">LogDetCorr</span></code><a class="headerlink" href="#logdetcorr" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.LogDetCorr">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.determinant.</span></span><span class="sig-name descname"><span class="pre">LogDetCorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi=0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi=0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cor=&lt;function</span> <span class="pre">corr&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/determinant.py#L126-L161"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.LogDetCorr" title="Permalink to this definition">#</a></dt>
-<dd><p>Compute the correlation matrix, and then penalise its negative log
-determinant.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
-</dd>
-<dt><strong>psi</strong><span class="classifier">float (default 0.001)</span></dt><dd><p>Reconditioning parameter for ensuring nonzero eigenvalues.</p>
-</dd>
-<dt><strong>xi</strong><span class="classifier">float (default 0.001)</span></dt><dd><p>Reconditioning parameter for ensuring nondegenerate eigenvalues.</p>
-</dd>
-<dt><strong>cor</strong><span class="classifier">callable (default <cite>corr</cite>)</span></dt><dd><p>Correlation or covariance measure. By default, the Pearson correlation
-is used.</p>
-</dd>
-<dt><strong>reduction</strong><span class="classifier">callable (default <cite>torch.mean</cite>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The vector of
-log-determinants computed for each correlation matrix is passed into
-<cite>reduction</cite> to return a scalar.</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods Documentation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.LogDetCorr.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.LogDetCorr.forward" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate the loss function, and communicate the results to any
-listening sentry objects.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.LogDetCorr.register_sentry">
-<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.LogDetCorr.register_sentry" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.LogDetCorr.register_action">
-<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.LogDetCorr.register_action" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </section>
 <section id="detcorr">
 <h2><code class="docutils literal notranslate"><span class="pre">DetCorr</span></code><a class="headerlink" href="#detcorr" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.DetCorr">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.determinant.</span></span><span class="sig-name descname"><span class="pre">DetCorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi=0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi=0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cor=&lt;function</span> <span class="pre">corr&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/determinant.py#L163-L198"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.DetCorr" title="Permalink to this definition">#</a></dt>
-<dd><p>Compute the correlation matrix, and then penalise its negative
-determinant.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
-</dd>
-<dt><strong>psi</strong><span class="classifier">float (default 0.001)</span></dt><dd><p>Reconditioning parameter for ensuring nonzero eigenvalues.</p>
-</dd>
-<dt><strong>xi</strong><span class="classifier">float (default 0.001)</span></dt><dd><p>Reconditioning parameter for ensuring nondegenerate eigenvalues.</p>
-</dd>
-<dt><strong>cor</strong><span class="classifier">callable (default <cite>corr</cite>)</span></dt><dd><p>Correlation or covariance measure. By default, the Pearson correlation
-is used.</p>
-</dd>
-<dt><strong>reduction</strong><span class="classifier">callable (default <cite>torch.mean</cite>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The vector of
-determinants computed for each correlation matrix is passed into
-<cite>reduction</cite> to return a scalar.</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods Documentation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.DetCorr.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.DetCorr.forward" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate the loss function, and communicate the results to any
-listening sentry objects.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.DetCorr.register_sentry">
-<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.DetCorr.register_sentry" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.DetCorr.register_action">
-<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.DetCorr.register_action" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </section>
 <section id="logdet">
 <h2><code class="docutils literal notranslate"><span class="pre">LogDet</span></code><a class="headerlink" href="#logdet" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.LogDet">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.determinant.</span></span><span class="sig-name descname"><span class="pre">LogDet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/determinant.py#L200-L228"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.LogDet" title="Permalink to this definition">#</a></dt>
-<dd><p>Penalise the negative log determinant, presumably of a positive definite
-matrix.</p>
-<p>Log determinant is a concave function, so finding a minimum for its
-negation should be straightforward.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
-</dd>
-<dt><strong>reduction</strong><span class="classifier">callable (default <cite>torch.mean</cite>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The vector of
-log-determinants computed for each input matrix is passed into
-<cite>reduction</cite> to return a scalar.</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods Documentation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.LogDet.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.LogDet.forward" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate the loss function, and communicate the results to any
-listening sentry objects.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.LogDet.register_sentry">
-<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.LogDet.register_sentry" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.LogDet.register_action">
-<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.LogDet.register_action" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </section>
 <section id="determinant">
 <h2><code class="docutils literal notranslate"><span class="pre">Determinant</span></code><a class="headerlink" href="#determinant" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.Determinant">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.determinant.</span></span><span class="sig-name descname"><span class="pre">Determinant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/determinant.py#L230-L255"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.Determinant" title="Permalink to this definition">#</a></dt>
-<dd><p>Penalise the negative determinant, presumably of a positive definite
-matrix.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
-</dd>
-<dt><strong>reduction</strong><span class="classifier">callable (default <cite>torch.mean</cite>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The vector of
-determinants computed for each input matrix is passed into <cite>reduction</cite>
-to return a scalar.</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods Documentation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.Determinant.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.Determinant.forward" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate the loss function, and communicate the results to any
-listening sentry objects.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.Determinant.register_sentry">
-<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.Determinant.register_sentry" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.determinant.Determinant.register_action">
-<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.determinant.Determinant.register_action" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </section>
 </section>
 
@@ -965,42 +737,10 @@ listening sentry objects.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logdetcorr"><code class="docutils literal notranslate"><span class="pre">LogDetCorr</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.LogDetCorr"><code class="docutils literal notranslate"><span class="pre">LogDetCorr</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.LogDetCorr.forward"><code class="docutils literal notranslate"><span class="pre">LogDetCorr.forward()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.LogDetCorr.register_sentry"><code class="docutils literal notranslate"><span class="pre">LogDetCorr.register_sentry()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.LogDetCorr.register_action"><code class="docutils literal notranslate"><span class="pre">LogDetCorr.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detcorr"><code class="docutils literal notranslate"><span class="pre">DetCorr</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.DetCorr"><code class="docutils literal notranslate"><span class="pre">DetCorr</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.DetCorr.forward"><code class="docutils literal notranslate"><span class="pre">DetCorr.forward()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.DetCorr.register_sentry"><code class="docutils literal notranslate"><span class="pre">DetCorr.register_sentry()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.DetCorr.register_action"><code class="docutils literal notranslate"><span class="pre">DetCorr.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logdet"><code class="docutils literal notranslate"><span class="pre">LogDet</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.LogDet"><code class="docutils literal notranslate"><span class="pre">LogDet</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.LogDet.forward"><code class="docutils literal notranslate"><span class="pre">LogDet.forward()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.LogDet.register_sentry"><code class="docutils literal notranslate"><span class="pre">LogDet.register_sentry()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.LogDet.register_action"><code class="docutils literal notranslate"><span class="pre">LogDet.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determinant"><code class="docutils literal notranslate"><span class="pre">Determinant</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.Determinant"><code class="docutils literal notranslate"><span class="pre">Determinant</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.Determinant.forward"><code class="docutils literal notranslate"><span class="pre">Determinant.forward()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.Determinant.register_sentry"><code class="docutils literal notranslate"><span class="pre">Determinant.register_sentry()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.determinant.Determinant.register_action"><code class="docutils literal notranslate"><span class="pre">Determinant.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logdetcorr"><code class="docutils literal notranslate"><span class="pre">LogDetCorr</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detcorr"><code class="docutils literal notranslate"><span class="pre">DetCorr</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logdet"><code class="docutils literal notranslate"><span class="pre">LogDet</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determinant"><code class="docutils literal notranslate"><span class="pre">Determinant</span></code></a></li>
 </ul>
   </nav></div>
 

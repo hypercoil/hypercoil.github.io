@@ -701,57 +701,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-hypercoil.loss.scheme">
-<span id="lossscheme"></span><h1><code class="docutils literal notranslate"><span class="pre">LossScheme</span></code><a class="headerlink" href="#module-hypercoil.loss.scheme" title="Permalink to this heading">#</a></h1>
-<p>Module for additively applying a set of several losses or
-regularisations to a set of inputs.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.scheme.LossScheme">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.scheme.</span></span><span class="sig-name descname"><span class="pre">LossScheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/scheme.py#L19-L122"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.scheme.LossScheme" title="Permalink to this definition">#</a></dt>
-<dd><p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.loss.scheme.LossScheme.forward" title="hypercoil.loss.scheme.LossScheme.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(*args[, verbose])</p></td>
-<td><p>Defines the computation performed at every call.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>register_action</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>register_sentry</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.scheme.LossScheme.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/scheme.py#L76-L122"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.scheme.LossScheme.forward" title="Permalink to this definition">#</a></dt>
-<dd><p>Defines the computation performed at every call.</p>
-<p>Should be overridden by all subclasses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Although the recipe for forward pass needs to be defined within
-this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
-instead of this since the former takes care of running the
-registered hooks while the latter silently ignores them.</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.scheme.LossScheme.register_sentry">
-<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/scheme.py#L64-L69"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.scheme.LossScheme.register_sentry" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.scheme.LossScheme.register_action">
-<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/scheme.py#L70-L75"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.scheme.LossScheme.register_action" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+  <section id="lossscheme">
+<h1><code class="docutils literal notranslate"><span class="pre">LossScheme</span></code><a class="headerlink" href="#lossscheme" title="Permalink to this heading">#</a></h1>
 </section>
 
 
@@ -766,22 +717,6 @@ registered hooks while the latter silently ignores them.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.scheme.LossScheme"><code class="docutils literal notranslate"><span class="pre">LossScheme</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.scheme.LossScheme.forward"><code class="docutils literal notranslate"><span class="pre">LossScheme.forward()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.scheme.LossScheme.register_sentry"><code class="docutils literal notranslate"><span class="pre">LossScheme.register_sentry()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.scheme.LossScheme.register_action"><code class="docutils literal notranslate"><span class="pre">LossScheme.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

@@ -701,81 +701,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-hypercoil.init.dirichlet">
-<span id="dirichlet"></span><h1><code class="docutils literal notranslate"><span class="pre">dirichlet</span></code><a class="headerlink" href="#module-hypercoil.init.dirichlet" title="Permalink to this heading">#</a></h1>
-<p>Initialise a tensor such that elements along a given axis are Dirichlet
-samples.</p>
+  <section id="dirichlet">
+<h1><code class="docutils literal notranslate"><span class="pre">dirichlet</span></code><a class="headerlink" href="#dirichlet" title="Permalink to this heading">#</a></h1>
 <section id="dirichlet-init">
 <h2><code class="docutils literal notranslate"><span class="pre">dirichlet_init</span></code><a class="headerlink" href="#dirichlet-init" title="Permalink to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.init.dirichlet.dirichlet_init_">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.init.dirichlet.</span></span><span class="sig-name descname"><span class="pre">dirichlet_init_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/dirichlet.py#L14-L43"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.dirichlet.dirichlet_init_" title="Permalink to this definition">#</a></dt>
-<dd><p>Dirichlet sample initialisation.</p>
-<p>Initialise a tensor such that any 1D slice through that tensor along a
-given axis is a sample from a specified Dirichlet distribution. Each 1D
-slice can therefore be understood as encoding a categorical probability
-distribution.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>tensor</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor to initialise in-place.</p>
-</dd>
-<dt><strong>distr</strong><span class="classifier">instance of <code class="docutils literal notranslate"><span class="pre">torch.distributions.Dirichlet</span></code></span></dt><dd><p>Parametrised Dirichlet distribution from which all 1D slices of the
-input tensor along the specified axis are sampled.</p>
-</dd>
-<dt><strong>axis</strong><span class="classifier">int (default -1)</span></dt><dd><p>Axis along which slices are sampled from the specified Dirichlet
-distribution.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>None. The input tensor is initialised in-place.</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 <section id="dirichletinit">
 <h2><code class="docutils literal notranslate"><span class="pre">DirichletInit</span></code><a class="headerlink" href="#dirichletinit" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.dirichlet.DirichletInit">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.dirichlet.</span></span><span class="sig-name descname"><span class="pre">DirichletInit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concentration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/dirichlet.py#L45-L92"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.dirichlet.DirichletInit" title="Permalink to this definition">#</a></dt>
-<dd><p>Dirichlet sample initialiser.</p>
-<p>Initialise a tensor such that any 1D slice through that tensor along a
-given axis is a sample from a specified Dirichlet distribution. Each 1D
-slice can therefore be understood as encoding a categorical probability
-distribution.</p>
-<p>When this initialiser is coupled with a softmax domain
-(<a class="reference internal" href="hypercoil.init.domain.MultiLogit.html"><span class="doc">MultiLogit</span></a>),
-the parent module can ensure that 1D slices of the initialised weights
-remain in the probability simplex as the module learns. This is currently
-the default behaviour.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>n_classes</strong><span class="classifier">int</span></dt><dd><p>Number of classes in the distribution.</p>
-</dd>
-<dt><strong>concentration</strong><span class="classifier">iterable</span></dt><dd><p>Concentration parameter for the Dirichlet distribution. This must have
-length equal to <code class="docutils literal notranslate"><span class="pre">n_classes</span></code>.</p>
-</dd>
-<dt><strong>axis</strong><span class="classifier">int (default -1)</span></dt><dd><p>Axis along which slices are sampled from the specified Dirichlet
-distribution.</p>
-</dd>
-<dt><strong>domain</strong><span class="classifier">Domain object (default <code class="docutils literal notranslate"><span class="pre">MultiLogit</span></code>)</span></dt><dd><p>Used in conjunction with an activation function to constrain or
-transform the values of the initialised tensor. For instance, using
-the MultiLogit domain constrains slices of the tensor (as seen by
-data) to lie in the appropriate probability simplex. Domain objects
-can be used with compatible modules and are documented further in
-<a class="reference internal" href="hypercoil.init.domain.html"><span class="doc">hypercoil.init.domain</span></a>.
-If no domain is specified, the <code class="docutils literal notranslate"><span class="pre">MultiLogit</span></code> domain is used.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 </section>
 
@@ -799,14 +731,8 @@ If no domain is specified, the <code class="docutils literal notranslate"><span 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-init"><code class="docutils literal notranslate"><span class="pre">dirichlet_init</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.dirichlet.dirichlet_init_"><code class="docutils literal notranslate"><span class="pre">dirichlet_init_()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichletinit"><code class="docutils literal notranslate"><span class="pre">DirichletInit</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.dirichlet.DirichletInit"><code class="docutils literal notranslate"><span class="pre">DirichletInit</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-init"><code class="docutils literal notranslate"><span class="pre">dirichlet_init</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichletinit"><code class="docutils literal notranslate"><span class="pre">DirichletInit</span></code></a></li>
 </ul>
   </nav></div>
 

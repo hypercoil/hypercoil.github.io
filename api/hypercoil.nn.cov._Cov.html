@@ -708,47 +708,6 @@ document.write(`
                   
   <section id="cov-covariance-base-class">
 <h1><code class="docutils literal notranslate"><span class="pre">_Cov</span></code>: Covariance base class<a class="headerlink" href="#cov-covariance-base-class" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.nn.cov._Cov">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.cov.</span></span><span class="sig-name descname"><span class="pre">_Cov</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_channels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rowvar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/nn/cov.py#L20-L116"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.cov._Cov" title="Permalink to this definition">#</a></dt>
-<dd><p>Base class for modules that estimate covariance or derived measures.</p>
-<p><code class="docutils literal notranslate"><span class="pre">_Cov</span></code> provides a common initialisation pattern together with methods
-for:</p>
-<ul class="simple">
-<li><p>injecting noise into the weights to regularise them</p></li>
-<li><p>toggling between train and test modes</p></li>
-<li><p>mapping between the learnable <code class="docutils literal notranslate"><span class="pre">'preweight'</span></code> internally stored by the
-module and the weight that is actually <code class="docutils literal notranslate"><span class="pre">'seen'</span></code> by the data where this
-is necessary</p></li>
-</ul>
-<p>Consult specific implementations for comprehensive documentation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>postweight</strong></dt><dd></dd>
-<dt><strong>weight</strong></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval</span></code>()</p></td>
-<td><p>Switch the module into testing mode.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">extra_repr</span></code>()</p></td>
-<td><p>Set the extra representation of the module</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">inject_noise</span></code>(weight)</p></td>
-<td><p>Inject noise into a weight tensor, as determined by the module's <code class="docutils literal notranslate"><span class="pre">noise</span></code> and <code class="docutils literal notranslate"><span class="pre">dropout</span></code> attributes.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">train</span></code>([mode])</p></td>
-<td><p>Toggle the module between training and testing modes.</p></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </section>
 
 
@@ -763,17 +722,6 @@ is necessary</p></li>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.cov._Cov"><code class="docutils literal notranslate"><span class="pre">_Cov</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

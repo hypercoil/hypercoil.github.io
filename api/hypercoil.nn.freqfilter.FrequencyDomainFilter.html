@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.freqfilter.FrequencyDomainFilter';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -704,107 +703,6 @@ document.write(`
                   
   <section id="freqfilter-frequency-domain-filter-layer">
 <h1><code class="docutils literal notranslate"><span class="pre">freqfilter</span></code>: Frequency-domain filter layer<a class="headerlink" href="#freqfilter-frequency-domain-filter-layer" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.nn.freqfilter.FrequencyDomainFilter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.freqfilter.</span></span><span class="sig-name descname"><span class="pre">FrequencyDomainFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_specs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_dim=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter=&lt;function</span> <span class="pre">product_filtfilt&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/nn/freqfilter.py#L16-L180"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.freqfilter.FrequencyDomainFilter" title="Permalink to this definition">#</a></dt>
-<dd><p>Filtering or convolution via transfer function multiplication in the
-frequency domain.</p>
-<p>Each time series in the input dataset is transformed into the frequency
-domain, where it is multiplied by the complex-valued transfer function of
-each filter in the module’s bank. Each filtered frequency spectrum is then
-transformed back into the time domain. To ensure a zero-phase filter, the
-filtered time series are reversed and the process is repeated.</p>
-<dl class="field-list">
-<dt class="field-odd">Dimension<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((N, *, C, T)\)</span></dt><dd><p>N denotes batch size, <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of
-intervening dimensions, <span class="math notranslate nohighlight">\(C\)</span> denotes number of data
-channels or variables, T denotes number of time points or
-observations per channel.</p>
-</dd>
-<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((N, *, F, C, T)\)</span></dt><dd><p>F denotes number of filters.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><dl>
-<dt><strong>filter_specs</strong><span class="classifier">list(FreqFilterSpec)</span></dt><dd><p>A list of filter specifications implemented as
-<span class="xref std std-doc">FreqFilterSpec</span>
-objects. These determine the filter bank that
-is applied to the input. Consult the <code class="docutils literal notranslate"><span class="pre">FreqFilterSpec</span></code> documentation
-for further details.</p>
-</dd>
-<dt><strong>dim</strong><span class="classifier">int or None</span></dt><dd><p>Number of frequency bins. This must be conformant with the time series
-supplied as input. If you are uncertain about the dimension in the
-frequency domain, it is possible to instead provide the <code class="docutils literal notranslate"><span class="pre">time_dim</span></code>
-argument (the length of the time series), but either <code class="docutils literal notranslate"><span class="pre">time_dim</span></code> or
-<code class="docutils literal notranslate"><span class="pre">dim</span></code> (but not both) must be specified.</p>
-</dd>
-<dt><strong>time_dim</strong><span class="classifier">int or None</span></dt><dd><p>Number of time points in the input time series. Either <code class="docutils literal notranslate"><span class="pre">time_dim</span></code> or
-<code class="docutils literal notranslate"><span class="pre">dim</span></code> (but not both) must be specified.</p>
-</dd>
-<dt><strong>filter</strong><span class="classifier">callable (default <code class="docutils literal notranslate"><span class="pre">product_filtfilt</span></code>)</span></dt><dd><p>Callable function that takes as its arguments an input time series and
-a set of transfer functions. It transforms the input into the frequency
-domain, multiplies it by the transfer function bank, and transforms it
-back. By default, the <code class="docutils literal notranslate"><span class="pre">product_filtfilt</span></code> function is used to ensure a
-zero-phase filter.</p>
-</dd>
-<dt><strong>domain</strong><span class="classifier">Domain object (default <code class="docutils literal notranslate"><span class="pre">AmplitudeAtanh</span></code>)</span></dt><dd><p>A domain object from <code class="docutils literal notranslate"><span class="pre">hypercoil.init.domain</span></code>, used to specify
-the domain of the filter spectrum. An
-<a class="reference internal" href="hypercoil.init.domainbase.Identity.html"><span class="doc">Identity</span></a> object yields the
-raw transfer function, while an
-<a class="reference internal" href="hypercoil.init.domain.AmplitudeAtanh.html"><span class="doc">AmplitudeAtanh</span></a> object
-transforms the amplitudes of each bin by the inverse tanh (atanh)
-function prior to convolution with the input. Using the
-<code class="docutils literal notranslate"><span class="pre">AmplitudeAtanh</span></code> domain thereby constrains transfer function
-amplitudes to [0, 1) and prevents explosive gain. An
-<a class="reference internal" href="hypercoil.init.domain.AmplitudeMultiLogit.html"><span class="doc">AmplitudeMultiLogit</span></a>
-domain can be used to instantiate and learn a parcellation over
-frequencies.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>preweight</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((F, D)\)</span></span></dt><dd><p>Filter bank transfer functions in the module’s domain. F denotes the
-total number of filters in the bank, and D denotes the dimension of
-the input dataset in the frequency domain. The weights are initialised
-to emulate each  of the filters specified in the <code class="docutils literal notranslate"><span class="pre">filter_specs</span></code>
-parameter following the <code class="docutils literal notranslate"><span class="pre">freqfilter_init_</span></code> function.</p>
-</dd>
-<dt><strong>weight</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((F, D)\)</span></span></dt><dd><p>The transfer function weights as seen by the input dataset in the
-frequency domain. This entails mapping the weights out of the
-specified predomain and applying any clamps declared in the input
-specifications.</p>
-</dd>
-<dt><strong>clamp_points</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((F, D)\)</span></span></dt><dd><p>Boolean-valued tensor mask indexing points in the transfer function
-that should be clamped to particular values. Any points so indexed
-will not be learnable. If this is None, then no clamp is applied.</p>
-</dd>
-<dt><strong>clamp_values</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((V)\)</span></span></dt><dd><p>Tensor containing values to which the transfer functions are clamped.
-<cite>V</cite> denotes the total number of values to be clamped across all
-transfer functions. If this is None, then no clamp is applied.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code>(input)</p></td>
-<td><p>Transform the input into the frequency domain, filter it, and transform the filtered signal back.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>reset_parameters</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </section>
 
 
@@ -819,17 +717,6 @@ transfer functions. If this is None, then no clamp is applied.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.freqfilter.FrequencyDomainFilter"><code class="docutils literal notranslate"><span class="pre">FrequencyDomainFilter</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

@@ -708,53 +708,6 @@ document.write(`
                   
   <section id="domaininitialiser">
 <h1><code class="docutils literal notranslate"><span class="pre">DomainInitialiser</span></code><a class="headerlink" href="#domaininitialiser" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.base.DomainInitialiser">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.base.</span></span><span class="sig-name descname"><span class="pre">DomainInitialiser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/base.py#L76-L120"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.base.DomainInitialiser" title="Permalink to this definition">#</a></dt>
-<dd><p>Initialiser for a tensor whose values are the preimage of some function.</p>
-<p>For example, a layer can internally store a “preweight” that is passed
-through a logistic function to produce the actual weight seen by data in
-the forward pass. This constrains the actual weight to the interval (0, 1)
-and makes the unconstrained preweight the learnable parameter. We might
-often wish to initialise the actual weight from some distribution rather
-than initialising the preweight; this class provides a convenient way to
-do so.</p>
-<p>A <code class="docutils literal notranslate"><span class="pre">DomainInitialiser</span></code> is callable with a single required argument: a
-tensor to be initialised following the specified initialisation scheme.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>init</strong><span class="classifier">callable</span></dt><dd><p>A python callable that takes as its single required parameter the
-tensor that is to be initialised; the callable should, when called,
-initialise the tensor in place. Callables with additional arguments
-can be constrained using <code class="docutils literal notranslate"><span class="pre">partial</span></code> from <code class="docutils literal notranslate"><span class="pre">functools</span></code> or an
-appropriate lambda function. If no <cite>init</cite> is explicitly specified,
-<code class="docutils literal notranslate"><span class="pre">DomainInitialiser</span></code> defaults to a uniform initialisation in the
-interval (0, 1).</p>
-</dd>
-<dt><strong>domain</strong><span class="classifier">Domain object</span></dt><dd><p>A representation of the function used to map between the learnable
-preweight and the weight “seen” by the data. It must have a
-<code class="docutils literal notranslate"><span class="pre">preimage</span></code> method that maps values in the weight domain to their
-preimage under the function: the corresponding values in the preweight
-domain. Examples are provided in
-<a class="reference internal" href="hypercoil.init.domain.html"><span class="doc">init.domain</span></a>.
-If no <code class="docutils literal notranslate"><span class="pre">domain</span></code> is
-explicitly specified, <code class="docutils literal notranslate"><span class="pre">DomainInitialiser</span></code> defaults to identity
-(preweight and weight are the same).</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(tensor, **params)</p></td>
-<td><p>Call self as a function.</p></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </section>
 
 
@@ -769,17 +722,6 @@ explicitly specified, <code class="docutils literal notranslate"><span class="pr
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.base.DomainInitialiser"><code class="docutils literal notranslate"><span class="pre">DomainInitialiser</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

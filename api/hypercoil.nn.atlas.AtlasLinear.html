@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.atlas.AtlasLinear';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -709,148 +708,6 @@ document.write(`
                   
   <section id="atlaslinear-linear-atlas-layer">
 <h1><code class="docutils literal notranslate"><span class="pre">AtlasLinear</span></code>: Linear atlas layer<a class="headerlink" href="#atlaslinear-linear-atlas-layer" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.nn.atlas.AtlasLinear">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.atlas.</span></span><span class="sig-name descname"><span class="pre">AtlasLinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atlas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compartments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concatenate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_bin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spherical_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_voxels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'map'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/nn/atlas.py#L20-L332"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.atlas.AtlasLinear" title="Permalink to this definition">#</a></dt>
-<dd><p>Time series extraction from an atlas via a linear map.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>atlas</strong><span class="classifier">Atlas object</span></dt><dd><p>A neuroimaging atlas, implemented as an instance of a subclass of
-<a class="reference internal" href="hypercoil.init.atlas.BaseAtlas.html"><span class="doc">BaseAtlas</span></a>.
-This initialises the atlas labels from which representative time
-series are extracted.</p>
-</dd>
-<dt><strong>kernel_sigma</strong><span class="classifier">float (default None)</span></dt><dd><p>If this is a float, then a Gaussian smoothing kernel with the
-specified width is applied to each label at initialisation.</p>
-</dd>
-<dt><strong>noise_sigma</strong><span class="classifier">float (default None)</span></dt><dd><p>If this is a float, then Gaussian noise with the specified standard
-deviation is added to the label at initialisation.</p>
-</dd>
-<dt><strong>mask_input</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that each input contains non-atlas locations and should be
-masked before time series extraction. If True, then the boolean tensor
-stored in the <code class="docutils literal notranslate"><span class="pre">mask</span></code> field of the <code class="docutils literal notranslate"><span class="pre">atlas</span></code> input is used to subset
-each input.</p>
-</dd>
-<dt><strong>spatial_dropout</strong><span class="classifier">float in [0, 1) (default 0)</span></dt><dd><p>Probability of dropout for each voxel. If this is nonzero, then during
-training each voxel’s weight has some probability of being set to zero,
-thus discounting the voxel from the time series estimate.
-Conjecturally, this can perhaps promote learning a weight that is
-robust to the influence of any single voxel.</p>
-</dd>
-<dt><strong>min_voxels</strong><span class="classifier">positive int (default 1)</span></dt><dd><p>Minimum number of voxels that each region must contain after dropout.
-If a random dropout results in fewer remaining voxels, then another
-random dropout will be sampled until the criterion is satisfied. Has no
-effect if <code class="docutils literal notranslate"><span class="pre">spatial_dropout</span></code> is zero.</p>
-</dd>
-<dt><strong>domain</strong><span class="classifier">Domain object (default <code class="docutils literal notranslate"><span class="pre">Identity</span></code>)</span></dt><dd><p>A domain mapper from
-<a class="reference internal" href="hypercoil.init.domain.html"><span class="doc">hypercoil.init.domain</span></a>, used to specify
-the domain of the atlas weights. An
-<a class="reference internal" href="hypercoil.init.domainbase.Identity.html"><span class="doc">Identity</span></a>
-object yields the raw atlas weights, while an
-<a class="reference internal" href="hypercoil.init.domain.Atanh.html"><span class="doc">Atanh</span></a> object constrains weights
-to <code class="docutils literal notranslate"><span class="pre">(-a,</span> <span class="pre">a)</span></code>, and a <a class="reference internal" href="hypercoil.init.domain.Logit.html"><span class="doc">Logit</span></a>
-object constrains weights to <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">a)</span></code> by transforming the raw
-weights through a tanh or sigmoid function, respectively. A
-<a class="reference internal" href="hypercoil.init.domain.MultiLogit.html"><span class="doc">MultiLogit</span></a> domain mapper
-lends the atlas an intuitive interpretation as a probabilistic
-parcellation. Using an appropriate domain can ensure that weights are
-nonnegative and that they do not grow explosively.</p>
-</dd>
-<dt><strong>reduction</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'mean'</span></code>, <code class="docutils literal notranslate"><span class="pre">'absmean'</span></code>, <code class="docutils literal notranslate"><span class="pre">'zscore'</span></code>, <code class="docutils literal notranslate"><span class="pre">'psc'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'sum'</span></code> (default <code class="docutils literal notranslate"><span class="pre">'mean'</span></code>)</span></dt><dd><p>Strategy for reducing across voxels and generating a representative
-time series for each label.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sum</span></code>: Weighted sum over voxel time series.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mean</span></code>: Compute the weighted mean over voxel time series.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">absmean</span></code>: Compute the weighted mean over voxel time series,
-treating any negative voxel weights as though they were positive.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">zscore</span></code>: Transform the sum of time series such that its temporal
-mean is 0 and its temporal standard deviation is 1.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">psc</span></code>: Transform the time series such that its value indicates the
-percent signal change from the mean. (<strong>untested</strong>))</p></li>
-</ul>
-</dd>
-<dt><strong>forward_mode</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'map'</span></code> or <code class="docutils literal notranslate"><span class="pre">'project'</span></code></span></dt><dd><p>Strategy for extracting regional time series from parcels.</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">'map'</span></code>: Simple linear map. Given a compartment atlas
-<span class="math notranslate nohighlight">\(A \in \mathbb{R}^{(L \times V)}\)</span>
-and a vertex-wise or voxel-wise input time series
-<span class="math notranslate nohighlight">\(T_{in} \in \mathbb{R}^{(V \times T)}\)</span>, returns</p>
-<p><span class="math notranslate nohighlight">\(T_{out} = A T_{in}\)</span>.</p>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'project'</span></code>: Projection using a linear least-squares fit. Given a
-compartment atlas
-<span class="math notranslate nohighlight">\(A \in \mathbb{R}^{(L \times V)}\)</span>
-and a vertex-wise or voxel-wise input time series
-<span class="math notranslate nohighlight">\(T_{in} \in \mathbb{R}^{(V \times T)}\)</span>, returns</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{aligned}
-T_{out} &amp;= \min_{X \in \mathbb{R}^{(L \times T)}} \| A^\intercal X - T_{in} \|_F\\&amp;= \left(A A^\intercal\right)^{-1} A T_{in}
-\end{aligned}\end{aligned}\end{align} \]</div>
-</li>
-</ul>
-</dd>
-<dt><strong>solver</strong><span class="classifier">any valid driver for <code class="docutils literal notranslate"><span class="pre">torch.linalg.lstsq</span></code></span></dt><dd><p>LAPACK/MAGMA driver for least-squares approximation. By default, the
-<code class="docutils literal notranslate"><span class="pre">'gels'</span></code> driver is used if module parameters are on CUDA and the
-<code class="docutils literal notranslate"><span class="pre">'gelsy'</span></code> driver is used if they are on CPU.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
-<dd class="field-even"><dl>
-<dt><strong>preweight</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((L, V)\)</span></span></dt><dd><p>Atlas map in the module’s domain. L denotes the number of labels, and
-V denotes the number of voxels. Identical to <code class="docutils literal notranslate"><span class="pre">weight</span></code> if the domain
-is <code class="docutils literal notranslate"><span class="pre">Identity</span></code>.</p>
-</dd>
-<dt><strong>weight</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((L, V)\)</span></span></dt><dd><p>Representation of the atlas as a linear map from voxels to labels,
-applied independently to each time point in each input image.</p>
-</dd>
-<dt><strong>postweight</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((L, V)\)</span></span></dt><dd><p>Atlas map after application of spatial dropout or noise. Spatial
-dropout has a chance of randomly removing each voxel from
-consideration when extracting each time series. Spatial dropout
-is applied only during training. Identical to <code class="docutils literal notranslate"><span class="pre">weight</span></code> if there is
-no spatial dropout.</p>
-</dd>
-<dt><strong>mask</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((V)\)</span></span></dt><dd><p>Boolean-valued tensor indicating the voxels that should be included as
-inputs to the atlas transformation.</p>
-</dd>
-<dt><strong>coors</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((V, D)\)</span></span></dt><dd><p>Spatial coordinates of each location in the atlas.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code>(input)</p></td>
-<td><p>Defines the computation performed at every call.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>apply_mask</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>compartment_forward</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>concatenate_and_decode</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>reduce</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>reset_parameters</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>select_compartment</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </section>
 
 
@@ -865,17 +722,6 @@ inputs to the atlas transformation.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.atlas.AtlasLinear"><code class="docutils literal notranslate"><span class="pre">AtlasLinear</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

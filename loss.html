@@ -698,314 +698,57 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-hypercoil.loss">
-<span id="loss-loss-and-regularisation"></span><h1><code class="docutils literal notranslate"><span class="pre">loss</span></code>: Loss and regularisation<a class="headerlink" href="#module-hypercoil.loss" title="Permalink to this heading">#</a></h1>
-<p>Loss functions and regularisations.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">loss</span></code> submodule is a collection of implementations of differentiable
-functions that map from arbitrary inputs to scalar-valued outputs. These
-scalar outputs can provide a starting point for a backward pass through a
-differentiable program model. Functionality is provided for various measures
-of interest to functional brain mapping and other contexts.</p>
-<p>Helper wrappers allow packaging of multiple loss objectives in a single call.
-Each wrapped objective can be selectively applied to a subset of input tensors
-using
-<span class="xref std std-doc">LossApply</span>,
-<span class="xref std std-doc">LossArgument</span>, and
-<span class="xref std std-doc">LossScheme</span>
-functionality.</p>
-<p>All loss objects additionally inherit
-<span class="xref std std-doc">sentry</span> functionality, enabling them to send
-and receive information about events from elsewhere and respond accordingly.
-For instance, this can facilitate archival of each loss value over the course
-of training to inform hyperparameter tuning. It can also be used to update
-multipliers over the course of training by listening for epoch changes.</p>
+  <section id="loss-loss-and-regularisation">
+<h1><code class="docutils literal notranslate"><span class="pre">loss</span></code>: Loss and regularisation<a class="headerlink" href="#loss-loss-and-regularisation" title="Permalink to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.base.LossApply.html"><code class="docutils literal notranslate"><span class="pre">LossApply</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.base.LossApply.html#hypercoil.loss.base.LossApply"><code class="docutils literal notranslate"><span class="pre">LossApply</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.base.LossApply.html#hypercoil.loss.base.LossApply.forward"><code class="docutils literal notranslate"><span class="pre">LossApply.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.base.LossApply.html#hypercoil.loss.base.LossApply.register_sentry"><code class="docutils literal notranslate"><span class="pre">LossApply.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.base.LossApply.html#hypercoil.loss.base.LossApply.register_action"><code class="docutils literal notranslate"><span class="pre">LossApply.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.base.ReducingLoss.html"><code class="docutils literal notranslate"><span class="pre">ReducingLoss</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.base.ReducingLoss.html#hypercoil.loss.base.ReducingLoss"><code class="docutils literal notranslate"><span class="pre">ReducingLoss</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.base.ReducingLoss.html#hypercoil.loss.base.ReducingLoss.forward"><code class="docutils literal notranslate"><span class="pre">ReducingLoss.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.base.ReducingLoss.html#hypercoil.loss.base.ReducingLoss.register_sentry"><code class="docutils literal notranslate"><span class="pre">ReducingLoss.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.base.ReducingLoss.html#hypercoil.loss.base.ReducingLoss.register_action"><code class="docutils literal notranslate"><span class="pre">ReducingLoss.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.batchcorr.auto_tol.html"><code class="docutils literal notranslate"><span class="pre">auto_tol</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.batchcorr.auto_tol.html#hypercoil.loss.batchcorr.auto_tol"><code class="docutils literal notranslate"><span class="pre">auto_tol()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.batchcorr.BatchCorrelation.html"><code class="docutils literal notranslate"><span class="pre">BatchCorrelation</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.batchcorr.BatchCorrelation.html#hypercoil.loss.batchcorr.BatchCorrelation"><code class="docutils literal notranslate"><span class="pre">BatchCorrelation</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.batchcorr.BatchCorrelation.html#hypercoil.loss.batchcorr.BatchCorrelation.forward"><code class="docutils literal notranslate"><span class="pre">BatchCorrelation.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.batchcorr.BatchCorrelation.html#hypercoil.loss.batchcorr.BatchCorrelation.register_sentry"><code class="docutils literal notranslate"><span class="pre">BatchCorrelation.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.batchcorr.BatchCorrelation.html#hypercoil.loss.batchcorr.BatchCorrelation.register_action"><code class="docutils literal notranslate"><span class="pre">BatchCorrelation.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.batchcorr.QCFC.html"><code class="docutils literal notranslate"><span class="pre">QCFC</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.batchcorr.QCFC.html#hypercoil.loss.batchcorr.QCFC"><code class="docutils literal notranslate"><span class="pre">QCFC</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.batchcorr.QCFC.html#hypercoil.loss.batchcorr.QCFC.forward"><code class="docutils literal notranslate"><span class="pre">QCFC.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.batchcorr.QCFC.html#hypercoil.loss.batchcorr.QCFC.register_sentry"><code class="docutils literal notranslate"><span class="pre">QCFC.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.batchcorr.QCFC.html#hypercoil.loss.batchcorr.QCFC.register_action"><code class="docutils literal notranslate"><span class="pre">QCFC.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.cmass.Compactness.html"><code class="docutils literal notranslate"><span class="pre">Compactness</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.cmass.Compactness.html#hypercoil.loss.cmass.Compactness"><code class="docutils literal notranslate"><span class="pre">Compactness</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.cmass.Compactness.html#hypercoil.loss.cmass.Compactness.forward"><code class="docutils literal notranslate"><span class="pre">Compactness.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.cmass.Compactness.html#hypercoil.loss.cmass.Compactness.register_sentry"><code class="docutils literal notranslate"><span class="pre">Compactness.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.cmass.Compactness.html#hypercoil.loss.cmass.Compactness.register_action"><code class="docutils literal notranslate"><span class="pre">Compactness.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.cmass.HemisphericTether.html"><code class="docutils literal notranslate"><span class="pre">HemisphericTether</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.cmass.HemisphericTether.html#hypercoil.loss.cmass.HemisphericTether"><code class="docutils literal notranslate"><span class="pre">HemisphericTether</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.cmass.HemisphericTether.html#hypercoil.loss.cmass.HemisphericTether.forward"><code class="docutils literal notranslate"><span class="pre">HemisphericTether.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.cmass.HemisphericTether.html#hypercoil.loss.cmass.HemisphericTether.register_sentry"><code class="docutils literal notranslate"><span class="pre">HemisphericTether.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.cmass.HemisphericTether.html#hypercoil.loss.cmass.HemisphericTether.register_action"><code class="docutils literal notranslate"><span class="pre">HemisphericTether.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.connectopy.html">Connectopy loss functional</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.connectopy.html#hypercoil.loss.connectopy.connectopy_loss"><code class="docutils literal notranslate"><span class="pre">connectopy_loss()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.base.LossApply.html"><code class="docutils literal notranslate"><span class="pre">LossApply</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.base.ReducingLoss.html"><code class="docutils literal notranslate"><span class="pre">ReducingLoss</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.batchcorr.auto_tol.html"><code class="docutils literal notranslate"><span class="pre">auto_tol</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.batchcorr.BatchCorrelation.html"><code class="docutils literal notranslate"><span class="pre">BatchCorrelation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.batchcorr.QCFC.html"><code class="docutils literal notranslate"><span class="pre">QCFC</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.cmass.Compactness.html"><code class="docutils literal notranslate"><span class="pre">Compactness</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.cmass.HemisphericTether.html"><code class="docutils literal notranslate"><span class="pre">HemisphericTether</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.connectopy.html">Connectopy loss functional</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.determinant.html"><code class="docutils literal notranslate"><span class="pre">determinant</span></code>: Log determinant-based losses</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.determinant.html#logdetcorr"><code class="docutils literal notranslate"><span class="pre">LogDetCorr</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.LogDetCorr"><code class="docutils literal notranslate"><span class="pre">LogDetCorr</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.LogDetCorr.forward"><code class="docutils literal notranslate"><span class="pre">LogDetCorr.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.LogDetCorr.register_sentry"><code class="docutils literal notranslate"><span class="pre">LogDetCorr.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.LogDetCorr.register_action"><code class="docutils literal notranslate"><span class="pre">LogDetCorr.register_action()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.determinant.html#logdetcorr"><code class="docutils literal notranslate"><span class="pre">LogDetCorr</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.determinant.html#detcorr"><code class="docutils literal notranslate"><span class="pre">DetCorr</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.determinant.html#logdet"><code class="docutils literal notranslate"><span class="pre">LogDet</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.determinant.html#determinant"><code class="docutils literal notranslate"><span class="pre">Determinant</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.determinant.html#detcorr"><code class="docutils literal notranslate"><span class="pre">DetCorr</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.DetCorr"><code class="docutils literal notranslate"><span class="pre">DetCorr</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.DetCorr.forward"><code class="docutils literal notranslate"><span class="pre">DetCorr.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.DetCorr.register_sentry"><code class="docutils literal notranslate"><span class="pre">DetCorr.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.DetCorr.register_action"><code class="docutils literal notranslate"><span class="pre">DetCorr.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.determinant.html#logdet"><code class="docutils literal notranslate"><span class="pre">LogDet</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.LogDet"><code class="docutils literal notranslate"><span class="pre">LogDet</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.LogDet.forward"><code class="docutils literal notranslate"><span class="pre">LogDet.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.LogDet.register_sentry"><code class="docutils literal notranslate"><span class="pre">LogDet.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.LogDet.register_action"><code class="docutils literal notranslate"><span class="pre">LogDet.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.determinant.html#determinant"><code class="docutils literal notranslate"><span class="pre">Determinant</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.Determinant"><code class="docutils literal notranslate"><span class="pre">Determinant</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.Determinant.forward"><code class="docutils literal notranslate"><span class="pre">Determinant.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.Determinant.register_sentry"><code class="docutils literal notranslate"><span class="pre">Determinant.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.determinant.html#hypercoil.loss.determinant.Determinant.register_action"><code class="docutils literal notranslate"><span class="pre">Determinant.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.dispersion.VectorDispersion.html"><code class="docutils literal notranslate"><span class="pre">VectorDispersion</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.dispersion.VectorDispersion.html#hypercoil.loss.dispersion.VectorDispersion"><code class="docutils literal notranslate"><span class="pre">VectorDispersion</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.dispersion.VectorDispersion.html#hypercoil.loss.dispersion.VectorDispersion.forward"><code class="docutils literal notranslate"><span class="pre">VectorDispersion.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.dispersion.VectorDispersion.html#hypercoil.loss.dispersion.VectorDispersion.register_sentry"><code class="docutils literal notranslate"><span class="pre">VectorDispersion.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.dispersion.VectorDispersion.html#hypercoil.loss.dispersion.VectorDispersion.register_action"><code class="docutils literal notranslate"><span class="pre">VectorDispersion.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.dispersion.VectorDispersion.html"><code class="docutils literal notranslate"><span class="pre">VectorDispersion</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.entropy.html"><code class="docutils literal notranslate"><span class="pre">Entropy</span></code> and <code class="docutils literal notranslate"><span class="pre">SoftmaxEntropy</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.entropy.html#entropy"><code class="docutils literal notranslate"><span class="pre">Entropy</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy.Entropy"><code class="docutils literal notranslate"><span class="pre">Entropy</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy.Entropy.forward"><code class="docutils literal notranslate"><span class="pre">Entropy.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy.Entropy.register_sentry"><code class="docutils literal notranslate"><span class="pre">Entropy.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy.Entropy.register_action"><code class="docutils literal notranslate"><span class="pre">Entropy.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.entropy.html#softmaxentropy"><code class="docutils literal notranslate"><span class="pre">SoftmaxEntropy</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy.SoftmaxEntropy"><code class="docutils literal notranslate"><span class="pre">SoftmaxEntropy</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy.SoftmaxEntropy.forward"><code class="docutils literal notranslate"><span class="pre">SoftmaxEntropy.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy.SoftmaxEntropy.register_sentry"><code class="docutils literal notranslate"><span class="pre">SoftmaxEntropy.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.entropy.html#hypercoil.loss.entropy.SoftmaxEntropy.register_action"><code class="docutils literal notranslate"><span class="pre">SoftmaxEntropy.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.entropy.html#entropy"><code class="docutils literal notranslate"><span class="pre">Entropy</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.entropy.html#softmaxentropy"><code class="docutils literal notranslate"><span class="pre">SoftmaxEntropy</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html"><code class="docutils literal notranslate"><span class="pre">Equilibrium</span></code> and <code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#equilibrium"><code class="docutils literal notranslate"><span class="pre">Equilibrium</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium.Equilibrium"><code class="docutils literal notranslate"><span class="pre">Equilibrium</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium.Equilibrium.forward"><code class="docutils literal notranslate"><span class="pre">Equilibrium.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium.Equilibrium.register_sentry"><code class="docutils literal notranslate"><span class="pre">Equilibrium.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium.Equilibrium.register_action"><code class="docutils literal notranslate"><span class="pre">Equilibrium.register_action()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#equilibrium"><code class="docutils literal notranslate"><span class="pre">Equilibrium</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#softmaxequilibrium"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#softmaxequilibrium"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium.SoftmaxEquilibrium"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium.SoftmaxEquilibrium.forward"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium.SoftmaxEquilibrium.register_sentry"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.equilibrium.html#hypercoil.loss.equilibrium.SoftmaxEquilibrium.register_action"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.hinge.HingeLoss.html"><code class="docutils literal notranslate"><span class="pre">HingeLoss</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.hinge.HingeLoss.html#hypercoil.loss.hinge.HingeLoss"><code class="docutils literal notranslate"><span class="pre">HingeLoss</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.hinge.HingeLoss.html#hypercoil.loss.hinge.HingeLoss.forward"><code class="docutils literal notranslate"><span class="pre">HingeLoss.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.hinge.HingeLoss.html#hypercoil.loss.hinge.HingeLoss.register_sentry"><code class="docutils literal notranslate"><span class="pre">HingeLoss.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.hinge.HingeLoss.html#hypercoil.loss.hinge.HingeLoss.register_action"><code class="docutils literal notranslate"><span class="pre">HingeLoss.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.hinge.HingeLoss.html"><code class="docutils literal notranslate"><span class="pre">HingeLoss</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html"><code class="docutils literal notranslate"><span class="pre">JSDivergence</span></code> and <code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#jsdivergence"><code class="docutils literal notranslate"><span class="pre">JSDivergence</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#hypercoil.loss.jsdiv.JSDivergence"><code class="docutils literal notranslate"><span class="pre">JSDivergence</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#hypercoil.loss.jsdiv.JSDivergence.forward"><code class="docutils literal notranslate"><span class="pre">JSDivergence.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#hypercoil.loss.jsdiv.JSDivergence.register_sentry"><code class="docutils literal notranslate"><span class="pre">JSDivergence.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#hypercoil.loss.jsdiv.JSDivergence.register_action"><code class="docutils literal notranslate"><span class="pre">JSDivergence.register_action()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#jsdivergence"><code class="docutils literal notranslate"><span class="pre">JSDivergence</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#softmaxjsdivergence"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#softmaxjsdivergence"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#hypercoil.loss.jsdiv.SoftmaxJSDivergence"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#hypercoil.loss.jsdiv.SoftmaxJSDivergence.forward"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#hypercoil.loss.jsdiv.SoftmaxJSDivergence.register_sentry"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.jsdiv.html#hypercoil.loss.jsdiv.SoftmaxJSDivergence.register_action"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.modularity.ModularityLoss.html"><code class="docutils literal notranslate"><span class="pre">ModularityLoss</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.modularity.ModularityLoss.html#hypercoil.loss.modularity.ModularityLoss"><code class="docutils literal notranslate"><span class="pre">ModularityLoss</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.modularity.ModularityLoss.html#hypercoil.loss.modularity.ModularityLoss.forward"><code class="docutils literal notranslate"><span class="pre">ModularityLoss.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.modularity.ModularityLoss.html#hypercoil.loss.modularity.ModularityLoss.register_sentry"><code class="docutils literal notranslate"><span class="pre">ModularityLoss.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.modularity.ModularityLoss.html#hypercoil.loss.modularity.ModularityLoss.register_action"><code class="docutils literal notranslate"><span class="pre">ModularityLoss.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.mvkurtosis.MultivariateKurtosis.html"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.mvkurtosis.MultivariateKurtosis.html#hypercoil.loss.mvkurtosis.MultivariateKurtosis"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.mvkurtosis.MultivariateKurtosis.html#hypercoil.loss.mvkurtosis.MultivariateKurtosis.forward"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.mvkurtosis.MultivariateKurtosis.html#hypercoil.loss.mvkurtosis.MultivariateKurtosis.register_sentry"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.mvkurtosis.MultivariateKurtosis.html#hypercoil.loss.mvkurtosis.MultivariateKurtosis.register_action"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.norm.NormedLoss.html"><code class="docutils literal notranslate"><span class="pre">NormedLoss</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.norm.NormedLoss.html#hypercoil.loss.norm.NormedLoss"><code class="docutils literal notranslate"><span class="pre">NormedLoss</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.norm.NormedLoss.html#hypercoil.loss.norm.NormedLoss.forward"><code class="docutils literal notranslate"><span class="pre">NormedLoss.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.norm.NormedLoss.html#hypercoil.loss.norm.NormedLoss.register_sentry"><code class="docutils literal notranslate"><span class="pre">NormedLoss.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.norm.NormedLoss.html#hypercoil.loss.norm.NormedLoss.register_action"><code class="docutils literal notranslate"><span class="pre">NormedLoss.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.norm.UnilateralNormedLoss.html"><code class="docutils literal notranslate"><span class="pre">UnilateralNormedLoss</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.norm.UnilateralNormedLoss.html#hypercoil.loss.norm.UnilateralNormedLoss"><code class="docutils literal notranslate"><span class="pre">UnilateralNormedLoss</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.norm.UnilateralNormedLoss.html#hypercoil.loss.norm.UnilateralNormedLoss.forward"><code class="docutils literal notranslate"><span class="pre">UnilateralNormedLoss.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.norm.UnilateralNormedLoss.html#hypercoil.loss.norm.UnilateralNormedLoss.register_sentry"><code class="docutils literal notranslate"><span class="pre">UnilateralNormedLoss.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.norm.UnilateralNormedLoss.html#hypercoil.loss.norm.UnilateralNormedLoss.register_action"><code class="docutils literal notranslate"><span class="pre">UnilateralNormedLoss.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.norm.ConstraintViolation.html"><code class="docutils literal notranslate"><span class="pre">ConstraintViolation</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.norm.ConstraintViolation.html#hypercoil.loss.norm.ConstraintViolation"><code class="docutils literal notranslate"><span class="pre">ConstraintViolation</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.norm.ConstraintViolation.html#hypercoil.loss.norm.ConstraintViolation.forward"><code class="docutils literal notranslate"><span class="pre">ConstraintViolation.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.norm.ConstraintViolation.html#hypercoil.loss.norm.ConstraintViolation.register_sentry"><code class="docutils literal notranslate"><span class="pre">ConstraintViolation.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.norm.ConstraintViolation.html#hypercoil.loss.norm.ConstraintViolation.register_action"><code class="docutils literal notranslate"><span class="pre">ConstraintViolation.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scheme.LossScheme.html"><code class="docutils literal notranslate"><span class="pre">LossScheme</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.scheme.LossScheme.html#hypercoil.loss.scheme.LossScheme"><code class="docutils literal notranslate"><span class="pre">LossScheme</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.scheme.LossScheme.html#hypercoil.loss.scheme.LossScheme.forward"><code class="docutils literal notranslate"><span class="pre">LossScheme.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.scheme.LossScheme.html#hypercoil.loss.scheme.LossScheme.register_sentry"><code class="docutils literal notranslate"><span class="pre">LossScheme.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.scheme.LossScheme.html#hypercoil.loss.scheme.LossScheme.register_action"><code class="docutils literal notranslate"><span class="pre">LossScheme.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.modularity.ModularityLoss.html"><code class="docutils literal notranslate"><span class="pre">ModularityLoss</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.mvkurtosis.MultivariateKurtosis.html"><code class="docutils literal notranslate"><span class="pre">MultivariateKurtosis</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.norm.NormedLoss.html"><code class="docutils literal notranslate"><span class="pre">NormedLoss</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.norm.UnilateralNormedLoss.html"><code class="docutils literal notranslate"><span class="pre">UnilateralNormedLoss</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.norm.ConstraintViolation.html"><code class="docutils literal notranslate"><span class="pre">ConstraintViolation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.scheme.LossScheme.html"><code class="docutils literal notranslate"><span class="pre">LossScheme</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html"><code class="docutils literal notranslate"><span class="pre">secondmoment</span></code>: Second moment-based losses</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#secondmoment"><code class="docutils literal notranslate"><span class="pre">SecondMoment</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#hypercoil.loss.secondmoment.SecondMoment"><code class="docutils literal notranslate"><span class="pre">SecondMoment</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#hypercoil.loss.secondmoment.SecondMoment.forward"><code class="docutils literal notranslate"><span class="pre">SecondMoment.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#hypercoil.loss.secondmoment.SecondMoment.register_sentry"><code class="docutils literal notranslate"><span class="pre">SecondMoment.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#hypercoil.loss.secondmoment.SecondMoment.register_action"><code class="docutils literal notranslate"><span class="pre">SecondMoment.register_action()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#secondmoment"><code class="docutils literal notranslate"><span class="pre">SecondMoment</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#secondmomentcentred"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#secondmomentcentred"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#hypercoil.loss.secondmoment.SecondMomentCentred"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#hypercoil.loss.secondmoment.SecondMomentCentred.forward"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#hypercoil.loss.secondmoment.SecondMomentCentred.register_sentry"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.secondmoment.html#hypercoil.loss.secondmoment.SecondMomentCentred.register_action"><code class="docutils literal notranslate"><span class="pre">SecondMomentCentred.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.smoothness.SmoothnessPenalty.html"><code class="docutils literal notranslate"><span class="pre">SmoothnessPenalty</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.smoothness.SmoothnessPenalty.html#hypercoil.loss.smoothness.SmoothnessPenalty"><code class="docutils literal notranslate"><span class="pre">SmoothnessPenalty</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.smoothness.SmoothnessPenalty.html#hypercoil.loss.smoothness.SmoothnessPenalty.forward"><code class="docutils literal notranslate"><span class="pre">SmoothnessPenalty.forward()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.smoothness.SmoothnessPenalty.html#hypercoil.loss.smoothness.SmoothnessPenalty.register_sentry"><code class="docutils literal notranslate"><span class="pre">SmoothnessPenalty.register_sentry()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.smoothness.SmoothnessPenalty.html#hypercoil.loss.smoothness.SmoothnessPenalty.register_action"><code class="docutils literal notranslate"><span class="pre">SmoothnessPenalty.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.smoothness.SmoothnessPenalty.html"><code class="docutils literal notranslate"><span class="pre">SmoothnessPenalty</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodal</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#id1"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodal</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#hypercoil.loss.symbimodal.SymmetricBimodal"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodal</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#hypercoil.loss.symbimodal.SymmetricBimodal.forward"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodal.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#hypercoil.loss.symbimodal.SymmetricBimodal.register_sentry"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodal.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#hypercoil.loss.symbimodal.SymmetricBimodal.register_action"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodal.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#symmetricbimodalnorm"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodalNorm</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#hypercoil.loss.symbimodal.SymmetricBimodalNorm"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodalNorm</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#hypercoil.loss.symbimodal.SymmetricBimodalNorm.forward"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodalNorm.forward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#hypercoil.loss.symbimodal.SymmetricBimodalNorm.register_sentry"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodalNorm.register_sentry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#hypercoil.loss.symbimodal.SymmetricBimodalNorm.register_action"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodalNorm.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#id1"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodal</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/hypercoil.loss.symbimodal.html#symmetricbimodalnorm"><code class="docutils literal notranslate"><span class="pre">SymmetricBimodalNorm</span></code></a></li>
 </ul>
 </li>
 </ul>

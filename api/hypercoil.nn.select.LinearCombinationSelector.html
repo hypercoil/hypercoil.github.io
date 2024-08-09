@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.select.LinearCombinationSelector';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -709,49 +708,6 @@ document.write(`
                   
   <section id="linearcombinationselector">
 <h1><code class="docutils literal notranslate"><span class="pre">LinearCombinationSelector</span></code><a class="headerlink" href="#linearcombinationselector" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.nn.select.LinearCombinationSelector">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.select.</span></span><span class="sig-name descname"><span class="pre">LinearCombinationSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/nn/select.py#L298-L336"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.select.LinearCombinationSelector" title="Permalink to this definition">#</a></dt>
-<dd><p>Model selection as a linear combination.</p>
-<p>Learn linear combinations of candidate vectors to produce a model. Thin
-wrapper around <cite>torch.nn.Linear</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Dimension<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((*, I, T)\)</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of preceding dimensions,
-<span class="math notranslate nohighlight">\(I\)</span> denotes number of candidate model vectors,
-<span class="math notranslate nohighlight">\(T\)</span> denotes number of time points or observations
-per vector.</p>
-</dd>
-<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, O, T)\)</span></dt><dd><p><span class="math notranslate nohighlight">\(O\)</span> denotes the final model dimension.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>model_dim</strong><span class="classifier">int</span></dt><dd><p>Dimension of the model to be learned.</p>
-</dd>
-<dt><strong>n_columns</strong><span class="classifier">int</span></dt><dd><p>Number of input vectors to be combined linearly to form the model.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>weight</strong><span class="classifier">tensor</span></dt><dd><p>Tensor of shape <span class="math notranslate nohighlight">\((I, O)\)</span> <cite>n_columns</cite> x <cite>model_dim</cite>.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code>(x)</p></td>
-<td><p>Defines the computation performed at every call.</p></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </section>
 
 
@@ -766,17 +722,6 @@ per vector.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.select.LinearCombinationSelector"><code class="docutils literal notranslate"><span class="pre">LinearCombinationSelector</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

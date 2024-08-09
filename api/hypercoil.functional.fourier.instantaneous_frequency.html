@@ -708,44 +708,6 @@ document.write(`
                   
   <section id="instantaneous-frequency">
 <h1><code class="docutils literal notranslate"><span class="pre">instantaneous_frequency</span></code><a class="headerlink" href="#instantaneous-frequency" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.functional.fourier.instantaneous_frequency">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.fourier.</span></span><span class="sig-name descname"><span class="pre">instantaneous_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.283185307179586</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/fourier.py#L323-L360"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.fourier.instantaneous_frequency" title="Permalink to this definition">#</a></dt>
-<dd><p>Instantaneous frequency of a signal, computed via the analytic signal.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you require the envelope or instantaneous phase in addition to the
-the instantaneous frequency, <a class="reference internal" href="hypercoil.functional.fourier.env_inst.html#hypercoil.functional.fourier.env_inst" title="hypercoil.functional.fourier.env_inst"><code class="xref py py-func docutils literal notranslate"><span class="pre">env_inst()</span></code></a> will be more efficient.</p>
-</div>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>X</strong><span class="classifier">tensor</span></dt><dd><p>Input tensor.</p>
-</dd>
-<dt><strong>axis</strong><span class="classifier">int (default -1)</span></dt><dd><p>Axis along which the transform is applied.</p>
-</dd>
-<dt><strong>n</strong><span class="classifier">int (default None)</span></dt><dd><p>Number of frequency components; dimension of the Fourier transform.
-This defaults to the size of the input along the transform axis.</p>
-</dd>
-<dt><strong>fs</strong><span class="classifier">float (default 1)</span></dt><dd><p>Sampling frequency.</p>
-</dd>
-<dt><strong>period</strong><span class="classifier">float (default <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">*</span> <span class="pre">pi</span></code>)</span></dt><dd><p>Range over which the signal wraps. (See <a class="reference internal" href="hypercoil.functional.fourier.unwrap.html#hypercoil.functional.fourier.unwrap" title="hypercoil.functional.fourier.unwrap"><code class="xref py py-func docutils literal notranslate"><span class="pre">unwrap()</span></code></a>.)</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="hypercoil.functional.fourier.analytic_signal.html#hypercoil.functional.fourier.analytic_signal" title="hypercoil.functional.fourier.analytic_signal"><code class="xref py py-func docutils literal notranslate"><span class="pre">analytic_signal()</span></code></a></dt><dd></dd>
-<dt><a class="reference internal" href="hypercoil.functional.fourier.hilbert_transform.html#hypercoil.functional.fourier.hilbert_transform" title="hypercoil.functional.fourier.hilbert_transform"><code class="xref py py-func docutils literal notranslate"><span class="pre">hilbert_transform()</span></code></a></dt><dd></dd>
-<dt><a class="reference internal" href="hypercoil.functional.fourier.envelope.html#hypercoil.functional.fourier.envelope" title="hypercoil.functional.fourier.envelope"><code class="xref py py-func docutils literal notranslate"><span class="pre">envelope()</span></code></a></dt><dd></dd>
-<dt><a class="reference internal" href="hypercoil.functional.fourier.instantaneous_phase.html#hypercoil.functional.fourier.instantaneous_phase" title="hypercoil.functional.fourier.instantaneous_phase"><code class="xref py py-func docutils literal notranslate"><span class="pre">instantaneous_phase()</span></code></a></dt><dd></dd>
-<dt><a class="reference internal" href="hypercoil.functional.fourier.env_inst.html#hypercoil.functional.fourier.env_inst" title="hypercoil.functional.fourier.env_inst"><code class="xref py py-func docutils literal notranslate"><span class="pre">env_inst()</span></code></a></dt><dd></dd>
-</dl>
-</div>
-</dd></dl>
-
 </section>
 
 
@@ -760,17 +722,6 @@ This defaults to the size of the input along the transform axis.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.fourier.instantaneous_frequency"><code class="docutils literal notranslate"><span class="pre">instantaneous_frequency()</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

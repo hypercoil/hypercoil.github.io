@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.graph.relaxed_modularity';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -709,97 +708,6 @@ document.write(`
                   
   <section id="relaxed-modularity">
 <h1><code class="docutils literal notranslate"><span class="pre">relaxed_modularity</span></code><a class="headerlink" href="#relaxed-modularity" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.functional.graph.relaxed_modularity">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.graph.</span></span><span class="sig-name descname"><span class="pre">relaxed_modularity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_o=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_diag=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null=&lt;function</span> <span class="pre">girvan_newman_null&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise_modularity=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise_coaffiliation=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign='+'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**params</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/graph.py#L193-L289"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.graph.relaxed_modularity" title="Permalink to this definition">#</a></dt>
-<dd><p>A relaxation of the modularity of a network given a community partition.</p>
-<p>This relaxation supports non-deterministic assignments of vertices to
-communities and non-assortative linkages between communities. It reverts
-to standard behaviour when the inputs it is provided are standard.</p>
-<p>The relaxed modularity is defined as the sum of all entries in the
-Hadamard (elementwise) product between the modularity matrix and the
-coaffiliation matrix.</p>
-<p><span class="math notranslate nohighlight">\(Q = \mathbf{1}^\intercal \left( B \circ H \right) \mathbf{1}\)</span></p>
-<dl class="field-list">
-<dt class="field-odd">Dimension<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((N, *, I, O)\)</span></dt><dd><p>N denotes batch size, <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of
-intervening dimensions, I denotes number of vertices in
-the source set and O denotes number of vertices in the
-sink set. If the same set of vertices emits and receives
-edges, then <span class="math notranslate nohighlight">\(I = O\)</span>.</p>
-</dd>
-<dt><strong>C :</strong> <span class="math notranslate nohighlight">\((*, I, C)\)</span></dt><dd><p>C denotes the total number of communities in the proposed
-partition.</p>
-</dd>
-<dt><strong>C_o :</strong> <span class="math notranslate nohighlight">\((*, I, C)\)</span></dt><dd><p>As above.</p>
-</dd>
-<dt><strong>L :</strong> <span class="math notranslate nohighlight">\((*, C, C)\)</span></dt><dd><p>As above.</p>
-</dd>
-<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((N, *)\)</span></dt><dd><p>As above.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><dl>
-<dt><strong>A</strong><span class="classifier">Tensor</span></dt><dd><p>Block of adjacency matrices for which the modularity is to be computed.</p>
-</dd>
-<dt><strong>C</strong><span class="classifier">Tensor</span></dt><dd><p>Community affiliation of vertices in the source set. Each slice is a
-matrix <span class="math notranslate nohighlight">\(C^{(i)} \in \mathbb{R}^{I \ times C}\)</span> that encodes the
-uncertainty in each vertex’s community assignment. <span class="math notranslate nohighlight">\(C^{(i)}_{jk}\)</span>
-denotes the probability that vertex j is assigned to community k. If
-this is binary-valued, then it reflects a deterministic assignment.</p>
-</dd>
-<dt><strong>C_o</strong><span class="classifier">Tensor or None (default None)</span></dt><dd><p>Community affiliation of vertices in the sink set. If None, then it is
-assumed that the source and sink sets are the same, and <code class="docutils literal notranslate"><span class="pre">C_o</span></code> is set
-equal to <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p>
-</dd>
-<dt><strong>L</strong><span class="classifier">Tensor or None (default None)</span></dt><dd><p>Probability of affiliation between communities. Each entry
-<span class="math notranslate nohighlight">\(L_{ij}\)</span> encodes the probability of a vertex in community i
-connecting with a vertex in community j. If None, then a strictly
-assortative structure is assumed (equivalent to L equals identity),
-under which nodes in the same community preferentially coaffiliate
-while nodes in different communities remain disaffiliated.</p>
-</dd>
-<dt><strong>exclude_diag</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that self-links are not factored into the coaffiliation.</p>
-</dd>
-<dt><strong>gamma</strong><span class="classifier">nonnegative float (default 1)</span></dt><dd><p>Resolution parameter for the modularity matrix. A smaller value
-assigns maximum modularity to partitions with large communities, while
-a larger value assigns maximum modularity to partitions with many
-small communities.</p>
-</dd>
-<dt><strong>null</strong><span class="classifier">callable(A) (default <code class="docutils literal notranslate"><span class="pre">girvan_newman_null</span></code>)</span></dt><dd><p>Function of <code class="docutils literal notranslate"><span class="pre">A</span></code> that returns, for each adjacency matrix in the input
-tensor block, a suitable null model. By default, the
-<a class="reference internal" href="hypercoil.functional.graph.girvan_newman_null.html"><span class="doc">Girvan-Newman null model</span></a>
-is used.</p>
-</dd>
-<dt><strong>normalise_modularity</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that the resulting matrix should be normalised by the total
-matrix degree. This may not be necessary for many use cases – for
-instance, where the arg max of a function of the modularity matrix is
-desired.</p>
-</dd>
-<dt><strong>normalise_coaffiliation</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that all weights in the community assignment matrix block
-should be renormalised to max out at 1. Note that this is unnecessary
-if the affiliations have already been passed through a softmax.</p>
-</dd>
-<dt><strong>directed</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that the input adjacency matrices should be considered as a
-directed graph.</p>
-</dd>
-<dt><strong>sign</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'+'</span></code>, <code class="docutils literal notranslate"><span class="pre">'-'</span></code>, or None (default <code class="docutils literal notranslate"><span class="pre">'+'</span></code>)</span></dt><dd><p>Sign of connections to be considered in the modularity.</p>
-</dd>
-<dt><strong>**params</strong></dt><dd><p>Any additional parameters are passed to the null model.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>Q</strong><span class="classifier">Tensor</span></dt><dd><p>Modularity of each input adjacency matrix.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
@@ -814,17 +722,6 @@ directed graph.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.graph.relaxed_modularity"><code class="docutils literal notranslate"><span class="pre">relaxed_modularity()</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

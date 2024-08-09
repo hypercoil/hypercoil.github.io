@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.cmass.Compactness';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -704,89 +703,6 @@ document.write(`
                   
   <section id="compactness">
 <h1><code class="docutils literal notranslate"><span class="pre">Compactness</span></code><a class="headerlink" href="#compactness" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.cmass.Compactness">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.cmass.</span></span><span class="sig-name descname"><span class="pre">Compactness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">floor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/cmass.py#L83-L165"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.cmass.Compactness" title="Permalink to this definition">#</a></dt>
-<dd><p>Compactness score for a coordinate/weight pair.</p>
-<div class="admonition-compactness admonition">
-<p class="admonition-title">Compactness</p>
-<p>The compactness is defined as</p>
-<p><span class="math notranslate nohighlight">\(\mathbf{1}^\intercal\left(A \circ \left\|C - \frac{AC}{A\mathbf{1}} \right\|_{cols} \right)\mathbf{1}\)</span></p>
-<p>Given a coordinate set <span class="math notranslate nohighlight">\(C\)</span> for the columns of a weight
-<span class="math notranslate nohighlight">\(A\)</span>, the compactness measures the weighted average norm of the
-displacement of each of the weight’s entries from its row’s centre of
-mass. (The centre of mass is expressed above as
-<span class="math notranslate nohighlight">\(\frac{AC}{A\mathbf{1}}\)</span>).</p>
-<a class="reference internal image-reference" href="../_images/compactloss.gif"><img alt="../_images/compactloss.gif" class="align-center" src="../_images/compactloss.gif" style="width: 200px;" /></a>
-<p><cite>In this simulation, the compactness loss is applied with a
-multi-logit domain mapper and without any other losses or
-regularisations. The weights collapse to compact but unstructured
-regions of the field.</cite></p>
-</div>
-<p>Penalising this quantity can promote more compact rows (i.e., concentrate
-the weight in each row over columns corresponding to coordinates close to
-the row’s spatial centre of mass).</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This loss can have a large memory footprint, because it requires
-computing an intermediate tensor with dimensions equal to the number
-of rows in the weight, multiplied by the number of columns in the
-weight, multiplied by the dimension of the coordinate space.</p>
-</div>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>coor</strong><span class="classifier">tensor</span></dt><dd><p>Coordinates tensor. Each column of the coordinates tensor should
-determine the coordinates associated to the corresponding column of
-the input tensor during the forward pass. The number of rows
-accordingly corresponds to the dimension of the coordinate space.</p>
-</dd>
-<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
-</dd>
-<dt><strong>norm</strong><span class="classifier">float (default 2)</span></dt><dd><p>Designation for the p-norm used to operationalise the dispersion of
-a weight around its centre of mass.</p>
-</dd>
-<dt><strong>floor</strong><span class="classifier">float (default 0)</span></dt><dd><p>Maximum unpenalised distance from the centre of mass. If this is a
-nonzero value d, then weights within a norm ball of radius d receive
-no penalty, and the penalty is instead applied in proportion to
-distance from this norm ball.</p>
-</dd>
-<dt><strong>radius</strong><span class="classifier">nonnegative float or None (default None)</span></dt><dd><p>If this is a nonnegative float, then the distances are computed as a
-spherical geodesic instead of a p-norm. In this case, the centre of
-mass is operationalised as the Euclidean centre of mass, projected
-onto the surface of a sphere of the specified radius. The coordinate
-system must be three-dimensional, and each coordinate should then
-correspond to a point on the surface of the sphere of the specified
-radius.</p>
-</dd>
-<dt><strong>reduction</strong><span class="classifier">callable (default <code class="docutils literal notranslate"><span class="pre">torch.mean</span></code>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The output of
-the compactness loss is passed into <code class="docutils literal notranslate"><span class="pre">reduction</span></code> to return a scalar.</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods Documentation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.cmass.Compactness.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.cmass.Compactness.forward" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate the loss function, and communicate the results to any
-listening sentry objects.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.cmass.Compactness.register_sentry">
-<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.cmass.Compactness.register_sentry" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.cmass.Compactness.register_action">
-<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.cmass.Compactness.register_action" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </section>
 
 
@@ -801,22 +717,6 @@ listening sentry objects.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.cmass.Compactness"><code class="docutils literal notranslate"><span class="pre">Compactness</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.cmass.Compactness.forward"><code class="docutils literal notranslate"><span class="pre">Compactness.forward()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.cmass.Compactness.register_sentry"><code class="docutils literal notranslate"><span class="pre">Compactness.register_sentry()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.cmass.Compactness.register_action"><code class="docutils literal notranslate"><span class="pre">Compactness.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

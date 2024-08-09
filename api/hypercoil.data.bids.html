@@ -701,54 +701,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-hypercoil.data.bids">
-<span id="bids-bids-interfaces"></span><h1><code class="docutils literal notranslate"><span class="pre">bids</span></code>: BIDS interfaces<a class="headerlink" href="#module-hypercoil.data.bids" title="Permalink to this heading">#</a></h1>
-<p>Interfaces for loading BIDS-conformant neuroimaging data.</p>
-<p>The reference retrieval utility is written with the assumption that the input
-path is a BIDS derivatives dataset created by fMRIPrep.</p>
-<p>The recommended use is first retrieving data references through the
-<a class="reference internal" href="hypercoil.data.bids.fmriprep_references.html"><span class="doc">fmriprep_references</span></a>
-function call, and then passing the references to the
-<span class="xref std std-doc">make_wds</span>
-function. A
-<a class="reference internal" href="hypercoil.data.bids.fMRIPrepDataset.html"><span class="doc">fMRIPrepDataset</span></a>
-class also exists, but porting references to a <code class="docutils literal notranslate"><span class="pre">webdataset</span></code> will yield far
-superior data loading performance in general.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><code class="docutils literal notranslate"><span class="pre">ciftify</span></code> compatibility is likely absent. This should be a development
-priority, given that a great deal of development has operated under the
-assumption of CIfTI inputs.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Currently we acquire dataset paths using an internal class called a
-<code class="docutils literal notranslate"><span class="pre">LightGrabber</span></code>, but we’d eventually like to use an actual <code class="docutils literal notranslate"><span class="pre">BIDSLayout</span></code>
-from <code class="docutils literal notranslate"><span class="pre">pybids</span></code> for robustness.</p>
-</div>
+  <section id="bids-bids-interfaces">
+<h1><code class="docutils literal notranslate"><span class="pre">bids</span></code>: BIDS interfaces<a class="headerlink" href="#bids-bids-interfaces" title="Permalink to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.data.bids.fmriprep_references.html"><code class="docutils literal notranslate"><span class="pre">fmriprep_references</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.data.bids.fmriprep_references.html#hypercoil.data.bids.fmriprep_references"><code class="docutils literal notranslate"><span class="pre">fmriprep_references()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.data.bids.fMRIPrepDataset.html"><code class="docutils literal notranslate"><span class="pre">fMRIPrepDataset</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.data.bids.fMRIPrepDataset.html#hypercoil.data.bids.fMRIPrepDataset"><code class="docutils literal notranslate"><span class="pre">fMRIPrepDataset</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.data.bids.LightBIDSLayout.html"><code class="docutils literal notranslate"><span class="pre">LightBIDSLayout</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.data.bids.LightBIDSLayout.html#hypercoil.data.bids.LightBIDSLayout"><code class="docutils literal notranslate"><span class="pre">LightBIDSLayout</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.data.bids.BIDSObjectFactory.html"><code class="docutils literal notranslate"><span class="pre">BIDSObjectFactory</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.data.bids.BIDSObjectFactory.html#hypercoil.data.bids.BIDSObjectFactory"><code class="docutils literal notranslate"><span class="pre">BIDSObjectFactory</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.data.bids.LightBIDSObject.html"><code class="docutils literal notranslate"><span class="pre">LightBIDSObject</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.data.bids.LightBIDSObject.html#hypercoil.data.bids.LightBIDSObject"><code class="docutils literal notranslate"><span class="pre">LightBIDSObject</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.data.bids.fmriprep_references.html"><code class="docutils literal notranslate"><span class="pre">fmriprep_references</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.data.bids.fMRIPrepDataset.html"><code class="docutils literal notranslate"><span class="pre">fMRIPrepDataset</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.data.bids.LightBIDSLayout.html"><code class="docutils literal notranslate"><span class="pre">LightBIDSLayout</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.data.bids.BIDSObjectFactory.html"><code class="docutils literal notranslate"><span class="pre">BIDSObjectFactory</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.data.bids.LightBIDSObject.html"><code class="docutils literal notranslate"><span class="pre">LightBIDSObject</span></code></a></li>
 </ul>
 </div>
 </section>

@@ -708,61 +708,6 @@ document.write(`
                   
   <section id="amplitudeatanh">
 <h1><code class="docutils literal notranslate"><span class="pre">AmplitudeAtanh</span></code><a class="headerlink" href="#amplitudeatanh" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.domain.AmplitudeAtanh">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.domain.</span></span><span class="sig-name descname"><span class="pre">AmplitudeAtanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-3,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domain.py#L44-L67"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.AmplitudeAtanh" title="Permalink to this definition">#</a></dt>
-<dd><p>Hyperbolic tangent amplitude domain mapper. Constrain the amplitudes of a
-complex-valued tensor between zero and some finite scale value.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>scale</strong><span class="classifier">float (default 1)</span></dt><dd><p>Maximum/minimum value attained by the hyperbolic tangent map. Scale
-factor applied to the image. The multiplicative inverse (reciprocal)
-is applied before the preimage is computed. (Note that the amplitude
-used as the argument to the hyperbolic tangent is never negative and
-so the effective minimum is zero.)</p>
-</dd>
-<dt><strong>limits</strong><span class="classifier">(float min, float max) (default -3, 3)</span></dt><dd><p>Minimum and maximum values in the preimage itself. Used for two
-purposes: avoiding infinities when the tensor’s values include the
-supremum or infimum of an asymptotic function (i.e., <code class="docutils literal notranslate"><span class="pre">scale</span></code>) and
-restricting parameter values to a range where the gradient has not
-vanished.</p>
-</dd>
-<dt><strong>handler</strong><span class="classifier">_OutOfDomainHandler object (default <a class="reference internal" href="hypercoil.init.domainbase.Clip.html"><span class="doc">Clip</span></a>)</span></dt><dd><p>Object specifying a method for handling out-of-domain entries.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domain.AmplitudeAtanh.preimage">
-<span class="sig-name descname"><span class="pre">preimage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L268-L277"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.AmplitudeAtanh.preimage" title="Permalink to this definition">#</a></dt>
-<dd><p>Map the amplitude of a complex-valued tensor to its preimage under the
-transformation. Any values outside the transformation’s range are first
-handled.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domain.AmplitudeAtanh.image">
-<span class="sig-name descname"><span class="pre">image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L278-L286"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.AmplitudeAtanh.image" title="Permalink to this definition">#</a></dt>
-<dd><p>Map the amplitude of a complex-valued a tensor to its image under the
-transformation.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domain.AmplitudeAtanh.test">
-<span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L220-L225"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.AmplitudeAtanh.test" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate whether each entry in a tensor falls within bounds.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domain.AmplitudeAtanh.handle_ood">
-<span class="sig-name descname"><span class="pre">handle_ood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L226-L232"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.AmplitudeAtanh.handle_ood" title="Permalink to this definition">#</a></dt>
-<dd><p>Apply an out-of-domain handler to ensure that all tensor entries are
-within bounds.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 
 
@@ -777,23 +722,6 @@ within bounds.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.AmplitudeAtanh"><code class="docutils literal notranslate"><span class="pre">AmplitudeAtanh</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.AmplitudeAtanh.preimage"><code class="docutils literal notranslate"><span class="pre">AmplitudeAtanh.preimage()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.AmplitudeAtanh.image"><code class="docutils literal notranslate"><span class="pre">AmplitudeAtanh.image()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.AmplitudeAtanh.test"><code class="docutils literal notranslate"><span class="pre">AmplitudeAtanh.test()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.AmplitudeAtanh.handle_ood"><code class="docutils literal notranslate"><span class="pre">AmplitudeAtanh.handle_ood()</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

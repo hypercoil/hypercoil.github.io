@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.neuro.synth.match_cov_and_spectrum';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -709,46 +708,6 @@ document.write(`
                   
   <section id="match-cov-and-spectrum">
 <h1><code class="docutils literal notranslate"><span class="pre">match_cov_and_spectrum</span></code><a class="headerlink" href="#match-cov-and-spectrum" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.neuro.synth.match_cov_and_spectrum">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.neuro.synth.</span></span><span class="sig-name descname"><span class="pre">match_cov_and_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/neuro/synth.py#L163-L202"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.neuro.synth.match_cov_and_spectrum" title="Permalink to this definition">#</a></dt>
-<dd><p>Transform an input signal to match a given
-<a class="reference internal" href="hypercoil.neuro.synth.match_spectra.html#hypercoil.neuro.synth.match_spectra" title="hypercoil.neuro.synth.match_spectra"><code class="xref py py-func docutils literal notranslate"><span class="pre">spectrum</span></code></a> and
-<a class="reference internal" href="hypercoil.neuro.synth.match_covariance.html#hypercoil.neuro.synth.match_covariance" title="hypercoil.neuro.synth.match_covariance"><code class="xref py py-func docutils literal notranslate"><span class="pre">covariance</span> <span class="pre">matrix</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Dimension<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>signal :</strong> <span class="math notranslate nohighlight">\((D, N)\)</span></dt><dd><p>D denotes dimension of the multivariate signal and N
-denotes the number of observations per channel.</p>
-</dd>
-<dt><strong>spectrum :</strong> <span class="math notranslate nohighlight">\((D, F)\)</span></dt><dd><p>D as above. F denotes the frequency dimension of the
-signal, e.g., N / 2 + 1.</p>
-</dd>
-<dt><strong>cov :</strong> <span class="math notranslate nohighlight">\((D, D)\)</span></dt><dd><p>As above.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">#</a></h2>
-<dl class="simple">
-<dt>signal<span class="classifier">tensor</span></dt><dd><p>Input signal.</p>
-</dd>
-<dt>spectrum<span class="classifier">tensor</span></dt><dd><p>Spectrum to be matched.</p>
-</dd>
-<dt>cov<span class="classifier">tensor</span></dt><dd><p>Covariance matrix to be matched.</p>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="hypercoil.neuro.synth.synthesise_from_cov_and_spectrum.html#hypercoil.neuro.synth.synthesise_from_cov_and_spectrum" title="hypercoil.neuro.synth.synthesise_from_cov_and_spectrum"><code class="xref py py-func docutils literal notranslate"><span class="pre">synthesise_from_cov_and_spectrum()</span></code></a></dt><dd></dd>
-<dt><a class="reference internal" href="hypercoil.neuro.synth.match_reference.html#hypercoil.neuro.synth.match_reference" title="hypercoil.neuro.synth.match_reference"><code class="xref py py-func docutils literal notranslate"><span class="pre">match_reference()</span></code></a></dt><dd></dd>
-</dl>
-</div>
-</section>
-</dd></dl>
-
 </section>
 
 
@@ -763,17 +722,6 @@ signal, e.g., N / 2 + 1.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.neuro.synth.match_cov_and_spectrum"><code class="docutils literal notranslate"><span class="pre">match_cov_and_spectrum()</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

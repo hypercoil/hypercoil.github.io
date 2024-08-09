@@ -701,35 +701,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-hypercoil.init.sylo">
-<span id="sylo"></span><h1><code class="docutils literal notranslate"><span class="pre">sylo</span></code><a class="headerlink" href="#module-hypercoil.init.sylo" title="Permalink to this heading">#</a></h1>
-<p>Initialisations for sylo-based neural networks.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.init.sylo.sylo_init_">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.init.sylo.</span></span><span class="sig-name descname"><span class="pre">sylo_init_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fan_in'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonlinearity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'leaky_relu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/sylo.py#L15-L56"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.sylo.sylo_init_" title="Permalink to this definition">#</a></dt>
-<dd><p>Kaiming-like initialisation for sylo module.</p>
-<p class="rubric">Notes</p>
-<ul class="simple">
-<li><p>The overall fan is the square root of the product of
-(1) the fan from raw weights (H x r, W x r) to expanded template (H x W),
-(2) the fan from expanded template to the output feature map.</p></li>
-<li><p>Fan (1) is the rank r of the raw weights. If the operation is symmetric
-(the left and right weights are identical), we need to add an additional
-term that scales quadratically with the rank and inversely with the raw
-weight dimension (H = W). It’s possible that these are the first two
-terms of a longer series, but I’m not currently sure how to figure this
-out.</p></li>
-<li><p>Fan (2) is computed as for convolutional networks: it’s the product of
-the number of channels and the receptive field size, which here is the
-size of the crosshair (H + W - 1).</p></li>
-<li><p>I hacked this out empirically (don’t do this…), so there’s a good
-chance that we can do better once we come up with a good theoretical
-justification.</p></li>
-<li><p>I believe that we need to take a double square root because the template
-is a product of the raw weights.</p></li>
-</ul>
-</dd></dl>
-
+  <section id="sylo">
+<h1><code class="docutils literal notranslate"><span class="pre">sylo</span></code><a class="headerlink" href="#sylo" title="Permalink to this heading">#</a></h1>
 </section>
 
 
@@ -744,17 +717,6 @@ is a product of the raw weights.</p></li>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.sylo.sylo_init_"><code class="docutils literal notranslate"><span class="pre">sylo_init_()</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

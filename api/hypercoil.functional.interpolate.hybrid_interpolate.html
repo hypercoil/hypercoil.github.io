@@ -708,81 +708,6 @@ document.write(`
                   
   <section id="hybrid-interpolate-weighted-spectral-interpolation">
 <h1><code class="docutils literal notranslate"><span class="pre">hybrid_interpolate</span></code>: Weighted + spectral interpolation<a class="headerlink" href="#hybrid-interpolate-weighted-spectral-interpolation" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.functional.interpolate.hybrid_interpolate">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.interpolate.</span></span><span class="sig-name descname"><span class="pre">hybrid_interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_weighted_stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_to_kernel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oversampling_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handle_fail</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'orig'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/interpolate.py#L12-L144"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.interpolate.hybrid_interpolate" title="Permalink to this definition">#</a></dt>
-<dd><p>Interpolate unseen time frames using a hybrid approach that combines
-<a class="reference internal" href="hypercoil.functional.interpolate.weighted_interpolate.html#hypercoil.functional.interpolate.weighted_interpolate" title="hypercoil.functional.interpolate.weighted_interpolate"><code class="xref py py-func docutils literal notranslate"><span class="pre">weighted</span></code></a> and
-<a class="reference internal" href="hypercoil.functional.interpolate.spectral_interpolate.html#hypercoil.functional.interpolate.spectral_interpolate" title="hypercoil.functional.interpolate.spectral_interpolate"><code class="xref py py-func docutils literal notranslate"><span class="pre">spectral</span></code></a>
-methods.</p>
-<p>Hybrid interpolation uses the <a class="reference internal" href="hypercoil.functional.interpolate.weighted_interpolate.html#hypercoil.functional.interpolate.weighted_interpolate" title="hypercoil.functional.interpolate.weighted_interpolate"><code class="xref py py-func docutils literal notranslate"><span class="pre">weighted</span></code></a>
-method for unseen frames that are no more than <code class="docutils literal notranslate"><span class="pre">max_weighted_stage</span></code>
-frames away from a seen frame, and the
-<a class="reference internal" href="hypercoil.functional.interpolate.spectral_interpolate.html#hypercoil.functional.interpolate.spectral_interpolate" title="hypercoil.functional.interpolate.spectral_interpolate"><code class="xref py py-func docutils literal notranslate"><span class="pre">spectral</span></code></a> method otherwise.
-(More specifically, if <code class="docutils literal notranslate"><span class="pre">map_to_kernel</span></code> is set, it uses the weighted
-approach if the weighted approach successfully imputes using the kernel
-returned when the argument to <code class="docutils literal notranslate"><span class="pre">map_to_kernel</span></code> is
-<code class="docutils literal notranslate"><span class="pre">max_weighted_stage</span></code>.) Imputation proceeds as follows:</p>
-<ul class="simple">
-<li><p>Unseen frames are divided into two groups according to the approach that
-will be used for imputation.</p></li>
-<li><p>Spectral interpolation is applied using the seen time frames.</p></li>
-<li><p>Weighted interpolation is applied using the seen time frames, together
-with the frames interpolated using the spectral method.</p></li>
-</ul>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>data</strong><span class="classifier">tensor</span></dt><dd><p>Time series data.</p>
-</dd>
-<dt><strong>mask</strong><span class="classifier">boolean tensor</span></dt><dd><p>Boolean tensor indicating whether the value in each frame of the input
-time series is observed. <code class="docutils literal notranslate"><span class="pre">True</span></code> indicates that the original data are
-“good” or observed, while <code class="docutils literal notranslate"><span class="pre">False</span></code> indicates that they are “bad” or
-missing and flags them for interpolation.</p>
-</dd>
-<dt><strong>max_weighted_stage</strong><span class="classifier">int or None (default 3)</span></dt><dd><p>The final stage of weighted interpolation. The meaning of this is
-governed by the <code class="docutils literal notranslate"><span class="pre">map_to_kernel</span></code> argument. If no <code class="docutils literal notranslate"><span class="pre">map_to_kernel</span></code>
-argument is otherwise specified, it sets the maximum size of a boxcar
-window for averaging. By default, a maximum stage of 3 is specified
-for weighted interpolation; any unseen frames that cannot be imputed
-using this maximum are instead imputed using the spectral approach.</p>
-</dd>
-<dt><strong>map_to_kernel</strong><span class="classifier">callable(int -&gt; tensor)</span></dt><dd><p>A function that uses the integer value of the current stage to create
-a convolutional kernel for weighting of neighbours. By default, a
-boxcar window that includes the current frame, together with <code class="docutils literal notranslate"><span class="pre">stage</span></code>
-frames in each of the forward and backward directions, is returned.</p>
-</dd>
-<dt><strong>oversampling_frequency</strong><span class="classifier">float (default 8)</span></dt><dd><p>Determines the number of frequency bins to use when estimating the
-sine and cosine spectra in spectral interpolation. 1 indicates that
-the number of bins should be the same as in a Fourier transform,
-while larger values indicate that frequency bins should be
-oversampled.</p>
-</dd>
-<dt><strong>maximum_frequency</strong><span class="classifier">float (default 1)</span></dt><dd><p>Maximum frequency bin to consider in the spectral fit, as a fraction
-of Nyquist.</p>
-</dd>
-<dt><strong>frequency_thresh</strong><span class="classifier">float (default 0.3)</span></dt><dd><p>Because of the non-orthogonality of the basis functions, spurious
-variance will often be captured in the spectral estimates. To control
-this spurious variance, all frequency bins whose estimates are less
-than <code class="docutils literal notranslate"><span class="pre">thresh</span></code>, as a fraction of the maximum estimate across all
-bins, are set to 0.</p>
-</dd>
-<dt><strong>handle_fail</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'raise'</span></code> or <code class="docutils literal notranslate"><span class="pre">'orig'</span></code> (default <code class="docutils literal notranslate"><span class="pre">'orig'</span></code>)</span></dt><dd><p>Specifies behaviour if the interpolation fails (which typically occurs
-if every frame is labelled as unseen). <code class="docutils literal notranslate"><span class="pre">'raise'</span></code> raises an
-exception, while <code class="docutils literal notranslate"><span class="pre">'orig'</span></code> returns values from the input time series
-for any frames that are still missing after interpolation.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>tensor</dt><dd><p>Input dataset with missing frames imputed.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
@@ -797,17 +722,6 @@ for any frames that are still missing after interpolation.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.interpolate.hybrid_interpolate"><code class="docutils literal notranslate"><span class="pre">hybrid_interpolate()</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

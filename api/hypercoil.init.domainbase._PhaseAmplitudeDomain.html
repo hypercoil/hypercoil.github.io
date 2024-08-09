@@ -708,55 +708,6 @@ document.write(`
                   
   <section id="phaseamplitudedomain">
 <h1><code class="docutils literal notranslate"><span class="pre">_PhaseAmplitudeDomain</span></code><a class="headerlink" href="#phaseamplitudedomain" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.domainbase._PhaseAmplitudeDomain">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.domainbase.</span></span><span class="sig-name descname"><span class="pre">_PhaseAmplitudeDomain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L243-L286"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain" title="Permalink to this definition">#</a></dt>
-<dd><p>Phase/amplitude functional domain mapper.</p>
-<p>Map the amplitude of a complex-valued tensor to either its image or its
-preimage under some function in a safe manner that handles out-of-domain
-entries to avoid nan and error values. Used as a superclass for parameter-
-constraining mappers.</p>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain.image" title="hypercoil.init.domainbase._PhaseAmplitudeDomain.image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">image</span></code></a>(x)</p></td>
-<td><p>Map the amplitude of a complex-valued a tensor to its image under the transformation.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain.preimage" title="hypercoil.init.domainbase._PhaseAmplitudeDomain.preimage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">preimage</span></code></a>(x)</p></td>
-<td><p>Map the amplitude of a complex-valued tensor to its preimage under the transformation.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domainbase._PhaseAmplitudeDomain.preimage">
-<span class="sig-name descname"><span class="pre">preimage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L268-L277"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain.preimage" title="Permalink to this definition">#</a></dt>
-<dd><p>Map the amplitude of a complex-valued tensor to its preimage under the
-transformation. Any values outside the transformation’s range are first
-handled.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domainbase._PhaseAmplitudeDomain.image">
-<span class="sig-name descname"><span class="pre">image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L278-L286"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain.image" title="Permalink to this definition">#</a></dt>
-<dd><p>Map the amplitude of a complex-valued a tensor to its image under the
-transformation.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domainbase._PhaseAmplitudeDomain.test">
-<span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L220-L225"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain.test" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate whether each entry in a tensor falls within bounds.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domainbase._PhaseAmplitudeDomain.handle_ood">
-<span class="sig-name descname"><span class="pre">handle_ood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L226-L232"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain.handle_ood" title="Permalink to this definition">#</a></dt>
-<dd><p>Apply an out-of-domain handler to ensure that all tensor entries are
-within bounds.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 
 
@@ -771,23 +722,6 @@ within bounds.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain"><code class="docutils literal notranslate"><span class="pre">_PhaseAmplitudeDomain</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain.preimage"><code class="docutils literal notranslate"><span class="pre">_PhaseAmplitudeDomain.preimage()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain.image"><code class="docutils literal notranslate"><span class="pre">_PhaseAmplitudeDomain.image()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain.test"><code class="docutils literal notranslate"><span class="pre">_PhaseAmplitudeDomain.test()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase._PhaseAmplitudeDomain.handle_ood"><code class="docutils literal notranslate"><span class="pre">_PhaseAmplitudeDomain.handle_ood()</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

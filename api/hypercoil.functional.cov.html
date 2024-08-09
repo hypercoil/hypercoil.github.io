@@ -701,57 +701,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-hypercoil.functional.cov">
-<span id="cov-covariances-and-correlations"></span><h1><code class="docutils literal notranslate"><span class="pre">cov</span></code>: Covariances and correlations<a class="headerlink" href="#module-hypercoil.functional.cov" title="Permalink to this heading">#</a></h1>
-<p>Differentiable estimation of covariance and derived measures.</p>
-<p>Functional connectivity is a measure of the statistical relationship between
-(localised) time series signals. It is typically operationalised as some
-derivative of the covariance between the time series, most often the Pearson
-correlation.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>At some point, whatever functionality it is possible to delegate to
-<code class="docutils literal notranslate"><span class="pre">torch</span></code> directly (specifically, to <code class="docutils literal notranslate"><span class="pre">torch.cov</span></code> and <code class="docutils literal notranslate"><span class="pre">torch.corrcoef</span></code>)
-will likely be removed or aliased to improve performance.</p>
-</div>
+  <section id="cov-covariances-and-correlations">
+<h1><code class="docutils literal notranslate"><span class="pre">cov</span></code>: Covariances and correlations<a class="headerlink" href="#cov-covariances-and-correlations" title="Permalink to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.cov.html"><code class="docutils literal notranslate"><span class="pre">cov</span></code>: Covariance</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.cov.cov.html#hypercoil.functional.cov.cov"><code class="docutils literal notranslate"><span class="pre">cov()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.corr.html"><code class="docutils literal notranslate"><span class="pre">corr</span></code>: Pearson correlation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.cov.corr.html#hypercoil.functional.cov.corr"><code class="docutils literal notranslate"><span class="pre">corr()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.partialcov.html"><code class="docutils literal notranslate"><span class="pre">partialcov</span></code>: Partial covariance</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.cov.partialcov.html#hypercoil.functional.cov.partialcov"><code class="docutils literal notranslate"><span class="pre">partialcov()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.partialcorr.html"><code class="docutils literal notranslate"><span class="pre">partialcorr</span></code>: Partial correlation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.cov.partialcorr.html#hypercoil.functional.cov.partialcorr"><code class="docutils literal notranslate"><span class="pre">partialcorr()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.pairedcov.html"><code class="docutils literal notranslate"><span class="pre">pairedcov</span></code>: Paired covariance</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.cov.pairedcov.html#hypercoil.functional.cov.pairedcov"><code class="docutils literal notranslate"><span class="pre">pairedcov()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.pairedcorr.html"><code class="docutils literal notranslate"><span class="pre">pairedcorr</span></code>: Paired correlation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.cov.pairedcorr.html#hypercoil.functional.cov.pairedcorr"><code class="docutils literal notranslate"><span class="pre">pairedcorr()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.conditionalcov.html"><code class="docutils literal notranslate"><span class="pre">conditionalcov</span></code>: Conditional covariance</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.cov.conditionalcov.html#hypercoil.functional.cov.conditionalcov"><code class="docutils literal notranslate"><span class="pre">conditionalcov()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.conditionalcorr.html"><code class="docutils literal notranslate"><span class="pre">conditionalcorr</span></code>: Conditional correlation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.cov.conditionalcorr.html#hypercoil.functional.cov.conditionalcorr"><code class="docutils literal notranslate"><span class="pre">conditionalcorr()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.precision.html"><code class="docutils literal notranslate"><span class="pre">precision</span></code>: Inverse covariance (precision)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hypercoil.functional.cov.precision.html#hypercoil.functional.cov.precision"><code class="docutils literal notranslate"><span class="pre">precision()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.cov.html"><code class="docutils literal notranslate"><span class="pre">cov</span></code>: Covariance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.corr.html"><code class="docutils literal notranslate"><span class="pre">corr</span></code>: Pearson correlation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.partialcov.html"><code class="docutils literal notranslate"><span class="pre">partialcov</span></code>: Partial covariance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.partialcorr.html"><code class="docutils literal notranslate"><span class="pre">partialcorr</span></code>: Partial correlation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.pairedcov.html"><code class="docutils literal notranslate"><span class="pre">pairedcov</span></code>: Paired covariance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.pairedcorr.html"><code class="docutils literal notranslate"><span class="pre">pairedcorr</span></code>: Paired correlation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.conditionalcov.html"><code class="docutils literal notranslate"><span class="pre">conditionalcov</span></code>: Conditional covariance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.conditionalcorr.html"><code class="docutils literal notranslate"><span class="pre">conditionalcorr</span></code>: Conditional correlation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypercoil.functional.cov.precision.html"><code class="docutils literal notranslate"><span class="pre">precision</span></code>: Inverse covariance (precision)</a></li>
 </ul>
 </div>
 </section>

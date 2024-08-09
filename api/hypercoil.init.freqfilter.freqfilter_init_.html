@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.init.freqfilter.freqfilter_init_';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -709,58 +708,6 @@ document.write(`
                   
   <section id="freqfilter-init">
 <h1><code class="docutils literal notranslate"><span class="pre">freqfilter_init_</span></code><a class="headerlink" href="#freqfilter-init" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.init.freqfilter.freqfilter_init_">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.init.freqfilter.</span></span><span class="sig-name descname"><span class="pre">freqfilter_init_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_specs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/freqfilter.py#L250-L304"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.freqfilter.freqfilter_init_" title="Permalink to this definition">#</a></dt>
-<dd><p>Filter transfer function initialisation.</p>
-<p>Initialise a tensor such that its values follow or approximate the
-transfer function of a specified filter.</p>
-<p>For IIR filters, the transfer function is only an emulation. An IIR
-filter cannot be represented as a frequency product in this manner. For a
-true differentiable IIR filter, use the
-<a class="reference internal" href="hypercoil.init.iirfilter.html"><span class="doc">IIRFilter</span></a>
-layer. The emulation here is computed as a frequency response curve in
-scipy.</p>
-<dl class="field-list">
-<dt class="field-odd">Dimension<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tensor :</strong> <span class="math notranslate nohighlight">\((*, F, N)\)</span>
-F denotes the total number of filters to initialise from
-the provided specs, and N denotes the number of frequency
-bins.</p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><dl>
-<dt><strong>tensor</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor to initialise in-place. The import will include only the real
-part (and will therefore be incorrect for most filters) if the provided
-tensor does not have a complex datatype. Note that even if the transfer
-function is strictly real, the gradient will almost certainly not be
-and it is therefore critical that this tensor allow complex values.</p>
-</dd>
-<dt><strong>filter_specs</strong><span class="classifier">list(FreqFilterSpec)</span></dt><dd><p>A list of filter specifications implemented as <a class="reference internal" href="hypercoil.init.freqfilter.FreqFilterSpec.html#hypercoil.init.freqfilter.FreqFilterSpec" title="hypercoil.init.freqfilter.FreqFilterSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">FreqFilterSpec</span></code></a>
-objects.</p>
-</dd>
-<dt><strong>domain</strong><span class="classifier">Domain object (default <a class="reference internal" href="hypercoil.init.domain.AmplitudeAtanh.html"><span class="doc">AmplitudeAtanh</span></a>)</span></dt><dd><p>A domain object from
-<a class="reference internal" href="hypercoil.init.domain.html"><span class="doc">hypercoil.init.domain</span></a>,
-used to specify the domain of the output spectrum. An
-<a class="reference internal" href="hypercoil.init.domainbase.Identity.html"><span class="doc">Identity</span></a>
-object yields the raw transfer function, while an
-<a class="reference internal" href="hypercoil.init.domain.AmplitudeAtanh.html"><span class="doc">AmplitudeAtanh</span></a>
-object transforms the amplitudes of each bin by the inverse tanh
-(atanh) function. This transformation can be useful if the initialised
-tensor will be used as a learnable parameter whose amplitude will be
-transformed by the tanh function, thereby constraining it to [0, 1)
-and preventing explosive gain.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>None. The input tensor is initialised in-place.</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
@@ -775,17 +722,6 @@ and preventing explosive gain.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.freqfilter.freqfilter_init_"><code class="docutils literal notranslate"><span class="pre">freqfilter_init_()</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

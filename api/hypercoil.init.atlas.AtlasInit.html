@@ -708,68 +708,6 @@ document.write(`
                   
   <section id="atlasinit">
 <h1><code class="docutils literal notranslate"><span class="pre">AtlasInit</span></code><a class="headerlink" href="#atlasinit" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.atlas.AtlasInit">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.atlas.</span></span><span class="sig-name descname"><span class="pre">AtlasInit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atlas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_bin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spherical_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlas.py#L958-L1018"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlas.AtlasInit" title="Permalink to this definition">#</a></dt>
-<dd><p>Voxel-to-label mapping initialisation.</p>
-<p>Initialise a tensor dictionary such that its entries characterise a set of
-matrices that each map a relevant subset of image voxels to a set of
-labels. The initialisation can use a previously existing atlas,
-instantiated as a subclass of
-<a class="reference internal" href="hypercoil.init.atlas.BaseAtlas.html"><span class="doc">BaseAtlas</span></a>
-with the option of blurring labels using pointwise spatial convolution or
-injecting noise.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>tensor</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor to initialise in-place.</p>
-</dd>
-<dt><strong>atlas</strong><span class="classifier">Atlas object</span></dt><dd><p>Atlas object to use for tensor initialisation.</p>
-</dd>
-<dt><strong>normalise</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that maps should be spatially normalised such that the sum
-over all assignments to a parcel is equal to 1. When the map is used
-as a linear transformation, this option results in computation of a
-weighted average over each parcel.</p>
-</dd>
-<dt><strong>kernel_sigma</strong><span class="classifier">float or None (default None)</span></dt><dd><p>If this is not None, then spatial smoothing using a Gaussian kernel is
-applied over each parcel’s assignments. Distances are established by
-the atlas’s coordinate system and the topology of each compartment.
-The value of sigma establishes the width of the Gaussian kernel.</p>
-</dd>
-<dt><strong>noise_sigma</strong><span class="classifier">float or None (default None)</span></dt><dd><p>If this is not None, then Gaussian noise with the specified standard
-deviation is added to each label.</p>
-</dd>
-<dt><strong>domain</strong><span class="classifier"><span class="xref std std-doc">Domain</span> or None</span></dt><dd><p>If this is a <code class="docutils literal notranslate"><span class="pre">Domain</span></code> instance, then the tensor dict is instead
-initialised as the preimage of the specified atlas with respect to the
-domain transformation. If this is None, then <code class="docutils literal notranslate"><span class="pre">AtlasInit</span></code> will search
-the atlas’s <code class="docutils literal notranslate"><span class="pre">init</span></code> attribute for a domain; if it finds none, then it
-will default to an identity domain. Note that, for atlases initialised
-from a Dirichlet distribution, <code class="docutils literal notranslate"><span class="pre">AtlasInit</span></code> will by default find a
-<span class="xref std std-doc">MultiLogit</span>
-domain and accordingly place the pre-weights in the preimage of a
-softmax so that the weights actually seen by data remain on the
-probability simplex as the parcellation is learned.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.init.atlas.AtlasInit.__call__" title="hypercoil.init.atlas.AtlasInit.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(tensor)</p></td>
-<td><p>Call self as a function.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Methods Documentation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.atlas.AtlasInit.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/atlas.py#L1015-L1018"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.atlas.AtlasInit.__call__" title="Permalink to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 
 
@@ -784,20 +722,6 @@ probability simplex as the parcellation is learned.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlas.AtlasInit"><code class="docutils literal notranslate"><span class="pre">AtlasInit</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.atlas.AtlasInit.__call__"><code class="docutils literal notranslate"><span class="pre">AtlasInit.__call__()</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

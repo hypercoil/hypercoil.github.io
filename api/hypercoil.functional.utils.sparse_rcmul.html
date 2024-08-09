@@ -708,41 +708,6 @@ document.write(`
                   
   <section id="sparse-rcmul">
 <h1><code class="docutils literal notranslate"><span class="pre">sparse_rcmul</span></code><a class="headerlink" href="#sparse-rcmul" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.functional.utils.sparse_rcmul">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.utils.</span></span><span class="sig-name descname"><span class="pre">sparse_rcmul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coalesce_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/utils.py#L290-L338"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.utils.sparse_rcmul" title="Permalink to this definition">#</a></dt>
-<dd><p>Batchable row- and column-wise multiplication of sparse matrices.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Regardless of their form (sparse or dense) at call time, inputs <code class="docutils literal notranslate"><span class="pre">R</span></code>
-and <code class="docutils literal notranslate"><span class="pre">C</span></code> will be cast to dense by this operation. Either <code class="docutils literal notranslate"><span class="pre">R</span></code> or
-<code class="docutils literal notranslate"><span class="pre">C</span></code> or both must be provided as inputs.</p>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>A</strong><span class="classifier">sparse COO tensor</span></dt><dd><p>Matrix or matrix batch to be multiplied. <code class="docutils literal notranslate"><span class="pre">A</span></code> must have exactly 2
-sparse dimensions and can have any number of dense dimensions.</p>
-</dd>
-<dt><strong>R</strong><span class="classifier">tensor (default None)</span></dt><dd><p>Row-wise multiplier. All elements in row i of input <code class="docutils literal notranslate"><span class="pre">A</span></code> are
-multiplied by the corresponding entry i of <code class="docutils literal notranslate"><span class="pre">R</span></code>.</p>
-</dd>
-<dt><strong>C</strong><span class="classifier">tensor (default None)</span></dt><dd><p>Column-wise multiplier. All elements in column j of input <code class="docutils literal notranslate"><span class="pre">A</span></code> are
-multiplied by the corresponding entry j of <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p>
-</dd>
-<dt><strong>coalesce_output</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that the output should be coalesced before it is returned.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>sparse COO tensor</dt><dd><p>Product.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
@@ -757,17 +722,6 @@ multiplied by the corresponding entry j of <code class="docutils literal notrans
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.utils.sparse_rcmul"><code class="docutils literal notranslate"><span class="pre">sparse_rcmul()</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

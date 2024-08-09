@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.matrix.recondition_eigenspaces';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -709,37 +708,6 @@ document.write(`
                   
   <section id="recondition-eigenspaces">
 <h1><code class="docutils literal notranslate"><span class="pre">recondition_eigenspaces</span></code><a class="headerlink" href="#recondition-eigenspaces" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="hypercoil.functional.matrix.recondition_eigenspaces">
-<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.matrix.</span></span><span class="sig-name descname"><span class="pre">recondition_eigenspaces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/matrix.py#L282-L315"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.matrix.recondition_eigenspaces" title="Permalink to this definition">#</a></dt>
-<dd><p>Recondition a positive semidefinite matrix such that it has no zero
-eigenvalues, and all of its eigenspaces have dimension one.</p>
-<p>This reconditioning operation should help stabilise differentiation
-through singular value decomposition.</p>
-<p>This operation modifies the input matrix A following</p>
-<p><span class="math notranslate nohighlight">\(A := A + \left(\psi - \frac{\xi}{2}\right) I + I\mathbf{x}\)</span></p>
-<p><span class="math notranslate nohighlight">\(x_i \sim \mathrm{Uniform}(0, \xi) \forall x_i\)</span></p>
-<p><span class="math notranslate nohighlight">\(\psi &gt; \xi\)</span></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>A</strong><span class="classifier">tensor</span></dt><dd><p>Matrix or matrix block to be reconditioned.</p>
-</dd>
-<dt><strong>psi</strong><span class="classifier">float</span></dt><dd><p>Reconditioning parameter for ensuring nonzero eigenvalues.</p>
-</dd>
-<dt><strong>xi</strong><span class="classifier">float</span></dt><dd><p>Reconditioning parameter for ensuring nondegenerate eigenvalues.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>tensor</dt><dd><p>Reconditioned matrix or matrix block.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
@@ -754,17 +722,6 @@ through singular value decomposition.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.matrix.recondition_eigenspaces"><code class="docutils literal notranslate"><span class="pre">recondition_eigenspaces()</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

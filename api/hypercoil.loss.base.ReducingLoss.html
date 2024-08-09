@@ -703,55 +703,6 @@ document.write(`
                   
   <section id="reducingloss">
 <h1><code class="docutils literal notranslate"><span class="pre">ReducingLoss</span></code><a class="headerlink" href="#reducingloss" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.loss.base.ReducingLoss">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.base.</span></span><span class="sig-name descname"><span class="pre">ReducingLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L91-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.base.ReducingLoss" title="Permalink to this definition">#</a></dt>
-<dd><p>Callable loss function wrapper that composes an objective, which may have
-only an elementwise or slicewise definition, with a reduction operation
-that maps its output to a scalar.</p>
-<p>Example reductions include the mean and sum, as well as tensor norms.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>nu</strong><span class="classifier">float</span></dt><dd><p>Loss function weight multiplier.</p>
-</dd>
-<dt><strong>reduction</strong><span class="classifier">callable</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The output of
-<code class="docutils literal notranslate"><span class="pre">loss</span></code> is passed into <code class="docutils literal notranslate"><span class="pre">reduction</span></code> to return a scalar.</p>
-</dd>
-<dt><strong>loss</strong><span class="classifier">callable</span></dt><dd><p>Objective criterion, which might not always return a scalar output.</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.loss.base.ReducingLoss.forward" title="hypercoil.loss.base.ReducingLoss.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Evaluate the loss function, and communicate the results to any listening sentry objects.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.base.ReducingLoss.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.base.ReducingLoss.forward" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate the loss function, and communicate the results to any
-listening sentry objects.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.base.ReducingLoss.register_sentry">
-<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.base.ReducingLoss.register_sentry" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.loss.base.ReducingLoss.register_action">
-<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.base.ReducingLoss.register_action" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </section>
 
 
@@ -766,22 +717,6 @@ listening sentry objects.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.base.ReducingLoss"><code class="docutils literal notranslate"><span class="pre">ReducingLoss</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.base.ReducingLoss.forward"><code class="docutils literal notranslate"><span class="pre">ReducingLoss.forward()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.base.ReducingLoss.register_sentry"><code class="docutils literal notranslate"><span class="pre">ReducingLoss.register_sentry()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.base.ReducingLoss.register_action"><code class="docutils literal notranslate"><span class="pre">ReducingLoss.register_action()</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

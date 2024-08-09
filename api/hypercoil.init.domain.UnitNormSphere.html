@@ -708,64 +708,6 @@ document.write(`
                   
   <section id="unitnormsphere">
 <h1><code class="docutils literal notranslate"><span class="pre">UnitNormSphere</span></code><a class="headerlink" href="#unitnormsphere" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.init.domain.UnitNormSphere">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.domain.</span></span><span class="sig-name descname"><span class="pre">UnitNormSphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_vector_norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domain.py#L99-L156"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.UnitNormSphere" title="Permalink to this definition">#</a></dt>
-<dd><p>Unit norm sphere domain mapper. Constrain tensor values such that all
-vectors along a given axis lie on a specified unit norm sphere.</p>
-<p>Note that this will only work for proper convex norms. (It will obviously
-not work for the L0 norm, for example.)</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>norm</strong><span class="classifier">int, str, or tensor</span></dt><dd><p>Norm order argument passed to <code class="docutils literal notranslate"><span class="pre">torch.linalg.vector_norm</span></code>. If this is
-a tensor of symmetric positive semidefinite matrices, then a
-Mahalanobis-like ellipse norm is computed using those matrices. (No
-matrix inversion is performed.)</p>
-</dd>
-<dt><strong>axis</strong><span class="classifier">int or tuple(int)</span></dt><dd><p>Axis or axis tuple over which the norm is computed. Every slice along
-the specified axis or axis tuple of the mapped tensor is normalised
-so that it has unit norm in the specified norm.</p>
-</dd>
-<dt><strong>scale</strong><span class="classifier">float (default 1)</span></dt><dd><p>Scale of the norm sphere. By default, the unit norm sphere
-(<code class="docutils literal notranslate"><span class="pre">scale=1</span></code>) is used.</p>
-</dd>
-<dt><strong>loc</strong><span class="classifier">float or tensor</span></dt><dd><p>Location of the centre of the norm sphere. By default, the sphere is
-centred at the origin (<code class="docutils literal notranslate"><span class="pre">loc=0</span></code>).</p>
-</dd>
-<dt><strong>handler</strong><span class="classifier">_OutOfDomainHandler object (default <a class="reference internal" href="hypercoil.init.domainbase.Clip.html"><span class="doc">Clip</span></a>)</span></dt><dd><p>Object specifying a method for handling out-of-domain entries.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domain.UnitNormSphere.preimage">
-<span class="sig-name descname"><span class="pre">preimage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L176-L187"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.UnitNormSphere.preimage" title="Permalink to this definition">#</a></dt>
-<dd><p>Map a tensor to its preimage under the transformation. Any values
-outside the transformation’s range are first handled.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domain.UnitNormSphere.image">
-<span class="sig-name descname"><span class="pre">image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L188-L193"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.UnitNormSphere.image" title="Permalink to this definition">#</a></dt>
-<dd><p>Map a tensor to its image under the transformation.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domain.UnitNormSphere.test">
-<span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L220-L225"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.UnitNormSphere.test" title="Permalink to this definition">#</a></dt>
-<dd><p>Evaluate whether each entry in a tensor falls within bounds.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hypercoil.init.domain.UnitNormSphere.handle_ood">
-<span class="sig-name descname"><span class="pre">handle_ood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L226-L232"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.UnitNormSphere.handle_ood" title="Permalink to this definition">#</a></dt>
-<dd><p>Apply an out-of-domain handler to ensure that all tensor entries are
-within bounds.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 
 
@@ -780,23 +722,6 @@ within bounds.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.UnitNormSphere"><code class="docutils literal notranslate"><span class="pre">UnitNormSphere</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.UnitNormSphere.preimage"><code class="docutils literal notranslate"><span class="pre">UnitNormSphere.preimage()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.UnitNormSphere.image"><code class="docutils literal notranslate"><span class="pre">UnitNormSphere.image()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.UnitNormSphere.test"><code class="docutils literal notranslate"><span class="pre">UnitNormSphere.test()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.UnitNormSphere.handle_ood"><code class="docutils literal notranslate"><span class="pre">UnitNormSphere.handle_ood()</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 

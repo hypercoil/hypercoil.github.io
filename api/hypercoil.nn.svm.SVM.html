@@ -39,7 +39,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.svm.SVM';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -704,123 +703,6 @@ document.write(`
                   
   <section id="svm">
 <h1><code class="docutils literal notranslate"><span class="pre">SVM</span></code><a class="headerlink" href="#svm" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="hypercoil.nn.svm.SVM">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.svm.</span></span><span class="sig-name descname"><span class="pre">SVM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rbf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'scale'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coef0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decision_function_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ovr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recondition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formulate_on_forward_pass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_observations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/nn/svm.py#L116-L596"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.svm.SVM" title="Permalink to this definition">#</a></dt>
-<dd><p>A kernelised support vector machine instantiated as a fully
-differentiable convex optimisation layer.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Do not use this module unless you have a good reason; to enforce DPP
-compliance and ensure well-formed gradients, some performance
-sacrifices have been made, and the forward pass quickly becomes
-prohibitively slow for large problems. A long-term solution would
-involve finding the analytic derivative through the SVM and
-implementing a custom backward method while using the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>
-forward. Or, alternatively finding a way to use libSVM as the back end
-solver.</p>
-</div>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>C</strong><span class="classifier">positive float (default 1)</span></dt><dd><p>Regularisation hyperparameter; a smaller value of C increases the
-strength of the regularisation.</p>
-</dd>
-<dt><strong>kernel</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'rbf'</span></code>, <code class="docutils literal notranslate"><span class="pre">'poly'</span></code>, <code class="docutils literal notranslate"><span class="pre">'linear'</span></code>, <code class="docutils literal notranslate"><span class="pre">'sigmoid'</span></code>, or callable</span></dt><dd><p>Kernel function. The callable signature should accept either
-one or two <span class="math notranslate nohighlight">\(n \times d\)</span> matrices and return a single
-positive semidefinite <span class="math notranslate nohighlight">\(n \times n\)</span> matrix (the kernel
-matrix). By default, a Gaussian kernel (RBF) is used. It is also
-possible to pass a pre-computed Gram matrix by setting this to
-<code class="docutils literal notranslate"><span class="pre">'precomputed'</span></code>.</p>
-</dd>
-<dt><strong>degree</strong><span class="classifier">int (default 3)</span></dt><dd><p>If a polynomial kernel is selected, specifies the maximum order
-of the polynomial.</p>
-</dd>
-<dt><strong>gamma</strong><span class="classifier">float, <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'scale'</span></code> (default <code class="docutils literal notranslate"><span class="pre">'scale'</span></code>)</span></dt><dd><p>Kernel coefficient for RBF, polynomial, and sigmoid kernels.
-<code class="docutils literal notranslate"><span class="pre">'scale'</span></code> and <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> automatically configure the kernel
-coefficient based on the input dataset, as in <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>.</p>
-</dd>
-<dt><strong>coef0</strong><span class="classifier">float (default 0)</span></dt><dd><p>Bias coefficient for polynomial and sigmoid kernels.</p>
-</dd>
-<dt><strong>class_weight</strong><span class="classifier">list or None (default None)</span></dt><dd><p>Sets the weight of <code class="docutils literal notranslate"><span class="pre">C</span></code> to <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">*</span> <span class="pre">class_weight[i]</span></code> for class <code class="docutils literal notranslate"><span class="pre">i</span></code>.
-Can be used to adjust the fit if classes are unbalanced.</p>
-</dd>
-<dt><strong>verbose</strong><span class="classifier">bool (default False)</span></dt><dd><p>Toggles the verbosity of the solver.</p>
-</dd>
-<dt><strong>decision_function_shape</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'ovr'</span></code></span></dt><dd><p>Currently, only one-vs-rest classifiers are available in the
-multi-class setting.</p>
-</dd>
-<dt><strong>recondition</strong><span class="classifier">float (default 0.01)</span></dt><dd><p>Reconditioning parameter to ensure positiveness and uniqueness of
-all eigenvalues of the Gram matrix, which is necessary for
-differentiation but likely sacrifices classification performance.
-Reconditioning adds nonnegative values to the main diagonal of the
-Gram matrix, approximately on the order of the largest singular
-value of the matrix scaled by the provided reconditioning
-factor.</p>
-</dd>
-<dt><strong>formulate_on_forward_pass</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that the problem should be formulated on every forward
-pass through the network. This will make the forward pass
-extremely slow, but is necessary if training with a variable
-number of observations. If this is false, the model cannot be used
-unless either the <code class="docutils literal notranslate"><span class="pre">formulate</span></code> method is called or both the
-<code class="docutils literal notranslate"><span class="pre">n_observations</span></code> and <code class="docutils literal notranslate"><span class="pre">n_classes</span></code> parameters are passed to the
-constructor.</p>
-</dd>
-<dt><strong>solver</strong><span class="classifier">None, <code class="docutils literal notranslate"><span class="pre">'ECOS'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'SCS'</span></code> (default None)</span></dt><dd><p>Convex solver to use for solving the SVM. By default the decision
-is passed to the <code class="docutils literal notranslate"><span class="pre">diffcp</span></code> package. Note that this is generally
-incredibly inefficient compared with using a dedicated SVM solver.</p>
-</dd>
-<dt><strong>n_observations</strong><span class="classifier">int or None (default None)</span></dt><dd><p>Number of observations in the training dataset. If not specified,
-this must be set when calling <code class="docutils literal notranslate"><span class="pre">formulate</span></code>; otherwise it will be
-determined automatically during the forward pass.</p>
-</dd>
-<dt><strong>n_classes</strong><span class="classifier">int or None (default None)</span></dt><dd><p>Number of classes in the dataset. If not specified, this must be
-set when calling <code class="docutils literal notranslate"><span class="pre">formulate</span></code>; otherwise it will be determined
-automatically during the forward pass.</p>
-</dd>
-<dt><strong>sample_weight</strong><span class="classifier">tensor or None (default None)</span></dt><dd><p>Weight for each observation. If specified, the value of <code class="docutils literal notranslate"><span class="pre">C</span></code> for
-observation i is scaled to <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">*</span> <span class="pre">sample_weight[i]</span></code>.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>This problem is framed as the dual of a soft-margin SVM. See
-10:15 here: <a class="reference external" href="https://www.youtube.com/watch?v=zzn80wmclnw">https://www.youtube.com/watch?v=zzn80wmclnw</a></p>
-<p>Note that we must introduce the new variable Z below to
-satisfy the <code class="docutils literal notranslate"><span class="pre">cxvpylayers</span></code> disciplined parametric programming
-requirement.</p>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">configure_gamma</span></code>(X, n_features)</p></td>
-<td><p>Helper method for automatically estimating the kernel coefficient parameter gamma based on properties of the input dataset.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code>(X, Y[, sample_weight, formulate])</p></td>
-<td><p>Fit the SVM to a training dataset.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_transform</span></code>(X, Y[, sample_weight, formulate])</p></td>
-<td><p>Fit the SVM to a training dataset and return its predictions on that dataset.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">formulate</span></code>(n_observations, n_classes[, Y, ...])</p></td>
-<td><p>Formulate all SVM problems to be solved during each forward pass.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">formulate_problem</span></code>(n[, C])</p></td>
-<td><p>Formulate a single binary SVM classifier's dual problem in CVX.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code>(X[, Y, sample_weight])</p></td>
-<td><p>Defines the computation performed at every call.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code>(X)</p></td>
-<td><p>Differentiably classify new data using the fit SVM parameters.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_params</span></code>([C, kernel, degree, gamma, ...])</p></td>
-<td><p>Function for safely updating the SVM parameters.</p></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </section>
 
 
@@ -835,17 +717,6 @@ requirement.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.svm.SVM"><code class="docutils literal notranslate"><span class="pre">SVM</span></code></a></li>
-</ul>
-  </nav></div>
 
   <div class="sidebar-secondary-item">
 
