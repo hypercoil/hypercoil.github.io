@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.sphere.spherical_conv';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -708,6 +709,57 @@ document.write(`
                   
   <section id="spherical-conv">
 <h1><code class="docutils literal notranslate"><span class="pre">spherical_conv</span></code><a class="headerlink" href="#spherical-conv" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.sphere.spherical_conv">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.sphere.</span></span><span class="sig-name descname"><span class="pre">spherical_conv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_bin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/sphere.py#L208-L256"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.sphere.spherical_conv" title="Permalink to this definition">#</a></dt>
+<dd><p>Convolve data on a 2-sphere with an isotropic Gaussian kernel.</p>
+<p>This is implemented in pretty much the dumbest possible way, but it works.
+Here is a likely more efficient method that requires Lie groups or some
+such thing:
+<a class="reference external" href="https://openreview.net/pdf?id=Hkbd5xZRb">https://openreview.net/pdf?id=Hkbd5xZRb</a></p>
+<p>See <a class="reference internal" href="hypercoil.functional.sphere.spatial_conv.html#hypercoil.functional.sphere.spatial_conv" title="hypercoil.functional.sphere.spatial_conv"><code class="xref py py-func docutils literal notranslate"><span class="pre">spatial_conv()</span></code></a> for implementation details.</p>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data :</strong> <span class="math notranslate nohighlight">\((*, C, N)\)</span></dt><dd><p><cite>*</cite> denotes any number of intervening dimensions, <cite>C</cite>
+denotes the number of data channels, and <cite>N</cite> denotes the
+number of data observations per channel.</p>
+</dd>
+<dt><strong>coor :</strong> <span class="math notranslate nohighlight">\((*, N, D)\)</span></dt><dd><p><cite>D</cite> denotes the dimension of the space in which the data
+are embedded.</p>
+</dd>
+</dl>
+<p><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, C, N)\)</span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor containing data observations, which might be arrayed into
+channels.</p>
+</dd>
+<dt><strong>coor</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor containing the spatial coordinates associated with each
+observation in <cite>data</cite>.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float (default 1)</span></dt><dd><p>Scale parameter of the Gaussian kernel.</p>
+</dd>
+<dt><strong>r</strong><span class="classifier">float (default 1)</span></dt><dd><p>Radius of the sphere.</p>
+</dd>
+<dt><strong>max_bin</strong><span class="classifier">int</span></dt><dd><p>Maximum number of points to include in a distance computation. If you
+run out of memory, try decreasing this.</p>
+</dd>
+<dt><strong>truncate</strong><span class="classifier">float or None (default None)</span></dt><dd><p>Maximum distance at which data points can be convolved together.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_conv</strong><span class="classifier">Tensor</span></dt><dd><p>The input data convolved with the kernel. Each channel is convolved
+completely separately as of now.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +774,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.sphere.spherical_conv"><code class="docutils literal notranslate"><span class="pre">spherical_conv()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

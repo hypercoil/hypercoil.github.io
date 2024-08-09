@@ -708,6 +708,62 @@ document.write(`
                   
   <section id="amplitudemultilogit">
 <h1><code class="docutils literal notranslate"><span class="pre">AmplitudeMultiLogit</span></code><a class="headerlink" href="#amplitudemultilogit" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.domain.AmplitudeMultiLogit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.domain.</span></span><span class="sig-name descname"><span class="pre">AmplitudeMultiLogit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoothing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domain.py#L194-L219"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.AmplitudeMultiLogit" title="Permalink to this definition">#</a></dt>
+<dd><p>Softmax amplitude domain mapper. Maps the amplitudes of a complex-valued
+tensor between a multinomial logit space and estimated class probabilities
+in the probability simplex.</p>
+<p>The forward function is a softmax applied to the amplitudes. Note that the
+softmax function does not have a unique inverse; here we use the
+elementwise natural logarithm as an ‘inverse’.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>axis</strong><span class="classifier">int (default -1)</span></dt><dd><p>Axis of tensors in the domain along which 1D slices are mapped to the
+probability simplex.</p>
+</dd>
+<dt><strong>minim</strong><span class="classifier">nonnegative float (default 1e-3)</span></dt><dd><p>Before it is mapped to its preimage, an input’s amplitude is bounded
+to the closed interval [<code class="docutils literal notranslate"><span class="pre">minim</span></code>, 1 - <code class="docutils literal notranslate"><span class="pre">minim</span></code>]. This serves two
+purposes: avoiding infinities when the tensor’s amplitudes include the
+supremum or infimum (0 and 1) and restricting parameter values to a
+range where the gradient has not vanished.</p>
+</dd>
+<dt><strong>handler</strong><span class="classifier">_OutOfDomainHandler object (default <a class="reference internal" href="hypercoil.init.domainbase.Clip.html"><span class="doc">Clip</span></a>)</span></dt><dd><p>Object specifying a method for handling out-of-domain entries.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.domain.AmplitudeMultiLogit.preimage">
+<span class="sig-name descname"><span class="pre">preimage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L268-L277"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.AmplitudeMultiLogit.preimage" title="Permalink to this definition">#</a></dt>
+<dd><p>Map the amplitude of a complex-valued tensor to its preimage under the
+transformation. Any values outside the transformation’s range are first
+handled.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.domain.AmplitudeMultiLogit.image">
+<span class="sig-name descname"><span class="pre">image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L278-L286"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.AmplitudeMultiLogit.image" title="Permalink to this definition">#</a></dt>
+<dd><p>Map the amplitude of a complex-valued a tensor to its image under the
+transformation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.domain.AmplitudeMultiLogit.test">
+<span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L220-L225"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.AmplitudeMultiLogit.test" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate whether each entry in a tensor falls within bounds.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.domain.AmplitudeMultiLogit.handle_ood">
+<span class="sig-name descname"><span class="pre">handle_ood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L226-L232"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domain.AmplitudeMultiLogit.handle_ood" title="Permalink to this definition">#</a></dt>
+<dd><p>Apply an out-of-domain handler to ensure that all tensor entries are
+within bounds.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +778,23 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.AmplitudeMultiLogit"><code class="docutils literal notranslate"><span class="pre">AmplitudeMultiLogit</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.AmplitudeMultiLogit.preimage"><code class="docutils literal notranslate"><span class="pre">AmplitudeMultiLogit.preimage()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.AmplitudeMultiLogit.image"><code class="docutils literal notranslate"><span class="pre">AmplitudeMultiLogit.image()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.AmplitudeMultiLogit.test"><code class="docutils literal notranslate"><span class="pre">AmplitudeMultiLogit.test()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domain.AmplitudeMultiLogit.handle_ood"><code class="docutils literal notranslate"><span class="pre">AmplitudeMultiLogit.handle_ood()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

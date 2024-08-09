@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.connectopy.diffusion_mapping';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -708,6 +709,83 @@ document.write(`
                   
   <section id="diffusion-mapping">
 <h1><code class="docutils literal notranslate"><span class="pre">diffusion_mapping</span></code><a class="headerlink" href="#diffusion-mapping" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.connectopy.diffusion_mapping">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.connectopy.</span></span><span class="sig-name descname"><span class="pre">diffusion_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffusion_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lobpcg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter_svd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/connectopy.py#L129-L261"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.connectopy.diffusion_mapping" title="Permalink to this definition">#</a></dt>
+<dd><p>Manifold coordinates estimated using diffusion mapping.</p>
+<p>This functionality is adapted very closely from <code class="docutils literal notranslate"><span class="pre">brainspace</span></code> with some
+minor adaptations for differentiability.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The anisotropic diffusion parameter determines the kind of diffusion
+map produced by the algorithm.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha = 0\)</span> produces Laplacian eigenmaps, corresponding to a
+random walk-style diffusion operator.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha = 0.5\)</span> (default) corresponds to Fokker-Planck
+diffusion.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha = 1\)</span> corresponds to Laplace-Beltrami diffusion.</p></li>
+</ul>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>W :</strong> <span class="math notranslate nohighlight">\((*, N, N)\)</span> or <span class="math notranslate nohighlight">\((*, E)\)</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of preceding dimensions, N
+denotes number of vertices, and E denotes number of edges.
+The shape should be <span class="math notranslate nohighlight">\((*, N, N)\)</span> if <code class="docutils literal notranslate"><span class="pre">edge_index</span></code> is
+not provided and <span class="math notranslate nohighlight">\((*, E)\)</span> if <code class="docutils literal notranslate"><span class="pre">edge_index</span></code> is
+provided.</p>
+</dd>
+<dt><strong>edge_index :</strong> <span class="math notranslate nohighlight">\((*, 2, E)\)</span></dt><dd><p>As above.</p>
+</dd>
+<dt><strong>Q :</strong> <span class="math notranslate nohighlight">\((*, N, k)\)</span></dt><dd><p>k denotes the number of diffusion maps.</p>
+</dd>
+<dt><strong>L :</strong> <span class="math notranslate nohighlight">\((*, k)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>W</strong><span class="classifier">tensor</span></dt><dd><p>Edge weight tensor. If <code class="docutils literal notranslate"><span class="pre">edge_index</span></code> is not provided, then this
+should be the graph adjacency (or affinity) matrix; otherwise, it
+should be a list of weights corresponding to the edges in
+<code class="docutils literal notranslate"><span class="pre">edge_index</span></code>.</p>
+</dd>
+<dt><strong>edge_index</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">LongTensor</span></code> or None (default None)</span></dt><dd><p>List of edges corresponding to the provided weights. Each column
+contains the index of the source vertex and the index of the target
+vertex for the corresponding weight in <code class="docutils literal notranslate"><span class="pre">W</span></code>.</p>
+</dd>
+<dt><strong>k</strong><span class="classifier">int (default 10)</span></dt><dd><p>Number of eigenmaps to compute.</p>
+</dd>
+<dt><strong>alpha</strong><span class="classifier">float <span class="math notranslate nohighlight">\(\in [0, 1]\)</span> (default 0.5)</span></dt><dd><p>Anisotropic diffusion parameter.</p>
+</dd>
+<dt><strong>diffusion_time</strong><span class="classifier">int (default 0)</span></dt><dd><p>Diffusion time parameter. A value of 0 indicates that a multi-scale
+diffusion map should be computed, which considers all valid times
+(1, 2, 3, etc.).</p>
+</dd>
+<dt><strong>solver</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'lobpcg'</span></code> (default) or <code class="docutils literal notranslate"><span class="pre">'eigh'</span></code> or <code class="docutils literal notranslate"><span class="pre">'svd'</span></code></span></dt><dd><p>Method for computing the eigendecomposition.</p>
+</dd>
+<dt><strong>niter_svd</strong><span class="classifier">int (default 500)</span></dt><dd><p>Number of iterations when low-rank SVD is used as the eigensolver.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Q</strong><span class="classifier">tensor</span></dt><dd><p>Diffusion maps.</p>
+</dd>
+<dt><strong>L</strong><span class="classifier">tensor</span></dt><dd><p>Eigenvalues corresponding to diffusion maps.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="hypercoil.functional.connectopy.laplacian_eigenmaps.html#hypercoil.functional.connectopy.laplacian_eigenmaps" title="hypercoil.functional.connectopy.laplacian_eigenmaps"><code class="xref py py-func docutils literal notranslate"><span class="pre">laplacian_eigenmaps()</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +800,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.connectopy.diffusion_mapping"><code class="docutils literal notranslate"><span class="pre">diffusion_mapping()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

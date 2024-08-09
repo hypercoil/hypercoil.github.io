@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.spdnoise.SPDNoise';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -703,6 +704,64 @@ document.write(`
                   
   <section id="spdnoise">
 <h1><code class="docutils literal notranslate"><span class="pre">SPDNoise</span></code><a class="headerlink" href="#spdnoise" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.nn.spdnoise.SPDNoise">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.spdnoise.</span></span><span class="sig-name descname"><span class="pre">SPDNoise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">std</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/nn/spdnoise.py#L14-L83"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.spdnoise.SPDNoise" title="Permalink to this definition">#</a></dt>
+<dd><p>Symmetric positive definite noise injection that preserves positive
+semidefiniteness.</p>
+<p>The input tensor is added together with noise sampled from a source that
+produces random symmetric positive semidefinite matrices. The result is
+thus guaranteed to remain in the positive semidefinite cone if the input is
+also positive semidefinite. The addition of noise is optionally followed by
+a renormalisation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((*, N, N)\)</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of preceding dimensions and N
+denotes the size of each square matrix.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, N, N)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>std</strong><span class="classifier">nonnegative float</span></dt><dd><p>Elementwise standard deviation of the sampled noise.</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">bool</span></dt><dd><p>Indicates that the noisy sample should be renormalised after the
+injection of noise. The normalisation proceeds by computing the square
+root of each entry along the diagonal and embedding the reciprocals of
+the computed square roots into a new vector. The rank-1 outer product
+of this vector with itself is then multiplied elementwise with the
+noisy sample to normalise it. Because the outer product of a vector
+with itself is necessarily positive semidefinite, the Schur product
+theorem requires the result to be positive semidefinite.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>noise</strong><span class="classifier">SPSDNoiseSource</span></dt><dd><p>Symmetric positive semidefinite noise source.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval</span></code>()</p></td>
+<td><p>Set the module into evaluation mode.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code>(input)</p></td>
+<td><p>Inject symmetric positive definite noise into the input.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">train</span></code>([mode])</p></td>
+<td><p>Set the module into training mode.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +776,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.spdnoise.SPDNoise"><code class="docutils literal notranslate"><span class="pre">SPDNoise</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

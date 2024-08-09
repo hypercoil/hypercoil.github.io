@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.neuro.synth.match_covariance';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -708,6 +709,70 @@ document.write(`
                   
   <section id="match-covariance">
 <h1><code class="docutils literal notranslate"><span class="pre">match_covariance</span></code><a class="headerlink" href="#match-covariance" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.neuro.synth.match_covariance">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.neuro.synth.</span></span><span class="sig-name descname"><span class="pre">match_covariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/neuro/synth.py#L53-L127"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.neuro.synth.match_covariance" title="Permalink to this definition">#</a></dt>
+<dd><p>Project a multivariate signal so that its covariance matches a reference
+covariance.</p>
+<p>This uses the procedure described in Laumann et al. (2017),
+“On the Stability of BOLD fMRI Correlations”. Specifically, given an
+input multivariate time series <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> and a reference
+covariance matrix <span class="math notranslate nohighlight">\(\Sigma\)</span>, the procedure first computes the
+eigendecomposition of the real symmetric <span class="math notranslate nohighlight">\(\Sigma\)</span> and then forms a
+projected time series <span class="math notranslate nohighlight">\(\widetilde{\mathbf{T}}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}
+\Sigma &amp;= Q \Lambda Q^\intercal\\\widetilde{\mathbf{T}} &amp;= Q \Lambda^{\frac{1}{2}} \mathbf{T}
+\end{aligned}\end{aligned}\end{align} \]</div>
+<p>The basic assumption of the procedure is that the input time series
+<span class="math notranslate nohighlight">\(\mathbf{T}\)</span> (containing <span class="math notranslate nohighlight">\(n\)</span> observations) is drawn from a
+process such that in expectation</p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \mathbf{E}[\mathbf{T} \mathbf{T}^\intercal] = \mathbf{I}\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> is the identity matrix. This assumption holds
+<cite>inter alia</cite> when <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> is drawn i.i.d. from a standard
+normal distribution.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}
+\frac{1}{n} \mathbf{E}[\widetilde{\mathbf{T}}
+\widetilde{\mathbf{T}}^\intercal]
+&amp;= \frac{1}{n} \mathbf{E}[Q \Lambda^{\frac{1}{2}} \mathbf{T}
+\mathbf{T}^\intercal \Lambda^{\frac{1}{2}} Q^\intercal]\\&amp;= Q \Lambda^{\frac{1}{2}} \left(\frac{1}{n} \mathbf{E}[\mathbf{T}
+\mathbf{T}^\intercal] \right) \Lambda^{\frac{1}{2}} Q^\intercal\\&amp;= Q \Lambda Q^\intercal = \Sigma
+\end{aligned}\end{aligned}\end{align} \]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>signal :</strong> <span class="math notranslate nohighlight">\((D, N)\)</span></dt><dd><p>D denotes dimension of the multivariate signal and N
+denotes the number of observations per channel.</p>
+</dd>
+<dt><strong>reference :</strong> <span class="math notranslate nohighlight">\((D, N)\)</span> or <span class="math notranslate nohighlight">\((D, D)\)</span></dt><dd><p>As above. Depends on the Boolean value passed to <code class="docutils literal notranslate"><span class="pre">cov</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>signal</strong><span class="classifier">tensor</span></dt><dd><p>Input signal <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> to project so that its covariance is
+matched to the <code class="docutils literal notranslate"><span class="pre">reference</span></code>.</p>
+</dd>
+<dt><strong>reference</strong><span class="classifier">tensor</span></dt><dd><p>Either a reference signal whose covariance <span class="math notranslate nohighlight">\(\Sigma\)</span> is to be
+matched, or the covariance matrix itself. See <code class="docutils literal notranslate"><span class="pre">cov</span></code>.</p>
+</dd>
+<dt><strong>cov</strong><span class="classifier">bool (default False)</span></dt><dd><p>If True, indicates that the <code class="docutils literal notranslate"><span class="pre">reference</span></code> provided is a covariance
+matrix. Otherwise, the covariance matrix is computed from the provided
+reference.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>tensor</dt><dd><p><span class="math notranslate nohighlight">\(\widetilde{\mathbf{T}}\)</span>, <code class="docutils literal notranslate"><span class="pre">signal</span></code> projected to match the
+<code class="docutils literal notranslate"><span class="pre">reference</span></code> covariance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +787,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.neuro.synth.match_covariance"><code class="docutils literal notranslate"><span class="pre">match_covariance()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

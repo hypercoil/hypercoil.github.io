@@ -708,6 +708,80 @@ document.write(`
                   
   <section id="spectral-interpolate">
 <h1><code class="docutils literal notranslate"><span class="pre">spectral_interpolate</span></code><a class="headerlink" href="#spectral-interpolate" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.interpolate.spectral_interpolate">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.interpolate.</span></span><span class="sig-name descname"><span class="pre">spectral_interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oversampling_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handle_fail</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/interpolate.py#L255-L368"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.interpolate.spectral_interpolate" title="Permalink to this definition">#</a></dt>
+<dd><p>Spectral interpolation based on basis function projection.</p>
+<p>Given a time series with missing or corrupt observations, this operation
+estimates the time series frequency spectra by proxy of projections onto
+sine and cosine basis functions, and then uses the frequency spectrum
+estimates as basis function weights in the reconstruction of missing
+observations.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Users of this approach must be advised that the missing observations
+result in non-orthogonal basis functions, and accordingly the variance
+captured by different frequency bins might be shared.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is inspired by
+<a class="reference external" href="https://github.com/MidnightScanClub/MSCcodebase/blob/master/Processing/FCPROCESS_MSC.m">previous work from Anish Mitra and Jonathan Power</a>
+which in turn is inspired by the Lomb-Scargle periodogram.</p>
+</div>
+<p>This method is used to temporarily interpolate over time points flagged
+for omission due to high artefact content, so as to reduce disruptions to
+the autocorrelation structure introduced by either artefactual outliers or
+zeroing (or arguably linearly interpolating) those outliers. This is
+useful for operations such as filtering and convolution for which the
+autocorrelation structure of the data is relevant. It should not be used
+for operations in which the autocorrelation structure plays no role, such
+as covariance estimation, for which the weights of missing observations
+can easily be set to 0.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">spectral_interpolate</span></code> expects batched input <code class="docutils literal notranslate"><span class="pre">data</span></code> and <code class="docutils literal notranslate"><span class="pre">tmask</span></code>
+arguments. If your inputs are not batched, <code class="docutils literal notranslate"><span class="pre">unsqueeze</span></code> their first
+dimension before providing them as inputs.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">tensor</span></dt><dd><p>Time series data.</p>
+</dd>
+<dt><strong>tmask</strong><span class="classifier">boolean tensor</span></dt><dd><p>Boolean tensor indicating whether the value in each frame of the input
+time series is observed. <code class="docutils literal notranslate"><span class="pre">True</span></code> indicates that the original data are
+“good” or observed, while <code class="docutils literal notranslate"><span class="pre">False</span></code> indicates that they are “bad” or
+missing and flags them for interpolation.</p>
+</dd>
+<dt><strong>oversampling_frequency</strong><span class="classifier">float (default 8)</span></dt><dd><p>Determines the number of frequency bins to use when estimating the
+sine and cosine spectra. 1 indicates that the number of bins should be
+the same as in a Fourier transform, while larger values indicate that
+frequency bins should be oversampled.</p>
+</dd>
+<dt><strong>maximum_frequency</strong><span class="classifier">float (default 1)</span></dt><dd><p>Maximum frequency bin to consider in the fit, as a fraction of
+Nyquist.</p>
+</dd>
+<dt><strong>sampling_period</strong><span class="classifier">float (default 1)</span></dt><dd><p>Period separating consecutive samples in <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+</dd>
+<dt><strong>thresh</strong><span class="classifier">float (default 0)</span></dt><dd><p>Because of the non-orthogonality of the basis functions, spurious
+variance will often be captured in the spectral estimates. To control
+this spurious variance, all frequency bins whose estimates are less
+than <code class="docutils literal notranslate"><span class="pre">thresh</span></code>, as a fraction of the maximum estimate across all
+bins, are set to 0.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>tensor</dt><dd><p>Input <code class="docutils literal notranslate"><span class="pre">data</span></code> whose flagged frames are replaced using the spectral
+interpolation procedure.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +796,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.interpolate.spectral_interpolate"><code class="docutils literal notranslate"><span class="pre">spectral_interpolate()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

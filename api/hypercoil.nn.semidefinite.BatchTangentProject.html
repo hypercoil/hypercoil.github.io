@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.semidefinite.BatchTangentProject';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -708,6 +709,73 @@ document.write(`
                   
   <section id="batchtangentproject">
 <h1><code class="docutils literal notranslate"><span class="pre">BatchTangentProject</span></code><a class="headerlink" href="#batchtangentproject" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.nn.semidefinite.BatchTangentProject">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.nn.semidefinite.</span></span><span class="sig-name descname"><span class="pre">BatchTangentProject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean_specs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recondition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inertia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/nn/semidefinite.py#L140-L236"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.semidefinite.BatchTangentProject" title="Permalink to this definition">#</a></dt>
+<dd><p>Tangent/cone projection with a new tangency point computed for each batch.</p>
+<p>Data transported through the module is projected from the positive
+semidefinite cone into a proper subspace tangent to the cone at the
+reference point. Given a tangency point <span class="math notranslate nohighlight">\(\Omega\)</span>, each input
+<span class="math notranslate nohighlight">\(\Theta\)</span> is projected as:</p>
+<p><span class="math notranslate nohighlight">\(\vec{\Theta} = \log \Omega^{-1/2} \Theta \Omega^{-1/2}\)</span></p>
+<p>Alternatively, the module destination can be set to the semidefinite cone,
+in which case symmetric matrices are projected into the cone using the
+same reference point:</p>
+<p><span class="math notranslate nohighlight">\(\Theta = \Omega^{1/2} \exp \vec{\Theta} \Omega^{1/2}\)</span></p>
+<p>Here, the tangency point is computed as a convex combination of the
+previous tangency point and some measure of central tendency in the
+current data batch. The tangency point is <em>not</em> learnable. This module is
+almost definitely a bad idea, but it might somehow be helpful for
+regularisation, augmentation, or increasing the model’s robustness to
+different views on the input data.</p>
+<p>The weight is updated ONLY during projection into tangent space. Given an
+inertial parameter <span class="math notranslate nohighlight">\(\eta\)</span> and a measure of central tendency
+<span class="math notranslate nohighlight">\(\bar{\Theta}\)</span>, the weight is updated as</p>
+<p><span class="math notranslate nohighlight">\(\Omega_t := \eta \Omega_{t-1} + (1 - \eta) \bar{\Theta}\)</span></p>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((*, N, N)\)</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of preceding dimensions and N
+denotes the size of each square symmetric matrix.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, C, N, N)\)</span></dt><dd><p>C denotes the number of output channels (points of
+tangency).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>mean_specs</strong><span class="classifier">list(_SemidefiniteMean object)</span></dt><dd><p>Objects encoding a measure of central tendency in the positive
+semidefinite cone. Used to initialise the reference points of
+tangency. Selected from
+<a class="reference internal" href="hypercoil.init.semidefinite.html"><span class="doc">means on the semidefinite cone</span></a>.</p>
+</dd>
+<dt><strong>recondition</strong><span class="classifier">float in [0, 1]</span></dt><dd><p>Conditioning factor <span class="math notranslate nohighlight">\(\psi\)</span> to promote positive definiteness. If
+this is in (0, 1], the original input will be replaced with a convex
+combination of the input and an identity matrix.</p>
+<p><span class="math notranslate nohighlight">\(\hat{X} = (1 - \psi) X + \psi I\)</span></p>
+<p>A suitable value can be used to ensure that all eigenvalues are
+positive and therefore guarantee that the matrix is in the domain.</p>
+</dd>
+<dt><strong>inertia</strong><span class="classifier">float in [0, 1]</span></dt><dd><p>Parameter <span class="math notranslate nohighlight">\(\eta\)</span> describing the relative weighting of the
+historical tangencypoint and the current batch mean. Zero inertia
+strictly uses the current batch mean. High inertia prevents the
+tangency point from skipping by heavily weighting the history.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>weight</strong><span class="classifier">Tensor <span class="math notranslate nohighlight">\((*, C, N, N)\)</span></span></dt><dd><p>Current reference point of tangency <span class="math notranslate nohighlight">\(\Omega\)</span> for the projection
+between the semidefinite cone and a tangent subspace.</p>
+</dd>
+<dt><strong>dest</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'tangent'</span></code> or <code class="docutils literal notranslate"><span class="pre">'cone'</span></code></span></dt><dd><p>Target space/manifold of the projection operation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +790,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.semidefinite.BatchTangentProject"><code class="docutils literal notranslate"><span class="pre">BatchTangentProject()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

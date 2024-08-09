@@ -703,6 +703,77 @@ document.write(`
                   
   <section id="batchcorrelation">
 <h1><code class="docutils literal notranslate"><span class="pre">BatchCorrelation</span></code><a class="headerlink" href="#batchcorrelation" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.batchcorr.BatchCorrelation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.batchcorr.</span></span><span class="sig-name descname"><span class="pre">BatchCorrelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_sig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/batchcorr.py#L93-L146"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.batchcorr.BatchCorrelation" title="Permalink to this definition">#</a></dt>
+<dd><p>Correlation over the batch dimension.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
+</dd>
+<dt><strong>reduction</strong><span class="classifier">callable (default <code class="docutils literal notranslate"><span class="pre">torch.mean</span></code>)</span></dt><dd><p>Map from the tensor of batch-wise correlations to a scalar.</p>
+</dd>
+<dt><strong>tol</strong><span class="classifier">nonnegative float or <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> (default 0)</span></dt><dd><p>Tolerance for correlations. Only correlation values above <code class="docutils literal notranslate"><span class="pre">tol</span></code> are
+counted. If this is set to <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>, a tolerance is computed for the
+batch size given the significance level in <code class="docutils literal notranslate"><span class="pre">tol_sig</span></code>.
+(See <a class="reference internal" href="hypercoil.loss.batchcorr.auto_tol.html#hypercoil.loss.batchcorr.auto_tol" title="hypercoil.loss.batchcorr.auto_tol"><code class="xref py py-func docutils literal notranslate"><span class="pre">auto_tol()</span></code></a>.)</p>
+</dd>
+<dt><strong>tol_sig</strong><span class="classifier">float in (0, 1)</span></dt><dd><p>Significance level for correlation tolerance. Used only if <cite>tol</cite> is
+set to <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.loss.batchcorr.BatchCorrelation.forward" title="hypercoil.loss.batchcorr.BatchCorrelation.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(data, measure)</p></td>
+<td><p>Correlation over the batch dimension.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.batchcorr.BatchCorrelation.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/batchcorr.py#L124-L146"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.batchcorr.BatchCorrelation.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Correlation over the batch dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">tensor</span></dt><dd><p>Tensor block containing measures to be correlated with those in
+<code class="docutils literal notranslate"><span class="pre">measure</span></code>.</p>
+</dd>
+<dt><strong>measure</strong><span class="classifier">tensor</span></dt><dd><p>Vector of measures (one per batch element) with which the measures
+in <code class="docutils literal notranslate"><span class="pre">data</span></code> are to be correlated.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>tensor</dt><dd><p>Absolute correlation of each vector in <code class="docutils literal notranslate"><span class="pre">data</span></code> with <code class="docutils literal notranslate"><span class="pre">measure</span></code>,
+after thresholding according to the loss object’s <code class="docutils literal notranslate"><span class="pre">tol</span></code>
+attribute. Note that, if you want the original correlations back,
+you will have to add <cite>tol</cite> to any nonzero correlations.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.batchcorr.BatchCorrelation.register_sentry">
+<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.batchcorr.BatchCorrelation.register_sentry" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.batchcorr.BatchCorrelation.register_action">
+<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.batchcorr.BatchCorrelation.register_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +788,22 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.batchcorr.BatchCorrelation"><code class="docutils literal notranslate"><span class="pre">BatchCorrelation</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.batchcorr.BatchCorrelation.forward"><code class="docutils literal notranslate"><span class="pre">BatchCorrelation.forward()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.batchcorr.BatchCorrelation.register_sentry"><code class="docutils literal notranslate"><span class="pre">BatchCorrelation.register_sentry()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.batchcorr.BatchCorrelation.register_action"><code class="docutils literal notranslate"><span class="pre">BatchCorrelation.register_action()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

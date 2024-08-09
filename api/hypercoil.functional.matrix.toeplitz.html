@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.matrix.toeplitz';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -708,6 +709,66 @@ document.write(`
                   
   <section id="toeplitz">
 <h1><code class="docutils literal notranslate"><span class="pre">toeplitz</span></code><a class="headerlink" href="#toeplitz" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.matrix.toeplitz">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.matrix.</span></span><span class="sig-name descname"><span class="pre">toeplitz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/matrix.py#L348-L417"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.matrix.toeplitz" title="Permalink to this definition">#</a></dt>
+<dd><p>Populate a block of tensors with Toeplitz banded structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>c :</strong> <span class="math notranslate nohighlight">\((C, *)\)</span></dt><dd><p>C denotes the number of elements in the first column whose
+values are propagated along the matrix diagonals. <code class="docutils literal notranslate"><span class="pre">*</span></code>
+denotes any number of additional dimensions.</p>
+</dd>
+<dt><strong>R :</strong> <span class="math notranslate nohighlight">\((R, *)\)</span></dt><dd><p>R denotes the number of elements in the first row whose
+values are propagated along the matrix diagonals.</p>
+</dd>
+<dt><strong>fill_value :</strong> <span class="math notranslate nohighlight">\((*)\)</span></dt><dd><p>As above.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, C^{*}, R^{*})\)</span></dt><dd><p><span class="math notranslate nohighlight">\(C^{*}\)</span> and <span class="math notranslate nohighlight">\({*}\)</span> default to C and R unless
+specified otherwise in the <cite>dim</cite> argument.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>c: Tensor</strong></dt><dd><p>Tensor of entries in the first column of each Toeplitz matrix. The
+first axis corresponds to a single matrix column; additional
+dimensions correspond to concatenation of Toeplitz matrices into a
+stack or block tensor.</p>
+</dd>
+<dt><strong>r: Tensor</strong></dt><dd><p>Tensor of entries in the first row of each Toeplitz matrix. The first
+axis corresponds to a single matrix row; additional dimensions
+correspond to concatenation of Toeplitz matrices into a stack or block
+tensor. The first entry in each column should be the same as the first
+entry in the corresponding column of <cite>c</cite>; otherwise, it will be
+ignored.</p>
+</dd>
+<dt><strong>dim: 2-tuple of (int, int) or None (default)</strong></dt><dd><p>Dimension of each Toeplitz banded matrix in the output block. If this
+is None or unspecified, it defaults to the sizes of the first axes of
+inputs <cite>c</cite> and <cite>r</cite>. Otherwise, the row and column inputs are extended
+until their dimensions equal those specified here. This can be useful,
+for instance, to create a large banded matrix with mostly zero
+off-diagonals.</p>
+</dd>
+<dt><strong>fill_value: Tensor or float (default 0)</strong></dt><dd><p>Specifies the value that should be used to populate the off-diagonals
+of each Toeplitz matrix if the specified row and column elements are
+extended to conform with the specified <cite>dim</cite>. If this is a tensor,
+then each entry corresponds to the fill value in a different data
+channel. Has no effect if <code class="docutils literal notranslate"><span class="pre">dim</span></code> is None.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>out: Tensor</dt><dd><p>Block of Toeplitz matrices populated from the specified row and column
+elements.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +783,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.matrix.toeplitz"><code class="docutils literal notranslate"><span class="pre">toeplitz()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

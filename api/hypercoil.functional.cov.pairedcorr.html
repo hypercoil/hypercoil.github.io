@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.cov.pairedcorr';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -708,6 +709,20 @@ document.write(`
                   
   <section id="pairedcorr-paired-correlation">
 <h1><code class="docutils literal notranslate"><span class="pre">pairedcorr</span></code>: Paired correlation<a class="headerlink" href="#pairedcorr-paired-correlation" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.cov.pairedcorr">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.cov.</span></span><span class="sig-name descname"><span class="pre">pairedcorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/cov.py#L208-L226"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.cov.pairedcorr" title="Permalink to this definition">#</a></dt>
+<dd><p>Empirical Pearson correlation between variables in two tensor batches.</p>
+<p>Consult the <a class="reference internal" href="hypercoil.functional.cov.pairedcov.html#hypercoil.functional.cov.pairedcov" title="hypercoil.functional.cov.pairedcov"><code class="xref py py-func docutils literal notranslate"><span class="pre">pairedcov()</span></code></a> documentation for complete parameter
+details.</p>
+<p>The empirical paired correlation is obtained via normalisation of the
+paired covariance. Given a paired covariance matrix
+<span class="math notranslate nohighlight">\(\hat{\Sigma} \in \mathbb{R}^{n \times n}\)</span>, each entry of the
+paired correlation matrix <span class="math notranslate nohighlight">\(R \in \mathbb{R}^{n \times n}\)</span>
+is defined according to</p>
+<p><span class="math notranslate nohighlight">\(R_{ij} = \frac{\hat{\Sigma}_{ij}}{\sqrt{\hat{\Sigma}_{ii}} \sqrt{\hat{\Sigma}_{jj}}}\)</span></p>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +737,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.cov.pairedcorr"><code class="docutils literal notranslate"><span class="pre">pairedcorr()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

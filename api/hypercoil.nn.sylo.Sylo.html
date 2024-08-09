@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.nn.sylo.Sylo';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -708,6 +709,125 @@ document.write(`
                   
   <section id="sylo">
 <h1><code class="docutils literal notranslate"><span class="pre">Sylo</span></code><a class="headerlink" href="#sylo" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.nn.sylo.Sylo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.nn.sylo.</span></span><span class="sig-name descname"><span class="pre">Sylo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coupling=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity=&lt;function</span> <span class="pre">crosshair_similarity&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_diagonal=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/nn/sylo.py#L18-L225"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.nn.sylo.Sylo" title="Permalink to this definition">#</a></dt>
+<dd><p>Layer that learns a set of (possibly) symmetric, low-rank representations
+of a dataset.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>in_channels: int</strong></dt><dd><p>Number of channels or layers in the input graph or matrix.</p>
+</dd>
+<dt><strong>out_channels: int</strong></dt><dd><p>Number of channels or layers in the output graph or matrix. This is
+equal to the number of learnable templates.</p>
+</dd>
+<dt><strong>dim: int or tuple(int)</strong></dt><dd><p>Number of vertices in the graph or number of columns in the matrix.
+If the graph is bipartite or the matrix is nonsquare, then this should
+be a 2-tuple.</p>
+</dd>
+<dt><strong>rank: int</strong></dt><dd><p>Rank of the templates learned by the sylo module. Default: 1.</p>
+</dd>
+<dt><strong>bias: bool</strong></dt><dd><p>If True, adds a learnable bias to the output. Default: True</p>
+</dd>
+<dt><strong>symmetry: bool, ``’cross’``, or ``’skew’`` (default True)</strong></dt><dd><p>Symmetry constraints to impose on learnable templates.</p>
+<ul class="simple">
+<li><p>If False, no symmetry constraints are placed on the templates
+learned by the module.</p></li>
+<li><p>If True, the module is constrained to learn symmetric
+representations of the graph or matrix: the left and right
+generators of each template are constrained to be identical.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">'cross'</span></code>, the module is also constrained to learn symmetric
+representations of the graph or matrix. However, in this case, the
+left and right generators can be different, and the template is
+defined as the average of the expansion and its transpose:
+<span class="math notranslate nohighlight">\(\frac{1}{2} \left(L R^{\intercal} + R L^{\intercal}\right)\)</span></p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">'skew'</span></code>, the module is constrained to learn skew-symmetric
+representations of the graph or matrix. The template is defined as
+the difference between the expansion and its transpose:
+<span class="math notranslate nohighlight">\(\frac{1}{2} \left(L R^{\intercal} - R L^{\intercal}\right)\)</span></p></li>
+</ul>
+<p>This option is not available for nonsquare matrices or bipartite
+graphs. Note that the parameter count doubles if this is False.</p>
+</dd>
+<dt><strong>coupling: None, ``’+’``, ``’-‘``, ``’split’``, ``’learnable’``, ``’learnable_all’``</strong></dt><dd><p>Coupling parameter when expanding outer-product template banks.</p>
+<ul class="simple">
+<li><p>A value of <code class="docutils literal notranslate"><span class="pre">None</span></code> disables the coupling parameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'+'</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">None</span></code>, fixing coupling to positive 1.
+For <code class="docutils literal notranslate"><span class="pre">symmetry=True</span></code>, this enforces positive semidefinite
+templates.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'-'</span></code> fixes coupling parameters to negative 1. For
+<code class="docutils literal notranslate"><span class="pre">symmetry=True</span></code>, this enforces negative semidefinite templates.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'split'</span></code> splits channels such that approximately an equal number
+have coupling parameters fixed to +1 and -1. For <code class="docutils literal notranslate"><span class="pre">symmetry=True</span></code>,
+this splits channels among positive and negative semidefinite
+templates. This option can also be useful when imposing a unilateral
+normed penalty to favour nonnegative weights, as the template bank
+can simultaneously satisfy the soft nonnegativity constraint and
+respond with positive activations to features of either sign,
+enabling these activations to survive downstream rectifiers.</p></li>
+<li><p>A float value in (0, 1) is just like <code class="docutils literal notranslate"><span class="pre">split</span></code> but fixes the
+fraction of negative parameters to approximately the specified
+value.</p></li>
+<li><p>Similarly, an int value fixes the number of negative output channels
+to the specified value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'learnable'</span></code> sets the diagonal terms of the coupling parameter
+(the coupling between vector 0 of the left generator and vector 0
+of the right generator, for instance, but not between vector 0 of
+the left generator and vector 1 of the right generator) to be
+learnable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'learnable_all'</span></code> sets all terms of the coupling parameter to be</p></li>
+</ul>
+<p>learnable.</p>
+</dd>
+<dt><strong>similarity: function</strong></dt><dd><p>Definition of the similarity metric. This must be a function whose
+inputs and outputs are:</p>
+<ul class="simple">
+<li><p>input 0: reference matrix <code class="docutils literal notranslate"><span class="pre">(N</span> <span class="pre">x</span> <span class="pre">C_in</span> <span class="pre">x</span> <span class="pre">H</span> <span class="pre">x</span> <span class="pre">W)</span></code></p></li>
+<li><p>input 1: left template generator <code class="docutils literal notranslate"><span class="pre">(C_out</span> <span class="pre">x</span> <span class="pre">C_in</span> <span class="pre">x</span> <span class="pre">H</span> <span class="pre">x</span> <span class="pre">R)</span></code></p></li>
+<li><p>input 2: right template generator <code class="docutils literal notranslate"><span class="pre">(C_out</span> <span class="pre">x</span> <span class="pre">C_in</span> <span class="pre">x</span> <span class="pre">H</span> <span class="pre">x</span> <span class="pre">R)</span></code></p></li>
+<li><p>input 3: symmetry constraint (<code class="docutils literal notranslate"><span class="pre">'cross'</span></code>, <code class="docutils literal notranslate"><span class="pre">'skew'</span></code>, or other)</p></li>
+<li><p>output <code class="docutils literal notranslate"><span class="pre">(N</span> <span class="pre">x</span> <span class="pre">C_out</span> <span class="pre">x</span> <span class="pre">H</span> <span class="pre">x</span> <span class="pre">W)</span></code></p></li>
+</ul>
+<p>Similarity is computed between each of the N matrices in the first
+input stack and the (low-rank) matrix derived from the outer-product
+expansion of the second and third inputs.
+Default: <code class="docutils literal notranslate"><span class="pre">crosshair_similarity</span></code></p>
+</dd>
+<dt><strong>init: dict</strong></dt><dd><p>Dictionary of parameters to pass to the sylo initialisation function.
+Default: <code class="docutils literal notranslate"><span class="pre">{'nonlinearity':</span> <span class="pre">'relu'}</span></code></p>
+</dd>
+<dt><strong>delete_diagonal: bool</strong></dt><dd><p>Delete the diagonal of the output.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>weight: Tensor</strong></dt><dd><p>The learnable weights of the module of shape
+<code class="docutils literal notranslate"><span class="pre">out_channels</span> <span class="pre">x</span> <span class="pre">in_channels</span> <span class="pre">x</span> <span class="pre">dim</span> <span class="pre">x</span> <span class="pre">rank</span></code>.</p>
+</dd>
+<dt><strong>bias: Tensor</strong></dt><dd><p>The learnable bias of the module of shape <code class="docutils literal notranslate"><span class="pre">out_channels</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code>(input)</p></td>
+<td><p>Defines the computation performed at every call.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>reset_parameters</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +842,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.nn.sylo.Sylo"><code class="docutils literal notranslate"><span class="pre">Sylo</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

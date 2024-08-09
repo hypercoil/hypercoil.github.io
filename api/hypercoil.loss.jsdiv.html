@@ -701,13 +701,92 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="jsdivergence-and-softmaxjsdivergence">
-<h1><code class="docutils literal notranslate"><span class="pre">JSDivergence</span></code> and <code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence</span></code><a class="headerlink" href="#jsdivergence-and-softmaxjsdivergence" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.loss.jsdiv">
+<span id="jsdivergence-and-softmaxjsdivergence"></span><h1><code class="docutils literal notranslate"><span class="pre">JSDivergence</span></code> and <code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence</span></code><a class="headerlink" href="#module-hypercoil.loss.jsdiv" title="Permalink to this heading">#</a></h1>
+<p>Loss functions using the Jensen-Shannon divergence.</p>
 <section id="jsdivergence">
 <h2><code class="docutils literal notranslate"><span class="pre">JSDivergence</span></code><a class="headerlink" href="#jsdivergence" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.jsdiv.JSDivergence">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.jsdiv.</span></span><span class="sig-name descname"><span class="pre">JSDivergence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/jsdiv.py#L31-L56"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.jsdiv.JSDivergence" title="Permalink to this definition">#</a></dt>
+<dd><p>Jensen-Shannon divergence, applied to probabilities.</p>
+<p>Use <a class="reference internal" href="#hypercoil.loss.jsdiv.SoftmaxJSDivergence" title="hypercoil.loss.jsdiv.SoftmaxJSDivergence"><code class="xref py py-class docutils literal notranslate"><span class="pre">SoftmaxJSDivergence</span></code></a> for the logit version.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
+</dd>
+<dt><strong>reduction</strong><span class="classifier">callable (default <code class="docutils literal notranslate"><span class="pre">torch.mean</span></code>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The vector of
+JS divergences computed for each distribution is passed into
+<code class="docutils literal notranslate"><span class="pre">reduction</span></code> to return a scalar.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.jsdiv.JSDivergence.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.jsdiv.JSDivergence.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate the loss function, and communicate the results to any
+listening sentry objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.jsdiv.JSDivergence.register_sentry">
+<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.jsdiv.JSDivergence.register_sentry" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.jsdiv.JSDivergence.register_action">
+<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.jsdiv.JSDivergence.register_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="softmaxjsdivergence">
 <h2><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence</span></code><a class="headerlink" href="#softmaxjsdivergence" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.jsdiv.SoftmaxJSDivergence">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.jsdiv.</span></span><span class="sig-name descname"><span class="pre">SoftmaxJSDivergence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/jsdiv.py#L58-L83"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.jsdiv.SoftmaxJSDivergence" title="Permalink to this definition">#</a></dt>
+<dd><p>Jensen-Shannon divergence, applied to logits.</p>
+<p>Use <a class="reference internal" href="#hypercoil.loss.jsdiv.JSDivergence" title="hypercoil.loss.jsdiv.JSDivergence"><code class="xref py py-class docutils literal notranslate"><span class="pre">JSDivergence</span></code></a> for the probability version.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
+</dd>
+<dt><strong>reduction</strong><span class="classifier">callable (default <code class="docutils literal notranslate"><span class="pre">torch.mean</span></code>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The vector of
+JS divergences computed for each distribution is passed into
+<code class="docutils literal notranslate"><span class="pre">reduction</span></code> to return a scalar.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.jsdiv.SoftmaxJSDivergence.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.jsdiv.SoftmaxJSDivergence.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate the loss function, and communicate the results to any
+listening sentry objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.jsdiv.SoftmaxJSDivergence.register_sentry">
+<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.jsdiv.SoftmaxJSDivergence.register_sentry" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.jsdiv.SoftmaxJSDivergence.register_action">
+<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.jsdiv.SoftmaxJSDivergence.register_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -731,8 +810,24 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jsdivergence"><code class="docutils literal notranslate"><span class="pre">JSDivergence</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#softmaxjsdivergence"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jsdivergence"><code class="docutils literal notranslate"><span class="pre">JSDivergence</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.jsdiv.JSDivergence"><code class="docutils literal notranslate"><span class="pre">JSDivergence</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.jsdiv.JSDivergence.forward"><code class="docutils literal notranslate"><span class="pre">JSDivergence.forward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.jsdiv.JSDivergence.register_sentry"><code class="docutils literal notranslate"><span class="pre">JSDivergence.register_sentry()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.jsdiv.JSDivergence.register_action"><code class="docutils literal notranslate"><span class="pre">JSDivergence.register_action()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#softmaxjsdivergence"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.jsdiv.SoftmaxJSDivergence"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.jsdiv.SoftmaxJSDivergence.forward"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence.forward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.jsdiv.SoftmaxJSDivergence.register_sentry"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence.register_sentry()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.jsdiv.SoftmaxJSDivergence.register_action"><code class="docutils literal notranslate"><span class="pre">SoftmaxJSDivergence.register_action()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

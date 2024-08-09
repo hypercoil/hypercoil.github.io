@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.tsconv.basisconv2d';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -708,6 +709,73 @@ document.write(`
                   
   <section id="basisconv2d">
 <h1><code class="docutils literal notranslate"><span class="pre">basisconv2d</span></code><a class="headerlink" href="#basisconv2d" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.tsconv.basisconv2d">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.tsconv.</span></span><span class="sig-name descname"><span class="pre">basisconv2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_functions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/tsconv.py#L9-L79"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.tsconv.basisconv2d" title="Permalink to this definition">#</a></dt>
+<dd><p>Perform convolution using basis function channel mapping.</p>
+<p>Convolution using a kernel whose ith input channel evaluates the ith basis
+function over the input dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Input :</strong> <span class="math notranslate nohighlight">\((N, *, C, obs)\)</span></dt><dd><p>N denotes batch size, <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of
+intervening dimensions, C denotes number of data channels
+or variables, obs denotes number of observations per
+channel.</p>
+</dd>
+<dt><strong>Weight :</strong> <span class="math notranslate nohighlight">\((C_o, K, *, C\ \mathrm{or}\ 1, R)\)</span></dt><dd><p><span class="math notranslate nohighlight">\(C_o\)</span> denotes number of output channels, K denotes
+number of input channels (equivalent to the maximum degree
+of the polynomial), and R &lt; obs denotes the number of
+observations viewed at once (i.e., in a single
+convolutional window)</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((N, C_o, *, C, obs)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">Tensor</span></dt><dd><p>Input dataset to the basis functions. The last two dimensions are
+seen by each kernel channel. For time series data, these could be
+variables and sequential observations.</p>
+</dd>
+<dt><strong>weight</strong><span class="classifier">Tensor</span></dt><dd><p>Basis convolution kernel. The first dimension corresponds to the
+output channels and the second to the input channels, each of which
+corresponds to the evaluation of a basis function over <code class="docutils literal notranslate"><span class="pre">X</span></code>. The
+final dimension corresponds to the number of observations convolved
+together. For a time series, this corresponds to <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">//</span> <span class="pre">2</span></code> past
+frames, <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">//</span> <span class="pre">2</span></code> future frames, and the current frame. For a time
+series, the penultimate dimension determines whether the same
+convolution is applied to all variables (if it is 1) or
+variable-specific convolutions can be learned (if it is equal to the
+number of variables). To permit some diversity in kernels while
+enforcing consistency across variables, it is possible to penalise
+a measure of spread such as the variance across the variable axis.</p>
+</dd>
+<dt><strong>include_const</strong><span class="classifier">bool (default False)</span></dt><dd><p>Indicates that a constant or intercept term should be included. The
+first channel of the weight sees the constant term.</p>
+</dd>
+<dt><strong>bias</strong><span class="classifier">Tensor or None</span></dt><dd><p>Bias term for convolution. See <code class="docutils literal notranslate"><span class="pre">torch.conv2d</span></code> documentation for
+details.</p>
+</dd>
+<dt><strong>padding</strong><span class="classifier">2-tuple or None</span></dt><dd><p>Padding for convolution, as for <code class="docutils literal notranslate"><span class="pre">torch.conv2d</span></code>. If not explicitly
+specified, this will default to <code class="docutils literal notranslate"><span class="pre">'time</span> <span class="pre">series'</span></code> padding: no padding
+in the penultimate axis, and <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">//</span> <span class="pre">2</span></code> in the final axis.</p>
+</dd>
+<dt><strong>**params</strong></dt><dd><p>Additional parameters can be passed to <code class="docutils literal notranslate"><span class="pre">torch.conv2d</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">Tensor</span></dt><dd><p>Input dataset transformed via convolution over basis function-mapped
+channels.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +790,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.tsconv.basisconv2d"><code class="docutils literal notranslate"><span class="pre">basisconv2d()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 
