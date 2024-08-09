@@ -708,6 +708,19 @@ document.write(`
                   
   <section id="partialcov-partial-covariance">
 <h1><code class="docutils literal notranslate"><span class="pre">partialcov</span></code>: Partial covariance<a class="headerlink" href="#partialcov-partial-covariance" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.cov.partialcov">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.cov.</span></span><span class="sig-name descname"><span class="pre">partialcov</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/cov.py#L121-L139"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.cov.partialcov" title="Permalink to this definition">#</a></dt>
+<dd><p>Partial covariance of variables in a tensor batch.</p>
+<p>Consult the <a class="reference internal" href="hypercoil.functional.cov.cov.html#hypercoil.functional.cov.cov" title="hypercoil.functional.cov.cov"><code class="xref py py-func docutils literal notranslate"><span class="pre">cov()</span></code></a> documentation for complete parameter
+characteristics.</p>
+<p>The partial covariance is obtained by conditioning the covariance of each
+pair of variables on all other observed variables. It can be interpreted
+as a measurement of the direct relationship between each variable pair.
+The partial covariance is computed via inversion of the covariance matrix,
+followed by negation of off-diagonal entries.</p>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +735,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.cov.partialcov"><code class="docutils literal notranslate"><span class="pre">partialcov()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

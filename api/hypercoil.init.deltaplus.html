@@ -701,13 +701,59 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="deltaplus">
-<h1><code class="docutils literal notranslate"><span class="pre">deltaplus</span></code><a class="headerlink" href="#deltaplus" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.init.deltaplus">
+<span id="deltaplus"></span><h1><code class="docutils literal notranslate"><span class="pre">deltaplus</span></code><a class="headerlink" href="#module-hypercoil.init.deltaplus" title="Permalink to this heading">#</a></h1>
+<p>Initialise parameters as a set of delta functions, plus Gaussian noise.</p>
 <section id="deltaplus-init">
 <h2><code class="docutils literal notranslate"><span class="pre">deltaplus_init</span></code><a class="headerlink" href="#deltaplus-init" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.init.deltaplus.deltaplus_init_">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.init.deltaplus.</span></span><span class="sig-name descname"><span class="pre">deltaplus_init_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/deltaplus.py#L12-L57"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.deltaplus.deltaplus_init_" title="Permalink to this definition">#</a></dt>
+<dd><p>Delta-plus initialisation.</p>
+<p>Initialise a tensor as a delta function added to Gaussian noise.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>tensor</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor to initialise in-place.</p>
+</dd>
+<dt><strong>loc</strong><span class="classifier">tuple or None (default None)</span></dt><dd><p>Location of the delta function in array coordinates.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float or None (default None)</span></dt><dd><p>Height of the delta function.</p>
+</dd>
+<dt><strong>var</strong><span class="classifier">float</span></dt><dd><p>Variance of the Gaussian distribution from which the random noise is
+sampled.</p>
+</dd>
+<dt><strong>domain</strong><span class="classifier">Domain object (default <code class="docutils literal notranslate"><span class="pre">Identity</span></code>)</span></dt><dd><p>Used in conjunction with an activation function to constrain or
+transform the values of the initialised tensor. For instance, using
+the Atanh domain with default scale constrains the tensor as seen by
+data to the range of the tanh function, (-1, 1). Domain objects can
+be used with compatible modules and are documented further in
+<a class="reference internal" href="hypercoil.init.domain.html"><span class="doc">hypercoil.init.domain</span></a>.
+If no domain is specified, the <code class="docutils literal notranslate"><span class="pre">Identity</span></code>
+domain is used, which does not apply any transformations or
+constraints.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None. The input tensor is initialised in-place.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="deltaplusinit">
 <h2><code class="docutils literal notranslate"><span class="pre">DeltaPlusInit</span></code><a class="headerlink" href="#deltaplusinit" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.deltaplus.DeltaPlusInit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.deltaplus.</span></span><span class="sig-name descname"><span class="pre">DeltaPlusInit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/deltaplus.py#L59-L71"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.deltaplus.DeltaPlusInit" title="Permalink to this definition">#</a></dt>
+<dd><p>Delta-plus initialisation.</p>
+<p>Initialise a tensor as a delta function added to Gaussian noise.</p>
+<p>See <a class="reference internal" href="#hypercoil.init.deltaplus.deltaplus_init_" title="hypercoil.init.deltaplus.deltaplus_init_"><code class="xref py py-func docutils literal notranslate"><span class="pre">deltaplus_init_()</span></code></a> for argument details.</p>
+</dd></dl>
+
 </section>
 </section>
 
@@ -731,8 +777,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deltaplus-init"><code class="docutils literal notranslate"><span class="pre">deltaplus_init</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deltaplusinit"><code class="docutils literal notranslate"><span class="pre">DeltaPlusInit</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deltaplus-init"><code class="docutils literal notranslate"><span class="pre">deltaplus_init</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.deltaplus.deltaplus_init_"><code class="docutils literal notranslate"><span class="pre">deltaplus_init_()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deltaplusinit"><code class="docutils literal notranslate"><span class="pre">DeltaPlusInit</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.deltaplus.DeltaPlusInit"><code class="docutils literal notranslate"><span class="pre">DeltaPlusInit</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

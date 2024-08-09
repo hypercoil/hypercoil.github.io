@@ -708,6 +708,78 @@ document.write(`
                   
   <section id="normalise-ood-handler">
 <h1><code class="docutils literal notranslate"><span class="pre">Normalise</span></code>: OOD handler<a class="headerlink" href="#normalise-ood-handler" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.domainbase.Normalise">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.domainbase.</span></span><span class="sig-name descname"><span class="pre">Normalise</span></span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L73-L136"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase.Normalise" title="Permalink to this definition">#</a></dt>
+<dd><p>Normalise entries in the specified tensor so that all are in an interval
+specified by bounds.</p>
+<p>Note that this handler is in general much more radical than clipping. In
+particular, if any entry at all is out of bounds, nearly all entries in
+the tensor will be edited, and a single extreme outlier can destroy the
+variance in the dataset. If you are considering using this because most of
+the data you expect to see will be outside of the prescribed domain,
+consider using a different domain first (for instance, using the <code class="docutils literal notranslate"><span class="pre">scale</span></code>
+parameter to accommodate a larger feasible interval).</p>
+<p>The normalisation procedure works by mapping the original range of
+observations, [<code class="docutils literal notranslate"><span class="pre">obs_min</span></code>, <code class="docutils literal notranslate"><span class="pre">obs_max</span></code>], to
+[max(<code class="docutils literal notranslate"><span class="pre">obs_min</span></code>, <code class="docutils literal notranslate"><span class="pre">lbound</span></code>), min(<code class="docutils literal notranslate"><span class="pre">obs_max</span></code>, <code class="docutils literal notranslate"><span class="pre">ubound</span></code>)] while
+preserving relative distances between observations.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.init.domainbase.Normalise.apply" title="hypercoil.init.domainbase.Normalise.apply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply</span></code></a>(x, bound[, axis])</p></td>
+<td><p>Re-scale all values in the specified tensor to fall in the specified interval.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.domainbase.Normalise.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L91-L136"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase.Normalise.apply" title="Permalink to this definition">#</a></dt>
+<dd><p>Re-scale all values in the specified tensor to fall in the specified
+interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor whose out-of-domain entries are to be normalised.</p>
+</dd>
+<dt><strong>bound</strong><span class="classifier">(float min, float max)</span></dt><dd><p>Minimum and maximum permitted values.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">Tensor</span></dt><dd><p>Copy of the input tensor with all entries normalised.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.domainbase.Normalise.test">
+<span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L21-L42"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase.Normalise.test" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate whether each entry in a tensor falls within bounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">Tensor</span></dt><dd><p>Tensor whose entries should be evaluated.</p>
+</dd>
+<dt><strong>bound</strong><span class="classifier">(float min, float max)</span></dt><dd><p>Minimum and maximum permitted values for the test to return True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>result</strong><span class="classifier">Tensor</span></dt><dd><p>Boolean-valued tensor indicating whether each entry of the input is
+in the prescribed bounds.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +794,21 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase.Normalise"><code class="docutils literal notranslate"><span class="pre">Normalise</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase.Normalise.apply"><code class="docutils literal notranslate"><span class="pre">Normalise.apply()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase.Normalise.test"><code class="docutils literal notranslate"><span class="pre">Normalise.test()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

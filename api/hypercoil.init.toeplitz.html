@@ -701,13 +701,69 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="toeplitz">
-<h1><code class="docutils literal notranslate"><span class="pre">toeplitz</span></code><a class="headerlink" href="#toeplitz" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.init.toeplitz">
+<span id="toeplitz"></span><h1><code class="docutils literal notranslate"><span class="pre">toeplitz</span></code><a class="headerlink" href="#module-hypercoil.init.toeplitz" title="Permalink to this heading">#</a></h1>
+<p>Initialise parameters as a stack of Toeplitz-structured banded matrices.</p>
 <section id="toeplitz-init">
 <h2><code class="docutils literal notranslate"><span class="pre">toeplitz_init</span></code><a class="headerlink" href="#toeplitz-init" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.init.toeplitz.toeplitz_init_">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.init.toeplitz.</span></span><span class="sig-name descname"><span class="pre">toeplitz_init_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/toeplitz.py#L13-L64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.toeplitz.toeplitz_init_" title="Permalink to this definition">#</a></dt>
+<dd><p>Initialise a tensor as a stack of banded matrices with Toeplitz structure.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>c: Tensor</strong></dt><dd><p>Tensor of entries in the first column of each Toeplitz matrix. The
+first axis corresponds to a single matrix column; additional dimensions
+correspond to concatenation of Toeplitz matrices into a stack or block
+tensor.</p>
+</dd>
+<dt><strong>r: Tensor or None (default None)</strong></dt><dd><p>Tensor of entries in the first row of each Toeplitz matrix. The first
+axis corresponds to a single matrix row; additional dimensions
+correspond to concatenation of Toeplitz matrices into a stack or block
+tensor. The first entry in each column should be the same as the first
+entry in the corresponding column of <code class="docutils literal notranslate"><span class="pre">c</span></code>; otherwise, it will be
+ignored. If this is None, then a symmetric Toeplitz matrix will be
+created using the same tensor for both the row and the column.</p>
+</dd>
+<dt><strong>fill_value: Tensor or float (default 0)</strong></dt><dd><p>Specifies the value that should be used to populate the off-diagonals
+of each Toeplitz matrix if the specified row and column elements are
+extended to conform with the specified <cite>dim</cite>. If this is a tensor, then
+each entry corresponds to the fill value in a different data channel.
+Has no effect if <code class="docutils literal notranslate"><span class="pre">dim</span></code> is None.</p>
+</dd>
+<dt><strong>domain</strong><span class="classifier">Domain object (default <a class="reference internal" href="hypercoil.init.domainbase.Identity.html"><span class="doc">Identity</span></a>)</span></dt><dd><p>Used in conjunction with an activation function to constrain or
+transform the values of the initialised tensor. For instance, using
+the <a class="reference internal" href="hypercoil.init.domain.Atanh.html"><span class="doc">Atanh</span></a>
+domain with default scale constrains the tensor as seen by
+data to the range of the tanh function, (-1, 1). Domain objects can
+be used with compatible modules and are documented further in
+<a class="reference internal" href="hypercoil.init.domain.html"><span class="doc">hypercoil.init.domain</span></a>.
+If no domain is specified, the Identity
+domain is used, which does not apply any transformations or
+constraints.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None. The input tensor is initialised in-place.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="toeplitzinit">
 <h2><code class="docutils literal notranslate"><span class="pre">ToeplitzInit</span></code><a class="headerlink" href="#toeplitzinit" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.toeplitz.ToeplitzInit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.toeplitz.</span></span><span class="sig-name descname"><span class="pre">ToeplitzInit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/toeplitz.py#L66-L80"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.toeplitz.ToeplitzInit" title="Permalink to this definition">#</a></dt>
+<dd><p>Banded matrix initialisation.</p>
+<p>Initialise a tensor as a stack of banded matrices with Toeplitz structure.</p>
+<p>See <a class="reference internal" href="#hypercoil.init.toeplitz.toeplitz_init_" title="hypercoil.init.toeplitz.toeplitz_init_"><code class="xref py py-func docutils literal notranslate"><span class="pre">toeplitz_init_()</span></code></a> for argument details.</p>
+</dd></dl>
+
 </section>
 </section>
 
@@ -731,8 +787,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toeplitz-init"><code class="docutils literal notranslate"><span class="pre">toeplitz_init</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toeplitzinit"><code class="docutils literal notranslate"><span class="pre">ToeplitzInit</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toeplitz-init"><code class="docutils literal notranslate"><span class="pre">toeplitz_init</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.toeplitz.toeplitz_init_"><code class="docutils literal notranslate"><span class="pre">toeplitz_init_()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toeplitzinit"><code class="docutils literal notranslate"><span class="pre">ToeplitzInit</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.toeplitz.ToeplitzInit"><code class="docutils literal notranslate"><span class="pre">ToeplitzInit</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.loss.equilibrium';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -701,13 +702,160 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="equilibrium-and-softmaxequilibrium">
-<h1><code class="docutils literal notranslate"><span class="pre">Equilibrium</span></code> and <code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium</span></code><a class="headerlink" href="#equilibrium-and-softmaxequilibrium" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.loss.equilibrium">
+<span id="equilibrium-and-softmaxequilibrium"></span><h1><code class="docutils literal notranslate"><span class="pre">Equilibrium</span></code> and <code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium</span></code><a class="headerlink" href="#module-hypercoil.loss.equilibrium" title="Permalink to this heading">#</a></h1>
+<p>Loss functions to favour equal weight across one dimension of a parcellation
+tensor.</p>
+<div class="admonition-equilibrium admonition">
+<p class="admonition-title">Equilibrium</p>
+<p>The equilibrium loss of a parcellation tensor <span class="math notranslate nohighlight">\(A\)</span> is defined as</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{1}^\intercal \left[\left(A \mathbf{1}\right) \circ \left(A \mathbf{1}\right) \right]\)</span></p>
+<p>The parcel equilibrium is principally designed to operate on parcellation
+tensors. A parcellation tensor is one whose rows correspond to features
+(e.g., voxels, time points, frequency bins, or network nodes) and whose
+columns correspond to parcels. Element <span class="math notranslate nohighlight">\(i, j\)</span> in this tensor
+accordingly indexes the assignment of feature <span class="math notranslate nohighlight">\(j\)</span> to parcel
+<span class="math notranslate nohighlight">\(i\)</span>. Examples of parcellation tensors might include atlases that map
+voxels to regions or affiliation matrices that map graph vertices to
+communities. It is often desirable to constrain feature-parcel assignments
+to <span class="math notranslate nohighlight">\([0, k]\)</span> for some <span class="math notranslate nohighlight">\(k\)</span> and ensure that the sum over each
+feature’s assignment is always <span class="math notranslate nohighlight">\(k\)</span>. (Otherwise, the unnormalised
+loss could be improved by simply shrinking all weights.) For this reason,
+we can either normalise the loss or situate the parcellation tensor in the
+probability simplex using a
+<a class="reference internal" href="hypercoil.init.domain.MultiLogit.html"><span class="doc">multi-logit (softmax) domain mapper</span></a>.</p>
+<p>The parcel equilibrium attains a minimum when parcels are equal in their
+total weight. It has a trivial and uninteresting minimum where all parcel
+assignments are equiprobable for all features. Other minima, which might
+be of greater interest, occur where each feature is deterministically
+assigned to a single parcel. These minima can be favoured by using the
+equilibrium in conjunction with a penalty on the
+<a class="reference internal" href="hypercoil.loss.entropy.html"><span class="doc">entropy</span></a>.</p>
+</div>
 <section id="equilibrium">
 <h2><code class="docutils literal notranslate"><span class="pre">Equilibrium</span></code><a class="headerlink" href="#equilibrium" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.equilibrium.Equilibrium">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.equilibrium.</span></span><span class="sig-name descname"><span class="pre">Equilibrium</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/equilibrium.py#L57-L103"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.equilibrium.Equilibrium" title="Permalink to this definition">#</a></dt>
+<dd><p>Parcel equilibrium.</p>
+<p>The parcel equilibrium is principally designed to operate on parcellation
+tensors. A parcellation tensor is one whose columns correspond to features
+(e.g., voxels, time points, frequency bins, or network nodes) and whose
+rows correspond to parcels. Element i, j in this tensor accordingly
+indexes the assignment of feature j to parcel i. Examples of parcellation
+tensors might include atlases that map voxels to regions or affiliation
+matrices that map graph vertices to communities. It is often desirable
+to constrain feature-parcel assignments to [0, k] for some k and ensure
+that the sum over each feature’s assignment is always k. For this reason,
+we can situate the parcellation tensor in the probability simplex using
+a multi-logit (softmax) domain mapper.</p>
+<p>The parcel equilibrium attains a minimum when parcels are equal in their
+total weight. It has a trivial and uninteresting minimum where all parcel
+assignments are equiprobable for all features. Other minima, which might
+be of greater interest, occur where each feature is deterministically
+assigned to a single parcel. These minima can be favoured by using the
+equilibrium in conjunction with a penalty on the entropy.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int (default -2)</span></dt><dd><p>Vectors along the specified axis should correspond to the assignment
+probabilities of every feature to a single parcel.</p>
+</dd>
+<dt><strong>reduction</strong><span class="classifier">callable (default <cite>torch.mean</cite>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. This has no
+effect unless the input is a batch or block of parcellation tensors,
+in which case it reduces over the batch.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.equilibrium.Equilibrium.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.equilibrium.Equilibrium.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate the loss function, and communicate the results to any
+listening sentry objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.equilibrium.Equilibrium.register_sentry">
+<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.equilibrium.Equilibrium.register_sentry" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.equilibrium.Equilibrium.register_action">
+<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.equilibrium.Equilibrium.register_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="softmaxequilibrium">
 <h2><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium</span></code><a class="headerlink" href="#softmaxequilibrium" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.equilibrium.SoftmaxEquilibrium">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.equilibrium.</span></span><span class="sig-name descname"><span class="pre">SoftmaxEquilibrium</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prob_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/equilibrium.py#L105-L155"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.equilibrium.SoftmaxEquilibrium" title="Permalink to this definition">#</a></dt>
+<dd><p>Parcel equilibrium, precomposed with a softmax function.</p>
+<p>The parcel equilibrium is principally designed to operate on parcellation
+tensors. A parcellation tensor is one whose columns correspond to features
+(e.g., voxels, time points, frequency bins, or network nodes) and whose
+rows correspond to parcels. Element i, j in this tensor accordingly
+indexes the assignment of feature j to parcel i. Examples of parcellation
+tensors might include atlases that map voxels to regions or affiliation
+matrices that map graph vertices to communities. It is often desirable
+to constrain feature-parcel assignments to [0, k] for some k and ensure
+that the sum over each feature’s assignment is always k. For this reason,
+we can situate the parcellation tensor in the probability simplex using
+a multi-logit (softmax) domain mapper. This version of the equilibrium
+loss operates in this manner and accordingly expects logit inputs.
+Use <code class="docutils literal notranslate"><span class="pre">Equilibrium</span></code> instead if your inputs will already contain
+probabilities.</p>
+<p>The parcel equilibrium attains a minimum when parcels are equal in their
+total weight. It has a trivial and uninteresting minimum where all parcel
+assignments are equiprobable for all features. Other minima, which might
+be of greater interest, occur where each feature is deterministically
+assigned to a single parcel. These minima can be favoured by using the
+equilibrium in conjunction with a penalty on the entropy.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>nu</strong><span class="classifier">float (default 1)</span></dt><dd><p>Loss function weight multiplier.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int (default -2)</span></dt><dd><p>Vectors along the specified axis should correspond to the assignment
+probabilities of every feature to a single parcel.</p>
+</dd>
+<dt><strong>reduction</strong><span class="classifier">callable (default <cite>torch.mean</cite>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. This has no
+effect unless the input is a batch or block of parcellation tensors,
+in which case it reduces over the batch.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.equilibrium.SoftmaxEquilibrium.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.equilibrium.SoftmaxEquilibrium.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate the loss function, and communicate the results to any
+listening sentry objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.equilibrium.SoftmaxEquilibrium.register_sentry">
+<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.equilibrium.SoftmaxEquilibrium.register_sentry" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.equilibrium.SoftmaxEquilibrium.register_action">
+<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.equilibrium.SoftmaxEquilibrium.register_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -731,8 +879,24 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium"><code class="docutils literal notranslate"><span class="pre">Equilibrium</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#softmaxequilibrium"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium"><code class="docutils literal notranslate"><span class="pre">Equilibrium</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.equilibrium.Equilibrium"><code class="docutils literal notranslate"><span class="pre">Equilibrium</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.equilibrium.Equilibrium.forward"><code class="docutils literal notranslate"><span class="pre">Equilibrium.forward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.equilibrium.Equilibrium.register_sentry"><code class="docutils literal notranslate"><span class="pre">Equilibrium.register_sentry()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.equilibrium.Equilibrium.register_action"><code class="docutils literal notranslate"><span class="pre">Equilibrium.register_action()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#softmaxequilibrium"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.equilibrium.SoftmaxEquilibrium"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.equilibrium.SoftmaxEquilibrium.forward"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium.forward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.equilibrium.SoftmaxEquilibrium.register_sentry"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium.register_sentry()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.equilibrium.SoftmaxEquilibrium.register_action"><code class="docutils literal notranslate"><span class="pre">SoftmaxEquilibrium.register_action()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.graph.graph_laplacian';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -708,6 +709,60 @@ document.write(`
                   
   <section id="graph-laplacian-graph-laplacian">
 <h1><code class="docutils literal notranslate"><span class="pre">graph_laplacian</span></code>: Graph Laplacian<a class="headerlink" href="#graph-laplacian-graph-laplacian" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.graph.graph_laplacian">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.graph.</span></span><span class="sig-name descname"><span class="pre">graph_laplacian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/graph.py#L297-L372"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.graph.graph_laplacian" title="Permalink to this definition">#</a></dt>
+<dd><p>Laplacian of a graph.</p>
+<p>Given the diagonal matrix of matrix degrees <span class="math notranslate nohighlight">\(D\)</span>, the Laplacian
+<span class="math notranslate nohighlight">\(L\)</span> of a graph with adjacency matrix <span class="math notranslate nohighlight">\(A\)</span> is</p>
+<p><span class="math notranslate nohighlight">\(L = D - A\)</span></p>
+<p>For many applications, vertices with large degrees tend to dominate
+properties of the Laplacian, and it is desirable to normalise the
+Laplacian before further analysis.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\widetilde{L} = D^{-\frac{1}{2}} L D^{-\frac{1}{2}}\\\widetilde{L} = I - D^{-\frac{1}{2}} A D^{-\frac{1}{2}}\end{aligned}\end{align} \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For an undirected graph, each edge should be duplicated in the index
+and weight tensors, with source and target vertices swapped in the
+index.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>W :</strong> <span class="math notranslate nohighlight">\((*, N, N)\)</span> or <span class="math notranslate nohighlight">\((*, E)\)</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of preceding dimensions, N
+denotes number of vertices, and E denotes number of edges.
+The shape should be <span class="math notranslate nohighlight">\((*, N, N)\)</span> if <code class="docutils literal notranslate"><span class="pre">edge_index</span></code> is
+not provided and <span class="math notranslate nohighlight">\((*, E)\)</span> if <code class="docutils literal notranslate"><span class="pre">edge_index</span></code> is
+provided.</p>
+</dd>
+<dt><strong>edge_index :</strong> <span class="math notranslate nohighlight">\((*, 2, E)\)</span></dt><dd><p>As above.</p>
+</dd>
+<dt><strong>Output :</strong> <span class="math notranslate nohighlight">\((*, N, N)\)</span> or tuple(<span class="math notranslate nohighlight">\((*, E)\)</span>, <span class="math notranslate nohighlight">\((*, 2, E)\)</span>)</dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>W</strong><span class="classifier">tensor</span></dt><dd><p>Edge weight tensor. If <code class="docutils literal notranslate"><span class="pre">edge_index</span></code> is not provided, then this
+should be the graph adjacency matrix; otherwise, it should be a
+list of weights corresponding to the edges in <code class="docutils literal notranslate"><span class="pre">edge_index</span></code>.</p>
+</dd>
+<dt><strong>edge_index</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">LongTensor</span></code> or None (default None)</span></dt><dd><p>List of edges corresponding to the provided weights. Each column
+contains the index of the source vertex and the index of the target
+vertex for the corresponding weight in <code class="docutils literal notranslate"><span class="pre">W</span></code>.</p>
+</dd>
+<dt><strong>normalise</strong><span class="classifier">bool (default True)</span></dt><dd><p>Indicates that the Laplacian should be normalised using the degree
+matrix.</p>
+</dd>
+<dt><strong>num_nodes</strong><span class="classifier">int or None (default None)</span></dt><dd><p>Number of nodes in the graph, if it is sparse. Forwarded to
+<code class="docutils literal notranslate"><span class="pre">get_laplacian</span></code> in <code class="docutils literal notranslate"><span class="pre">torch_geometric</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +777,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.graph.graph_laplacian"><code class="docutils literal notranslate"><span class="pre">graph_laplacian()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

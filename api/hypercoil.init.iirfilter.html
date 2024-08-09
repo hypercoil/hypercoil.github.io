@@ -701,10 +701,66 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="iirfilter-iir-filter-init">
-<h1><code class="docutils literal notranslate"><span class="pre">iirfilter</span></code>: IIR filter init<a class="headerlink" href="#iirfilter-iir-filter-init" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.init.iirfilter">
+<span id="iirfilter-iir-filter-init"></span><h1><code class="docutils literal notranslate"><span class="pre">iirfilter</span></code>: IIR filter init<a class="headerlink" href="#module-hypercoil.init.iirfilter" title="Permalink to this heading">#</a></h1>
+<p>Tools for initialising parameters for an IIR filter layer.</p>
 <section id="iirfilterspec">
 <h2><code class="docutils literal notranslate"><span class="pre">IIRFilterSpec</span></code><a class="headerlink" href="#iirfilterspec" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.iirfilter.IIRFilterSpec">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.iirfilter.</span></span><span class="sig-name descname"><span class="pre">IIRFilterSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Wn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'butter'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">btype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bandpass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'phase'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/iirfilter.py#L12-L91"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.iirfilter.IIRFilterSpec" title="Permalink to this definition">#</a></dt>
+<dd><p>Specification for filter coefficients for recursive IIR filter classes.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>Wn</strong><span class="classifier">float or tuple(float, float)</span></dt><dd><p>Critical or cutoff frequency. If this is a band-pass filter, then this
+should be a tuple, with the first entry specifying the high-pass cutoff
+and the second entry specifying the low-pass frequency. This should be
+specified relative to the Nyquist frequency if <code class="docutils literal notranslate"><span class="pre">fs</span></code> is not provided,
+and should be in the same units as <code class="docutils literal notranslate"><span class="pre">fs</span></code> if it is provided.</p>
+</dd>
+<dt><strong>N</strong><span class="classifier">int or Tensor (default 1)</span></dt><dd><p>Filter order.</p>
+</dd>
+<dt><strong>ftype</strong><span class="classifier">one of (<code class="docutils literal notranslate"><span class="pre">'butter'</span></code>, <code class="docutils literal notranslate"><span class="pre">'cheby1'</span></code>, <code class="docutils literal notranslate"><span class="pre">'cheby2'</span></code>, <code class="docutils literal notranslate"><span class="pre">'ellip'</span></code>, <code class="docutils literal notranslate"><span class="pre">'bessel'</span></code>, <code class="docutils literal notranslate"><span class="pre">'kuznetsov'</span></code>)</span></dt><dd><p>Filter class to initialise: Butterworth, Chebyshev I, Chebyshev II,
+elliptic, or Bessel-Thompson.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To initialise an ideal filter, use a
+<a class="reference internal" href="hypercoil.init.freqfilter.html"><span class="doc">frequency product filter</span></a>
+instead.</p>
+</div>
+</dd>
+<dt><strong>btype</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'bandpass'</span></code> (default) or <code class="docutils literal notranslate"><span class="pre">'bandstop'</span></code> or <code class="docutils literal notranslate"><span class="pre">'lowpass'</span></code> or <code class="docutils literal notranslate"><span class="pre">'highpass'</span></code></span></dt><dd><p>Filter pass-band to emulate: low-pass, high-pass, or band-pass. The
+interpretation of the critical frequency changes depending on the
+filter type.</p>
+</dd>
+<dt><strong>fs</strong><span class="classifier">float or None (default None)</span></dt><dd><p>Sampling frequency.</p>
+</dd>
+<dt><strong>rp</strong><span class="classifier">float (default 0.1)</span></dt><dd><p>Pass-band ripple. Used only for Chebyshev I and elliptic filters.</p>
+</dd>
+<dt><strong>rs</strong><span class="classifier">float (default 20)</span></dt><dd><p>Stop-band ripple. Used only for Chebyshev II and elliptic filters.</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'phase'</span></code> or <code class="docutils literal notranslate"><span class="pre">'mag'</span></code> or <code class="docutils literal notranslate"><span class="pre">'delay'</span></code> (default <code class="docutils literal notranslate"><span class="pre">'phase'</span></code>)</span></dt><dd><p>Critical frequency normalisation. Consult the <code class="docutils literal notranslate"><span class="pre">scipy.signal.bessel</span></code>
+documentation for details.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>initialise_coefs</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.iirfilter.IIRFilterSpec.initialise_coefs">
+<span class="sig-name descname"><span class="pre">initialise_coefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/iirfilter.py#L59-L91"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.iirfilter.IIRFilterSpec.initialise_coefs" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -728,7 +784,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iirfilterspec"><code class="docutils literal notranslate"><span class="pre">IIRFilterSpec</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iirfilterspec"><code class="docutils literal notranslate"><span class="pre">IIRFilterSpec</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.iirfilter.IIRFilterSpec"><code class="docutils literal notranslate"><span class="pre">IIRFilterSpec</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.iirfilter.IIRFilterSpec.initialise_coefs"><code class="docutils literal notranslate"><span class="pre">IIRFilterSpec.initialise_coefs()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

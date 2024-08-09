@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.init.semidefinite.SemidefiniteMean';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -710,15 +711,153 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">SemidefiniteMean</span></code><a class="headerlink" href="#semidefinitemean" title="Permalink to this heading">#</a></h1>
 <section id="spdeuclideanmean">
 <h2><code class="docutils literal notranslate"><span class="pre">SPDEuclideanMean</span></code><a class="headerlink" href="#spdeuclideanmean" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.semidefinite.SPDEuclideanMean">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.semidefinite.</span></span><span class="sig-name descname"><span class="pre">SPDEuclideanMean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/semidefinite.py#L145-L169"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.semidefinite.SPDEuclideanMean" title="Permalink to this definition">#</a></dt>
+<dd><p>Batch-wise Euclidean mean of tensors in the positive semidefinite cone.</p>
+<p>This is the familiar arithmetic mean:</p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{N}\sum_{i=1}^N X_{i}\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>axis</strong><span class="classifier">int (default 0)</span></dt><dd><p>Axis corresponding to observations over which the mean is computed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code>(input)</p></td>
+<td><p>Defines the computation performed at every call.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 <section id="spdharmonicmean">
 <h2><code class="docutils literal notranslate"><span class="pre">SPDHarmonicMean</span></code><a class="headerlink" href="#spdharmonicmean" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.semidefinite.SPDHarmonicMean">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.semidefinite.</span></span><span class="sig-name descname"><span class="pre">SPDHarmonicMean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/semidefinite.py#L171-L196"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.semidefinite.SPDHarmonicMean" title="Permalink to this definition">#</a></dt>
+<dd><p>Batch-wise harmonic mean of tensors in the positive semidefinite cone.</p>
+<p>The harmonic mean is computed as the matrix inverse of the Euclidean mean
+of matrix inverses:</p>
+<p><span class="math notranslate nohighlight">\(\left(\frac{1}{N}\sum_{i=1}^N X_{i}^{-1}\right)^{-1}\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>axis</strong><span class="classifier">int (default 0)</span></dt><dd><p>Axis corresponding to observations over which the mean is computed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code>(input)</p></td>
+<td><p>Defines the computation performed at every call.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 <section id="spdlogeuclideanmean">
 <h2><code class="docutils literal notranslate"><span class="pre">SPDLogEuclideanMean</span></code><a class="headerlink" href="#spdlogeuclideanmean" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.semidefinite.SPDLogEuclideanMean">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.semidefinite.</span></span><span class="sig-name descname"><span class="pre">SPDLogEuclideanMean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/semidefinite.py#L198-L223"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.semidefinite.SPDLogEuclideanMean" title="Permalink to this definition">#</a></dt>
+<dd><p>Batch-wise log-Euclidean mean of tensors in the positive semidefinite cone.</p>
+<p>The log-Euclidean mean is computed as the matrix exponential of the mean of
+matrix logarithms.</p>
+<p><span class="math notranslate nohighlight">\(\exp_M \left(\frac{1}{N}\sum_{i=1}^N \log_M X_{i}\right)\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>axis</strong><span class="classifier">int (default 0)</span></dt><dd><p>Axis corresponding to observations over which the mean is computed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code>(input)</p></td>
+<td><p>Defines the computation performed at every call.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 <section id="spdgeometricmean">
 <h2><code class="docutils literal notranslate"><span class="pre">SPDGeometricMean</span></code><a class="headerlink" href="#spdgeometricmean" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.semidefinite.SPDGeometricMean">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.semidefinite.</span></span><span class="sig-name descname"><span class="pre">SPDGeometricMean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/semidefinite.py#L225-L296"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.semidefinite.SPDGeometricMean" title="Permalink to this definition">#</a></dt>
+<dd><p>Batch-wise geometric mean of tensors in the positive semidefinite cone.</p>
+<p>The geometric mean is computed via gradient descent along the geodesic on
+the manifold. In brief:</p>
+<dl class="simple">
+<dt>Initialisation :</dt><dd><ul class="simple">
+<li><p>The estimate of the mean is initialised to the Euclidean mean.</p></li>
+</ul>
+</dd>
+<dt>Iteration :</dt><dd><ul class="simple">
+<li><p>Using the working estimate of the mean as the point of tangency, the
+tensors are projected into a tangent space.</p></li>
+<li><p>The arithmetic mean of the tensors is computed in tangent space.</p></li>
+<li><p>This mean is projected back into the positive semidefinite cone using
+the same point of tangency. It now becomes a new working estimate of the
+mean and thus a new point of tangency.</p></li>
+</ul>
+</dd>
+<dt>Termination / convergence :</dt><dd><ul class="simple">
+<li><p>The algorithm terminates either when the Frobenius norm of the
+difference between the new estimate and the previous estimate is less
+than a specified threshold, or when a maximum number of iterations has
+been attained.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>axis</strong><span class="classifier">int (default 0)</span></dt><dd><p>Axis corresponding to observations over which the mean is computed.</p>
+</dd>
+<dt><strong>psi</strong><span class="classifier">float in [0, 1]</span></dt><dd><p>Conditioning factor to promote positive definiteness. If this is in
+(0, 1], the original input will be replaced with a convex combination
+of the input and an identity matrix.</p>
+<p><span class="math notranslate nohighlight">\(\hat{X} = (1 - \psi) X + \psi I\)</span></p>
+<p>A suitable value can be used to ensure that all eigenvalues are
+positive and therefore guarantee that the matrix is in the domain of
+projection operations.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>The minimum value of the Frobenius norm required for convergence.</p>
+</dd>
+<dt><strong>max_iter</strong><span class="classifier">nonnegative int</span></dt><dd><p>The maximum number of iterations of gradient descent to run before
+termination.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int</span></dt><dd><p>Axis or axes over which the mean is computed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">extra_repr</span></code>()</p></td>
+<td><p>Set the extra representation of the module</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code>(input)</p></td>
+<td><p>Defines the computation performed at every call.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 </section>
 
@@ -742,10 +881,22 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spdeuclideanmean"><code class="docutils literal notranslate"><span class="pre">SPDEuclideanMean</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spdharmonicmean"><code class="docutils literal notranslate"><span class="pre">SPDHarmonicMean</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spdlogeuclideanmean"><code class="docutils literal notranslate"><span class="pre">SPDLogEuclideanMean</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spdgeometricmean"><code class="docutils literal notranslate"><span class="pre">SPDGeometricMean</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spdeuclideanmean"><code class="docutils literal notranslate"><span class="pre">SPDEuclideanMean</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.semidefinite.SPDEuclideanMean"><code class="docutils literal notranslate"><span class="pre">SPDEuclideanMean</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spdharmonicmean"><code class="docutils literal notranslate"><span class="pre">SPDHarmonicMean</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.semidefinite.SPDHarmonicMean"><code class="docutils literal notranslate"><span class="pre">SPDHarmonicMean</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spdlogeuclideanmean"><code class="docutils literal notranslate"><span class="pre">SPDLogEuclideanMean</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.semidefinite.SPDLogEuclideanMean"><code class="docutils literal notranslate"><span class="pre">SPDLogEuclideanMean</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spdgeometricmean"><code class="docutils literal notranslate"><span class="pre">SPDGeometricMean</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.semidefinite.SPDGeometricMean"><code class="docutils literal notranslate"><span class="pre">SPDGeometricMean</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

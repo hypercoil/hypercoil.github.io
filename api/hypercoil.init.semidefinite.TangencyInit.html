@@ -710,9 +710,49 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">TangencyInit</span></code><a class="headerlink" href="#tangencyinit" title="Permalink to this heading">#</a></h1>
 <section id="tangency-init">
 <h2><code class="docutils literal notranslate"><span class="pre">tangency_init_</span></code><a class="headerlink" href="#tangency-init" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.init.semidefinite.tangency_init_">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.init.semidefinite.</span></span><span class="sig-name descname"><span class="pre">tangency_init_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_specs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/semidefinite.py#L71-L114"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.semidefinite.tangency_init_" title="Permalink to this definition">#</a></dt>
+<dd><p>Initialise points of tangency for projection between the positive
+semidefinite cone and a tangent subspace.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>tensor</strong><span class="classifier">Tensor</span></dt><dd><p>Tangency point tensor to initialise to the specified means.</p>
+</dd>
+<dt><strong>mean_specs</strong><span class="classifier">list(<code class="docutils literal notranslate"><span class="pre">_SemidefiniteMean</span></code> objects)</span></dt><dd><p>List of specifications for estimating a measure of central tendency in
+the positive semidefinite cone. <code class="docutils literal notranslate"><span class="pre">_SemidefiniteMean</span></code> subclasses are
+found at
+<a class="reference internal" href="hypercoil.init.semidefinite.SemidefiniteMean.html"><span class="doc">hypercoil.init.semidefinite</span></a>.</p>
+</dd>
+<dt><strong>init_data</strong><span class="classifier">Tensor</span></dt><dd><p>Input dataset over which each mean is to be estimated.</p>
+</dd>
+<dt><strong>std</strong><span class="classifier">float</span></dt><dd><p>Standard deviation of the positive semidefinite noise added to each
+channel of the weight matrix. This can be used to ensure that different
+channels initialised from the same mean receive different gradients
+and differentiate from one another.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None. The tensor is initialised in-place.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="id1">
 <h2><code class="docutils literal notranslate"><span class="pre">TangencyInit</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.semidefinite.TangencyInit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.semidefinite.</span></span><span class="sig-name descname"><span class="pre">TangencyInit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean_specs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/semidefinite.py#L116-L131"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.semidefinite.TangencyInit" title="Permalink to this definition">#</a></dt>
+<dd><p>Initialise points of tangency for projection between the positive
+semidefinite cone and a tangent subspace.</p>
+<p>See <a class="reference internal" href="#hypercoil.init.semidefinite.tangency_init_" title="hypercoil.init.semidefinite.tangency_init_"><code class="xref py py-func docutils literal notranslate"><span class="pre">tangency_init_()</span></code></a> for argument details.</p>
+</dd></dl>
+
 </section>
 </section>
 
@@ -736,8 +776,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tangency-init"><code class="docutils literal notranslate"><span class="pre">tangency_init_</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">TangencyInit</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tangency-init"><code class="docutils literal notranslate"><span class="pre">tangency_init_</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.semidefinite.tangency_init_"><code class="docutils literal notranslate"><span class="pre">tangency_init_()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">TangencyInit</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.semidefinite.TangencyInit"><code class="docutils literal notranslate"><span class="pre">TangencyInit</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

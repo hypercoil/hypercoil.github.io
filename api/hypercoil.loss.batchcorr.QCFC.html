@@ -703,6 +703,59 @@ document.write(`
                   
   <section id="qcfc">
 <h1><code class="docutils literal notranslate"><span class="pre">QCFC</span></code><a class="headerlink" href="#qcfc" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.batchcorr.QCFC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.batchcorr.</span></span><span class="sig-name descname"><span class="pre">QCFC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_sig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/batchcorr.py#L183-L210"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.batchcorr.QCFC" title="Permalink to this definition">#</a></dt>
+<dd><p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.loss.batchcorr.QCFC.forward" title="hypercoil.loss.batchcorr.QCFC.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(FC, QC)</p></td>
+<td><p>Edgewise QC-FC correlation.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.batchcorr.QCFC.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QC</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/batchcorr.py#L184-L210"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.batchcorr.QCFC.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Edgewise QC-FC correlation.</p>
+<p>Note that this is a thin wrapper around <a class="reference internal" href="hypercoil.loss.batchcorr.BatchCorrelation.html#hypercoil.loss.batchcorr.BatchCorrelation" title="hypercoil.loss.batchcorr.BatchCorrelation"><code class="xref py py-class docutils literal notranslate"><span class="pre">BatchCorrelation</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>FC</strong><span class="classifier">tensor</span></dt><dd><p>Tensor block containing functional connectivity measures (e.g.,
+edge weights) to be correlated with those in <code class="docutils literal notranslate"><span class="pre">QC</span></code>. This could,
+for instance, be a block of connectivity matrices.</p>
+</dd>
+<dt><strong>QC</strong><span class="classifier">tensor</span></dt><dd><p>Vector of QC measures with which the measures in <code class="docutils literal notranslate"><span class="pre">FC</span></code> are to be
+correlated. This could, for instance, be a vector whose entries
+measure the relative in-scanner motion of each scan in <code class="docutils literal notranslate"><span class="pre">FC</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>tensor</dt><dd><p>Absolute correlation of each vector in <code class="docutils literal notranslate"><span class="pre">FC</span></code> with <code class="docutils literal notranslate"><span class="pre">QC</span></code>, after
+thresholding according to the loss object’s <code class="docutils literal notranslate"><span class="pre">tol</span></code> attribute.
+Note that, if you want the original correlations back, you will
+have to add <code class="docutils literal notranslate"><span class="pre">tol</span></code> to any nonzero correlations.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.batchcorr.QCFC.register_sentry">
+<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.batchcorr.QCFC.register_sentry" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.batchcorr.QCFC.register_action">
+<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.batchcorr.QCFC.register_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +770,22 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.batchcorr.QCFC"><code class="docutils literal notranslate"><span class="pre">QCFC</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.batchcorr.QCFC.forward"><code class="docutils literal notranslate"><span class="pre">QCFC.forward()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.batchcorr.QCFC.register_sentry"><code class="docutils literal notranslate"><span class="pre">QCFC.register_sentry()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.batchcorr.QCFC.register_action"><code class="docutils literal notranslate"><span class="pre">QCFC.register_action()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

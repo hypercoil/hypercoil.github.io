@@ -708,6 +708,43 @@ document.write(`
                   
   <section id="orient-and-conform">
 <h1><code class="docutils literal notranslate"><span class="pre">orient_and_conform</span></code><a class="headerlink" href="#orient-and-conform" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.utils.orient_and_conform">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.utils.</span></span><span class="sig-name descname"><span class="pre">orient_and_conform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/utils.py#L376-L423"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.utils.orient_and_conform" title="Permalink to this definition">#</a></dt>
+<dd><p>Orient an input tensor along a set of axes, and conform its overall
+dimension to equal that of a reference.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If both <code class="docutils literal notranslate"><span class="pre">reference</span></code> and <code class="docutils literal notranslate"><span class="pre">dim</span></code> are provided, then <code class="docutils literal notranslate"><span class="pre">dim</span></code> takes
+precedence.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>input</strong><span class="classifier">tensor</span></dt><dd><p>Input tensor.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">tuple</span></dt><dd><p>Output axes along which the tensor’s input dimensions should be
+reoriented. This should be an n-tuple, where n is the number of axes
+in the input tensor.</p>
+</dd>
+<dt><strong>reference</strong><span class="classifier">tensor or None</span></dt><dd><p>Reference tensor. The output is unsqueezed so that its total
+dimension equals that of the reference. Either a reference or an
+explicit output dimension (<code class="docutils literal notranslate"><span class="pre">dim</span></code>) must be provided.</p>
+</dd>
+<dt><strong>dim</strong><span class="classifier">tuple or None</span></dt><dd><p>Number of tensor axes in the desired output.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>tensor</dt><dd><p>Reoriented tensor with singleton axes appended to conform with the
+reference number of axes.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +759,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.utils.orient_and_conform"><code class="docutils literal notranslate"><span class="pre">orient_and_conform()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

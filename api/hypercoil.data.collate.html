@@ -701,8 +701,52 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="collate-batch-collation-functionality">
-<h1><code class="docutils literal notranslate"><span class="pre">collate</span></code>: Batch collation functionality<a class="headerlink" href="#collate-batch-collation-functionality" title="Permalink to this heading">#</a></h1>
+  <section id="module-hypercoil.data.collate">
+<span id="collate-batch-collation-functionality"></span><h1><code class="docutils literal notranslate"><span class="pre">collate</span></code>: Batch collation functionality<a class="headerlink" href="#module-hypercoil.data.collate" title="Permalink to this heading">#</a></h1>
+<p>Patch of <code class="docutils literal notranslate"><span class="pre">pytorch</span></code>’s <code class="docutils literal notranslate"><span class="pre">default_collate</span></code> function, and associated
+functionality that enables additional arguments. This function is typically
+called when a dataset collates observation tensors to form a batch tensor.
+Our patch, <code class="docutils literal notranslate"><span class="pre">gen_collate</span></code>, modifies the <code class="docutils literal notranslate"><span class="pre">torch</span></code> base by making the
+collation function itself an additional argument.</p>
+<p>In the base function, the collation function is set to be <code class="docutils literal notranslate"><span class="pre">torch.stack</span></code>:
+observation tensors are stacked along a new (typically prepended) axis to
+create batch tensors. With our patch, we also include the alternative
+collation function <code class="docutils literal notranslate"><span class="pre">extend_and_bind</span></code>, which is designed to also
+handle the case when the observation tensors being collated might not be the
+same size. This can commonly occur in functional neuroimaging data, for
+instance if different task acquisitions have different durations or if an
+acquisition is terminated early. <code class="docutils literal notranslate"><span class="pre">extend_and_bind</span></code> first pads each
+observation with missing values until all are the same size and then
+concatenates them.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Another way of handling data of different durations is by prefixing a
+random window selector transform to each input. This can be handled by
+<code class="docutils literal notranslate"><span class="pre">webdataset</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">extend_and_bind</span></code>, make sure that missing values are
+handled appropriately for each data type. For instance, if one data type
+is a temporal mask, it would make sense to replace all missing values with
+<cite>0</cite> to signal that the time point should be excluded.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is a patch. Keeping the code in sync with the base function in
+<code class="docutils literal notranslate"><span class="pre">pytorch</span></code> could be a failure point.</p>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.collate.gen_collate">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.collate.</span></span><span class="sig-name descname"><span class="pre">gen_collate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concat=&lt;built-in</span> <span class="pre">method</span> <span class="pre">stack</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concat_axis=0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/data/collate.py#L62-L153"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.collate.gen_collate" title="Permalink to this definition">#</a></dt>
+<dd><p>Basically stolen/adapted from <code class="docutils literal notranslate"><span class="pre">torch/utils/data/_utils/collate.py</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.data.collate.extend_and_bind">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.data.collate.</span></span><span class="sig-name descname"><span class="pre">extend_and_bind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/data/collate.py#L155-L164"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.collate.extend_and_bind" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 </section>
 
 
@@ -717,6 +761,18 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.data.collate.gen_collate"><code class="docutils literal notranslate"><span class="pre">gen_collate()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.data.collate.extend_and_bind"><code class="docutils literal notranslate"><span class="pre">extend_and_bind()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

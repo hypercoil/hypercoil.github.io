@@ -703,6 +703,50 @@ document.write(`
                   
   <section id="smoothnesspenalty">
 <h1><code class="docutils literal notranslate"><span class="pre">SmoothnessPenalty</span></code><a class="headerlink" href="#smoothnesspenalty" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.smoothness.SmoothnessPenalty">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.smoothness.</span></span><span class="sig-name descname"><span class="pre">SmoothnessPenalty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/smoothness.py#L11-L46"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.smoothness.SmoothnessPenalty" title="Permalink to this definition">#</a></dt>
+<dd><p>Loss based on the norm of differences.</p>
+<p>Penalising this quantity can minimise transitions or promote smoother
+transitions between adjacent entries in a weight tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>nu</strong><span class="classifier">float</span></dt><dd><p>Loss function weight multiplier.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int (default -1)</span></dt><dd><p>Axis defining the slice of the input tensor over which the norm of
+differences is computed.is computed.</p>
+</dd>
+<dt><strong>append, prepend (default None)</strong></dt><dd><p>Arguments to <cite>torch.diff</cite>. Values to append or prepend to the input
+along the specified axis before computing the difference.</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">float (default 2)</span></dt><dd><p>Norm order. p=1 corresponds to the Manhattan L1 norm, p=2 corresponds
+to the Euclidean L2 norm, etc.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.smoothness.SmoothnessPenalty.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.smoothness.SmoothnessPenalty.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate the loss function, and communicate the results to any
+listening sentry objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.smoothness.SmoothnessPenalty.register_sentry">
+<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.smoothness.SmoothnessPenalty.register_sentry" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.smoothness.SmoothnessPenalty.register_action">
+<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.smoothness.SmoothnessPenalty.register_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +761,22 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.smoothness.SmoothnessPenalty"><code class="docutils literal notranslate"><span class="pre">SmoothnessPenalty</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.smoothness.SmoothnessPenalty.forward"><code class="docutils literal notranslate"><span class="pre">SmoothnessPenalty.forward()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.smoothness.SmoothnessPenalty.register_sentry"><code class="docutils literal notranslate"><span class="pre">SmoothnessPenalty.register_sentry()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.smoothness.SmoothnessPenalty.register_action"><code class="docutils literal notranslate"><span class="pre">SmoothnessPenalty.register_action()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

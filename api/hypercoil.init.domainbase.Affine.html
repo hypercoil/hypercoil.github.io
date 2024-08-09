@@ -708,6 +708,48 @@ document.write(`
                   
   <section id="affine">
 <h1><code class="docutils literal notranslate"><span class="pre">Affine</span></code><a class="headerlink" href="#affine" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.domainbase.Affine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.domainbase.</span></span><span class="sig-name descname"><span class="pre">Affine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L333-L362"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase.Affine" title="Permalink to this definition">#</a></dt>
+<dd><p>Affine domain mapper.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.init.domainbase.Affine.image" title="hypercoil.init.domainbase.Affine.image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">image</span></code></a>(x)</p></td>
+<td><p>Map a tensor to its image under the linear transformation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.init.domainbase.Affine.preimage" title="hypercoil.init.domainbase.Affine.preimage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">preimage</span></code></a>(x)</p></td>
+<td><p>Map a tensor to its preimage under the linear transformation.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.domainbase.Affine.preimage">
+<span class="sig-name descname"><span class="pre">preimage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L351-L356"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase.Affine.preimage" title="Permalink to this definition">#</a></dt>
+<dd><p>Map a tensor to its preimage under the linear transformation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.domainbase.Affine.image">
+<span class="sig-name descname"><span class="pre">image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L357-L362"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase.Affine.image" title="Permalink to this definition">#</a></dt>
+<dd><p>Map a tensor to its image under the linear transformation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.domainbase.Affine.test">
+<span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L220-L225"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase.Affine.test" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate whether each entry in a tensor falls within bounds.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.domainbase.Affine.handle_ood">
+<span class="sig-name descname"><span class="pre">handle_ood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/domainbase.py#L226-L232"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.domainbase.Affine.handle_ood" title="Permalink to this definition">#</a></dt>
+<dd><p>Apply an out-of-domain handler to ensure that all tensor entries are
+within bounds.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +764,23 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase.Affine"><code class="docutils literal notranslate"><span class="pre">Affine</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase.Affine.preimage"><code class="docutils literal notranslate"><span class="pre">Affine.preimage()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase.Affine.image"><code class="docutils literal notranslate"><span class="pre">Affine.image()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase.Affine.test"><code class="docutils literal notranslate"><span class="pre">Affine.test()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.domainbase.Affine.handle_ood"><code class="docutils literal notranslate"><span class="pre">Affine.handle_ood()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

@@ -708,6 +708,82 @@ document.write(`
                   
   <section id="fmriprepdataset">
 <h1><code class="docutils literal notranslate"><span class="pre">fMRIPrepDataset</span></code><a class="headerlink" href="#fmriprepdataset" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.data.bids.fMRIPrepDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.data.bids.</span></span><span class="sig-name descname"><span class="pre">fMRIPrepDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmriprep_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_tables</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('subject',)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outcomes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('subject',)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('session',</span> <span class="pre">'run',</span> <span class="pre">'task')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/data/bids.py#L129-L210"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.bids.fMRIPrepDataset" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="hypercoil.data.dataset.ReferencedDataset.html#hypercoil.data.dataset.ReferencedDataset" title="hypercoil.data.dataset.ReferencedDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReferencedDataset</span></code></a></p>
+<p>Referenced dataset created from a directory of fMRIPrep output data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fmriprep_dir</strong><span class="classifier">str</span></dt><dd><p>Path to the top-level directory containing all neuroimaging data
+preprocessed with fMRIPrep.</p>
+</dd>
+<dt><strong>space</strong><span class="classifier">str or None (default None)</span></dt><dd><p>String indicating the stereotaxic coordinate space from which the
+images are referenced.</p>
+</dd>
+<dt><strong>additional_tables</strong><span class="classifier">list(str) or None (default None)</span></dt><dd><p>List of paths to files containing additional data. Each file should
+include index columns corresponding to all identifiers present in the
+dataset (e.g., subject, run, etc.).</p>
+</dd>
+<dt><strong>ignore</strong><span class="classifier">dict(str: list) or None (default None)</span></dt><dd><p>Dictionary indicating identifiers to be ignored. Currently this
+doesn’t support any logical composition and takes logical OR over all
+ignore specifications. In other words, data will be ignored if they
+satisfy any of the ignore criteria.</p>
+</dd>
+<dt><strong>labels</strong><span class="classifier">tuple or None (default (‘subject’,))</span></dt><dd><p>List of categorical outcome variables to include in data references.
+These variables can be taken either from data identifiers or from
+additional tables. Labels become available as prediction targets for
+classification models. By default, the subject identifier is included.</p>
+</dd>
+<dt><strong>outcomes</strong><span class="classifier">tuple or None (default None)</span></dt><dd><p>List of continuous outcome variables to include in data references.
+These variables can be taken either from data identifiers or from
+additional tables. Labels become available as prediction targets for
+regression models. By default, the subject identifier is included.</p>
+</dd>
+<dt><strong>model</strong><span class="classifier">str, list, or None (default None)</span></dt><dd><p>Formula expressions representing confound models to create for each
+subject. For example, a 36-parameter expanded model can be specified as
+<cite>(dd1(rps + wm + csf + gsr))^^2</cite>.</p>
+</dd>
+<dt><strong>tmask</strong><span class="classifier">str or None (default None)</span></dt><dd><p>A formula expression representing the temporal mask to create for each
+subject. For instance <cite>and(uthr0.5(fd) + uthr1.5(dv))</cite> results in a mask
+that includes time points with less than 0.5 framewise displacement and
+less than 1.5 standardised DVARS.</p>
+</dd>
+<dt><strong>observations</strong><span class="classifier">tuple (default (‘subject’,))</span></dt><dd><p>List of data identifiers whose levels are packaged into separate data
+references. Each level should generally have the same values of any
+outcome variables.</p>
+</dd>
+<dt><strong>levels</strong><span class="classifier">tuple or None (default (‘session’, ‘run, task’))</span></dt><dd><p>List of data identifiers whose levels are packaged as sublevels of the
+same data reference. This permits easier augmentation of data via
+pooling across sublevels.</p>
+</dd>
+<dt><strong>depth</strong><span class="classifier">int (default 0)</span></dt><dd><p>Sampling depth of the dataset: if the passed references are nested
+hierarchically, then each minibatch is sampled from data references
+at the indicated level. By default, the dataset is sampled from the
+highest level (no nesting).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.data.bids.fMRIPrepDataset.add_data" title="hypercoil.data.bids.fMRIPrepDataset.add_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_data</span></code></a>(fmriprep_dir[, space, ...])</p></td>
+<td><p>Add data from another directory.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.data.bids.fMRIPrepDataset.add_data">
+<span class="sig-name descname"><span class="pre">add_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmriprep_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_tables</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('subject',)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outcomes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('subject',)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('session',</span> <span class="pre">'run',</span> <span class="pre">'task')</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/data/bids.py#L195-L210"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.data.bids.fMRIPrepDataset.add_data" title="Permalink to this definition">#</a></dt>
+<dd><p>Add data from another directory. Call follows the same pattern as
+the constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +798,20 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.data.bids.fMRIPrepDataset"><code class="docutils literal notranslate"><span class="pre">fMRIPrepDataset</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.data.bids.fMRIPrepDataset.add_data"><code class="docutils literal notranslate"><span class="pre">fMRIPrepDataset.add_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

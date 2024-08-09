@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.functional.activation.isochor';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -708,6 +709,62 @@ document.write(`
                   
   <section id="isochor-psd-normalisation">
 <h1><code class="docutils literal notranslate"><span class="pre">isochor</span></code>: PSD normalisation<a class="headerlink" href="#isochor-psd-normalisation" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="hypercoil.functional.activation.isochor">
+<span class="sig-prename descclassname"><span class="pre">hypercoil.functional.activation.</span></span><span class="sig-name descname"><span class="pre">isochor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">softmax_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/functional/activation.py#L285-L351"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.functional.activation.isochor" title="Permalink to this definition">#</a></dt>
+<dd><p>Volume-normalising activation function for symmetric, positive definite
+matrices.</p>
+<p>This activation function first finds the eigendecomposition of each input
+matrix. The eigenvalues are then each divided by
+<span class="math notranslate nohighlight">\(\sqrt[n]{\frac{v_{in}}{v_{target}}}\)</span>
+to normalise the determinant to
+<span class="math notranslate nohighlight">\(v_{target}\)</span>. Before normalisation, there are options to rescale the
+eigenvalues through a softmax and/or to enforce a maximal condition number
+for the output tensor. If the input tensors are being used to represent
+ellipsoids, for instance, this can constrain the eccentricity of those
+ellipsoids. Finally, the matrix is reconstituted using the original
+eigenvectors and the rescaled eigenvalues.</p>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>input :</strong> <span class="math notranslate nohighlight">\((*, P, P)\)</span></dt><dd><p>P denotes the row and column dimensions of the input
+matrices. <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes any number of additional
+dimensions.</p>
+</dd>
+<dt><strong>output :</strong> <span class="math notranslate nohighlight">\((*, P, P)\)</span></dt><dd><p>As above.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>input</strong><span class="classifier">tensor</span></dt><dd><p>Tensor containing symmetric, positive definite matrices.</p>
+</dd>
+<dt><strong>volume</strong><span class="classifier">float (default 1)</span></dt><dd><p>Target volume for the normalisation procedure. All output tensors will
+have this determinant.</p>
+</dd>
+<dt><strong>max_condition</strong><span class="classifier">float <span class="math notranslate nohighlight">\(\in [1, \infty)\)</span> or None (default None)</span></dt><dd><p>Maximum permissible condition number among output tensors. This can be
+used to constrain the eccentricity of isochoric ellipsoids. To enforce
+this maximum, the eigenvalues of the input tensors are replaced with a
+convex combination of the original eigenvalues and a vector of ones
+such that the largest eigenvalue is no more than <code class="docutils literal notranslate"><span class="pre">max_condition</span></code>
+times the smallest eigenvalue. Note that a <code class="docutils literal notranslate"><span class="pre">max_condition</span></code> of 1
+will always return (a potentially isotropically scaled) identity.</p>
+</dd>
+<dt><strong>softmax_temp</strong><span class="classifier">float or None (default None)</span></dt><dd><p>If this is provided, then the eigenvalues of the input tensor are
+passed through a softmax with the specified temperature before any
+other processing.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>tensor</dt><dd><p>Volume-normalised tensor.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +779,17 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.functional.activation.isochor"><code class="docutils literal notranslate"><span class="pre">isochor()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

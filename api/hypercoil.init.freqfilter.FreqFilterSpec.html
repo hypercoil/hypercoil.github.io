@@ -39,6 +39,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4a86e2aa"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/hypercoil.init.freqfilter.FreqFilterSpec';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -708,6 +709,177 @@ document.write(`
                   
   <section id="freqfilterspec">
 <h1><code class="docutils literal notranslate"><span class="pre">FreqFilterSpec</span></code><a class="headerlink" href="#freqfilterspec" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.init.freqfilter.FreqFilterSpec">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.init.freqfilter.</span></span><span class="sig-name descname"><span class="pre">FreqFilterSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Wn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'butter'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">btype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bandpass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'phase'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ampl_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ampl_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clamps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/freqfilter.py#L13-L248"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.freqfilter.FreqFilterSpec" title="Permalink to this definition">#</a></dt>
+<dd><p>Specification for an approximate frequency response curve for various
+filter classes.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that this provides <strong>only an emulation</strong> for IIR filters. For a
+true differentiable IIR filter, use the
+<a class="reference internal" href="hypercoil.init.iirfilter.html"><span class="doc">IIRFilter</span></a>
+layer (when it’s operational).</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Dimension<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>N :</strong> <span class="math notranslate nohighlight">\((F)\)</span></dt><dd><p>F denotes the total number of filters to initialise.</p>
+</dd>
+</dl>
+<p><strong>Wn :</strong> <span class="math notranslate nohighlight">\((F, 2)\)</span> for bandpass or bandstop or
+<span class="math notranslate nohighlight">\((F)\)</span> otherwise</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>Wn</strong><span class="classifier">float or tuple(float, float) or Tensor</span></dt><dd><p>Critical or cutoff frequency. If this is a band-pass filter, then this
+should be a tuple, with the first entry specifying the high-pass cutoff
+and the second entry specifying the low-pass frequency. This should be
+specified relative to the Nyquist frequency if <code class="docutils literal notranslate"><span class="pre">fs</span></code> is not provided,
+and should be in the same units as <code class="docutils literal notranslate"><span class="pre">fs</span></code> if it is provided. To create
+multiple filters, specify a tensor containing the critical frequencies
+for each filter in a single row.</p>
+</dd>
+<dt><strong>N</strong><span class="classifier">int or Tensor (default 1)</span></dt><dd><p>Filter order. If this is a tensor, then a separate filter will be
+created for each entry in the tensor. Wn must be shaped to match. Not
+used for ideal filters.</p>
+</dd>
+<dt><strong>ftype</strong><span class="classifier">one of (<code class="docutils literal notranslate"><span class="pre">'butter'</span></code>, <code class="docutils literal notranslate"><span class="pre">'cheby1'</span></code>, <code class="docutils literal notranslate"><span class="pre">'cheby2'</span></code>, <code class="docutils literal notranslate"><span class="pre">'ellip'</span></code>, <code class="docutils literal notranslate"><span class="pre">'bessel'</span></code>, <code class="docutils literal notranslate"><span class="pre">'ideal'</span></code>, <code class="docutils literal notranslate"><span class="pre">'randn'</span></code>)</span></dt><dd><p>Filter class to emulate: Butterworth, Chebyshev I, Chebyshev II,
+elliptic, Bessel-Thompson, ideal, or filter weights sampled randomly
+from a normal distribution.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because it cannot be overstated: IIR filter spectra (Butterworth,
+Chebyshev, elliptic, Bessel) are strictly emulations and do not
+remotely follow the actual behaviour of the filter. These filters
+are recursive and cannot be implemented as frequency products. By
+contrast, the ideal initialisation is exact.</p>
+</div>
+</dd>
+<dt><strong>btype</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'bandpass'</span></code> (default) or <code class="docutils literal notranslate"><span class="pre">'bandstop'</span></code> or <code class="docutils literal notranslate"><span class="pre">'lowpass'</span></code> or <code class="docutils literal notranslate"><span class="pre">'highpass'</span></code></span></dt><dd><p>Filter pass-band to emulate: low-pass, high-pass, or band-pass. The
+interpretation of the critical frequency changes depending on the
+filter type.</p>
+</dd>
+<dt><strong>fs</strong><span class="classifier">float or None (default None)</span></dt><dd><p>Sampling frequency.</p>
+</dd>
+<dt><strong>rp</strong><span class="classifier">float (default 0.1)</span></dt><dd><p>Pass-band ripple. Used only for Chebyshev I and elliptic filters.</p>
+</dd>
+<dt><strong>rs</strong><span class="classifier">float (default 20)</span></dt><dd><p>Stop-band ripple. Used only for Chebyshev II and elliptic filters.</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">'phase'</span></code> or <code class="docutils literal notranslate"><span class="pre">'mag'</span></code> or <code class="docutils literal notranslate"><span class="pre">'delay'</span></code> (default <code class="docutils literal notranslate"><span class="pre">'phase'</span></code>)</span></dt><dd><p>Critical frequency normalisation. Consult the <code class="docutils literal notranslate"><span class="pre">scipy.signal.bessel</span></code>
+documentation for details.</p>
+</dd>
+<dt><strong>ampl_loc</strong><span class="classifier">float</span></dt><dd><p>If randomly sampling filter weights from a normal distribution, this
+parameter specifies the mean of the amplitude distribution.</p>
+</dd>
+<dt><strong>ampl_scale: float</strong></dt><dd><p>If randomly sampling filter weights from a normal distribution, this
+parameter specifies the standard deviation of the amplitude
+distribution. (Note that there is currently no support for a covariant
+phase-amplitude distribution.)</p>
+</dd>
+<dt><strong>phase_loc</strong><span class="classifier">float</span></dt><dd><p>If randomly sampling filter weights from a normal distribution, this
+parameter specifies the mean of the phase distribution.</p>
+</dd>
+<dt><strong>phase_scale: float</strong></dt><dd><p>If randomly sampling filter weights from a normal distribution, this
+parameter specifies the standard deviation of the phase distribution.
+(Note that there is currently no support for a covariant phase-
+amplitude distribution.)</p>
+</dd>
+<dt><strong>clamps</strong><span class="classifier">list(dict)</span></dt><dd><p>Frequencies whose responses should be clampable to particular values.
+Each element of the list is a dictionary corresponding to a single
+filter; the list should therefore have a length of <code class="docutils literal notranslate"><span class="pre">F</span></code>. Each
+key/value pair in each dictionary should correspond to a frequency
+(relative to Nyquist or <code class="docutils literal notranslate"><span class="pre">fs</span></code> if provided) and the clampable response
+at that frequency. For instance {0.1: 0, 0.5: 1} enables clamping of
+the frequency bin closest to 0.1 to 0 (full stop) and the bin closest
+to 0.5 to 1 (full pass). Note that the clamp must be applied using the
+<code class="docutils literal notranslate"><span class="pre">get_clamps</span></code> method.</p>
+</dd>
+<dt><strong>bound</strong><span class="classifier">float (default 3)</span></dt><dd><p>Maximum tolerable amplitude in the transfer function. Any values in
+excess will be adjusted according to the <cite>ood</cite> option when a spectrum
+is initialised.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>spectrum</strong><span class="classifier">Tensor</span></dt><dd><p>Populated when the <code class="docutils literal notranslate"><span class="pre">initialise_spectrum</span></code> method is called.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hypercoil.init.freqfilter.FreqFilterSpec.get_clamps" title="hypercoil.init.freqfilter.FreqFilterSpec.get_clamps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_clamps</span></code></a>(worN)</p></td>
+<td><p>Returns a mask and a set of values that can be used to clamp each filter's transfer function at a specified set of frequencies.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hypercoil.init.freqfilter.FreqFilterSpec.initialise_spectrum" title="hypercoil.init.freqfilter.FreqFilterSpec.initialise_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialise_spectrum</span></code></a>(worN[, domain])</p></td>
+<td><p>Initialises a frequency spectrum or transfer function approximation for the specified filter with <code class="docutils literal notranslate"><span class="pre">worN</span></code> frequency bins between 0 and Nyquist, inclusive.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.freqfilter.FreqFilterSpec.initialise_spectrum">
+<span class="sig-name descname"><span class="pre">initialise_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/freqfilter.py#L136-L192"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.freqfilter.FreqFilterSpec.initialise_spectrum" title="Permalink to this definition">#</a></dt>
+<dd><p>Initialises a frequency spectrum or transfer function approximation
+for the specified filter with <code class="docutils literal notranslate"><span class="pre">worN</span></code> frequency bins between 0 and
+Nyquist, inclusive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>worN</strong><span class="classifier">int</span></dt><dd><p>Number of frequency bins between 0 and Nyquist, inclusive.</p>
+</dd>
+<dt><strong>domain</strong><span class="classifier">Domain object (default AmplitudeAtanh)</span></dt><dd><p>A domain object from
+<a class="reference internal" href="hypercoil.init.domain.html"><span class="doc">hypercoil.init.domain</span></a>,
+used to specify the domain of the output spectrum. An
+<span class="xref std std-doc">Identity</span>
+object yields the raw transfer function, while an
+<a class="reference internal" href="hypercoil.init.domain.AmplitudeAtanh.html"><span class="doc">AmplitudeAtanh</span></a>
+object transforms the amplitudes of each bin by the inverse tanh
+(atanh) function. This transformation can be useful if the
+transfer function will be used as a learnable parameter whose
+amplitude will be transformed by the tanh function, thereby
+constraining it to [0, 1) and preventing explosive gain.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None: the <code class="docutils literal notranslate"><span class="pre">spectrum</span></code> attribute is populated instead.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.init.freqfilter.FreqFilterSpec.get_clamps">
+<span class="sig-name descname"><span class="pre">get_clamps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worN</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/init/freqfilter.py#L193-L226"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.init.freqfilter.FreqFilterSpec.get_clamps" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a mask and a set of values that can be used to clamp each
+filter’s transfer function at a specified set of frequencies.</p>
+<p>To apply the clamp, use:</p>
+<p>spectrum[points] = values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>worN</strong><span class="classifier">int</span></dt><dd><p>Number of frequency bins between 0 and Nyquist, inclusive.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>points</strong><span class="classifier">Tensor</span></dt><dd><p>Boolean mask indicating the frequency bins that are clampable.</p>
+</dd>
+<dt><strong>values</strong><span class="classifier">Tensor</span></dt><dd><p>Values to which the response function is clampable at the specified
+frequencies.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -722,6 +894,21 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.freqfilter.FreqFilterSpec"><code class="docutils literal notranslate"><span class="pre">FreqFilterSpec</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.freqfilter.FreqFilterSpec.initialise_spectrum"><code class="docutils literal notranslate"><span class="pre">FreqFilterSpec.initialise_spectrum()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.init.freqfilter.FreqFilterSpec.get_clamps"><code class="docutils literal notranslate"><span class="pre">FreqFilterSpec.get_clamps()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

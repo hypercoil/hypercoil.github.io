@@ -703,6 +703,65 @@ document.write(`
                   
   <section id="constraintviolation">
 <h1><code class="docutils literal notranslate"><span class="pre">ConstraintViolation</span></code><a class="headerlink" href="#constraintviolation" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="hypercoil.loss.norm.ConstraintViolation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypercoil.loss.norm.</span></span><span class="sig-name descname"><span class="pre">ConstraintViolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precompose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/norm.py#L120-L174"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.norm.ConstraintViolation" title="Permalink to this definition">#</a></dt>
+<dd><p>Constraint violation loss.</p>
+<p>This loss uses a set of constraint functions and evaluates them on its
+input. If a constraint evaluates to 0 or less, then it is considered to
+be satisfied and no penalty is applied. Otherwise, a
+<a class="reference internal" href="hypercoil.loss.norm.NormedLoss.html#hypercoil.loss.norm.NormedLoss" title="hypercoil.loss.norm.NormedLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">normed</span> <span class="pre">penalty</span></code></a> is applied in proportion to the
+maximum violation of any constraint.</p>
+<p>For example, using the constraint <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">x</span></code> penalises only
+positive elements (equivalent to <a class="reference internal" href="hypercoil.loss.norm.UnilateralNormedLoss.html#hypercoil.loss.norm.UnilateralNormedLoss" title="hypercoil.loss.norm.UnilateralNormedLoss"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnilateralNormedLoss</span></code></a>), while
+<code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">-x</span></code> penalises only negative elements.
+<code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">tensor([1,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">-2])</span> <span class="pre">&#64;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">2</span></code> applies the specified affine
+function as a constraint.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>constraints</strong><span class="classifier">iterable(callable)</span></dt><dd><p>Iterable containing constraint functions.</p>
+</dd>
+<dt><strong>nu</strong><span class="classifier">float</span></dt><dd><p>Loss function weight multiplier.</p>
+</dd>
+<dt><strong>p</strong><span class="classifier">float (default 2)</span></dt><dd><p>Norm order. <code class="docutils literal notranslate"><span class="pre">p=1</span></code> corresponds to the Manhattan L1 norm, <code class="docutils literal notranslate"><span class="pre">p=2</span></code>
+corresponds to the Euclidean L2 norm, etc.</p>
+</dd>
+<dt><strong>precompose</strong><span class="classifier">callable or None (default None)</span></dt><dd><p>Pre-transformation of the input tensor, on whose output the unilateral
+norm is computed.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int, iterable(int), or None (default None)</span></dt><dd><p>Axes defining the slice of the input tensor over which the norm is
+computed. If this is None, then the overall tensor norm is computed.</p>
+</dd>
+<dt><strong>reduction</strong><span class="classifier">callable (default <code class="docutils literal notranslate"><span class="pre">torch.mean</span></code>)</span></dt><dd><p>Map from a tensor of arbitrary dimension to a scalar. The output of
+the norm operation over the specified axes produces a tensor whose
+extent over remaining axes is unreduced. This output tensor is then
+passed into <code class="docutils literal notranslate"><span class="pre">reduction</span></code> to return a scalar.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str or None (default None)</span></dt><dd><p>Identifying string for the instantiation of the loss object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.norm.ConstraintViolation.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/loss/base.py#L119-L134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.norm.ConstraintViolation.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Evaluate the loss function, and communicate the results to any
+listening sentry objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.norm.ConstraintViolation.register_sentry">
+<span class="sig-name descname"><span class="pre">register_sentry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentry</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L21-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.norm.ConstraintViolation.register_sentry" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hypercoil.loss.norm.ConstraintViolation.register_action">
+<span class="sig-name descname"><span class="pre">register_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/rciric/hypercoil/tree/main//../../../../../../opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/hypercoil/engine/sentry.py#L29-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hypercoil.loss.norm.ConstraintViolation.register_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -717,6 +776,22 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.norm.ConstraintViolation"><code class="docutils literal notranslate"><span class="pre">ConstraintViolation</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.norm.ConstraintViolation.forward"><code class="docutils literal notranslate"><span class="pre">ConstraintViolation.forward()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.norm.ConstraintViolation.register_sentry"><code class="docutils literal notranslate"><span class="pre">ConstraintViolation.register_sentry()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypercoil.loss.norm.ConstraintViolation.register_action"><code class="docutils literal notranslate"><span class="pre">ConstraintViolation.register_action()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 
