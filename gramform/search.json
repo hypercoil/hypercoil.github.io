@@ -1,0 +1,33 @@
+[
+  {
+    "objectID": "api/Grammar.html",
+    "href": "api/Grammar.html",
+    "title": "Grammar",
+    "section": "",
+    "text": "Grammar\nGrammar(\n    self\n    groupings\n    transforms\n    whitespace=False\n    shorthand=None\n    default_interpreter=None\n    default_root_transform=None\n)",
+    "crumbs": [
+      "gramform",
+      "Grammar"
+    ]
+  },
+  {
+    "objectID": "api/index.html",
+    "href": "api/index.html",
+    "title": "API reference",
+    "section": "",
+    "text": "String-to-function grammars\n\n\n\nGrammar",
+    "crumbs": [
+      "API reference"
+    ]
+  },
+  {
+    "objectID": "api/index.html#gramform",
+    "href": "api/index.html#gramform",
+    "title": "API reference",
+    "section": "",
+    "text": "String-to-function grammars\n\n\n\nGrammar",
+    "crumbs": [
+      "API reference"
+    ]
+  }
+]

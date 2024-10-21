@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Differentiable programming for mapping brain function – hypercoil</title>
+<title>index – paranox: Parameterisations for `equinox` modules</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../api/DistributionInitialiser.html" rel="next">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,17 +69,18 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="../api/_styles-quartodoc.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./_static/logo-hypercoil.svg" alt="" class="navbar-logo">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">paranox</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -88,29 +90,29 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./get-started/overview.qmd"> 
-<span class="menu-text">Get Started</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./examples/"> 
+    <a class="nav-link" href="../examples/"> 
 <span class="menu-text">Examples</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./tutorials/"> 
+    <a class="nav-link" href="../tutorials/"> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./spec/"> 
+    <a class="nav-link" href="../spec/"> 
 <span class="menu-text">Spec</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./api/"> 
+    <a class="nav-link" href="../api/"> 
 <span class="menu-text">API</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../"> 
+<span class="menu-text">Ecosystem</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/hypercoil/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/hypercoil/paranox"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -120,144 +122,88 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">API reference</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">API reference</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">paranox</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/DistributionInitialiser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DistributionInitialiser</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#api-reference" id="toc-api-reference" class="nav-link active" data-scroll-target="#api-reference">API reference</a>
+  <ul class="collapse">
+  <li><a href="#paranox" id="toc-paranox" class="nav-link" data-scroll-target="#paranox">paranox</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
+<main class="content" id="quarto-document-content">
 
 
 
 
-<div class="hero-banner text-center">
-<h3>
-<code>hypercoil</code> ecosystem
-</h3>
-<h1 class="text-center hero-title">
-Differentiable, accelerated, <br> and compositional programming <br> for mapping brain function
-</h1>
-<!-- <ul class="hero-github-links list-inline">
-  <li class="list-inline-item">
-    <a class="github-button" href="https://github.com/hypercoil/hypercoil" data-size="large" data-show-count="false" aria-label="Star repository">Star</a>
-  </li>
-  <li class="list-inline-item">
-    <a class="github-button" href="https://github.com/hypercoil/hypercoil/fork" data-size="large" data-show-count="false" aria-label="Fork repository">Fork</a>
-  </li>
-</ul> -->
-</div>
-<div class="content-block padding-left-20px">
-<div class="list grid">
-<div class="card border-secondary rounded-3 g-col-12 g-col-md-6 g-col-lg-4 mb-2">
-<div class="card-header text-center">
-<h3>
-<code>hypercoil</code>
-</h3>
-</div>
-<div class="card-body">
-<p><br> Write differentiable programs for mapping the function of the brain. <br></p>
-<div class="d-flex justify-content-center">
-<p><a href="./hypercoil" class="btn btn-action btn-primary btn-action-primary justify-content-center">View documentation</a></p>
-</div>
-</div>
-</div>
-<div class="card border-secondary rounded-3 g-col-12 g-col-md-6 g-col-lg-4 mb-2">
-<div class="card-header text-center">
-<h3>
-<code>hyve</code>
-</h3>
-</div>
-<div class="card-body">
-<p><br> Compose visualisation protocols for neuroimaging datasets. <br></p>
-<div class="d-flex justify-content-center">
-<p><a href="./hyve" class="btn btn-action btn-primary btn-action-primary justify-content-center">View documentation</a></p>
-</div>
-</div>
-</div>
-<div class="card border-secondary rounded-3 g-col-12 g-col-md-6 g-col-lg-4 mb-2">
-<div class="card-header text-center">
-<h3>
-<code>entense</code>
-</h3>
-</div>
-<div class="card-body">
-<p><br> Assemble workflows for neuroimaging data engineering. <br></p>
-<div class="d-flex justify-content-center">
-<p><a href="./entense" class="btn btn-action btn-primary btn-action-primary justify-content-center">View documentation</a></p>
-</div>
-</div>
-</div>
-<div class="card border-secondary rounded-3 g-col-12 g-col-md-6 g-col-lg-4 mb-2">
-<div class="card-header text-center">
-<h3>
-<code>nitrix</code>
-</h3>
-</div>
-<div class="card-body">
-<p><br> Use XLA to perform neuroimaging transformations on a hardware accelerator. <br></p>
-<div class="d-flex justify-content-center">
-<p><a href="./nitrix" class="btn btn-action btn-primary btn-action-primary justify-content-center">View documentation</a></p>
-</div>
-</div>
-</div>
-<div class="card border-secondary rounded-3 g-col-12 g-col-md-6 g-col-lg-4 mb-2">
-<div class="card-header text-center">
-<h3>
-<code>paranox</code>
-</h3>
-</div>
-<div class="card-body">
-<p><br> Parameterise <code>equinox</code> modules using domain mappers, initialisers, and stochastic parameters. <br></p>
-<div class="d-flex justify-content-center">
-<p><a href="./paranox" class="btn btn-action btn-primary btn-action-primary justify-content-center">View documentation</a></p>
-</div>
-</div>
-</div>
-<div class="card border-secondary rounded-3 g-col-12 g-col-md-6 g-col-lg-4 mb-2">
-<div class="card-header text-center">
-<h3>
-<code>gramform</code>
-</h3>
-</div>
-<div class="card-body">
-<p><br> Define grammars to build strings into functions. <br></p>
-<div class="d-flex justify-content-center">
-<p><a href="./gramform" class="btn btn-action btn-primary btn-action-primary justify-content-center">View documentation</a></p>
-</div>
-</div>
-</div>
-<div class="card border-secondary rounded-3 g-col-12 g-col-md-6 g-col-lg-4 mb-2">
-<div class="card-header text-center">
-<h3>
-<code>conveyant</code>
-</h3>
-</div>
-<div class="card-body">
-<p><br> Abstractions for compositional functional programming. <br></p>
-<div class="d-flex justify-content-center">
-<p><a href="./conveyant" class="btn btn-action btn-primary btn-action-primary justify-content-center">View documentation</a></p>
-</div>
-</div>
-</div>
-<div class="card border-secondary rounded-3 g-col-12 g-col-md-6 g-col-lg-4 mb-2">
-<div class="card-header text-center">
-<h3>
-<code>lytemaps</code>
-</h3>
-</div>
-<div class="card-body">
-<p><br> Lightweight fork of <code>neuromaps</code> for accessing datasets not yet available in <code>templateflow</code>. <br></p>
-<div class="d-flex justify-content-center">
-<p><a href="./lytemaps" class="btn btn-action btn-primary btn-action-primary justify-content-center">View documentation</a></p>
-</div>
-</div>
-</div>
-</div>
-</div>
+<section id="api-reference" class="level1 doc doc-index">
+<h1 class="doc doc-index">API reference</h1>
+<section id="paranox" class="level2">
+<h2 class="anchored" data-anchor-id="paranox">paranox</h2>
+<p>Parameterisations for <code>equinox</code> modules</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><a href="../api/DistributionInitialiser.html#paranox.DistributionInitialiser">DistributionInitialiser</a></td>
+<td>Parameter initialiser from a distribution.</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
+</section>
 
-
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -678,6 +624,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../api/DistributionInitialiser.html" class="pagination-link" aria-label="DistributionInitialiser">
+        <span class="nav-page-text">DistributionInitialiser</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

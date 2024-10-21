@@ -1,0 +1,33 @@
+[
+  {
+    "objectID": "api/index.html",
+    "href": "api/index.html",
+    "title": "API reference",
+    "section": "",
+    "text": "Abstractions for compositional functional programming\n\n\n\nPrimitive\nPrimitive function wrapper.",
+    "crumbs": [
+      "API reference"
+    ]
+  },
+  {
+    "objectID": "api/index.html#conveyant",
+    "href": "api/index.html#conveyant",
+    "title": "API reference",
+    "section": "",
+    "text": "Abstractions for compositional functional programming\n\n\n\nPrimitive\nPrimitive function wrapper.",
+    "crumbs": [
+      "API reference"
+    ]
+  },
+  {
+    "objectID": "api/Primitive.html",
+    "href": "api/Primitive.html",
+    "title": "Primitive",
+    "section": "",
+    "text": "Primitive\nPrimitive(self, f, name, output, forward_unused=False, splice_on_call=True)\nPrimitive function wrapper.\nForces all arguments to be keyword arguments and forces the wrapped function to return a dictionary. Furthermore, any arguments that are not specified in the signature of the wrapped function are optionally passed directly into the output.",
+    "crumbs": [
+      "conveyant",
+      "Primitive"
+    ]
+  }
+]

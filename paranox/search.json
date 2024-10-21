@@ -1,0 +1,33 @@
+[
+  {
+    "objectID": "api/index.html",
+    "href": "api/index.html",
+    "title": "API reference",
+    "section": "",
+    "text": "Parameterisations for equinox modules\n\n\n\nDistributionInitialiser\nParameter initialiser from a distribution.",
+    "crumbs": [
+      "API reference"
+    ]
+  },
+  {
+    "objectID": "api/index.html#paranox",
+    "href": "api/index.html#paranox",
+    "title": "API reference",
+    "section": "",
+    "text": "Parameterisations for equinox modules\n\n\n\nDistributionInitialiser\nParameter initialiser from a distribution.",
+    "crumbs": [
+      "API reference"
+    ]
+  },
+  {
+    "objectID": "api/DistributionInitialiser.html",
+    "href": "api/DistributionInitialiser.html",
+    "title": "DistributionInitialiser",
+    "section": "",
+    "text": "DistributionInitialiser\nDistributionInitialiser(self, distribution, mapper=None)\nParameter initialiser from a distribution.\nSee :func:from_distr_init and :class:MappedInitialiser for usage details.",
+    "crumbs": [
+      "paranox",
+      "DistributionInitialiser"
+    ]
+  }
+]

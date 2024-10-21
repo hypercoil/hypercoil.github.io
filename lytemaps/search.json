@@ -1,0 +1,33 @@
+[
+  {
+    "objectID": "api/index.html",
+    "href": "api/index.html",
+    "title": "API reference",
+    "section": "",
+    "text": "Lightweight fork of neuromaps\n\n\n\nresample_images",
+    "crumbs": [
+      "API reference"
+    ]
+  },
+  {
+    "objectID": "api/index.html#lytemaps",
+    "href": "api/index.html#lytemaps",
+    "title": "API reference",
+    "section": "",
+    "text": "Lightweight fork of neuromaps\n\n\n\nresample_images",
+    "crumbs": [
+      "API reference"
+    ]
+  },
+  {
+    "objectID": "api/resample_images.html",
+    "href": "api/resample_images.html",
+    "title": "resample_images",
+    "section": "",
+    "text": "resample_images\nresample_images(\n    src\n    trg\n    src_space\n    trg_space\n    method='linear'\n    hemi=None\n    resampling='downsample_only'\n    alt_spec=None\n)",
+    "crumbs": [
+      "lytemaps",
+      "resample_images"
+    ]
+  }
+]

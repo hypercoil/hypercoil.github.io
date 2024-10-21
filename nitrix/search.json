@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "api/index.html",
+    "href": "api/index.html",
+    "title": "API reference",
+    "section": "",
+    "text": "Neuroimaging transforms in XLA\n\n\n\nresidualise\nResidualise a tensor block via ordinary linear least squares.",
+    "crumbs": [
+      "API reference"
+    ]
+  },
+  {
+    "objectID": "api/index.html#nitrix",
+    "href": "api/index.html#nitrix",
+    "title": "API reference",
+    "section": "",
+    "text": "Neuroimaging transforms in XLA\n\n\n\nresidualise\nResidualise a tensor block via ordinary linear least squares.",
+    "crumbs": [
+      "API reference"
+    ]
+  },
+  {
+    "objectID": "api/residualise.html",
+    "href": "api/residualise.html",
+    "title": "residualise",
+    "section": "",
+    "text": "residualise(Y, X, rowvar=True, l2=0.0, return_mode='residual')\nResidualise a tensor block via ordinary linear least squares.\n\n.. warning:: When using torch, we have found in some cases that the least-squares fit returned was incorrect for reasons that are not clear. (Incorrect results are returned by torch.linalg.lstsq, although correct results are returned if torch.linalg.pinv is used instead.) Verify that results are reasonable when using this operation.\nIt is not clear whether the same is true for ``jax``. Caution is\nadvised.\n.. note:: The :doc:conditional covariance &lt;hypercoil.functional.cov.conditionalcov&gt; or :doc:conditional correlation &lt;hypercoil.functional.cov.conditionalcorr&gt; may be used instead where appropriate.\n\n:Dimension: Input Y : :math:(N, *, C_Y, obs) or :math:(N, *, obs, C_Y) N denotes batch size, * denotes any number of intervening dimensions, :math:C_Y denotes number of data channels or variables, obs denotes number of observations per channel Input X : :math:(N, *, C_X, obs) or :math:(N, *, obs, C_X) :math:C_X denotes number of data channels or variables Output : :math:(N, *, C_Y, obs) or :math:(N, *, obs, C_Y) As above.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nY\nTensor\nTensor to be residualised or orthogonalised with respect to X. The vector of observations in each channel is projected into a subspace orthogonal to the span of X.\nrequired\n\n\nX\nTensor\nTensor containing explanatory variables. Any variance in Y that can be explained by variables in X will be removed from Y.\\\nrequired\n\n\nrowvar\nbool (default True)\nIndicates that the last axis of the input tensor is the observation axis and the penultimate axis is the variable axis. If False, then this relationship is transposed.\nTrue\n\n\nl2\nfloat (default 0.0)\nL2 regularisation parameter. If non-zero, the least-squares solution will be regularised by adding a penalty term to the cost function.\n0.0\n\n\nreturn_mode\nLiteral['residual', 'projection'] (default 'residual')\nIndicates whether the residual or projection tensor should be returned. The projection tensor is the projection of Y onto the span of X (i.e., the least-squares solution).\n'residual'",
+    "crumbs": [
+      "nitrix",
+      "residualise"
+    ]
+  },
+  {
+    "objectID": "api/residualise.html#parameters",
+    "href": "api/residualise.html#parameters",
+    "title": "residualise",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nY\nTensor\nTensor to be residualised or orthogonalised with respect to X. The vector of observations in each channel is projected into a subspace orthogonal to the span of X.\nrequired\n\n\nX\nTensor\nTensor containing explanatory variables. Any variance in Y that can be explained by variables in X will be removed from Y.\\\nrequired\n\n\nrowvar\nbool (default True)\nIndicates that the last axis of the input tensor is the observation axis and the penultimate axis is the variable axis. If False, then this relationship is transposed.\nTrue\n\n\nl2\nfloat (default 0.0)\nL2 regularisation parameter. If non-zero, the least-squares solution will be regularised by adding a penalty term to the cost function.\n0.0\n\n\nreturn_mode\nLiteral['residual', 'projection'] (default 'residual')\nIndicates whether the residual or projection tensor should be returned. The projection tensor is the projection of Y onto the span of X (i.e., the least-squares solution).\n'residual'",
+    "crumbs": [
+      "nitrix",
+      "residualise"
+    ]
+  }
+]
