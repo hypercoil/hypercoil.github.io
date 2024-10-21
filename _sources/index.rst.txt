@@ -3,35 +3,80 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Differentiable programming for brain mapping
-============================================
+Ecosystem
+---------
 
-The ``hypercoil`` software library includes tools for writing fully differentiable programs for use in brain mapping. At the current stage of development, most basic components of the functional connectivity software stack are available.
+.. grid:: 1 2 2 2
 
-.. image:: https://github.com/rciric/hypercoil/actions/workflows/ci.yml/badge.svg
+  .. grid-item::
 
-.. image:: https://github.com/rciric/hypercoil/actions/workflows/doc.yml/badge.svg
+    .. card:: :material-regular:`memory;3em`
+      :link: hypercoil/index
+      :link-type: doc
+      :text-align: center
 
-.. image:: https://codecov.io/gh/rciric/hypercoil/branch/main/graph/badge.svg?token=FVJVK6AFQG
-  :target: https://codecov.io/gh/rciric/hypercoil
+      ``hypercoil``
+      +++
+      Differentiable programs for mapping brain function.
 
+  .. grid-item::
 
-Currently, because this project is still in the incipient stage, this documentation hub is fairly minimal (principally focused on documenting the fairly substantial :doc:`API <modules>` for :doc:`functionals <functional>`,  :doc:`neural network modules <nn>`, :doc:`initialisation schemes <init>`, and :doc:`loss functions <loss>`). Usage guidelines and simple examples will be ported into the documentation from test cases soon, and API details will eventually be added for currently unstable submodules, including data engineering workflows, evaluation and benchmarks, and visualisation.
+    .. card:: :material-regular:`visibility;3em`
+      :link: hyve/index
+      :link-type: doc
+      :text-align: center
+
+      ``hyve``
+      +++
+      A compositional visualisation engine for neuroimaging data.
+
+  .. grid-item::
+
+    .. card:: :material-regular:`schema;3em`
+      :link: entense
+      :link-type: doc
+      :text-align: center
+
+      ``entense`` (coming soon)
+      +++
+      A compositional workflow assembler for neuroimaging data engineering.
+
+  .. grid-item::
+
+    .. card:: :material-regular:`repartition;3em`
+      :link: gramform
+      :link-type: doc
+      :text-align: center
+
+      ``gramform``
+      +++
+      A tree-based grammar for 'compiling' string-to-function formulae.
+
+  .. grid-item::
+
+    .. card:: :material-regular:`join_full;3em`
+      :link: conveyant
+      :link-type: doc
+      :text-align: center
+
+      ``conveyant``
+      +++
+      Abstractions for compositional functional programming.
+
+  .. grid-item::
+
+    .. card:: :material-regular:`dataset;3em`
+      :link: UNKNOWN
+      :link-type: doc
+      :text-align: center
+
+      ``. . .`` (coming soon, maybe)
+      +++
+      Backend-agnostic neuroimaging tensor library.
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
    :caption: Contents:
 
-   installation
-   diffprog
-   usage
-   support
-   modules
-   examples
-
-
-
-Indices and tables
-******************
-
-* :ref:`search`
+   hypercoil/index
+   hyve/index
