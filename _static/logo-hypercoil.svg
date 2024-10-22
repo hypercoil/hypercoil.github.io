@@ -16,20 +16,20 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
      id="namedview8415"
-     pagecolor="#ffffff"
+     pagecolor="#101010"
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
-     showgrid="false"
-     inkscape:zoom="0.068690046"
-     inkscape:cx="2955.3045"
-     inkscape:cy="1339.3498"
+     showgrid="true"
+     inkscape:zoom="0.15320977"
+     inkscape:cx="1749.2357"
+     inkscape:cy="182.75597"
      inkscape:window-width="1312"
      inkscape:window-height="855"
-     inkscape:window-x="47"
+     inkscape:window-x="35"
      inkscape:window-y="23"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1"
@@ -38,7 +38,24 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:showpageshadow="2"
-     inkscape:deskcolor="#d1d1d1" />
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="0.26458334"
+       spacingy="0.26458332"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
   <defs
      id="defs8410">
     <filter
@@ -67,6 +84,71 @@
          result="blur"
          id="feGaussianBlur1-9" />
     </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Blur"
+       id="filter2"
+       x="-0.011228961"
+       y="-0.041859379"
+       width="1.0224579"
+       height="1.0837188">
+      <feGaussianBlur
+         stdDeviation="2 2"
+         result="blur"
+         id="feGaussianBlur2" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Blur"
+       id="filter2-9"
+       x="-0.011228961"
+       y="-0.041859379"
+       width="1.0224579"
+       height="1.0837188">
+      <feGaussianBlur
+         stdDeviation="2 2"
+         result="blur"
+         id="feGaussianBlur2-8" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Blur"
+       id="filter7"
+       x="-0.0079538473"
+       y="-0.029650393"
+       width="1.0159077"
+       height="1.0593008">
+      <feGaussianBlur
+         stdDeviation="1 1"
+         result="blur"
+         id="feGaussianBlur7" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Blur"
+       id="filter3"
+       x="-0.017077378"
+       y="-0.063661139"
+       width="1.0341548"
+       height="1.1273223">
+      <feGaussianBlur
+         stdDeviation="2 2"
+         result="blur"
+         id="feGaussianBlur3" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Blur"
+       id="filter3-1"
+       x="-0.017077378"
+       y="-0.063661139"
+       width="1.0341548"
+       height="1.1273223">
+      <feGaussianBlur
+         stdDeviation="2 2"
+         result="blur"
+         id="feGaussianBlur3-8" />
+    </filter>
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -75,36 +157,36 @@
      transform="translate(239.83389,-11.61505)">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:105.833px;line-height:1.25;font-family:sans-serif;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:0.264583;filter:url(#filter1)"
+       style="font-style:normal;font-weight:normal;font-size:105.833px;line-height:1.25;font-family:sans-serif;fill:#f9f9f9;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3)"
        x="-49.333878"
        y="131.7359"
-       id="text215329-9-3-9"
+       id="text215329-9-3-1"
        inkscape:export-filename="/Users/rastkociric/Downloads/logo.svg"
        inkscape:export-xdpi="30.005953"
        inkscape:export-ydpi="30.005953"><tspan
          sodipodi:role="line"
-         id="tspan215327-4-6-0"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:105.833px;font-family:Futura;-inkscape-font-specification:Futura;fill:#f9f9f9;stroke-width:0.264583"
+         id="tspan215327-4-6-5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:105.833px;font-family:Futura;-inkscape-font-specification:Futura;stroke-width:5;fill:#f9f9f9;stroke:#ffffff;stroke-opacity:1;stroke-dasharray:none"
          x="-49.333878"
          y="131.7359"><tspan
-   style="font-size:105.833px;fill:#f9f9f9;fill-opacity:1"
-   id="tspan217191-1-5-5">hyper</tspan>coil</tspan></text>
+   style="font-size:105.833px;fill:#f9f9f9;fill-opacity:1;stroke:#ffffff;stroke-opacity:1;stroke-width:5;stroke-dasharray:none"
+   id="tspan217191-1-5-3">hyper</tspan>coil</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:105.833px;line-height:1.25;font-family:sans-serif;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:0.264583;filter:url(#filter1-3)"
+       style="font-style:normal;font-weight:normal;font-size:105.833px;line-height:1.25;font-family:sans-serif;fill:#f9f9f9;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter3-1)"
        x="-49.333878"
        y="131.7359"
-       id="text215329-9-3-9-9"
+       id="text215329-9-3-1-7"
        inkscape:export-filename="/Users/rastkociric/Downloads/logo.svg"
        inkscape:export-xdpi="30.005953"
        inkscape:export-ydpi="30.005953"><tspan
          sodipodi:role="line"
-         id="tspan215327-4-6-0-7"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:105.833px;font-family:Futura;-inkscape-font-specification:Futura;fill:#f9f9f9;stroke-width:0.264583"
+         id="tspan215327-4-6-5-8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:105.833px;font-family:Futura;-inkscape-font-specification:Futura;fill:#f9f9f9;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
          x="-49.333878"
          y="131.7359"><tspan
-   style="font-size:105.833px;fill:#f9f9f9;fill-opacity:1"
-   id="tspan217191-1-5-5-0">hyper</tspan>coil</tspan></text>
+   style="font-size:105.833px;fill:#f9f9f9;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
+   id="tspan217191-1-5-3-7">hyper</tspan>coil</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:105.833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
