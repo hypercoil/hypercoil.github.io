@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index – hypercoil: Differentiable programming for mapping brain function</title>
+<title>nn – hypercoil: Differentiable programming for mapping brain function</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../api/activation.html" rel="next">
+<link href="../api/hypercoil.loss.nn.BatchCorrelationLoss.html" rel="next">
+<link href="../api/hypercoil.functional.activation.laplace.html" rel="prev">
 <link href="../_static/icon-hypercoil.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -128,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">API reference</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><code>loss</code>: Loss and regularisation</li><li class="breadcrumb-item"><a href="../api/nn.html">nn</a></li><li class="breadcrumb-item"><a href="../api/nn.html">nn</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -142,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../api/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">API reference</span></a>
   </div>
 </li>
@@ -233,16 +234,16 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">nn</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/nn.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/nn.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">nn</span></a>
   </div>
 </li>
@@ -482,10 +483,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#api-reference" id="toc-api-reference" class="nav-link active" data-scroll-target="#api-reference">API reference</a>
+  <li><a href="#hypercoil.loss.nn" id="toc-hypercoil.loss.nn" class="nav-link active" data-scroll-target="#hypercoil.loss.nn">nn</a>
   <ul class="collapse">
-  <li><a href="#functional-functions-and-functionals" id="toc-functional-functions-and-functionals" class="nav-link" data-scroll-target="#functional-functions-and-functionals"><code>functional</code>: Functions and functionals</a></li>
-  <li><a href="#loss-loss-and-regularisation" id="toc-loss-loss-and-regularisation" class="nav-link" data-scroll-target="#loss-loss-and-regularisation"><code>loss</code>: Loss and regularisation</a></li>
+  <li><a href="#classes" id="toc-classes" class="nav-link" data-scroll-target="#classes">Classes</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -496,28 +496,167 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="api-reference" class="level1 doc doc-index">
-<h1 class="doc doc-index">API reference</h1>
-<section id="functional-functions-and-functionals" class="level2">
-<h2 class="anchored" data-anchor-id="functional-functions-and-functionals"><code>functional</code>: Functions and functionals</h2>
-<p>Functional interfaces for differentiable programming.</p>
+<section id="hypercoil.loss.nn" class="level1">
+<h1>nn</h1>
+<p><code>loss.nn</code></p>
+<p>Loss functions as parameterised, callable functional objects.</p>
+<section id="classes" class="level2">
+<h2 class="anchored" data-anchor-id="classes">Classes</h2>
 <table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><a href="../api/activation.html#hypercoil.functional.activation">activation</a></td>
-<td>Additional activation functions for neural network layers.</td>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
 </tr>
-</tbody>
-</table>
-</section>
-<section id="loss-loss-and-regularisation" class="level2">
-<h2 class="anchored" data-anchor-id="loss-loss-and-regularisation"><code>loss</code>: Loss and regularisation</h2>
-<p>Functional and module interfaces for common loss functions.</p>
-<table class="caption-top table">
+</thead>
 <tbody>
 <tr class="odd">
-<td><a href="../api/nn.html#hypercoil.loss.nn">nn</a></td>
-<td>Loss functions as parameterised, callable functional objects.</td>
+<td><a href="../api/hypercoil.loss.nn.BatchCorrelationLoss.html#hypercoil.loss.nn.BatchCorrelationLoss">BatchCorrelationLoss</a></td>
+<td>Batch correlation loss.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.BimodalSymmetricLoss.html#hypercoil.loss.nn.BimodalSymmetricLoss">BimodalSymmetricLoss</a></td>
+<td>Loss based on the minimum distance from either of two modes.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.BregmanDivergenceLogitLoss.html#hypercoil.loss.nn.BregmanDivergenceLogitLoss">BregmanDivergenceLogitLoss</a></td>
+<td>Loss based on the Bregman divergence between two categorical distributions.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.BregmanDivergenceLoss.html#hypercoil.loss.nn.BregmanDivergenceLoss">BregmanDivergenceLoss</a></td>
+<td>Loss based on the Bregman divergence between two categorical distributions.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.CompactnessLoss.html#hypercoil.loss.nn.CompactnessLoss">CompactnessLoss</a></td>
+<td>Loss function penalising distances between locations in a mass and the centroid of that mass.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.ConnectopyLoss.html#hypercoil.loss.nn.ConnectopyLoss">ConnectopyLoss</a></td>
+<td>Generalised connectopic functional, for computing different kinds of connectopic maps.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.ConstraintViolationLoss.html#hypercoil.loss.nn.ConstraintViolationLoss">ConstraintViolationLoss</a></td>
+<td>Loss function for constraint violations.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.DispersionLoss.html#hypercoil.loss.nn.DispersionLoss">DispersionLoss</a></td>
+<td>Loss function penalising proximity between vectors.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.EigenmapsLoss.html#hypercoil.loss.nn.EigenmapsLoss">EigenmapsLoss</a></td>
+<td>Laplacian eigenmaps functional.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.EntropyLogitLoss.html#hypercoil.loss.nn.EntropyLogitLoss">EntropyLogitLoss</a></td>
+<td>Loss based on the entropy of a categorical distribution.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.EntropyLoss.html#hypercoil.loss.nn.EntropyLoss">EntropyLoss</a></td>
+<td>Loss based on the entropy of a categorical distribution.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.EquilibriumLogitLoss.html#hypercoil.loss.nn.EquilibriumLogitLoss">EquilibriumLogitLoss</a></td>
+<td>Mass equilibrium loss.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.EquilibriumLoss.html#hypercoil.loss.nn.EquilibriumLoss">EquilibriumLoss</a></td>
+<td>Mass equilibrium loss.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.FunctionalHomogeneityLoss.html#hypercoil.loss.nn.FunctionalHomogeneityLoss">FunctionalHomogeneityLoss</a></td>
+<td>Global functional homogeneity loss.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.GramDeterminantLoss.html#hypercoil.loss.nn.GramDeterminantLoss">GramDeterminantLoss</a></td>
+<td>Loss based on the determinant of the Gram matrix.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.GramLogDeterminantLoss.html#hypercoil.loss.nn.GramLogDeterminantLoss">GramLogDeterminantLoss</a></td>
+<td>Loss based on the log-determinant of the Gram matrix.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.HingeLoss.html#hypercoil.loss.nn.HingeLoss">HingeLoss</a></td>
+<td>Hinge loss function.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.InterhemisphericTetherLoss.html#hypercoil.loss.nn.InterhemisphericTetherLoss">InterhemisphericTetherLoss</a></td>
+<td>Loss function penalising distance between matched parcels or objects on opposite hemispheres.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.JSDivergenceLogitLoss.html#hypercoil.loss.nn.JSDivergenceLogitLoss">JSDivergenceLogitLoss</a></td>
+<td>Loss based on the Jensen-Shannon divergence between two categorical distributions.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.JSDivergenceLoss.html#hypercoil.loss.nn.JSDivergenceLoss">JSDivergenceLoss</a></td>
+<td>Loss based on the Jensen-Shannon divergence between two categorical distributions.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.KLDivergenceLogitLoss.html#hypercoil.loss.nn.KLDivergenceLogitLoss">KLDivergenceLogitLoss</a></td>
+<td>Loss based on the Kullback-Leibler divergence between two categorical distributions.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.KLDivergenceLoss.html#hypercoil.loss.nn.KLDivergenceLoss">KLDivergenceLoss</a></td>
+<td>Loss based on the Kullback-Leibler divergence between two categorical distributions.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.Loss.html#hypercoil.loss.nn.Loss">Loss</a></td>
+<td>Base class for loss functions.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.MSELoss.html#hypercoil.loss.nn.MSELoss">MSELoss</a></td>
+<td>Mean squared error loss function.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.ModularityLoss.html#hypercoil.loss.nn.ModularityLoss">ModularityLoss</a></td>
+<td>Differentiable relaxation of the Girvan-Newman modularity.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.MultivariateKurtosis.html#hypercoil.loss.nn.MultivariateKurtosis">MultivariateKurtosis</a></td>
+<td>Multivariate kurtosis loss for a time series.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.NormedLoss.html#hypercoil.loss.nn.NormedLoss">NormedLoss</a></td>
+<td><a href=":math:`L_p`"></a> norm regulariser.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.ParameterisedLoss.html#hypercoil.loss.nn.ParameterisedLoss">ParameterisedLoss</a></td>
+<td>Extensible class for loss functions with simple parameterisations.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.PointAgreementLoss.html#hypercoil.loss.nn.PointAgreementLoss">PointAgreementLoss</a></td>
+<td>Local point agreement loss.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.PointHomogeneityLoss.html#hypercoil.loss.nn.PointHomogeneityLoss">PointHomogeneityLoss</a></td>
+<td>Local point homogeneity loss.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.PointSimilarityLoss.html#hypercoil.loss.nn.PointSimilarityLoss">PointSimilarityLoss</a></td>
+<td>Local point similarity loss.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.QCFCLoss.html#hypercoil.loss.nn.QCFCLoss">QCFCLoss</a></td>
+<td>QC-FC loss.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.ReferenceTetherLoss.html#hypercoil.loss.nn.ReferenceTetherLoss">ReferenceTetherLoss</a></td>
+<td>Loss function penalising distance from a tethered reference point.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.SecondMomentCentredLoss.html#hypercoil.loss.nn.SecondMomentCentredLoss">SecondMomentCentredLoss</a></td>
+<td>Second moment loss centred on a precomputed mean.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.SecondMomentLoss.html#hypercoil.loss.nn.SecondMomentLoss">SecondMomentLoss</a></td>
+<td>Second moment loss.</td>
+</tr>
+<tr class="even">
+<td><a href="../api/hypercoil.loss.nn.SmoothnessLoss.html#hypercoil.loss.nn.SmoothnessLoss">SmoothnessLoss</a></td>
+<td>Smoothness loss function.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.loss.nn.UnilateralLoss.html#hypercoil.loss.nn.UnilateralLoss">UnilateralLoss</a></td>
+<td>Loss function corresponding to a single soft nonpositivity constraint.</td>
 </tr>
 </tbody>
 </table>
@@ -949,10 +1088,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../api/hypercoil.functional.activation.laplace.html" class="pagination-link" aria-label="laplace">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">laplace</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../api/activation.html" class="pagination-link" aria-label="activation">
-        <span class="nav-page-text">activation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../api/hypercoil.loss.nn.BatchCorrelationLoss.html" class="pagination-link" aria-label="BatchCorrelationLoss">
+        <span class="nav-page-text">BatchCorrelationLoss</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

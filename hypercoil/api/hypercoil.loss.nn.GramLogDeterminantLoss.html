@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index – hypercoil: Differentiable programming for mapping brain function</title>
+<title>hypercoil.loss.nn.gramlogdeterminantloss – hypercoil: Differentiable programming for mapping brain function</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../api/activation.html" rel="next">
+<link href="../api/hypercoil.loss.nn.HingeLoss.html" rel="next">
+<link href="../api/hypercoil.loss.nn.GramDeterminantLoss.html" rel="prev">
 <link href="../_static/icon-hypercoil.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -128,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">API reference</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><code>loss</code>: Loss and regularisation</li><li class="breadcrumb-item"><a href="../api/nn.html">nn</a></li><li class="breadcrumb-item"><a href="../api/hypercoil.loss.nn.GramLogDeterminantLoss.html">GramLogDeterminantLoss</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -142,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../api/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">API reference</span></a>
   </div>
 </li>
@@ -233,13 +268,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">nn</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/nn.html" class="sidebar-item-text sidebar-link">
@@ -338,7 +373,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.GramLogDeterminantLoss.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/hypercoil.loss.nn.GramLogDeterminantLoss.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">GramLogDeterminantLoss</span></a>
   </div>
 </li>
@@ -482,10 +517,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#api-reference" id="toc-api-reference" class="nav-link active" data-scroll-target="#api-reference">API reference</a>
+  <li><a href="#hypercoil.loss.nn.GramLogDeterminantLoss" id="toc-hypercoil.loss.nn.GramLogDeterminantLoss" class="nav-link active" data-scroll-target="#hypercoil.loss.nn.GramLogDeterminantLoss">GramLogDeterminantLoss</a>
   <ul class="collapse">
-  <li><a href="#functional-functions-and-functionals" id="toc-functional-functions-and-functionals" class="nav-link" data-scroll-target="#functional-functions-and-functionals"><code>functional</code>: Functions and functionals</a></li>
-  <li><a href="#loss-loss-and-regularisation" id="toc-loss-loss-and-regularisation" class="nav-link" data-scroll-target="#loss-loss-and-regularisation"><code>loss</code>: Loss and regularisation</a></li>
+  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -496,28 +530,108 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="api-reference" class="level1 doc doc-index">
-<h1 class="doc doc-index">API reference</h1>
-<section id="functional-functions-and-functionals" class="level2">
-<h2 class="anchored" data-anchor-id="functional-functions-and-functionals"><code>functional</code>: Functions and functionals</h2>
-<p>Functional interfaces for differentiable programming.</p>
+<section id="hypercoil.loss.nn.GramLogDeterminantLoss" class="level1">
+<h1>GramLogDeterminantLoss</h1>
+<div style="text-align: right; font-family: monospace;">
+<a href="https://github.com/hypercoil/hypercoil/tree/main/src/hypercoil/loss/nn.py#L738-L776">[source]</a>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>loss.nn.GramLogDeterminantLoss(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    nu<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    op<span class="op">=</span>corr_kernel</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    theta<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    psi<span class="op">=</span><span class="fl">0.0</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    xi<span class="op">=</span><span class="fl">0.0</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    scalarisation<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    key<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Loss based on the log-determinant of the Gram matrix.</p>
+<p>This function computes the determinant of the Gram matrix of the input tensor, defined according to the kernel function <code>op</code>. The kernel function should always be a positive semi-definite function, and additional arguments are provided to ensure a non-singular (i.e., strictly positive definite) matrix.</p>
+<p>.. admonition:: Log-det-Gram</p>
+<pre><code>The log-det-Gram loss among a set of vectors :math:`X` is defined as
+the negative log-determinant of the Gram matrix of those vectors.
+
+:math:`-\log \det \mathbf{K}(X)`
+
+.. image:: ../_images/determinant.svg
+    :width: 250
+    :align: center
+
+Penalising the negative log-determinant of a Gram matrix can
+promote a degree of independence among the vectors being correlated.</code></pre>
+<p>One example of the log-det-Gram loss is the log-det-corr loss, which penalises the negative log-determinant of the correlation matrix of a set of vectors. This has a number of desirable properties and applications outlined below.</p>
+<p>Correlation matrices, which occur frequently in time series analysis, have several properties that make them well-suited for loss functions based on the Gram determinant.</p>
+<p>First, correlation matrices are positive semidefinite, and accordingly their determinants will always be nonnegative. For positive semidefinite matrices, the log-determinant is a concave function and accordingly has a global maximum that can be identified using convex optimisation methods.</p>
+<p>Second, correlation matrices are normalised such that their determinant attains a maximum value of 1. This maximum corresponds to an identity correlation matrix, which in turn occurs when the vectors or time series input to the correlation are <strong>orthogonal</strong>. Thus, a strong determinant-based loss applied to a correlation matrix will seek an orthogonal basis of input vectors.</p>
+<p>In the parcellation setting, a weaker log-det-corr loss can be leveraged to promote relative independence of parcels. Combined with a :ref:<code>second-moment loss &lt;hypercoil.loss.secondmoment.SecondMoment&gt;</code>, a log-det-corr loss can be interpreted as inducing a clustering: the second moment loss favours internal similarity of clusters, while the log-det-corr loss favours separation of different clusters.</p>
+<p>.. warning:: Determinant-based losses use <code>jax</code>’s determinant functionality, which itself might use the singular value decomposition in certain cases. Differentiation through SVD involves terms whose denominators include the differences between pairs of singular values. Thus, if two singular values of the input matrix are close together, the gradient can become unstable (and undefined if the singular values are identical). A simple :doc:<code>matrix reconditioning &lt;hypercoil.functional.matrix.recondition_eigenspaces&gt;</code> procedure is available for all operations involving the determinant to reduce the occurrence of degenerate eigenvalues.</p>
+<section id="parameters" class="level2 doc-section doc-section-parameters">
+<h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><a href="../api/activation.html#hypercoil.functional.activation">activation</a></td>
-<td>Additional activation functions for neural network layers.</td>
+<colgroup>
+<col style="width: 3%">
+<col style="width: 11%">
+<col style="width: 82%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
 </tr>
-</tbody>
-</table>
-</section>
-<section id="loss-loss-and-regularisation" class="level2">
-<h2 class="anchored" data-anchor-id="loss-loss-and-regularisation"><code>loss</code>: Loss and regularisation</h2>
-<p>Functional and module interfaces for common loss functions.</p>
-<table class="caption-top table">
+</thead>
 <tbody>
 <tr class="odd">
-<td><a href="../api/nn.html#hypercoil.loss.nn">nn</a></td>
-<td>Loss functions as parameterised, callable functional objects.</td>
+<td>name</td>
+<td>Optional[str]</td>
+<td>Designated name of the loss function. It is not required that this be specified, but it is recommended to ensure that the loss function can be identified in the context of a reporting utilities. If not explicitly specified, the name will be inferred from the class name and the name of the scoring function.</td>
+<td><code>None</code></td>
+</tr>
+<tr class="even">
+<td>nu</td>
+<td>float</td>
+<td>Loss strength multiplier. This is a scalar multiplier that is applied to the loss value before it is returned. This can be used to modulate the relative contributions of different loss functions to the overall loss value. It can also be used to implement a schedule for the loss function, by dynamically adjusting the multiplier over the course of training.</td>
+<td><code>1.0</code></td>
+</tr>
+<tr class="odd">
+<td>theta</td>
+<td>Tensor, optional (default: <code>None</code>)</td>
+<td>Kernel parameter tensor. If <code>None</code>, then the kernel is assumed to be isotropic.</td>
+<td><code>None</code></td>
+</tr>
+<tr class="even">
+<td>op</td>
+<td>Callable, optional (default: :func:<code>corr_kernel</code>)</td>
+<td>Kernel function. By default, the Pearson correlation kernel is used.</td>
+<td><code>corr_kernel</code></td>
+</tr>
+<tr class="odd">
+<td>psi</td>
+<td>float, optional (default: <code>0.</code>)</td>
+<td>Kernel regularisation parameter. If <code>psi &gt; 0</code>, then the kernel matrix is regularised by adding <code>psi</code> to the diagonal. This can be used to ensure that the matrix is strictly positive definite.</td>
+<td><code>0.0</code></td>
+</tr>
+<tr class="even">
+<td>xi</td>
+<td>float, optional (default: <code>0.</code>)</td>
+<td>Kernel regularisation parameter. If <code>xi &gt; 0</code>, then the kernel matrix is regularised by stochastically adding samples from a uniform distribution with support :math:<code>\psi - \xi, \xi</code> to the diagonal. This can be used to ensure that the matrix does not have degenerate eigenvalues. If <code>xi &gt; 0</code>, then <code>psi</code> must also be greater than <code>xi</code> and a key must be provided.</td>
+<td><code>0.0</code></td>
+</tr>
+<tr class="odd">
+<td>key</td>
+<td>Optional['jax.random.PRNGKey']</td>
+<td>Random number generator key. This is only required if <code>xi &gt; 0</code>.</td>
+<td><code>None</code></td>
+</tr>
+<tr class="even">
+<td>scalarisation</td>
+<td>Optional[Callable]</td>
+<td>The scalarisation function to be used to aggregate the values returned by the scoring function. This function should take a single argument, which is a tensor of arbitrary shape, and return a single scalar value. By default, the mean scalarisation is used.</td>
+<td><code>None</code></td>
 </tr>
 </tbody>
 </table>
@@ -949,10 +1063,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../api/hypercoil.loss.nn.GramDeterminantLoss.html" class="pagination-link" aria-label="GramDeterminantLoss">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">GramDeterminantLoss</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../api/activation.html" class="pagination-link" aria-label="activation">
-        <span class="nav-page-text">activation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../api/hypercoil.loss.nn.HingeLoss.html" class="pagination-link" aria-label="HingeLoss">
+        <span class="nav-page-text">HingeLoss</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

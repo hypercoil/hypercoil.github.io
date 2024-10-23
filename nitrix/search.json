@@ -4,7 +4,7 @@
     "href": "api/index.html",
     "title": "API reference",
     "section": "",
-    "text": "Neuroimaging transforms in XLA\n\n\n\nresidualise\nResidualise a tensor block via ordinary linear least squares.",
+    "text": "Neuroimaging transforms in XLA\n\n\n\nresidualise\nResidualise a tensor block via ordinary linear least squares. \\",
     "crumbs": [
       "API reference"
     ]
@@ -14,7 +14,7 @@
     "href": "api/index.html#nitrix",
     "title": "API reference",
     "section": "",
-    "text": "Neuroimaging transforms in XLA\n\n\n\nresidualise\nResidualise a tensor block via ordinary linear least squares.",
+    "text": "Neuroimaging transforms in XLA\n\n\n\nresidualise\nResidualise a tensor block via ordinary linear least squares. \\",
     "crumbs": [
       "API reference"
     ]

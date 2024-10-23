@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index – hypercoil: Differentiable programming for mapping brain function</title>
+<title>hypercoil.loss.nn.modularityloss – hypercoil: Differentiable programming for mapping brain function</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../api/activation.html" rel="next">
+<link href="../api/hypercoil.loss.nn.MultivariateKurtosis.html" rel="next">
+<link href="../api/hypercoil.loss.nn.MSELoss.html" rel="prev">
 <link href="../_static/icon-hypercoil.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -128,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">API reference</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><code>loss</code>: Loss and regularisation</li><li class="breadcrumb-item"><a href="../api/nn.html">nn</a></li><li class="breadcrumb-item"><a href="../api/hypercoil.loss.nn.ModularityLoss.html">ModularityLoss</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -142,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../api/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">API reference</span></a>
   </div>
 </li>
@@ -233,13 +268,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">nn</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/nn.html" class="sidebar-item-text sidebar-link">
@@ -392,7 +427,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.ModularityLoss.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/hypercoil.loss.nn.ModularityLoss.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">ModularityLoss</span></a>
   </div>
 </li>
@@ -482,10 +517,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#api-reference" id="toc-api-reference" class="nav-link active" data-scroll-target="#api-reference">API reference</a>
+  <li><a href="#hypercoil.loss.nn.ModularityLoss" id="toc-hypercoil.loss.nn.ModularityLoss" class="nav-link active" data-scroll-target="#hypercoil.loss.nn.ModularityLoss">ModularityLoss</a>
   <ul class="collapse">
-  <li><a href="#functional-functions-and-functionals" id="toc-functional-functions-and-functionals" class="nav-link" data-scroll-target="#functional-functions-and-functionals"><code>functional</code>: Functions and functionals</a></li>
-  <li><a href="#loss-loss-and-regularisation" id="toc-loss-loss-and-regularisation" class="nav-link" data-scroll-target="#loss-loss-and-regularisation"><code>loss</code>: Loss and regularisation</a></li>
+  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -496,28 +530,143 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="api-reference" class="level1 doc doc-index">
-<h1 class="doc doc-index">API reference</h1>
-<section id="functional-functions-and-functionals" class="level2">
-<h2 class="anchored" data-anchor-id="functional-functions-and-functionals"><code>functional</code>: Functions and functionals</h2>
-<p>Functional interfaces for differentiable programming.</p>
+<section id="hypercoil.loss.nn.ModularityLoss" class="level1">
+<h1>ModularityLoss</h1>
+<div style="text-align: right; font-family: monospace;">
+<a href="https://github.com/hypercoil/hypercoil/tree/main/src/hypercoil/loss/nn.py#L2099-L2158">[source]</a>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>loss.nn.ModularityLoss(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    nu<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    theta<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    gamma<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    exclude_diag<span class="op">=</span><span class="va">True</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    scalarisation<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    key<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Differentiable relaxation of the Girvan-Newman modularity.</p>
+<p>This relaxation supports non-deterministic assignments of vertices to communities and non-assortative linkages between communities. It reverts to standard behaviour when the inputs it is provided are standard (i.e., deterministic and associative).</p>
+<p>.. admonition:: Girvan-Newman Modularity Relaxation</p>
+<pre><code>The relaxed modularity loss is defined as the negative sum of all
+entries in the Hadamard (elementwise) product between the modularity
+matrix and the coaffiliation matrix.
+
+:math:`\mathcal{L}_Q = -\nu_Q \mathbf{1}^\intercal \left( B \circ H \right) \mathbf{1}`
+
+.. image:: ../_images/modularityloss.svg
+    :width: 500
+    :align: center
+
+- The modularity matrix :math:`B` is the difference between the
+  observed connectivity matrix :math:`A` and the expected connectivity
+  matrix under some null model that assumes no community structure,
+  :math:`P`: :math:`B = A - \gamma P`.
+
+  - The community resolution parameter :math:`\gamma` essentially
+    determines the scale of the community structure that optimises the
+    relaxed modularity loss.
+
+  - By default, we use the Girvan-Newman null model
+    :math:`P_{GN} = \frac{A \mathbf{1} \mathbf{1}^\intercal A}{\mathbf{1}^\intercal A \mathbf{1}}`,
+    which can be interpreted as the expected weight of connections
+    between each pair of vertices if all existing edges are cut and
+    then randomly rewired.
+
+  - Note that :math:`A \mathbf{1}` is the in-degree of the adjacency
+    matrix and :math:`\mathbf{1}^\intercal A` is its out-degree, and
+    the two are transposes of one another for symmetric :math:`A`.
+    Also note that the denominator
+    :math:`\mathbf{1}^\intercal A \mathbf{1}` is twice the number of
+    edges for an undirected graph.)
+
+- The coaffiliation matrix :math:`H` is calculated as
+  :math:`H = C_{in} L C_{out}^\intercal`, where
+  :math:`C_{in} \in \mathbb{R}^{(v_{in} \times c)}` and
+  :math:`C_{out} \in \mathbb{R}^{(v_{out} \times c)}` are proposed
+  assignment weights of in-vertices and out-vertices to communities.
+  :math:`L \in \mathbb{R}^{c \times c)}` is the proposed coupling
+  matrix among each pair of communities and defaults to identity to
+  represent associative structure.
+
+  - Note that, when :math:`C_{in} = C_{out}` is deterministically in
+    :math:`\{0, 1\}` and :math:`L = I`, this term reduces to the
+    familiar delta-function notation for the true Girvan-Newman
+    modularity.</code></pre>
+<p>Penalising this favours a weight that induces a modular community structure on the input matrix – or, an input matrix whose structure is reasonably accounted for by the proposed community affiliation weights.</p>
+<p>.. warning:: To conform with the network community interpretation of this loss function, parameters representing the community affiliation :math:<code>C</code> and coupling :math:<code>L</code> matrices can be pre-transformed. Mapping the community affiliation matrix :math:<code>C</code> through a :doc:<code>softmax &lt;hypercoil.init.domain.MultiLogit&gt;</code> function along the community axis lends the affiliation matrix the intuitive interpretation of distributions over communities, or a quantification of the uncertainty of each vertex’s community assignment. Similarly, the coupling matrix can be pre-transformed through a :doc:<code>sigmoid &lt;hypercoil.init.domain.Logit&gt;</code> to constrain inter-community couplings to :math:<code>(0, 1)</code>. .. note:: Because the community affiliation matrices :math:<code>C</code> induce parcellations, we can regularise them using parcellation losses. For instance, penalising the :doc:<code>entropy &lt;hypercoil.loss.entropy&gt;</code> will promote a solution wherein each node’s community assignment probability distribution is concentrated in a single community. Similarly, using parcel :doc:<code>equilibrium &lt;hypercoil.loss.equilibrium&gt;</code> will favour a solution wherein communities are of similar sizes.</p>
+<section id="parameters" class="level2 doc-section doc-section-parameters">
+<h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><a href="../api/activation.html#hypercoil.functional.activation">activation</a></td>
-<td>Additional activation functions for neural network layers.</td>
+<colgroup>
+<col style="width: 3%">
+<col style="width: 9%">
+<col style="width: 84%">
+<col style="width: 2%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
 </tr>
-</tbody>
-</table>
-</section>
-<section id="loss-loss-and-regularisation" class="level2">
-<h2 class="anchored" data-anchor-id="loss-loss-and-regularisation"><code>loss</code>: Loss and regularisation</h2>
-<p>Functional and module interfaces for common loss functions.</p>
-<table class="caption-top table">
+</thead>
 <tbody>
 <tr class="odd">
-<td><a href="../api/nn.html#hypercoil.loss.nn">nn</a></td>
-<td>Loss functions as parameterised, callable functional objects.</td>
+<td>name</td>
+<td>Optional[str]</td>
+<td>Designated name of the loss function. It is not required that this be specified, but it is recommended to ensure that the loss function can be identified in the context of a reporting utilities. If not explicitly specified, the name will be inferred from the class name and the name of the scoring function.</td>
+<td><code>None</code></td>
+</tr>
+<tr class="even">
+<td>nu</td>
+<td>float</td>
+<td>Loss strength multiplier. This is a scalar multiplier that is applied to the loss value before it is returned. This can be used to modulate the relative contributions of different loss functions to the overall loss value. It can also be used to implement a schedule for the loss function, by dynamically adjusting the multiplier over the course of training.</td>
+<td><code>1.0</code></td>
+</tr>
+<tr class="odd">
+<td>theta</td>
+<td>tensor, float, or None (default None)</td>
+<td>Parameterisation of the pairwise dissimilarity function.</td>
+<td><code>None</code></td>
+</tr>
+<tr class="even">
+<td>omega</td>
+<td>tensor, float, or None (default None)</td>
+<td>Optional parameterisation of the affinity function, if one is provided.</td>
+<td><em>required</em></td>
+</tr>
+<tr class="odd">
+<td>dissimilarity</td>
+<td>callable</td>
+<td>Function to compute dissimilarity between latent coordinates induced by the proposed connectopies. By default, the square of the L2 distance is used. The callable must accept <code>Q</code> and <code>theta</code> as arguments. (<code>theta</code> may be unused.)</td>
+<td><em>required</em></td>
+</tr>
+<tr class="even">
+<td>affinity</td>
+<td>callable or None (default None)</td>
+<td>If an affinity function is provided, then the image of argument A under this function is the affinity matrix. Otherwise, argument A is the affinity matrix.</td>
+<td><em>required</em></td>
+</tr>
+<tr class="odd">
+<td>gamma</td>
+<td>float (default 1.)</td>
+<td>Modularity parameter. Takes the place of the <code>omega</code> argument in <code>connectopy</code>.</td>
+<td><code>1.0</code></td>
+</tr>
+<tr class="even">
+<td>exclude_diag</td>
+<td>bool (default True)</td>
+<td>If True, then the diagonal of the affinity matrix is set to zero.</td>
+<td><code>True</code></td>
+</tr>
+<tr class="odd">
+<td>scalarisation</td>
+<td>Optional[Callable]</td>
+<td>The scalarisation function to be used to aggregate the values returned by the scoring function. This function should take a single argument, which is a tensor of arbitrary shape, and return a single scalar value. By default, the mean scalarisation is used.</td>
+<td><code>None</code></td>
 </tr>
 </tbody>
 </table>
@@ -949,10 +1098,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../api/hypercoil.loss.nn.MSELoss.html" class="pagination-link" aria-label="MSELoss">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MSELoss</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../api/activation.html" class="pagination-link" aria-label="activation">
-        <span class="nav-page-text">activation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../api/hypercoil.loss.nn.MultivariateKurtosis.html" class="pagination-link" aria-label="MultivariateKurtosis">
+        <span class="nav-page-text">MultivariateKurtosis</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

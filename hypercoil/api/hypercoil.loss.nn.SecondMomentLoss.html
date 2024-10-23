@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index – hypercoil: Differentiable programming for mapping brain function</title>
+<title>hypercoil.loss.nn.secondmomentloss – hypercoil: Differentiable programming for mapping brain function</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../api/activation.html" rel="next">
+<link href="../api/hypercoil.loss.nn.SmoothnessLoss.html" rel="next">
+<link href="../api/hypercoil.loss.nn.SecondMomentCentredLoss.html" rel="prev">
 <link href="../_static/icon-hypercoil.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -128,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">API reference</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><code>loss</code>: Loss and regularisation</li><li class="breadcrumb-item"><a href="../api/nn.html">nn</a></li><li class="breadcrumb-item"><a href="../api/hypercoil.loss.nn.SecondMomentLoss.html">SecondMomentLoss</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -142,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../api/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">API reference</span></a>
   </div>
 </li>
@@ -233,13 +268,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">nn</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/nn.html" class="sidebar-item-text sidebar-link">
@@ -452,7 +487,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.SecondMomentLoss.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/hypercoil.loss.nn.SecondMomentLoss.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">SecondMomentLoss</span></a>
   </div>
 </li>
@@ -482,10 +517,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#api-reference" id="toc-api-reference" class="nav-link active" data-scroll-target="#api-reference">API reference</a>
+  <li><a href="#hypercoil.loss.nn.SecondMomentLoss" id="toc-hypercoil.loss.nn.SecondMomentLoss" class="nav-link active" data-scroll-target="#hypercoil.loss.nn.SecondMomentLoss">SecondMomentLoss</a>
   <ul class="collapse">
-  <li><a href="#functional-functions-and-functionals" id="toc-functional-functions-and-functionals" class="nav-link" data-scroll-target="#functional-functions-and-functionals"><code>functional</code>: Functions and functionals</a></li>
-  <li><a href="#loss-loss-and-regularisation" id="toc-loss-loss-and-regularisation" class="nav-link" data-scroll-target="#loss-loss-and-regularisation"><code>loss</code>: Loss and regularisation</a></li>
+  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -496,28 +530,103 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="api-reference" class="level1 doc doc-index">
-<h1 class="doc doc-index">API reference</h1>
-<section id="functional-functions-and-functionals" class="level2">
-<h2 class="anchored" data-anchor-id="functional-functions-and-functionals"><code>functional</code>: Functions and functionals</h2>
-<p>Functional interfaces for differentiable programming.</p>
+<section id="hypercoil.loss.nn.SecondMomentLoss" class="level1">
+<h1>SecondMomentLoss</h1>
+<div style="text-align: right; font-family: monospace;">
+<a href="https://github.com/hypercoil/hypercoil/tree/main/src/hypercoil/loss/nn.py#L1317-L1371">[source]</a>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>loss.nn.SecondMomentLoss(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    nu<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    standardise<span class="op">=</span><span class="va">False</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    skip_normalise<span class="op">=</span><span class="va">False</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    scalarisation<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    key<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Second moment loss.</p>
+<p>Given an input matrix :math:<code>T</code> and a weight matrix :math:<code>A</code>, the second moment is computed as</p>
+<p>:math:<code>\left[ A \circ \left (T - \frac{AT}{A\mathbf{1}} \right )^2  \right] \frac{\mathbf{1}}{A \mathbf{1}}</code></p>
+<p>The term :math:<code>\frac{AT}{A\mathbf{1}}</code> can also be precomputed and passed as the <code>mu</code> argument to the :func:<code>second_moment_centred</code> function. If the mean is already known, it is more efficient to use that function. Otherwise, the :func:<code>second_moment</code> function will compute the mean internally.</p>
+<p>Regularise the second moment, e.g.&nbsp;to favour a dimension reduction mapping that is internally homogeneous.</p>
+<p>.. admonition:: Second Moment</p>
+<pre><code>Second moment losses are based on a reduction of the second moment
+quantity
+
+:math:`\left[ A \circ \left (T - \frac{AT}{A\mathbf{1}} \right )^2  \right] \frac{\mathbf{1}}{A \mathbf{1}}`
+
+where the division operator is applied elementwise with broadcasting
+and the difference operator is applied via broadcasting. The
+broadcasting operations involved in the core computation -- estimating
+a weighted mean and then computing the weighted sum of squares about
+that mean -- are illustrated in the below cartoon.
+
+.. image:: ../_images/secondmomentloss.svg
+    :width: 300
+    :align: center
+
+*Illustration of the most memory-intensive stage of loss computation.
+The lavender tensor represents the weighted mean, the blue tensor the
+original observations, and the green tensor the weights (which might
+correspond to a dimension reduction mapping such as a parcellation).*</code></pre>
+<p>.. note:: In practice, we’ve found that using the actual second moment loss often results in large and uneven parcels. Accordingly, an unnormalised extension of the second moment (which omits the normalisation :math:<code>\frac{1}{A \mathbf{1}}</code>) is also available. This unnormalised quantity is equivalent to the weighted mean squared error about each weighted mean. In practice, we’ve found that this quantity works better for most of our use cases.</p>
+<p>.. warning:: This loss can have a very large memory footprint, because it requires computing an intermediate tensor with dimensions equal to the number of rows in the linear mapping, multiplied by the number of columns in the linear mapping, multiplied by the number of columns in the dataset.</p>
+<pre><code>When using this loss to learn a parcellation on voxelwise time series,
+the full computation will certainly be much too large to fit in GPU
+memory. Fortunately, because much of the computation is elementwise, it
+can be broken down along multiple axes without affecting the result.
+This tensor slicing is implemented automatically in the
+:doc:`ReactiveTerminal &lt;hypercoil.engine.terminal.ReactiveTerminal&gt;`
+class. Use extreme caution with ``ReactiveTerminals``, as improper use
+can result in destruction of the computational graph.</code></pre>
+<section id="parameters" class="level2 doc-section doc-section-parameters">
+<h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><a href="../api/activation.html#hypercoil.functional.activation">activation</a></td>
-<td>Additional activation functions for neural network layers.</td>
+<colgroup>
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 87%">
+<col style="width: 2%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
 </tr>
-</tbody>
-</table>
-</section>
-<section id="loss-loss-and-regularisation" class="level2">
-<h2 class="anchored" data-anchor-id="loss-loss-and-regularisation"><code>loss</code>: Loss and regularisation</h2>
-<p>Functional and module interfaces for common loss functions.</p>
-<table class="caption-top table">
+</thead>
 <tbody>
 <tr class="odd">
-<td><a href="../api/nn.html#hypercoil.loss.nn">nn</a></td>
-<td>Loss functions as parameterised, callable functional objects.</td>
+<td>name</td>
+<td>Optional[str]</td>
+<td>Designated name of the loss function. It is not required that this be specified, but it is recommended to ensure that the loss function can be identified in the context of a reporting utilities. If not explicitly specified, the name will be inferred from the class name and the name of the scoring function.</td>
+<td><code>None</code></td>
+</tr>
+<tr class="even">
+<td>nu</td>
+<td>float</td>
+<td>Loss strength multiplier. This is a scalar multiplier that is applied to the loss value before it is returned. This can be used to modulate the relative contributions of different loss functions to the overall loss value. It can also be used to implement a schedule for the loss function, by dynamically adjusting the multiplier over the course of training.</td>
+<td><code>1.0</code></td>
+</tr>
+<tr class="odd">
+<td>standardise</td>
+<td>bool</td>
+<td>If True, z-score the input matrix before computing the second moment. The default is False.</td>
+<td><code>False</code></td>
+</tr>
+<tr class="even">
+<td>skip_normalise</td>
+<td>bool</td>
+<td>If True, do not include normalisation by the sum of the weights in the computation. In practice, this seems to work better than computing the actual second moment. Instead of computing the second moment, this corresponds to computed a weighted mean squared error about the mean. The default is False.</td>
+<td><code>False</code></td>
+</tr>
+<tr class="odd">
+<td>scalarisation</td>
+<td>Optional[Callable]</td>
+<td>The scalarisation function to be used to aggregate the values returned by the scoring function. This function should take a single argument, which is a tensor of arbitrary shape, and return a single scalar value. By default, the mean scalarisation is used.</td>
+<td><code>None</code></td>
 </tr>
 </tbody>
 </table>
@@ -949,10 +1058,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../api/hypercoil.loss.nn.SecondMomentCentredLoss.html" class="pagination-link" aria-label="SecondMomentCentredLoss">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">SecondMomentCentredLoss</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../api/activation.html" class="pagination-link" aria-label="activation">
-        <span class="nav-page-text">activation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../api/hypercoil.loss.nn.SmoothnessLoss.html" class="pagination-link" aria-label="SmoothnessLoss">
+        <span class="nav-page-text">SmoothnessLoss</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>functional.corr – hypercoil: Differentiable programming for mapping brain function</title>
+<title>hypercoil.loss.nn.entropyloss – hypercoil: Differentiable programming for mapping brain function</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../api/functional.partialcorr.html" rel="next">
-<link href="../api/index.html" rel="prev">
+<link href="../api/hypercoil.loss.nn.EquilibriumLogitLoss.html" rel="next">
+<link href="../api/hypercoil.loss.nn.EntropyLogitLoss.html" rel="prev">
 <link href="../_static/icon-hypercoil.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/functional.corr.html">hypercoil</a></li><li class="breadcrumb-item"><a href="../api/functional.corr.html">functional.corr</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><code>loss</code>: Loss and regularisation</li><li class="breadcrumb-item"><a href="../api/nn.html">nn</a></li><li class="breadcrumb-item"><a href="../api/hypercoil.loss.nn.EntropyLoss.html">EntropyLoss</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -184,30 +184,327 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">hypercoil</span></a>
+ <span class="menu-text"><code>functional</code>: Functions and functionals</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">activation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/functional.corr.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">functional.corr</span></a>
+  <a href="../api/activation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">activation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/functional.partialcorr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">functional.partialcorr</span></a>
+  <a href="../api/hypercoil.functional.activation.amplitude_atanh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">amplitude_atanh</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/loss.nn.EntropyLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">loss.nn.EntropyLoss</span></a>
+  <a href="../api/hypercoil.functional.activation.amplitude_expbarrier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">amplitude_expbarrier</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.functional.activation.amplitude_laplace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">amplitude_laplace</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.functional.activation.amplitude_tanh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">amplitude_tanh</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.functional.activation.corrnorm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">corrnorm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.functional.activation.expbarrier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">expbarrier</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.functional.activation.isochor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">isochor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.functional.activation.laplace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">laplace</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><code>loss</code>: Loss and regularisation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">nn</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/nn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">nn</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.BatchCorrelationLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BatchCorrelationLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.BimodalSymmetricLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BimodalSymmetricLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.BregmanDivergenceLogitLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BregmanDivergenceLogitLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.BregmanDivergenceLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BregmanDivergenceLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.CompactnessLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CompactnessLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.ConnectopyLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ConnectopyLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.ConstraintViolationLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ConstraintViolationLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.DispersionLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DispersionLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.EigenmapsLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EigenmapsLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.EntropyLogitLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EntropyLogitLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.EntropyLoss.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">EntropyLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.EquilibriumLogitLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EquilibriumLogitLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.EquilibriumLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EquilibriumLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.FunctionalHomogeneityLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FunctionalHomogeneityLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.GramDeterminantLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GramDeterminantLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.GramLogDeterminantLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GramLogDeterminantLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.HingeLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HingeLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.InterhemisphericTetherLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">InterhemisphericTetherLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.JSDivergenceLogitLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JSDivergenceLogitLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.JSDivergenceLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JSDivergenceLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.KLDivergenceLogitLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">KLDivergenceLogitLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.KLDivergenceLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">KLDivergenceLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.Loss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.MSELoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MSELoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.ModularityLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ModularityLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.MultivariateKurtosis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MultivariateKurtosis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.NormedLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NormedLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.ParameterisedLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ParameterisedLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.PointAgreementLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PointAgreementLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.PointHomogeneityLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PointHomogeneityLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.PointSimilarityLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PointSimilarityLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.QCFCLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">QCFCLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.ReferenceTetherLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ReferenceTetherLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.SecondMomentCentredLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SecondMomentCentredLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.SecondMomentLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SecondMomentLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.SmoothnessLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SmoothnessLoss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.loss.nn.UnilateralLoss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">UnilateralLoss</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -220,11 +517,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hypercoil.functional.corr" id="toc-hypercoil.functional.corr" class="nav-link active" data-scroll-target="#hypercoil.functional.corr">functional.corr</a>
+  <li><a href="#hypercoil.loss.nn.EntropyLoss" id="toc-hypercoil.loss.nn.EntropyLoss" class="nav-link active" data-scroll-target="#hypercoil.loss.nn.EntropyLoss">EntropyLoss</a>
   <ul class="collapse">
   <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
-  <li><a href="#returns" id="toc-returns" class="nav-link" data-scroll-target="#returns">Returns</a></li>
-  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See also</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -235,20 +530,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="hypercoil.functional.corr" class="level1">
-<h1>functional.corr</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>functional.corr(X, <span class="op">**</span>params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Pearson correlation of variables in a tensor batch.</p>
-<p>The correlation is obtained via normalisation of the covariance. Given a covariance matrix :math:<code>\hat{\Sigma} \in \mathbb{R}^{n \times n}</code>, each entry of the correlation matrix :math:<code>R \in \mathbb{R}^{n \times n}</code> is defined according to</p>
-<p>:math:<code>R_{ij} = \frac{\hat{\Sigma}_{ij}}{\sqrt{\hat{\Sigma}_{ii}} \sqrt{\hat{\Sigma}_{jj}}}</code></p>
-<p>:Dimension: <strong>Input :</strong> :math:<code>(N, *, C, obs)</code> or :math:<code>(N, *, obs, C)</code> N denotes batch size, <code>*</code> denotes any number of intervening dimensions, C denotes number of data channels or variables to be correlated, obs denotes number of observations per channel <strong>Weight :</strong> :math:<code>(obs)</code> or :math:<code>(obs, obs)</code> As above <strong>Output :</strong> :math:<code>(N, *, C, C)</code> As above</p>
+<section id="hypercoil.loss.nn.EntropyLoss" class="level1">
+<h1>EntropyLoss</h1>
+<div style="text-align: right; font-family: monospace;">
+<a href="https://github.com/hypercoil/hypercoil/tree/main/src/hypercoil/loss/nn.py#L824-L862">[source]</a>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>loss.nn.EntropyLoss(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    nu<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=-</span><span class="dv">1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    keepdims<span class="op">=</span><span class="va">False</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">reduce</span><span class="op">=</span><span class="va">True</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    scalarisation<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    key<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Loss based on the entropy of a categorical distribution.</p>
+<p>This operates on probability tensors. For a version that operates on logits, see :class:<code>EntropyLogitLoss</code>.</p>
+<p>.. admonition:: Entropy</p>
+<pre><code>The entropy of a categorical distribution :math:`A` is defined as
+
+:math:`-\mathbf{1}^\intercal \left(A \circ \log A\right) \mathbf{1}`
+
+(where :math:`\log` denotes the elementwise logarithm).
+
+.. image:: ../_images/entropysimplex.svg
+    :width: 250
+    :align: center
+
+*Cartoon schematic of the contours of an entropy-like function over
+categorical distributions. The function attains its maximum for the
+distribution in which all outcomes are equiprobable. The function can
+become smaller without bound away from this maximum. The superposed
+triangle represents the probability simplex. By pre-transforming the
+penalised weights to constrain them to the simplex, the entropy
+function is bounded and attains a separate minimum for each
+deterministic distribution.*
+
+Penalising the entropy promotes concentration of weight into a single
+category. This has applications in problem settings such as
+parcellation, when more deterministic parcel assignments are desired.</code></pre>
+<p>.. warning:: Entropy is a concave function. Minimising it without constraint affords an unbounded capacity for reducing the loss. This is almost certainly undesirable. For this reason, it is recommended that some constraint be imposed on the input set when placing a penalty on entropy. One possibility is using a :doc:<code>probability simplex parameter mapper &lt;hypercoil.init.mapparam.ProbabilitySimplexParameter&gt;</code> to first project the input weights onto the probability simplex.</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
 <h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 1%">
-<col style="width: 5%">
-<col style="width: 91%">
+<col style="width: 3%">
+<col style="width: 12%">
+<col style="width: 81%">
 <col style="width: 2%">
 </colgroup>
 <thead>
@@ -261,71 +591,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>X</td>
-<td>Tensor</td>
-<td>Tensor containing a sample of multivariate observations. Each slice along the last axis corresponds to an observation, and each slice along the penultimate axis corresponds to a data channel or more generally a variable.</td>
-<td><em>required</em></td>
+<td>name</td>
+<td>Optional[str]</td>
+<td>Designated name of the loss function. It is not required that this be specified, but it is recommended to ensure that the loss function can be identified in the context of a reporting utilities. If not explicitly specified, the name will be inferred from the class name and the name of the scoring function.</td>
+<td><code>None</code></td>
 </tr>
 <tr class="even">
-<td>rowvar</td>
-<td>bool (default True)</td>
-<td>Indicates that the last axis of the input tensor is the observation axis and the penultimate axis is the variable axis. If False, then this relationship is transposed.</td>
-<td><em>required</em></td>
+<td>nu</td>
+<td>float</td>
+<td>Loss strength multiplier. This is a scalar multiplier that is applied to the loss value before it is returned. This can be used to modulate the relative contributions of different loss functions to the overall loss value. It can also be used to implement a schedule for the loss function, by dynamically adjusting the multiplier over the course of training.</td>
+<td><code>1.0</code></td>
 </tr>
 <tr class="odd">
-<td>bias</td>
-<td>bool (default False)</td>
-<td>Indicates that the biased normalisation (i.e., division by <code>N</code> in the unweighted case) should be performed. By default, normalisation of the covariance is unbiased (i.e., division by <code>N - 1</code>).</td>
-<td><em>required</em></td>
+<td>axis</td>
+<td>int or sequence of ints, optional (default: <code>-1</code>)</td>
+<td>Axis or axes over which to compute the entropy.</td>
+<td><code>-1</code></td>
 </tr>
 <tr class="even">
-<td>ddof</td>
-<td>int or None (default None)</td>
-<td>Degrees of freedom for normalisation. If this is specified, it overrides the normalisation factor automatically determined using the <code>bias</code> parameter.</td>
-<td><em>required</em></td>
+<td>keepdims</td>
+<td>bool, optional (default: <code>True</code>)</td>
+<td>As in <code>jax.numpy.sum</code>.</td>
+<td><code>False</code></td>
 </tr>
 <tr class="odd">
-<td>weight</td>
-<td>Tensor or None (default None)</td>
-<td>Tensor containing importance or coupling weights for the observations. If this tensor is 1-dimensional, each entry weights the corresponding observation in the covariance computation. If it is 2-dimensional, then it must be square, symmetric, and positive semidefinite. In this case, diagonal entries again correspond to relative importances, while off-diagonal entries indicate coupling factors. For instance, a banded or multi-diagonal tensor can be used to specify inter-temporal coupling for a time series covariance.</td>
-<td><em>required</em></td>
+<td>reduce</td>
+<td>bool, optional (default: <code>True</code>)</td>
+<td>If this is False, then the unsummed probability-weighted surprise is computed for each element of the input tensor. Otherwise, the entropy is computed over the specified axis or axes.</td>
+<td><code>True</code></td>
 </tr>
 <tr class="even">
-<td>l2</td>
-<td>nonnegative float (default 0)</td>
-<td>L2 regularisation term to add to the maximum likelihood estimate of the covariance matrix. This can be set to a positive value to obtain an intermediate for estimating the regularised inverse covariance.</td>
-<td><em>required</em></td>
+<td>scalarisation</td>
+<td>Optional[Callable]</td>
+<td>The scalarisation function to be used to aggregate the values returned by the scoring function. This function should take a single argument, which is a tensor of arbitrary shape, and return a single scalar value. By default, the mean scalarisation is used.</td>
+<td><code>None</code></td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="returns" class="level2 doc-section doc-section-returns">
-<h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 80%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>R</td>
-<td>Tensor</td>
-<td>Pearson correlation matrix of the variables in the input tensor.</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="see-also" class="level2 doc-section doc-section-see-also">
-<h2 class="doc-section doc-section-see-also anchored" data-anchor-id="see-also">See also</h2>
-<p>cov: Empirical covariance matrix partialcorr: Partial correlation matrix conditionalcorr: Conditional correlation matrix</p>
 
 
 </section>
@@ -754,13 +1056,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../api/index.html" class="pagination-link" aria-label="API reference">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">API reference</span>
+      <a href="../api/hypercoil.loss.nn.EntropyLogitLoss.html" class="pagination-link" aria-label="EntropyLogitLoss">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">EntropyLogitLoss</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../api/functional.partialcorr.html" class="pagination-link" aria-label="functional.partialcorr">
-        <span class="nav-page-text">functional.partialcorr</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../api/hypercoil.loss.nn.EquilibriumLogitLoss.html" class="pagination-link" aria-label="EquilibriumLogitLoss">
+        <span class="nav-page-text">EquilibriumLogitLoss</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
