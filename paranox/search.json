@@ -24,7 +24,7 @@
     "href": "api/DistributionInitialiser.html",
     "title": "DistributionInitialiser",
     "section": "",
-    "text": "DistributionInitialiser\nDistributionInitialiser(self, distribution, mapper=None)\nParameter initialiser from a distribution.\nSee :func:from_distr_init and :class:MappedInitialiser for usage details.",
+    "text": "DistributionInitialiser\nDistributionInitialiser(\n    self: None\n    distribution: Distribution\n    mapper: Optional[Type[MappedParameter]] = None\n)\nParameter initialiser from a distribution.\nSee :func:from_distr_init and :class:MappedInitialiser for usage details.",
     "crumbs": [
       "paranox",
       "DistributionInitialiser"

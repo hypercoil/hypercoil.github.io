@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>hypercoil.loss.nn.dispersionloss – hypercoil: Differentiable programming for mapping brain function</title>
+<title>cmass – hypercoil: Differentiable programming for mapping brain function</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../api/hypercoil.loss.nn.EigenmapsLoss.html" rel="next">
-<link href="../api/hypercoil.loss.nn.ConstraintViolationLoss.html" rel="prev">
+<link href="../api/hypercoil.functional.cmass.cmass.html" rel="next">
+<link href="../api/hypercoil.functional.activation.laplace.html" rel="prev">
 <link href="../_static/icon-hypercoil.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -163,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><code>loss</code>: Loss and regularisation</li><li class="breadcrumb-item"><a href="../api/nn.html">nn</a></li><li class="breadcrumb-item"><a href="../api/hypercoil.loss.nn.DispersionLoss.html">DispersionLoss</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><code>functional</code>: Functions and functionals</li><li class="breadcrumb-item"><a href="../api/cmass.html">cmass</a></li><li class="breadcrumb-item"><a href="../api/cmass.html">cmass</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -255,256 +221,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text"><code>loss</code>: Loss and regularisation</span></a>
+ <span class="menu-text">cmass</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">nn</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/nn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">nn</span></a>
+  <a href="../api/cmass.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">cmass</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.BatchCorrelationLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BatchCorrelationLoss</span></a>
+  <a href="../api/hypercoil.functional.cmass.cmass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cmass</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.BimodalSymmetricLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BimodalSymmetricLoss</span></a>
+  <a href="../api/hypercoil.functional.cmass.cmass_coor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cmass_coor</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.BregmanDivergenceLogitLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BregmanDivergenceLogitLoss</span></a>
+  <a href="../api/hypercoil.functional.cmass.cmass_reference_displacement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cmass_reference_displacement</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.BregmanDivergenceLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BregmanDivergenceLoss</span></a>
+  <a href="../api/hypercoil.functional.cmass.cmass_reference_displacement_grid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cmass_reference_displacement_grid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.CompactnessLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CompactnessLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.ConnectopyLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ConnectopyLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.ConstraintViolationLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ConstraintViolationLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.DispersionLoss.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">DispersionLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.EigenmapsLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EigenmapsLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.EntropyLogitLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EntropyLogitLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.EntropyLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EntropyLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.EquilibriumLogitLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EquilibriumLogitLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.EquilibriumLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EquilibriumLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.FunctionalHomogeneityLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FunctionalHomogeneityLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.GramDeterminantLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GramDeterminantLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.GramLogDeterminantLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GramLogDeterminantLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.HingeLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HingeLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.InterhemisphericTetherLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">InterhemisphericTetherLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.JSDivergenceLogitLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JSDivergenceLogitLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.JSDivergenceLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JSDivergenceLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.KLDivergenceLogitLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">KLDivergenceLogitLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.KLDivergenceLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">KLDivergenceLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.Loss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.MSELoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MSELoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.ModularityLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ModularityLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.MultivariateKurtosis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MultivariateKurtosis</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.NormedLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NormedLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.ParameterisedLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ParameterisedLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.PointAgreementLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PointAgreementLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.PointHomogeneityLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PointHomogeneityLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.PointSimilarityLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PointSimilarityLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.QCFCLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">QCFCLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.ReferenceTetherLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ReferenceTetherLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.SecondMomentCentredLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SecondMomentCentredLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.SecondMomentLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SecondMomentLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.SmoothnessLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SmoothnessLoss</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../api/hypercoil.loss.nn.UnilateralLoss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">UnilateralLoss</span></a>
+  <a href="../api/hypercoil.functional.cmass.diffuse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">diffuse</span></a>
   </div>
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">connectopy</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/connectopy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">connectopy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.functional.connectopy.diffusion_mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">diffusion_mapping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/hypercoil.functional.connectopy.laplacian_eigenmaps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">laplacian_eigenmaps</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/cov.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cov</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -517,9 +315,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hypercoil.loss.nn.DispersionLoss" id="toc-hypercoil.loss.nn.DispersionLoss" class="nav-link active" data-scroll-target="#hypercoil.loss.nn.DispersionLoss">DispersionLoss</a>
+  <li><a href="#hypercoil.functional.cmass" id="toc-hypercoil.functional.cmass" class="nav-link active" data-scroll-target="#hypercoil.functional.cmass">cmass</a>
   <ul class="collapse">
-  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -530,72 +328,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="hypercoil.loss.nn.DispersionLoss" class="level1">
-<h1>DispersionLoss</h1>
-<div style="text-align: right; font-family: monospace;">
-<a href="https://github.com/hypercoil/hypercoil/tree/main/src/hypercoil/loss/nn.py#L1913-L1954">[source]</a>
-</div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>loss.nn.DispersionLoss(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    nu<span class="op">=</span><span class="fl">1.0</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="va">None</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    metric<span class="op">=</span>linear_distance</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    scalarisation<span class="op">=</span><span class="va">None</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    key<span class="op">=</span><span class="va">None</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Loss function penalising proximity between vectors.</p>
-<p>Mutual separation among a set of vectors.</p>
-<p>.. admonition:: Vector dispersion</p>
-<pre><code>The dispersion among a set of vectors :math:`v \in \mathcal{V}` is
-defined as
-
-:math:`\sum_{i, j} \mathrm{d}\left(v_i - v_j\right)`
-
-for some measure of separation :math:`\mathrm{d}`. (It is also
-valid to use a reduction other than the sum.)</code></pre>
-<p>This can be used as one half of a clustering loss. Such a clustering loss would promote mutual separation among centroids (between-cluster separation, imposed by the <code>VectorDispersion</code> loss) while also promoting proximity between observations and their closest centroids (within-cluster closeness, for instance using a :doc:<code>norm loss &lt;hypercoil.loss.norm&gt;</code> or :doc:<code>compactness &lt;hypercoil.loss.cmass.Compactness&gt;</code> if the clusters are associated with spatial coordinates).</p>
-<section id="parameters" class="level2 doc-section doc-section-parameters">
-<h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
+<section id="hypercoil.functional.cmass" class="level1">
+<h1>cmass</h1>
+<p><code>functional.cmass</code></p>
+<p>Differentiably compute a weight’s centre of mass.</p>
+<p>Functionality is available that operates on the “intrinsic” mesh grid coordinates of a tensor (:func:<code>cmass</code>, :func:<code>cmass_reference_displacement_grid</code>) or that takes the last axis of a tensor to correspond to different locations and accepts a second argument that indicates explicitly the coordinates of each location (:func:<code>cmass_coor</code>, :func:<code>diffuse</code>, :func:<code>cmass_reference_displacement</code>).</p>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">Functions</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 3%">
-<col style="width: 5%">
-<col style="width: 86%">
-<col style="width: 4%">
+<col style="width: 1%">
+<col style="width: 2%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Name</th>
-<th>Type</th>
 <th>Description</th>
-<th>Default</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>name</td>
-<td>Optional[str]</td>
-<td>Designated name of the loss function. It is not required that this be specified, but it is recommended to ensure that the loss function can be identified in the context of a reporting utilities. If not explicitly specified, the name will be inferred from the class name and the name of the scoring function.</td>
-<td><code>None</code></td>
+<td><a href="../api/hypercoil.functional.cmass.cmass.html#hypercoil.functional.cmass.cmass">cmass</a></td>
+<td>Differentiably compute a weight’s centre of mass. This can be used to regularise the weight so that its centre of mass is close to a provided coordinate.</td>
 </tr>
 <tr class="even">
-<td>nu</td>
-<td>float</td>
-<td>Loss strength multiplier. This is a scalar multiplier that is applied to the loss value before it is returned. This can be used to modulate the relative contributions of different loss functions to the overall loss value. It can also be used to implement a schedule for the loss function, by dynamically adjusting the multiplier over the course of training.</td>
-<td><code>1.0</code></td>
+<td><a href="../api/hypercoil.functional.cmass.cmass_coor.html#hypercoil.functional.cmass.cmass_coor">cmass_coor</a></td>
+<td>Differentiably compute a weight’s centre of mass.</td>
 </tr>
 <tr class="odd">
-<td>metric</td>
-<td>Callable</td>
-<td>Function to calculate the distance between centres of mass. This should take either one or two arguments, and should return the distance between each pair of observations.</td>
-<td><code>linear_distance</code></td>
+<td><a href="../api/hypercoil.functional.cmass.cmass_reference_displacement.html#hypercoil.functional.cmass.cmass_reference_displacement">cmass_reference_displacement</a></td>
+<td>Displacement of centres of mass from reference points – explicit coordinate version.</td>
 </tr>
 <tr class="even">
-<td>scalarisation</td>
-<td>Optional[Callable]</td>
-<td>The scalarisation function to be used to aggregate the values returned by the scoring function. This function should take a single argument, which is a tensor of arbitrary shape, and return a single scalar value. By default, the mean scalarisation is used.</td>
-<td><code>None</code></td>
+<td><a href="../api/hypercoil.functional.cmass.cmass_reference_displacement_grid.html#hypercoil.functional.cmass.cmass_reference_displacement_grid">cmass_reference_displacement_grid</a></td>
+<td>Displacement of centres of mass from reference points – grid version.</td>
+</tr>
+<tr class="odd">
+<td><a href="../api/hypercoil.functional.cmass.diffuse.html#hypercoil.functional.cmass.diffuse">diffuse</a></td>
+<td>Compute a compactness score for a weight.</td>
 </tr>
 </tbody>
 </table>
@@ -1027,13 +797,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../api/hypercoil.loss.nn.ConstraintViolationLoss.html" class="pagination-link" aria-label="ConstraintViolationLoss">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ConstraintViolationLoss</span>
+      <a href="../api/hypercoil.functional.activation.laplace.html" class="pagination-link" aria-label="laplace">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">laplace</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../api/hypercoil.loss.nn.EigenmapsLoss.html" class="pagination-link" aria-label="EigenmapsLoss">
-        <span class="nav-page-text">EigenmapsLoss</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../api/hypercoil.functional.cmass.cmass.html" class="pagination-link" aria-label="cmass">
+        <span class="nav-page-text">cmass</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

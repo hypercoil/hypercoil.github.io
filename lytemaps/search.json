@@ -24,7 +24,7 @@
     "href": "api/resample_images.html",
     "title": "resample_images",
     "section": "",
-    "text": "resample_images\nresample_images(\n    src\n    trg\n    src_space\n    trg_space\n    method='linear'\n    hemi=None\n    resampling='downsample_only'\n    alt_spec=None\n)",
+    "text": "resample_images\n\n[source]\n\nresample_images(\n    src: None\n    trg: None\n    src_space: None\n    trg_space: None\n    method: None = 'linear'\n    hemi: None = None\n    resampling: None = 'downsample_only'\n    alt_spec: None = None\n)",
     "crumbs": [
       "lytemaps",
       "resample_images"

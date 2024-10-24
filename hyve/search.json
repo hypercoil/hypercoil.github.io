@@ -4,7 +4,7 @@
     "href": "api/plotdef.html",
     "title": "plotdef",
     "section": "",
-    "text": "plotdef\nplotdef(*pparams)",
+    "text": "plotdef\n\n[source]\n\nplotdef(*pparams: Sequence[callable])",
     "crumbs": [
       "hyve",
       "plotdef"
@@ -15,7 +15,7 @@
     "href": "api/surf_from_archive.html",
     "title": "surf_from_archive",
     "section": "",
-    "text": "surf_from_archive(\n    allowed=('templateflow', 'neuromaps')\n    *\n    template='fsLR'\n    load_mask=True\n    surf_projection=('veryinflated')\n)\nLoad a surface from a cloud-based data archive.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nallowed\nsequence of str (default: (\"templateflow\", \"neuromaps\")\nThe archives to search for the surface.\n('templateflow', 'neuromaps')\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\ncallable\nA transform function. Transform functions accept a plotting function and return a new plotting function with different input and output arguments. * The transformed plotter will no longer require a surf argument, but will require a template argument. * The template argument should be a string that identifies the template space to load the surface from. The template argument will be passed to the archive loader function. * An optional load_mask argument can be passed to the transformed plotter to indicate whether the surface mask should be loaded (defaults to True). * An optional surf_projection argument can be passed to the transformed plotter to indicate which projections to load (defaults to (\"veryinflated\",)).",
+    "text": "[source]\n\nsurf_from_archive(\n    allowed: Sequence[str] = ('templateflow', 'neuromaps')\n    *\n    template: str = 'fsLR'\n    load_mask: bool = True\n    surf_projection: Optional[Sequence[str]] = ('veryinflated')\n)\nLoad a surface from a cloud-based data archive.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nallowed\nsequence of str (default: (\"templateflow\", \"neuromaps\")\nThe archives to search for the surface.\n('templateflow', 'neuromaps')\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\ncallable\nA transform function. Transform functions accept a plotting function and return a new plotting function with different input and output arguments. * The transformed plotter will no longer require a surf argument, but will require a template argument. * The template argument should be a string that identifies the template space to load the surface from. The template argument will be passed to the archive loader function. * An optional load_mask argument can be passed to the transformed plotter to indicate whether the surface mask should be loaded (defaults to True). * An optional surf_projection argument can be passed to the transformed plotter to indicate which projections to load (defaults to (\"veryinflated\",)).",
     "crumbs": [
       "hyve",
       "surf_from_archive"

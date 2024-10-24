@@ -4,7 +4,7 @@
     "href": "api/Grammar.html",
     "title": "Grammar",
     "section": "",
-    "text": "Grammar\nGrammar(\n    self\n    groupings\n    transforms\n    whitespace=False\n    shorthand=None\n    default_interpreter=None\n    default_root_transform=None\n)",
+    "text": "Grammar\nGrammar(\n    self: None\n    groupings: GroupingPool\n    transforms: TransformPool\n    whitespace: bool = False\n    shorthand: Optional[Dict[str, str]] = None\n    default_interpreter: Optional[LeafInterpreter] = None\n    default_root_transform: Optional[TransformPrimitive] = None\n)",
     "crumbs": [
       "gramform",
       "Grammar"

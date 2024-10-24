@@ -219,7 +219,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="conveyant.Primitive" class="level1">
 <h1>Primitive</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Primitive(<span class="va">self</span>, f, name, output, forward_unused<span class="op">=</span><span class="va">False</span>, splice_on_call<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Primitive(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>: <span class="va">None</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    f: Callable</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    output: Sequence[<span class="bu">str</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    forward_unused: <span class="bu">bool</span> <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    splice_on_call: <span class="bu">bool</span> <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Primitive function wrapper.</p>
 <p>Forces all arguments to be keyword arguments and forces the wrapped function to return a dictionary. Furthermore, any arguments that are not specified in the signature of the wrapped function are optionally passed directly into the output.</p>
 

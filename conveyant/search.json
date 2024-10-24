@@ -24,7 +24,7 @@
     "href": "api/Primitive.html",
     "title": "Primitive",
     "section": "",
-    "text": "Primitive\nPrimitive(self, f, name, output, forward_unused=False, splice_on_call=True)\nPrimitive function wrapper.\nForces all arguments to be keyword arguments and forces the wrapped function to return a dictionary. Furthermore, any arguments that are not specified in the signature of the wrapped function are optionally passed directly into the output.",
+    "text": "Primitive\nPrimitive(\n    self: None\n    f: Callable\n    name: str\n    output: Sequence[str]\n    forward_unused: bool = False\n    splice_on_call: bool = True\n)\nPrimitive function wrapper.\nForces all arguments to be keyword arguments and forces the wrapped function to return a dictionary. Furthermore, any arguments that are not specified in the signature of the wrapped function are optionally passed directly into the output.",
     "crumbs": [
       "conveyant",
       "Primitive"
