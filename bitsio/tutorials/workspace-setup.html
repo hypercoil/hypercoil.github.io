@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Use a copy-on-write workspace – bitsio</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../tutorials/lineage-and-provenance.html" rel="next">
+<link href="../tutorials/record-sets-and-batches.html" rel="prev">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-cac0433bb97fa58dc0fc6599c25c149a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1f72d60fbc61934737c0fadaed867ef3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">bitsio</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../tutorials/index.html" aria-current="page"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../how-to/index.html"> 
+<span class="menu-text">How-to</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../reference/index.html"> 
+<span class="menu-text">Reference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../"> 
+<span class="menu-text">Federation</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/workspace-setup.html">Part 2: workspaces and provenance</a></li><li class="breadcrumb-item"><a href="../tutorials/workspace-setup.html">Use a copy-on-write workspace</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 1: ingestion and batched reads</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/dataset-creation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Create a BITS dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/dataset-navigation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Query and read the dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/record-sets-and-batches.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Build records and batches</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part 2: workspaces and provenance</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/workspace-setup.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Use a copy-on-write workspace</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/lineage-and-provenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inspect lineage and export provenance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/workspace-teardown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discard the workspace</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">1</span> Before you start</a></li>
+  <li><a href="#open-a-workspace" id="toc-open-a-workspace" class="nav-link" data-scroll-target="#open-a-workspace"><span class="header-section-number">2</span> Open a workspace</a></li>
+  <li><a href="#write-a-run-as-int8-codes" id="toc-write-a-run-as-int8-codes" class="nav-link" data-scroll-target="#write-a-run-as-int8-codes"><span class="header-section-number">3</span> Write a run as int8 codes</a></li>
+  <li><a href="#train-on-the-codes" id="toc-train-on-the-codes" class="nav-link" data-scroll-target="#train-on-the-codes"><span class="header-section-number">4</span> Train on the codes</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/workspace-setup.html">Part 2: workspaces and provenance</a></li><li class="breadcrumb-item"><a href="../tutorials/workspace-setup.html">Use a copy-on-write workspace</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Use a copy-on-write workspace</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- After human review, change the page include to llm-reviewed.qmd. -->
+<div class="callout callout-style-default callout-warning callout-titled" title="Content review status">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Content review status
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This page contains unreviewed content created with large language model (LLM) tools.</p>
+</div>
+</div>
+<!-- Each python block with an id runs, in tutorial order, as one script with the
+blocks of the pages before it in part two, on the dataset part one builds; its output
+is frozen in the include after it. A block with a filename is written to that file
+instead. tests/docs/test_tutorial_workspace.py runs part two and checks the frozen
+outputs; BITSIO_REGENERATE=1 rewrites them. Times and workspace ids differ between
+runs, and the check ignores them. -->
+<p>This chapter creates a copy-on-write workspace over the dataset from part one and writes a quantized copy of one BOLD image to that workspace. The base dataset remains unchanged. The following chapters inspect the write’s lineage, export it as W3C PROV, and discard the workspace while retaining an audit record.</p>
+<section id="before-you-start" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">1</span> Before you start</h2>
+<p>Open the <code>ds000114.bits</code> dataset created in <a href="../tutorials/dataset-creation.html">part one</a> with workspace operations enabled:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="t2-open"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="t2-open-1"><a href="#t2-open-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bitsio <span class="im">import</span> BITSZarrDataset</span>
+<span id="t2-open-2"><a href="#t2-open-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="t2-open-3"><a href="#t2-open-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> BITSZarrDataset.<span class="bu">open</span>(<span class="st">"ds000114.bits"</span>, read_only<span class="op">=</span><span class="va">False</span>)</span>
+<span id="t2-open-4"><a href="#t2-open-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(ds.query(suffix<span class="op">=</span><span class="st">"bold"</span>)), <span class="st">"BOLD runs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>4 BOLD runs</code></pre>
+</section>
+<section id="open-a-workspace" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="open-a-workspace"><span class="header-section-number">2</span> Open a workspace</h2>
+<p>A workspace is an isolated overlay over a dataset or another workspace. Open one named <code>"int8-bold"</code>, then obtain a writable view of that overlay:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="t2-workspace"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="t2-workspace-1"><a href="#t2-workspace-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorbids.exceptions <span class="im">import</span> WorkspaceOpenError</span>
+<span id="t2-workspace-2"><a href="#t2-workspace-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="t2-workspace-3"><a href="#t2-workspace-3" aria-hidden="true" tabindex="-1"></a>WORKSPACE_NAME <span class="op">=</span> <span class="st">"int8-bold"</span></span>
+<span id="t2-workspace-4"><a href="#t2-workspace-4" aria-hidden="true" tabindex="-1"></a>ds.open_workspace(WORKSPACE_NAME)</span>
+<span id="t2-workspace-5"><a href="#t2-workspace-5" aria-hidden="true" tabindex="-1"></a>exp <span class="op">=</span> ds.at(WORKSPACE_NAME, read_only<span class="op">=</span><span class="va">False</span>)</span>
+<span id="t2-workspace-6"><a href="#t2-workspace-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>([marker.name <span class="cf">for</span> marker <span class="kw">in</span> ds.workspaces().markers])</span>
+<span id="t2-workspace-7"><a href="#t2-workspace-7" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="t2-workspace-8"><a href="#t2-workspace-8" aria-hidden="true" tabindex="-1"></a>    ds.write_table(<span class="st">"split/other"</span>, ds.split(<span class="st">"folds"</span>))</span>
+<span id="t2-workspace-9"><a href="#t2-workspace-9" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> WorkspaceOpenError <span class="im">as</span> error:</span>
+<span id="t2-workspace-10"><a href="#t2-workspace-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"refused:"</span>, <span class="bu">type</span>(error).<span class="va">__name__</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>['int8-bold']
+refused: WorkspaceOpenError</code></pre>
+<p><code>ds</code> continues to address the base dataset, while <code>exp</code> reads the workspace overlay before falling back to the base. While a workspace is open, writes to its parent are rejected with <code>WorkspaceOpenError</code>. This restriction allows a later commit or discard to verify that the parent has not changed since the workspace was opened.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Workspace identity">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Workspace identity
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The workspace identifier is derived from its name and the recorded state of its parent. A workspace ends by committing its changes or discarding them.</p>
+</div>
+</div>
+</section>
+<section id="write-a-run-as-int8-codes" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="write-a-run-as-int8-codes"><span class="header-section-number">3</span> Write a run as int8 codes</h2>
+<p>Read subject 01’s BOLD run and write a quantized version whose stored codes span the full <code>int8</code> range:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="t2-write"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="t2-write-1"><a href="#t2-write-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="t2-write-2"><a href="#t2-write-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="t2-write-3"><a href="#t2-write-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="t2-write-4"><a href="#t2-write-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorbids.authoring <span class="im">import</span> AffineQuantization</span>
+<span id="t2-write-5"><a href="#t2-write-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorbids.provenance.ingest_record <span class="im">import</span> IngestSource</span>
+<span id="t2-write-6"><a href="#t2-write-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="t2-write-7"><a href="#t2-write-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="t2-write-8"><a href="#t2-write-8" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="t2-write-9"><a href="#t2-write-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Volume:</span>
+<span id="t2-write-10"><a href="#t2-write-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Values to write, with their affine; a 4-D run is time first."""</span></span>
+<span id="t2-write-11"><a href="#t2-write-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="t2-write-12"><a href="#t2-write-12" aria-hidden="true" tabindex="-1"></a>    data: np.ndarray</span>
+<span id="t2-write-13"><a href="#t2-write-13" aria-hidden="true" tabindex="-1"></a>    affine: np.ndarray</span>
+<span id="t2-write-14"><a href="#t2-write-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="t2-write-15"><a href="#t2-write-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="t2-write-16"><a href="#t2-write-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> shape(<span class="va">self</span>):</span>
+<span id="t2-write-17"><a href="#t2-write-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.data.shape</span>
+<span id="t2-write-18"><a href="#t2-write-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="t2-write-19"><a href="#t2-write-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="t2-write-20"><a href="#t2-write-20" aria-hidden="true" tabindex="-1"></a>(source,) <span class="op">=</span> exp.query(subject<span class="op">=</span><span class="st">"01"</span>, session<span class="op">=</span><span class="st">"test"</span>, suffix<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="t2-write-21"><a href="#t2-write-21" aria-hidden="true" tabindex="-1"></a>(image,) <span class="op">=</span> exp.read(target_path<span class="op">=</span>source.target_path, form<span class="op">=</span><span class="st">"object"</span>)</span>
+<span id="t2-write-22"><a href="#t2-write-22" aria-hidden="true" tabindex="-1"></a>bold <span class="op">=</span> np.moveaxis(image.get_fdata(dtype<span class="op">=</span><span class="st">"float32"</span>), <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="t2-write-23"><a href="#t2-write-23" aria-hidden="true" tabindex="-1"></a>volume <span class="op">=</span> Volume(bold, image.affine)</span>
+<span id="t2-write-24"><a href="#t2-write-24" aria-hidden="true" tabindex="-1"></a>rung <span class="op">=</span> AffineQuantization.spanning(bold.<span class="bu">min</span>(), bold.<span class="bu">max</span>(), <span class="st">"int8"</span>)</span>
+<span id="t2-write-25"><a href="#t2-write-25" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">"sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_desc-int8_bold.nii"</span></span>
+<span id="t2-write-26"><a href="#t2-write-26" aria-hidden="true" tabindex="-1"></a>exp.write_volume(</span>
+<span id="t2-write-27"><a href="#t2-write-27" aria-hidden="true" tabindex="-1"></a>    volume,</span>
+<span id="t2-write-28"><a href="#t2-write-28" aria-hidden="true" tabindex="-1"></a>    target_path<span class="op">=</span>target,</span>
+<span id="t2-write-29"><a href="#t2-write-29" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>exp.default_geometry(volume, target, dtype<span class="op">=</span><span class="st">"int8"</span>),</span>
+<span id="t2-write-30"><a href="#t2-write-30" aria-hidden="true" tabindex="-1"></a>    precision<span class="op">=</span>rung,</span>
+<span id="t2-write-31"><a href="#t2-write-31" aria-hidden="true" tabindex="-1"></a>    ingest_record<span class="op">=</span>IngestSource(source_ref<span class="op">=</span>source.target_path),</span>
+<span id="t2-write-32"><a href="#t2-write-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="t2-write-33"><a href="#t2-write-33" aria-hidden="true" tabindex="-1"></a>exp.index()</span>
+<span id="t2-write-34"><a href="#t2-write-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"scale </span><span class="sc">{</span>rung<span class="sc">.</span>scale<span class="sc">:.4f}</span><span class="ss">, offset </span><span class="sc">{</span>rung<span class="sc">.</span>offset<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="t2-write-35"><a href="#t2-write-35" aria-hidden="true" tabindex="-1"></a>(written,) <span class="op">=</span> exp.read(target_path<span class="op">=</span>target, form<span class="op">=</span><span class="st">"tensor"</span>)</span>
+<span id="t2-write-36"><a href="#t2-write-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"largest error"</span>, <span class="bu">float</span>(np.<span class="bu">abs</span>(written <span class="op">-</span> bold).<span class="bu">max</span>()), <span class="st">"&lt;="</span>, rung.scale <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="t2-write-37"><a href="#t2-write-37" aria-hidden="true" tabindex="-1"></a>(nifti,) <span class="op">=</span> exp.read(target_path<span class="op">=</span>target, form<span class="op">=</span><span class="st">"object"</span>)</span>
+<span id="t2-write-38"><a href="#t2-write-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nifti.shape <span class="op">==</span> image.shape, np.allclose(nifti.affine, image.affine))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>scale 16.7647, offset 2145.8824
+largest error 8.35302734375 &lt;= 8.382352941176471
+True True</code></pre>
+<p><code>AffineQuantization.spanning()</code> derives a linear scale and offset from the observed value range. Quantization introduces an error of at most half a scale step, so the navigator’s fidelity contract is <code>lossy</code>. <code>IngestSource</code> records the source BOLD path in the lineage of the new stored array.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="A 4-D volume is written time first">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>A 4-D volume is written time first
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>write_volume()</code> expects a four-dimensional volume in <code>(time, i, j, k)</code> order and restores NIfTI’s time-last order when materializing the file. Move the time axis explicitly before writing, as shown above; the API cannot infer an incorrectly ordered input array.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="NIfTI scaling comparison">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>NIfTI scaling comparison
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The BITS tensor store contains the <code>int8</code> codes directly. The reconstructed NIfTI object exposes dequantized <code>float32</code> values; it is not an <code>int8</code> NIfTI using <code>scl_slope</code> and <code>scl_inter</code>. The record-set API can return the codes and their scale parameters separately.</p>
+</div>
+</div>
+</section>
+<section id="train-on-the-codes" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="train-on-the-codes"><span class="header-section-number">4</span> Train on the codes</h2>
+<p>Select the stored port and attach the scale and offset instead of dequantizing during the read:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="t2-codes"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="t2-codes-1"><a href="#t2-codes-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="t2-codes-2"><a href="#t2-codes-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorbids.query <span class="im">import</span> BIDSReference</span>
+<span id="t2-codes-3"><a href="#t2-codes-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="t2-codes-4"><a href="#t2-codes-4" aria-hidden="true" tabindex="-1"></a>codes <span class="op">=</span> exp.records(</span>
+<span id="t2-codes-5"><a href="#t2-codes-5" aria-hidden="true" tabindex="-1"></a>    BIDSReference(suffix<span class="op">=</span><span class="st">"bold"</span>, desc<span class="op">=</span><span class="st">"int8"</span>, port<span class="op">=</span><span class="st">"stored"</span>, dequantize<span class="op">=</span><span class="st">"attach"</span>)</span>
+<span id="t2-codes-6"><a href="#t2-codes-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="t2-codes-7"><a href="#t2-codes-7" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> torch.utils.data.DataLoader(codes.loader(batch_size<span class="op">=</span><span class="dv">1</span>, stack<span class="op">=</span><span class="va">True</span>), batch_size<span class="op">=</span><span class="va">None</span>)</span>
+<span id="t2-codes-8"><a href="#t2-codes-8" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> <span class="bu">next</span>(<span class="bu">iter</span>(data))</span>
+<span id="t2-codes-9"><a href="#t2-codes-9" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> batch[<span class="st">"bold"</span>]</span>
+<span id="t2-codes-10"><a href="#t2-codes-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(q.dtype, <span class="bu">tuple</span>(q.shape))</span>
+<span id="t2-codes-11"><a href="#t2-codes-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batch[<span class="st">"bold.scale"</span>].tolist() <span class="op">==</span> [rung.scale], batch[<span class="st">"bold.offset"</span>].tolist() <span class="op">==</span> [rung.offset])</span>
+<span id="t2-codes-12"><a href="#t2-codes-12" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> q.double() <span class="op">*</span> batch[<span class="st">"bold.scale"</span>].view(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">+</span> batch[<span class="st">"bold.offset"</span>].view(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="t2-codes-13"><a href="#t2-codes-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.allclose(values[<span class="dv">0</span>].numpy(), written, rtol<span class="op">=</span><span class="fl">1e-5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>torch.int8 (1, 184, 64, 64, 30)
+True True
+True</code></pre>
+<p>The batch contains <code>int8</code> codes plus one scale and offset per record. Apply the affine transformation on the target device or inside the model. The result matches the resolver’s dequantized <code>float32</code> read to numerical precision.</p>
+<p>Lazy spatial windows work with stored codes in the same way as in part one:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>windows.py</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="windows.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> window(record):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""A random 32 x 32 x 16 crop of every frame of the run's codes."""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"bold"</span>: record[<span class="st">"bold"</span>].random_window(i<span class="op">=</span><span class="dv">32</span>, j<span class="op">=</span><span class="dv">32</span>, k<span class="op">=</span><span class="dv">16</span>)}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="t2-windows"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="t2-windows-1"><a href="#t2-windows-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> windows <span class="im">import</span> window</span>
+<span id="t2-windows-2"><a href="#t2-windows-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="t2-windows-3"><a href="#t2-windows-3" aria-hidden="true" tabindex="-1"></a>crops <span class="op">=</span> codes.select(window, seed<span class="op">=</span><span class="dv">0</span>).loader(batch_size<span class="op">=</span><span class="dv">1</span>, stack<span class="op">=</span><span class="va">True</span>)</span>
+<span id="t2-windows-4"><a href="#t2-windows-4" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> <span class="bu">next</span>(<span class="bu">iter</span>(torch.utils.data.DataLoader(crops, batch_size<span class="op">=</span><span class="va">None</span>)))</span>
+<span id="t2-windows-5"><a href="#t2-windows-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batch[<span class="st">"bold"</span>].dtype, <span class="bu">tuple</span>(batch[<span class="st">"bold"</span>].shape), batch[<span class="st">"bold.scale"</span>].tolist() <span class="op">==</span> [rung.scale])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>torch.int8 (1, 184, 32, 32, 16) True</code></pre>
+<p>A window retains the scale and offset of its source image because the affine dequantization is independent for each value.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="A workspace's records stay in process">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>A workspace’s records stay in process
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Record sets backed by a workspace view cannot currently be serialized to PyTorch worker processes. Use the default <code>num_workers=0</code> for these loaders.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="MONAI distinction">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>MONAI distinction
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quantization is part of the stored representation, not a MONAI transform. The loader returns the stored codes and their scaling parameters.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../tutorials/record-sets-and-batches.html" class="pagination-link" aria-label="Build records and batches">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Build records and batches</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tutorials/lineage-and-provenance.html" class="pagination-link" aria-label="Inspect lineage and export provenance">
+        <span class="nav-page-text">Inspect lineage and export provenance</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

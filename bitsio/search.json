@@ -1,0 +1,1066 @@
+[
+  {
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "Reference",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools."
+  },
+  {
+    "objectID": "reference/index.html#api-ownership",
+    "href": "reference/index.html#api-ownership",
+    "title": "Reference",
+    "section": "1 API ownership",
+    "text": "1 API ownership\nBITSZarrDataset is a concrete tensorbids.BITSDataset. The distinction is important when writing a library against BITS:\n\ntensorbids owns backend-neutral dataset operations and protocol types, including queries, record sets, relations, indexing, workspaces, fidelity contracts, and lineage.\nbitsio owns the concrete open/create path, Zarr and auxiliary stores, sharded-Parquet engine, image-container ingestion, storage layout, content hashing, and reference resolver.\nbitsfuse owns filesystem and MONAI integrations. Its types are not part of the bitsio API.\n\nDepend on the narrowest layer required by your library. Accept a tensorbids.BITSDataset or protocol interface when implementation-specific storage behavior is not required."
+  },
+  {
+    "objectID": "reference/index.html#top-level-api",
+    "href": "reference/index.html#top-level-api",
+    "title": "Reference",
+    "section": "2 Top-level API",
+    "text": "2 Top-level API\nThe bitsio package exports the following objects lazily:\n\n\n\n\n\n\n\nObject\nPurpose\n\n\n\n\nBITSZarrDataset\nConcrete dataset using bitsio stores, table engine, and resolver\n\n\nIngestReport, StratumLayout, WriteSourceReport\nStructured results from source ingestion\n\n\ncanonical_tensor_hash\nContent hash over tensor data type, shape, and C-order values\n\n\nnavigator_content_hash\nDeclared or computed content hash for a navigator\n\n\ncpu_budget, set_cpu_budget\nProcess-wide concurrency budget used by storage operations\n\n\n__version__\nInstalled bitsio version\n\n\n\nBITSZarrDataset adds these principal implementation-specific operations:\n\n\n\n\n\n\n\nOperation\nPurpose\n\n\n\n\nopen()\nOpen local, memory, or object-storage roots and select concrete backends\n\n\ncreate()\nCreate a writable dataset and write its description\n\n\nauto_create()\nScan a source, create or resume a destination, ingest supported data, and build indexes\n\n\nwrite_source()\nIngest a previously scanned source manifest\n\n\nwrite_nifti(), write_gifti(), write_cifti(), write_image()\nDecompose supported image containers and author navigators\n\n\nwrite_array()\nWrite a tensor directly without authoring an image fidelity contract\n\n\ndefault_geometry(), plan_layout()\nResolve array layout for a container write\n\n\ntensor_hash()\nReturn or compute the canonical hash of a stored tensor\n\n\nwarm_backend\nReport the selected TensorStore or zarr-python backend\n\n\n\nMethods such as query(), read(), records(), write_table(), index(), open_workspace(), commit(), lineage(), and prov() are inherited from tensorbids.BITSDataset and execute through the components configured by BITSZarrDataset."
+  },
+  {
+    "objectID": "reference/index.html#public-modules",
+    "href": "reference/index.html#public-modules",
+    "title": "Reference",
+    "section": "3 Public modules",
+    "text": "3 Public modules\n\n\n\n\n\n\n\nModule\nPublic surface\n\n\n\n\nbitsio.stores\nTensorStore and zarr-python tensor backends, content-addressed and packfile auxiliary stores, key-value store helpers, and backend selection\n\n\nbitsio.resolver\nReferenceResolver, REFERENCE_RESOLVER, layout profiles, slice parsing, array planning, and predicted-size helpers\n\n\nbitsio.tables\nShardedParquetEngine and relation-object path construction\n\n\nbitsio.codecs\nBITS codec specification parsing and CodecError\n\n\nbitsio.aux_codec\nCanonical encoding and decoding of auxiliary payload kinds\n\n\nbitsio.encode\nLow-level NIfTI, GIfTI, and CIfTI decomposition and encoding helpers\n\n\nbitsio.testing\nResolver test double and mandatory-core-operator coverage check\n\n\nbitsio.exceptions\nBitsioError hierarchy for configuration, storage, slicing, and source-description errors\n\n\n\nNames under bitsio._core are implementation details. Import the re-exported names from the public modules above."
+  },
+  {
+    "objectID": "reference/index.html#optional-dependencies",
+    "href": "reference/index.html#optional-dependencies",
+    "title": "Reference",
+    "section": "4 Optional dependencies",
+    "text": "4 Optional dependencies\n\n\n\n\n\n\n\nExtra\nCapability\n\n\n\n\ntensorstore\nTensorStore Zarr v3 backend\n\n\nzarr\nzarr-python Zarr v3 backend\n\n\nobstore\nobstore transport with the zarr-python backend\n\n\nniflash\nNative NIfTI, GIfTI, and CIfTI container support\n\n\ns3, gcs, azure\nCorresponding object-storage filesystem support\n\n\nnifti\nNiBabel byte-compatibility oracle used in testing\n\n\ntesting\nPublic testing surface without additional dependencies\n\n\n\nPyTorch is a development dependency used by the record-loader examples; the MONAI adapter is installed from bitsfuse[monai]."
+  },
+  {
+    "objectID": "reference/index.html#documentation-work-still-required",
+    "href": "reference/index.html#documentation-work-still-required",
+    "title": "Reference",
+    "section": "5 Documentation work still required",
+    "text": "5 Documentation work still required\nThe following topics need dedicated reference or how-to pages:\n\ncomplete signatures, parameter semantics, return types, and exception tables for BITSZarrDataset, including inherited tensorbids methods;\na tested compatibility matrix for backend, transport, object store, and codec combinations;\nformat-specific authoring and reconstruction behavior for NIfTI, GIfTI, and CIfTI, including byte-fidelity limitations;\nvalidation, freezing, integrity verification, failure recovery, and resumed ingestion;\ncache sizing, concurrency, multiprocessing, and backend-specific performance guidance;\nresolver conformance testing and extension guidance for libraries that implement additional BITS operators; and\na versioned on-disk layout and compatibility reference for dataset readers that do not use BITSZarrDataset."
+  },
+  {
+    "objectID": "explanation/workspaces.html",
+    "href": "explanation/workspaces.html",
+    "title": "Copy-on-write workspaces",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools."
+  },
+  {
+    "objectID": "explanation/workspaces.html#storage-and-state",
+    "href": "explanation/workspaces.html#storage-and-state",
+    "title": "Copy-on-write workspaces",
+    "section": "1 Storage and state",
+    "text": "1 Storage and state\nThe parent is the dataset or workspace from which a new workspace is opened. The overlay is the storage location that receives new or replaced objects. bitsio stores it under bits/overlays/&lt;id&gt;/. The identifier is derived from the workspace name and the parent’s content state, so the same name opened against the same state produces the same identifier.\nThe open marker records the workspace name and identifier, its parent, the open time, and two parent-state digests. The content fingerprint covers live tensor content, referenced auxiliary payloads, and relation versions. The history digest covers current lineage-journal heads. A create-once lease serializes commit, discard, and rebase operations.\nfrom bitsio import BITSZarrDataset\n\nds = BITSZarrDataset.open(\"ds000114.bits\", read_only=False)\nworkspace = ds.open_workspace(\"try\")\n(marker,) = ds.workspaces().markers\nprint(workspace.overlay_root.startswith(\"bits/overlays/exp-\"), marker.name, marker.parent)\nprint(marker.base_fingerprint.startswith(\"blake3:\"), marker.base_history_digest.startswith(\"blake3:\"))\nTrue try (dataset)\nTrue True"
+  },
+  {
+    "objectID": "explanation/workspaces.html#reads-and-writes",
+    "href": "explanation/workspaces.html#reads-and-writes",
+    "title": "Copy-on-write workspaces",
+    "section": "2 Reads and writes",
+    "text": "2 Reads and writes\nA workspace view from ds.at(name) searches overlay layers from most specific to least specific. Writes through a writable view go only to its overlay. Nested workspace chains are readable, but bitsio does not yet route writes through more than one overlay, so a nested workspace view is read-only.\nWhile a workspace remains open, direct writes through its parent view raise WorkspaceOpenError. This protects the state recorded in the marker. A commit or discard verifies those digests before changing the parent or removing the overlay.\nfrom tensorbids.exceptions import WorkspaceOpenError\n\ntry:\n    ds.index()\nexcept WorkspaceOpenError as error:\n    print(type(error).__name__, \"while\", [m.name for m in ds.workspaces().markers], \"is open\")\nWorkspaceOpenError while ['try'] is open"
+  },
+  {
+    "objectID": "explanation/workspaces.html#commit",
+    "href": "explanation/workspaces.html#commit",
+    "title": "Copy-on-write workspaces",
+    "section": "3 Commit",
+    "text": "3 Commit\nA successful commit merges tensors, auxiliary objects, navigators, templates, relations, and producer metadata into the parent. Workspace journal events are appended to the parent journals in order; existing parent events are not rewritten. The executor then rebuilds the parent’s indexes, applies removals and replacements, and removes the overlay.\nWith the default validate=True, commit verifies that the merged parent has the expected content fingerprint. If the parent’s recorded content or history state has changed, commit returns CommitRefusal without merging. A key changed differently in both parent and overlay also causes a refusal. If the workspace remains valid against the new parent, rebase() updates its pinned state before a retry. See Commit a workspace."
+  },
+  {
+    "objectID": "explanation/workspaces.html#discard",
+    "href": "explanation/workspaces.html#discard",
+    "title": "Copy-on-write workspaces",
+    "section": "4 Discard",
+    "text": "4 Discard\nDiscard removes overlay arrays, relations, and derived indexes. By default it copies the lineage journals and producer metadata to bits/overlays/_discarded/&lt;id&gt;-&lt;attempt&gt;/ and writes the workspace record last. The presence of the record therefore marks a complete archive. It includes the workspace identity, attempt number, lifecycle times, and parent-state digests.\nfrom pathlib import Path\n\nimport numpy as np\n\nexp = ds.at(\"try\", read_only=False)\nexp.write_array(\"sub-01/ses-test/anat/sub-01_ses-test_desc-try_mask.nii\", np.ones((4, 4, 4), \"uint8\"))\noutcome = exp.discard()\nprint(outcome.mode, outcome.archive_root.startswith(\"bits/overlays/_discarded/exp-\"), outcome.archive_root.endswith(\"-1\"))\nprint(sorted(p.name for p in (Path(\"ds000114.bits\") / outcome.archive_root).iterdir()))\nds.open_workspace(\"try\")\ntable = ds.at(\"try\").lineage_table()\nprint(table.filter(table[\"source_tree\"] == \"overlay\").height)\nphysical True True\n['_record.json', 'provenance']\n0\nArchiving outside the active overlay allows the same workspace name and identifier to be opened again without inheriting discarded data. Each discard increments the attempt number. purge() permanently removes one archived attempt, while discard(purge=True) skips archival.\nIf the underlying byte store cannot delete objects, the executor performs a logical discard: it removes the active marker but must leave the overlay bytes and record in place. The identifier cannot be reused until those objects are purged through a deletion-capable store."
+  },
+  {
+    "objectID": "explanation/workspaces.html#concurrency-model",
+    "href": "explanation/workspaces.html#concurrency-model",
+    "title": "Copy-on-write workspaces",
+    "section": "5 Concurrency model",
+    "text": "5 Concurrency model\nWorkspace terminology resembles version-control terminology, but the behavior is intentionally narrower. Commit does not perform a three-way content merge; it requires the parent state to match or returns a refusal. Rebase updates the recorded parent state but does not resolve conflicting array values. A discarded archive retains lineage and workspace metadata, not the deleted array content, so it cannot be checked out as a historical dataset state."
+  },
+  {
+    "objectID": "explanation/index-and-bids-logic.html",
+    "href": "explanation/index-and-bids-logic.html",
+    "title": "Persistent BIDS index and query semantics",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools."
+  },
+  {
+    "objectID": "explanation/index-and-bids-logic.html#the-index",
+    "href": "explanation/index-and-bids-logic.html#the-index",
+    "title": "Persistent BIDS index and query semantics",
+    "section": "1 The index",
+    "text": "1 The index\nThe BIDS index has one row per navigator that materializes a BIDS-visible file. Internal navigators that only produce stored tensors do not appear. Each row includes the target path, content hash, standard path components, BIDS entities, fidelity contract, output specification, referenced store keys, and schema-defined metadata columns.\nfrom bitsio import BITSZarrDataset\n\nds = BITSZarrDataset.open(\"ds000114.bits\", read_only=False)\ntable = ds.query(suffix=\"bold\").table\nprint(table.height, \"rows,\", table.width, \"columns\")\nprint(table.select(\"subject\", \"session\", \"task\", \"contract_level\", \"RepetitionTime\").head(2))\n4 rows, 71 columns\nshape: (2, 5)\n┌─────────┬─────────┬────────────────┬────────────────┬────────────────┐\n│ subject ┆ session ┆ task           ┆ contract_level ┆ RepetitionTime │\n│ ---     ┆ ---     ┆ ---            ┆ ---            ┆ ---            │\n│ str     ┆ str     ┆ str            ┆ str            ┆ f64            │\n╞═════════╪═════════╪════════════════╪════════════════╪════════════════╡\n│ 01      ┆ retest  ┆ fingerfootlips ┆ lossless       ┆ null           │\n│ 01      ┆ test    ┆ fingerfootlips ┆ lossless       ┆ null           │\n└─────────┴─────────┴────────────────┴────────────────┴────────────────┘\nThe RepetitionTime index column is null in the current implementation even though the resolved sidecars contain that field. Metadata-column population is not yet connected to the index builder. Read sidecar fields through ds.sidecar(ref); do not use these index columns for filtering until metadata population is implemented.\nbitsio stores the BIDS index as subject-partitioned Parquet under bits/bids-index/. BITSDataset.index() rebuilds the BIDS and provenance indexes. auto_create() and a successful workspace commit invoke it, but individual write methods do not:\nimport numpy as np\n\n\nclass Volume:\n    def __init__(self, data):\n        self.data, self.affine, self.shape = data, np.eye(4), data.shape\n\n\ntarget = \"sub-01/ses-test/anat/sub-01_ses-test_desc-new_T1w.nii\"\nvolume = Volume(np.zeros((4, 4, 4), \"float32\"))\nds.write_volume(volume, target_path=target, geometry=ds.default_geometry(volume, target))\nprint(len(ds.query(desc=\"new\")))\nds.index()\nprint(len(ds.query(desc=\"new\")))\n0\n1\nThe provenance index has the same freshness requirement. If it already exists, lineage() and lineage_table() read the persisted snapshot; a newly written key is absent until the next index() call. See Export data lineage as W3C PROV."
+  },
+  {
+    "objectID": "explanation/index-and-bids-logic.html#entities-and-filters",
+    "href": "explanation/index-and-bids-logic.html#entities-and-filters",
+    "title": "Persistent BIDS index and query semantics",
+    "section": "2 Entities and filters",
+    "text": "2 Entities and filters\nFilters accept a BIDS entity’s long or short name as defined by the BIDS schema. A scalar requires equality; a list, tuple, or set accepts any member. Query.REQUIRED selects rows where the entity is present, while Query.OPTIONAL imposes no presence requirement.\nfrom tensorbids.query import Query\n\nprint(len(ds.query(acquisition=Query.REQUIRED)), len(ds.query(task=\"fingerfootlips\")), len(ds.query(task=[\"fingerfootlips\"])))\nprint(len(ds.query(ses=\"retest\")) == len(ds.query(session=\"retest\")))\nprint(len(ds.query(modality=\"func\")), len(ds.query(datatype=\"func\")))\n0 4 4\nTrue\n4 4\nFor pybids compatibility, modality is an alias for the datatype directory. It does not refer to the BIDS mod entity."
+  },
+  {
+    "objectID": "explanation/index-and-bids-logic.html#sidecar-inheritance",
+    "href": "explanation/index-and-bids-logic.html#sidecar-inheritance",
+    "title": "Persistent BIDS index and query semantics",
+    "section": "3 Sidecar inheritance",
+    "text": "3 Sidecar inheritance\nBIDS metadata inheritance applies matching sidecars from general to specific locations in the source tree. During ingestion, the BIDS source adapter resolves that chain for each image. A more specific value replaces an inherited value as a whole, including nested objects. The merged JSON document is stored as a content-addressed auxiliary payload referenced by the navigator’s sidecar_ref parameter.\nConsequently, normal reads do not traverse a sidecar hierarchy. Changing the source dataset after ingestion has no effect on the BITS dataset; use set_sidecar() to replace stored metadata. The current validation layer checks whether a sidecar is present for suffixes that require one, but it does not validate every required field inside that sidecar."
+  },
+  {
+    "objectID": "explanation/index-and-bids-logic.html#relations",
+    "href": "explanation/index-and-bids-logic.html#relations",
+    "title": "Persistent BIDS index and query semantics",
+    "section": "4 Relations",
+    "text": "4 Relations\nRelations have declared keys, also called their grain. Participants and splits are keyed by subject; phenotype relations may add session; run-level relations such as events use the entities that identify their run. records() assembles model records from relations and image references, query_relation() filters one relation, and join() joins the BIDS index with relations. See Import tabular data."
+  },
+  {
+    "objectID": "explanation/index-and-bids-logic.html#compared-with-pybids",
+    "href": "explanation/index-and-bids-logic.html#compared-with-pybids",
+    "title": "Persistent BIDS index and query semantics",
+    "section": "5 Compared with pybids",
+    "text": "5 Compared with pybids\npybids constructs a BIDSLayout index from a BIDS tree and resolves metadata according to the indexed file hierarchy (Yarkoni et al. 2019). A BITS dataset stores the index and resolved sidecars as part of the dataset. Opening is therefore independent of a source-tree scan, but writes become queryable only after an index rebuild. tensorbids provides a limited BIDSLayout compatibility interface over the stored index for get, get_file, get_subjects, get_metadata, and related calls."
+  },
+  {
+    "objectID": "explanation/principles.html",
+    "href": "explanation/principles.html",
+    "title": "Architecture and library responsibilities",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools."
+  },
+  {
+    "objectID": "explanation/principles.html#motivation",
+    "href": "explanation/principles.html#motivation",
+    "title": "Architecture and library responsibilities",
+    "section": "1 Motivation",
+    "text": "1 Motivation\nA conventional BIDS dataset (Gorgolewski et al. 2016) represents an image as a file, commonly a gzip-compressed NIfTI, and derives metadata by applying BIDS sidecar inheritance to the file’s path. This representation is well suited to exchange and command-line tools. It is less efficient when an application repeatedly reads small spatial regions: gzip decompression begins at the start of the stream, and sidecar inheritance must be resolved before metadata can be used.\nBITS retains the BIDS-visible paths and file semantics while allowing the underlying numerical values, metadata, and relations to use storage optimized for their access patterns. Chunked arrays support region reads; merged sidecars avoid repeated inheritance resolution; and a persistent relational index serves BIDS entity queries."
+  },
+  {
+    "objectID": "explanation/principles.html#processing-model",
+    "href": "explanation/principles.html#processing-model",
+    "title": "Architecture and library responsibilities",
+    "section": "2 Processing model",
+    "text": "2 Processing model\nThe main objects have distinct roles:\n\nA source adapter scans an external dataset and produces a typed manifest.\nThe dataset writer stores numerical arrays, auxiliary payloads, and relations. It also writes a navigator for each virtual file. A navigator is a typed operation graph that references stored data and describes how to reconstruct the file.\nThe index records BIDS entities and other query fields for each navigator.\nA query returns navigator references. The resolver evaluates each selected navigator as reconstructed bytes, an image object, or a numerical array.\nRecord sets join image references with relation columns and can translate lazy spatial selections into tensor-store region reads.\n\nThis separation allows array chunking, compression, sharding, and backend selection to change without changing the BIDS target path or reconstruction logic."
+  },
+  {
+    "objectID": "explanation/principles.html#library-boundaries",
+    "href": "explanation/principles.html#library-boundaries",
+    "title": "Architecture and library responsibilities",
+    "section": "3 Library boundaries",
+    "text": "3 Library boundaries\n\n\n\n\n\n\n\nLibrary\nResponsibility\n\n\n\n\ntensorbids\nBITS models and protocols, including navigators, storage and resolver interfaces, queries, record sets, workspaces, and provenance operations\n\n\nbitsio\nZarr v3 tensor storage, content-addressed auxiliary storage, a sharded-Parquet table engine, container ingestion, and the NumPy-based reference resolver\n\n\nbitsfuse\nUser-facing integrations over a BITS dataset, including filesystem projection, writable staging, and MONAI adapters\n\n\n\nLibraries that consume BITS should depend on tensorbids for protocol types when they do not require a specific backend. Depend on bitsio when the concrete storage implementation or reference resolver is required. Code that uses the MONAI adapters should depend on bitsfuse."
+  },
+  {
+    "objectID": "explanation/principles.html#fidelity-and-provenance",
+    "href": "explanation/principles.html#fidelity-and-provenance",
+    "title": "Architecture and library responsibilities",
+    "section": "4 Fidelity and provenance",
+    "text": "4 Fidelity and provenance\nThe resolver does not infer data quality from a file extension. Each navigator has a mechanically derived fidelity contract:\n\nlossless: reconstructed bytes are preserved;\nsemantically_lossless: interpreted values are preserved although the byte representation may differ;\nmask_lossless: values are preserved within a declared spatial support; and\nlossy: reconstruction introduces a declared loss, such as affine quantization.\n\nProvenance is represented separately. The navigator explains how stored data becomes a virtual file; the append-only lineage journal records how each stored array was created, changed, or removed. This distinction lets clients inspect file fidelity and data origin independently."
+  },
+  {
+    "objectID": "explanation/principles.html#conformance-requirements",
+    "href": "explanation/principles.html#conformance-requirements",
+    "title": "Architecture and library responsibilities",
+    "section": "5 Conformance requirements",
+    "text": "5 Conformance requirements\nThe BITS specification names three dataset guardrails:\n\n\n\n\n\n\n\nRequirement\nPractical implication for bitsio\n\n\n\n\nG1: bounded requests and read amplification for training samples\nChunk and shard geometry must be selected for the application’s read regions. Chunk-aligned reads perform best; arbitrary windows trade request count against excess decoded data.\n\n\nG2: sufficient data to reconstruct supported BIDS files\nNavigators retain the arrays and auxiliary payloads required for reconstruction. NIfTI content is reconstructed, but source gzip framing is not retained.\n\n\nG3: complete provenance and a trusted manifest state\nLineage journals and producer metadata are stored with the dataset, and freezing records content and history digests.\n\n\n\nThese are conformance targets rather than performance guarantees for every layout. In particular, no single chunk geometry is optimal for both whole-file reads and arbitrary small windows. See Storage backends and array layout."
+  },
+  {
+    "objectID": "explanation/principles.html#relationship-to-established-tools",
+    "href": "explanation/principles.html#relationship-to-established-tools",
+    "title": "Architecture and library responsibilities",
+    "section": "6 Relationship to established tools",
+    "text": "6 Relationship to established tools\nNiBabel (Markiewicz et al. 2026) implements neuroimaging file formats and image objects. pybids (Yarkoni et al. 2019) indexes and queries BIDS file trees. MONAI (Cardoso et al. 2022) provides medical-imaging transforms and data pipelines. BITS does not replace these concerns: bitsio provides an alternative physical representation and resolver, while bitsfuse provides adapters to file- and MONAI-oriented workflows."
+  },
+  {
+    "objectID": "how-to/export-provenance.html",
+    "href": "how-to/export-provenance.html",
+    "title": "Export data lineage as W3C PROV",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nRead the current state of the lineage journal as a table, then export selected stored arrays using the W3C PROV data model."
+  },
+  {
+    "objectID": "how-to/export-provenance.html#the-lineage-table",
+    "href": "how-to/export-provenance.html#the-lineage-table",
+    "title": "Export data lineage as W3C PROV",
+    "section": "1 The lineage table",
+    "text": "1 The lineage table\nfrom bitsio import BITSZarrDataset\n\nds = BITSZarrDataset.open(\"ds000114.bits\", read_only=False)\ntable = ds.lineage_table()\nprint(table.height, \"keys;\", table.columns[:6])\nprint(table.group_by(\"lineage\", \"realization\", \"lossy\").len().sort(\"len\"))\n14 keys; ['subject', 'store_key', 'target_path', 'content_hash', 'lineage', 'realization']\nshape: (1, 4)\n┌─────────┬─────────────┬───────┬─────┐\n│ lineage ┆ realization ┆ lossy ┆ len │\n│ ---     ┆ ---         ┆ ---   ┆ --- │\n│ str     ┆ str         ┆ bool  ┆ u32 │\n╞═════════╪═════════════╪═══════╪═════╡\n│ root    ┆ stored      ┆ false ┆ 14  │\n└─────────┴─────────────┴───────┴─────┘\nThe table contains one row per current stored array, including its subject, target path, content hash, origin, storage status, producer, source record, last event, fidelity contract, layout, and storage layer. It is a Polars data frame, so ordinary expressions can select lossy rows or workspace rows (source_tree == \"overlay\").\nCall ds.index() after writes. If a provenance index exists, lineage_table() reads that persisted snapshot and does not include later writes until the next index build."
+  },
+  {
+    "objectID": "how-to/export-provenance.html#record-what-a-write-was-made-from",
+    "href": "how-to/export-provenance.html#record-what-a-write-was-made-from",
+    "title": "Export data lineage as W3C PROV",
+    "section": "2 Record what a write was made from",
+    "text": "2 Record what a write was made from\nPass an IngestSource when a write was derived from another dataset object:\nimport numpy as np\nfrom tensorbids.provenance.ingest_record import IngestSource\n\n(source,) = ds.query(subject=\"01\", suffix=\"T1w\")\n(t1w,) = ds.read(target_path=source.target_path, form=\"tensor\")\n\n\nclass Volume:\n    def __init__(self, data, affine):\n        self.data, self.affine, self.shape = data, affine, data.shape\n\n\n(image,) = ds.read(target_path=source.target_path, form=\"object\")\ntarget = \"sub-01/ses-test/anat/sub-01_ses-test_desc-brain_T1w.nii\"\nvolume = Volume((t1w * (t1w &gt; t1w.mean())).astype(\"float32\"), image.affine)\nds.write_volume(\n    volume,\n    target_path=target,\n    geometry=ds.default_geometry(volume, target),\n    ingest_record=IngestSource(source_ref=source.target_path),\n)\nds.index()\n(row,) = ds.lineage_table().filter(ds.lineage_table()[\"target_path\"] == target).to_dicts()\nkey = row[\"store_key\"]\nprint(row[\"lineage\"], row[\"ingest_record\"])\nroot {\"source_ref\":\"sub-01/ses-test/anat/sub-01_ses-test_T1w.nii\",\"consent\":null}\nWithout an explicit ingest_record, the write records its own target path as the source reference. Supply the input path when that default would be misleading."
+  },
+  {
+    "objectID": "how-to/export-provenance.html#export-prov",
+    "href": "how-to/export-provenance.html#export-prov",
+    "title": "Export data lineage as W3C PROV",
+    "section": "3 Export PROV",
+    "text": "3 Export PROV\nfrom pathlib import Path\n\ndoc = ds.prov(keys=[key], agent=\"bitsio\")\nprint(sorted(doc.to_json()))\nprovn = doc.to_provn()\nprint(\"\\n\".join(line for line in provn.splitlines() if \"wasDerivedFrom\" in line))\nPath(\"lineage.provn\").write_text(provn)\nPath(\"lineage.dot\").write_text(doc.to_dot())\nprint(len(ds.prov().to_json()[\"entity\"]), \"entities in the whole dataset\")\n['activity', 'agent', 'entity', 'prefix', 'wasAssociatedWith', 'wasDerivedFrom', 'wasGeneratedBy']\n  wasDerivedFrom(bits:key/k-9a3dd036e002902ec67eb34b455a7b84, bits:source/e3142252d72dc694, bits:activity/ingest/k-9a3dd036e002902ec67eb34b455a7b84/2026-10-25T01:30:14.001230+00:00, [prov:type='prov:PrimarySource'])\n33 entities in the whole dataset\nWithout keys, ds.prov() describes all current keys. The agent argument identifies the software associated with each activity. to_json() returns PROV-JSON, to_provn() returns PROV-N, and to_dot() returns a Graphviz graph:\ndot -Tsvg lineage.dot -o lineage.svg"
+  },
+  {
+    "objectID": "how-to/export-provenance.html#a-discarded-workspace",
+    "href": "how-to/export-provenance.html#a-discarded-workspace",
+    "title": "Export data lineage as W3C PROV",
+    "section": "4 A discarded workspace",
+    "text": "4 A discarded workspace\nA discarded workspace retains its journal. Open the archived attempt and call lineage_table() on that archive view. See Inspect and purge discarded workspaces."
+  },
+  {
+    "objectID": "how-to/export-provenance.html#current-limitations",
+    "href": "how-to/export-provenance.html#current-limitations",
+    "title": "Export data lineage as W3C PROV",
+    "section": "5 Current limitations",
+    "text": "5 Current limitations\n\nActivity identifiers include the event time, so repeated operations that produce identical data still receive distinct activity identifiers.\nlineage_table() and lineage(key) use the last persisted provenance index when one exists. Rebuild the index after writing."
+  },
+  {
+    "objectID": "how-to/export-provenance.html#see-also",
+    "href": "how-to/export-provenance.html#see-also",
+    "title": "Export data lineage as W3C PROV",
+    "section": "6 See also",
+    "text": "6 See also\n\nData lineage and provenance"
+  },
+  {
+    "objectID": "how-to/commit-an-experiment.html",
+    "href": "how-to/commit-an-experiment.html",
+    "title": "Commit a workspace",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nCommitting a workspace merges its overlay into its parent and closes the workspace. The parent may be the base dataset or another workspace, although the current bitsio implementation supports writes only in workspaces opened directly from the base dataset."
+  },
+  {
+    "objectID": "how-to/commit-an-experiment.html#commit",
+    "href": "how-to/commit-an-experiment.html#commit",
+    "title": "Commit a workspace",
+    "section": "1 Commit",
+    "text": "1 Commit\nimport numpy as np\nfrom bitsio import BITSZarrDataset\n\nds = BITSZarrDataset.open(\"ds000114.bits\", read_only=False)\nds.open_workspace(\"mask\")\nexp = ds.at(\"mask\", read_only=False)\nkey = exp.write_array(\"sub-01/ses-test/anat/sub-01_ses-test_desc-brain_mask.nii\", np.ones((4, 4, 4), \"uint8\"))\noutcome = exp.commit()\nprint(type(outcome).__name__, outcome.overlay_id.startswith(\"exp-\"))\nprint(outcome.scopes_appended, outcome.keys_removed, outcome.unfrozen)\nprint(ds.lineage(key).source_tree, ds.workspaces().markers)\nCommitOutcome True\n('01',) () False\nbase ()\nexp.commit() closes the workspace addressed by exp. ds.commit(workspace=\"mask\") performs the same operation from the base dataset. A successful commit rebuilds the parent’s indexes and returns a CommitOutcome describing the merged journal scopes and store keys. The keys_removed, keys_retained, and keys_relocated fields report how the storage implementation handled replaced data."
+  },
+  {
+    "objectID": "how-to/commit-an-experiment.html#handle-a-concurrent-parent-change",
+    "href": "how-to/commit-an-experiment.html#handle-a-concurrent-parent-change",
+    "title": "Commit a workspace",
+    "section": "2 Handle a concurrent parent change",
+    "text": "2 Handle a concurrent parent change\nEach workspace records the state of its parent when it opens. If two sibling workspaces start from the same state, the first commit changes the parent. A subsequent commit returns CommitRefusal rather than merging against an unexpected parent state:\nds.open_workspace(\"a\")\nds.open_workspace(\"b\")\nds.at(\"a\", read_only=False).write_array(\"sub-02/ses-test/anat/sub-02_ses-test_desc-a_mask.nii\", np.ones((4, 4, 4), \"uint8\"))\nds.at(\"b\", read_only=False).write_array(\"sub-03/ses-test/anat/sub-03_ses-test_desc-b_mask.nii\", np.ones((4, 4, 4), \"uint8\"))\nds.commit(workspace=\"a\")\nrefused = ds.commit(workspace=\"b\")\nprint(type(refused).__name__)\nprint(refused.reason.split(\" (\")[0])\nCommitRefusal\nbase fingerprint drifted since the experiment opened\nIf the workspace’s changes remain valid against the updated parent, rebase it and retry the commit:\nrebased = ds.rebase(workspace=\"b\")\nprint(rebased.marker_repinned)\nprint(type(ds.commit(workspace=\"b\")).__name__)\nTrue\nCommitOutcome\nA conflicting store key can also cause a refusal; store_key identifies the conflict. With the default validate=True, the implementation verifies that the merged parent has the expected fingerprint and raises WorkspaceLifecycleError if validation fails."
+  },
+  {
+    "objectID": "how-to/commit-an-experiment.html#nested-workspaces",
+    "href": "how-to/commit-an-experiment.html#nested-workspaces",
+    "title": "Commit a workspace",
+    "section": "3 Nested workspaces",
+    "text": "3 Nested workspaces\nThe protocol permits a workspace to have another workspace as its parent. bitsio can read such nested overlays, but it does not yet route writes through multiple overlay layers. A nested workspace therefore opens read-only:\nfrom tensorbids.exceptions import TensorBIDSError\n\nds.open_workspace(\"outer\")\nds.at(\"outer\", read_only=False).open_workspace(\"inner\")\ntry:\n    ds.at(\"inner\", read_only=False)\nexcept TensorBIDSError as error:\n    print(str(error).split(\";\")[0])\nprint(sorted(marker.name for marker in ds.workspaces().markers))\nworkspace 'inner' is nested\n['inner', 'outer']\nFor writable work, open the workspace directly from the base dataset. An outer workspace cannot commit while a child workspace remains open."
+  },
+  {
+    "objectID": "how-to/commit-an-experiment.html#commit-through-bitsfuse",
+    "href": "how-to/commit-an-experiment.html#commit-through-bitsfuse",
+    "title": "Commit a workspace",
+    "section": "4 Commit through bitsfuse",
+    "text": "4 Commit through bitsfuse\nbitsfuse commit ds000114.bits --workspace mask\nThe bitsfuse command is the CLI integration for writable mounts. It prints the resulting fingerprint on success or the refusal reason on failure, and it does not commit while staged files remain pending."
+  },
+  {
+    "objectID": "how-to/commit-an-experiment.html#constraints",
+    "href": "how-to/commit-an-experiment.html#constraints",
+    "title": "Commit a workspace",
+    "section": "5 Constraints",
+    "text": "5 Constraints\n\nWhile a workspace is open, direct writes to its parent raise WorkspaceOpenError.\nA concurrent commit, discard, or rebase can acquire the workspace lease. Another lifecycle operation then raises WorkspaceLeaseError until the lease is released.\nRebase does not merge conflicting content. Inspect a refusal before deciding whether retrying against the new parent is valid."
+  },
+  {
+    "objectID": "how-to/commit-an-experiment.html#see-also",
+    "href": "how-to/commit-an-experiment.html#see-also",
+    "title": "Commit a workspace",
+    "section": "6 See also",
+    "text": "6 See also\n\nCopy-on-write workspaces"
+  },
+  {
+    "objectID": "how-to/import-tables.html",
+    "href": "how-to/import-tables.html",
+    "title": "Import tabular data",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nwrite_table(name, data, *, dictionary=None, roundtrip=...) registers a typed relation from a CSV file, TSV file, or in-memory data frame. tensorbids defines relation semantics; bitsio persists the relation with its Parquet table engine. Open the dataset in writable mode first:"
+  },
+  {
+    "objectID": "how-to/import-tables.html#name-the-table",
+    "href": "how-to/import-tables.html#name-the-table",
+    "title": "Import tabular data",
+    "section": "1 Name the table",
+    "text": "1 Name the table\n\n\n\n\n\n\n\n\nName\nTable\nKeyed by\n\n\n\n\n\"participants\"\nparticipants.tsv\nsubject\n\n\n\"phenotype/&lt;instrument&gt;\"\nphenotype/&lt;instrument&gt;.tsv\nsubject (and session when present)\n\n\n\"split/&lt;name&gt;\"\na named subject partition, such as cross-validation folds\nsubject\n\n\n\nDuring BIDS table normalization, participant_id and session_id become subject and session; their sub- and ses- prefixes are removed."
+  },
+  {
+    "objectID": "how-to/import-tables.html#from-a-csv-or-tsv",
+    "href": "how-to/import-tables.html#from-a-csv-or-tsv",
+    "title": "Import tabular data",
+    "section": "2 From a CSV or TSV",
+    "text": "2 From a CSV or TSV\nFor a delimited text file, the writer infers column types from cell values. Empty cells and n/a are treated as missing:\nfrom pathlib import Path\n\nPath(\"scores.csv\").write_text(\n    \"participant_id,score,site\\nsub-01,101.5,001\\nsub-02,,002\\nsub-03,97,001\\n\"\n)\nwritten = ds.write_table(\"phenotype/scores\", \"scores.csv\")\nprint(written.write.dtypes)\nprint(ds.phenotype(\"scores\"))\n{'subject': 'string', 'score': 'float64', 'site': 'string'}\nshape: (3, 3)\n┌─────────┬───────┬──────┐\n│ subject ┆ score ┆ site │\n│ ---     ┆ ---   ┆ ---  │\n│ str     ┆ f64   ┆ str  │\n╞═════════╪═══════╪══════╡\n│ 01      ┆ 101.5 ┆ 001  │\n│ 02      ┆ null  ┆ 002  │\n│ 03      ┆ 97.0  ┆ 001  │\n└─────────┴───────┴──────┘\nValues with significant leading zeros, such as 001, remain strings. To set a type explicitly, supply Dtype in the data dictionary or construct an in-memory frame with the required schema."
+  },
+  {
+    "objectID": "how-to/import-tables.html#from-a-data-frame",
+    "href": "how-to/import-tables.html#from-a-data-frame",
+    "title": "Import tabular data",
+    "section": "3 From a data frame",
+    "text": "3 From a data frame\nA Polars or pandas data frame, or an Arrow table, retains its column types. The writer records those types as Dtype entries in the stored data dictionary:\nimport polars as pl\n\nframe = pl.DataFrame({\"subject\": [\"01\", \"02\", \"03\"], \"score\": [101.5, None, 97.0], \"site\": [\"001\", \"002\", \"001\"]})\nprint(ds.write_table(\"phenotype/scores\", frame).write.dtypes)\n{'subject': 'string', 'score': 'float64', 'site': 'string'}\nWriting the same registered relation again replaces its contents and increments its version. When called through a workspace view, the write is isolated in that workspace."
+  },
+  {
+    "objectID": "how-to/import-tables.html#describe-the-columns",
+    "href": "how-to/import-tables.html#describe-the-columns",
+    "title": "Import tabular data",
+    "section": "4 Describe the columns",
+    "text": "4 Describe the columns\nUse dictionary to provide BIDS data-dictionary entries. Supplied fields override inferred metadata for the named columns:\nds.write_table(\n    \"phenotype/scores\",\n    \"scores.csv\",\n    dictionary={\n        \"score\": {\"Description\": \"Task score\", \"Units\": \"points\"},\n        \"site\": {\"Description\": \"Scanner site\"},\n    },\n)\nprint(ds.phenotype(\"scores\").columns)\n['subject', 'score', 'site']\nThe dictionary is stored as the relation sidecar and is emitted as JSON by export_bids(). Declare categorical levels explicitly; they are not inferred."
+  },
+  {
+    "objectID": "how-to/import-tables.html#use-the-tables",
+    "href": "how-to/import-tables.html#use-the-tables",
+    "title": "Import tabular data",
+    "section": "5 Use the tables",
+    "text": "5 Use the tables\nAs fields of a record set:\nfrom tensorbids.query import BIDSReference\n\nrecords = ds.records(BIDSReference(suffix=\"T1w\"), \"phenotype/scores.score\", \"split/folds.fold\")\nprint(len(records), records.table.columns)\nprint(len(records.where(fold=0)))\n3 ['subject', 'T1w', 'phenotype/scores.score', 'split/folds.fold']\n2\nWith missing=\"drop\" (the default), the record set retains only subjects that have every requested component. A bare column name is accepted by where() when it is unambiguous. Use query_relation() to query a relation without joining it to images."
+  },
+  {
+    "objectID": "how-to/import-tables.html#current-limitations",
+    "href": "how-to/import-tables.html#current-limitations",
+    "title": "Import tabular data",
+    "section": "6 Current limitations",
+    "text": "6 Current limitations\n\nexport_bids() does not export split relations.\nThe table write path does not currently enforce the dataset’s read-only setting. Open the dataset with read_only=False before writing and do not rely on the current permissive behavior."
+  },
+  {
+    "objectID": "how-to/import-tables.html#see-also",
+    "href": "how-to/import-tables.html#see-also",
+    "title": "Import tabular data",
+    "section": "7 See also",
+    "text": "7 See also\n\nPersistent BIDS index and query semantics\nRecord assembly and batched loading"
+  },
+  {
+    "objectID": "how-to/write-a-source-adapter.html",
+    "href": "how-to/write-a-source-adapter.html",
+    "title": "Ingest a source that is not organized as BIDS",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nA source adapter maps an external collection to BIDS target paths and metadata before bitsio writes it. The SourceAdapter contract and manifest types are defined by tensorbids; BITSZarrDataset.auto_create() consumes any conforming adapter. The complete example is available in examples/flat_folder.py."
+  },
+  {
+    "objectID": "how-to/write-a-source-adapter.html#write-the-adapter",
+    "href": "how-to/write-a-source-adapter.html#write-the-adapter",
+    "title": "Ingest a source that is not organized as BIDS",
+    "section": "1 Write the adapter",
+    "text": "1 Write the adapter\nAn adapter has a stable name and a scan(fs) method that returns a tensorbids.io.source.SourceManifest. This example handles a directory of &lt;subject&gt;.nii.gz T1-weighted images and a subjects.csv file:\n\n\nflat_folder.py\n\nfrom tensorbids.exceptions import UnrecognisedSource\nfrom tensorbids.io.source import SkippedFile, SourceImage, SourceManifest\n\n\nclass FlatFolder:\n    \"\"\"A folder of &lt;subject&gt;.nii.gz T1w images, and subjects.csv.\"\"\"\n\n    name = \"flat-folder\"\n\n    def scan(self, fs):\n        found = {\n            path.rsplit(\"/\", 1)[-1]: info.size\n            for path, info in fs.glob_info(\"*.nii.gz\").items()\n        }\n        if not found:\n            raise UnrecognisedSource(f\"{fs.root}: no *.nii.gz images\")\n        images = tuple(\n            SourceImage(\n                path=path,\n                target_path=f\"sub-{s}/anat/sub-{s}_T1w.nii\",\n                format=\"nifti\",\n                sidecar={\"Source\": path},\n            )\n            for path in sorted(found)\n            for s in [path.removesuffix(\".nii.gz\")]\n        )\n        return SourceManifest(\n            adapter=self.name,\n            description={\"Name\": \"flat folder\", \"BIDSVersion\": \"1.10.0\"},\n            images=images,\n            skipped=(SkippedFile(\"subjects.csv\", \"imported with write_table\"),),\n            sizes=found,\n        )\n\n\nEach SourceImage associates one source path with a valid BIDS target path and optional sidecar metadata.\nsizes records the size of every consumed file, keyed by its path relative to the source root.\nThe manifest must account for each discovered file as imported, nested, or skipped with a reason.\nRaise UnrecognisedSource when the source does not match the adapter’s expected layout."
+  },
+  {
+    "objectID": "how-to/write-a-source-adapter.html#use-it",
+    "href": "how-to/write-a-source-adapter.html#use-it",
+    "title": "Ingest a source that is not organized as BIDS",
+    "section": "2 Use it",
+    "text": "2 Use it\nConstruct a flat source directory from the tutorial data:\nimport csv\nimport shutil\nfrom pathlib import Path\n\nfrom bitsio.example_data import fetch_ds000114\n\nroot = fetch_ds000114()\nflat = Path(\"scans\")\nflat.mkdir()\nwith (root / \"participants.tsv\").open() as tsv:\n    rows = list(csv.DictReader(tsv, delimiter=\"\\t\"))\nfor row in rows:\n    s = row[\"participant_id\"].removeprefix(\"sub-\")\n    shutil.copyfile(root / f\"sub-{s}/ses-test/anat/sub-{s}_ses-test_T1w.nii.gz\", flat / f\"{s}.nii.gz\")\n(flat / \"subjects.csv\").write_text(\n    \"subject,hand\\n\" + \"\".join(f\"{r['participant_id'][4:]},{r['dominant_hand']}\\n\" for r in rows)\n)\nprint(sorted(p.name for p in flat.iterdir())[:3], \"...\")\n['01.nii.gz', '02.nii.gz', '03.nii.gz'] ...\nfrom bitsio import BITSZarrDataset\nfrom flat_folder import FlatFolder\n\nds, report = BITSZarrDataset.auto_create(flat, \"flat.bits\", adapter=FlatFolder())\nds.write_table(\"participants\", flat / \"subjects.csv\")\nprint(report)\nprint(sorted(ds.written_paths())[:2])\ncreated: 10 images of 10 subjects (T1w 10)\nwritten 10, skipped 1; tables: none\nT1w float32: 10 images in (64, 64, 64) chunks, blosc-zstd@9:byteshuffle (bitsio.default/float32-3d)\nsource 92.4 MB\n['sub-01/anat/sub-01_T1w.nii', 'sub-02/anat/sub-02_T1w.nii']\nThe adapter records subjects.csv as deliberately skipped, and the example imports it separately with write_table(). A production adapter may instead include supported source tables in its manifest when BIDS table semantics are appropriate."
+  },
+  {
+    "objectID": "how-to/write-a-source-adapter.html#ship-it-in-a-library",
+    "href": "how-to/write-a-source-adapter.html#ship-it-in-a-library",
+    "title": "Ingest a source that is not organized as BIDS",
+    "section": "3 Ship it in a library",
+    "text": "3 Ship it in a library\nPublish the adapter through the tensorbids.source_adapters entry-point group, then select it by name:\n[project.entry-points.\"tensorbids.source_adapters\"]\nflat-folder = \"lab.adapters:FlatFolder\"\nds, report = BITSZarrDataset.auto_create(\"scans\", \"flat.bits\", adapter=\"flat-folder\")"
+  },
+  {
+    "objectID": "how-to/write-a-source-adapter.html#constraints",
+    "href": "how-to/write-a-source-adapter.html#constraints",
+    "title": "Ingest a source that is not organized as BIDS",
+    "section": "4 Constraints",
+    "text": "4 Constraints\n\nEach target_path must be a valid BIDS path for the declared image format.\nglob_info() may return paths relative to the filesystem root or normalized full keys, depending on the filesystem adapter. Normalize manifest paths consistently and key sizes by paths relative to the source root.\nUse stable adapter names and target-path mapping rules. Changing either can make resumed ingestion disagree with an existing destination."
+  },
+  {
+    "objectID": "how-to/write-a-source-adapter.html#see-also",
+    "href": "how-to/write-a-source-adapter.html#see-also",
+    "title": "Ingest a source that is not organized as BIDS",
+    "section": "5 See also",
+    "text": "5 See also\n\nPersistent BIDS index and query semantics"
+  },
+  {
+    "objectID": "how-to/index.html",
+    "href": "how-to/index.html",
+    "title": "How-to guides",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nThese guides provide focused procedures for configuring ingestion, storage, training input, workspaces, and provenance. They assume that a dataset has already been created by following the tutorial."
+  },
+  {
+    "objectID": "how-to/index.html#create-a-dataset",
+    "href": "how-to/index.html#create-a-dataset",
+    "title": "How-to guides",
+    "section": "1 Create a dataset",
+    "text": "1 Create a dataset\n\nConfigure array chunking and compression\nIngest a source that is not organized as BIDS\nControl stored numerical precision\nImport tabular data"
+  },
+  {
+    "objectID": "how-to/index.html#model-input",
+    "href": "how-to/index.html#model-input",
+    "title": "How-to guides",
+    "section": "2 Model input",
+    "text": "2 Model input\n\nUse BITS data in a MONAI pipeline"
+  },
+  {
+    "objectID": "how-to/index.html#workspaces-and-provenance",
+    "href": "how-to/index.html#workspaces-and-provenance",
+    "title": "How-to guides",
+    "section": "3 Workspaces and provenance",
+    "text": "3 Workspaces and provenance\n\nCommit a workspace\nInspect and purge discarded workspaces\nExport provenance"
+  },
+  {
+    "objectID": "tutorials/lineage-and-provenance.html",
+    "href": "tutorials/lineage-and-provenance.html",
+    "title": "Inspect lineage and export provenance",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nContinue in the same Python session and inspect the lineage generated by the workspace write. Then export the same information using the W3C PROV data model.",
+    "crumbs": [
+      "Tutorials",
+      "Part 2: workspaces and provenance",
+      "Inspect lineage and export provenance"
+    ]
+  },
+  {
+    "objectID": "tutorials/lineage-and-provenance.html#read-the-lineage",
+    "href": "tutorials/lineage-and-provenance.html#read-the-lineage",
+    "title": "Inspect lineage and export provenance",
+    "section": "1 Read the lineage",
+    "text": "1 Read the lineage\nEvery stored-array write appends an event to a lineage journal. The lineage table presents the current state obtained by folding those events, with one row per stored array:\ntable = exp.lineage_table()\n(row,) = table.filter(table[\"target_path\"] == target).to_dicts()\nprint(row[\"lineage\"], row[\"realization\"], row[\"lossy\"], row[\"contract_level\"], row[\"source_tree\"])\nkey = row[\"store_key\"]\nlineage = exp.lineage(key)\nprint(lineage.lossy, lineage.contract_level)\nprint([entry.kind.value for entry in exp.history(key).entries])\nroot stored True lossy overlay\nTrue lossy\n['ingest']\nThe row reports a stored, lossy array written to an overlay. lineage() returns the typed report for one store key, while history() returns all journal entries associated with that key.\n\n\n\n\n\n\nNoteBIDS provenance comparison\n\n\n\nBIDS GeneratedBy records dataset-level provenance. BITS additionally tracks events for individual stored arrays. The two mechanisms are complementary.",
+    "crumbs": [
+      "Tutorials",
+      "Part 2: workspaces and provenance",
+      "Inspect lineage and export provenance"
+    ]
+  },
+  {
+    "objectID": "tutorials/lineage-and-provenance.html#export-provenance",
+    "href": "tutorials/lineage-and-provenance.html#export-provenance",
+    "title": "Inspect lineage and export provenance",
+    "section": "2 Export provenance",
+    "text": "2 Export provenance\nMap the selected array’s lineage to a W3C PROV document:\nfrom pathlib import Path\n\ndoc = exp.prov(keys=[key], agent=\"bitsio\")\nprint(sorted(doc.to_json()))\nprint(doc.to_provn())\nPath(\"lineage.dot\").write_text(doc.to_dot())\n['activity', 'agent', 'entity', 'prefix', 'wasAssociatedWith', 'wasDerivedFrom', 'wasGeneratedBy']\ndocument\n  prefix bits &lt;urn:bits:&gt;\n  prefix p-plan &lt;http://purl.org/net/p-plan#&gt;\n  entity(bits:key/k-2b5df63dc67328265102ad577ab7bec2, [bits:content_hash=\"blake3:1210ae7e81926f4171849ae6dade1b773624b82ac7b281f900c598a6e9f79478\", bits:contract_level=\"lossy\", bits:lineage=\"root\", bits:lossy=\"true\", bits:realization=\"stored\", bits:subject=\"01\"])\n  entity(bits:source/46e6692bc91f3fa8, [bits:source_ref=\"sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii\", prov:type='prov:PrimarySource'])\n  activity(bits:activity/ingest/k-2b5df63dc67328265102ad577ab7bec2/2026-10-25T01:32:28.836213+00:00, -, 2026-10-25T01:32:28.836213+00:00, [prov:type='bits:ingest'])\n  agent(bits:agent/bitsio, [prov:label=\"bitsio\", prov:type='prov:SoftwareAgent'])\n  wasAssociatedWith(bits:activity/ingest/k-2b5df63dc67328265102ad577ab7bec2/2026-10-25T01:32:28.836213+00:00, bits:agent/bitsio)\n  wasDerivedFrom(bits:key/k-2b5df63dc67328265102ad577ab7bec2, bits:source/46e6692bc91f3fa8, bits:activity/ingest/k-2b5df63dc67328265102ad577ab7bec2/2026-10-25T01:32:28.836213+00:00, [prov:type='prov:PrimarySource'])\n  wasGeneratedBy(bits:key/k-2b5df63dc67328265102ad577ab7bec2, bits:activity/ingest/k-2b5df63dc67328265102ad577ab7bec2/2026-10-25T01:32:28.836213+00:00, 2026-10-25T01:32:28.836213+00:00)\nendDocument\nThe PROV entity represents the stored array and includes its content hash and loss status. The ingest journal event becomes an activity, the source BOLD path becomes a source entity, and the supplied agent identifies the software. Render the generated DOT graph with Graphviz:\ndot -Tsvg lineage.dot -o lineage.svg\n\n\n\nW3C PROV graph for the quantized BOLD array, its ingest activity, source, and software agent.",
+    "crumbs": [
+      "Tutorials",
+      "Part 2: workspaces and provenance",
+      "Inspect lineage and export provenance"
+    ]
+  },
+  {
+    "objectID": "tutorials/record-sets-and-batches.html",
+    "href": "tutorials/record-sets-and-batches.html",
+    "title": "Build records and batches",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nJoin one image per subject with fields from tabular relations, apply a lazy spatial crop, and iterate over batches suitable for a model.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Build records and batches"
+    ]
+  },
+  {
+    "objectID": "tutorials/record-sets-and-batches.html#add-a-table",
+    "href": "tutorials/record-sets-and-batches.html#add-a-table",
+    "title": "Build records and batches",
+    "section": "1 Add a table",
+    "text": "1 Add a table\nCreate a relation that assigns each subject to one of two folds. Reopen the dataset in writable mode before adding the relation:\nimport polars as pl\n\nfrom bitsio import BITSZarrDataset\n\nds = BITSZarrDataset.open(\"ds000114.bits\", read_only=False)\nsubjects = ds.subjects()\nfolds = pl.DataFrame({\n    \"subject\": subjects,\n    \"fold\": [n % 2 for n in range(len(subjects))],\n})\nwritten = ds.write_table(\"split/folds\", folds)  # idempotent\nprint(written.name, written.write.dtypes)\nsplit/folds {'subject': 'string', 'fold': 'int64'}\nThe registered name \"split/folds\" identifies this relation as a subject split named folds. write_table() accepts an in-memory data frame or a path to a CSV or TSV file. For an in-memory frame, the writer preserves the declared column types.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Build records and batches"
+    ]
+  },
+  {
+    "objectID": "tutorials/record-sets-and-batches.html#build-a-record-set",
+    "href": "tutorials/record-sets-and-batches.html#build-a-record-set",
+    "title": "Build records and batches",
+    "section": "2 Build a record set",
+    "text": "2 Build a record set\nA BITS record set joins image references and relation columns at a shared key. The following record set contains one T1-weighted image, the participant’s dominant hand, and the assigned fold for each subject:\nfrom tensorbids.query import BIDSReference\n\nrecords = ds.records(\n    BIDSReference(suffix=\"T1w\"),\n    \"participants.dominant_hand\",\n    \"split/folds.fold\",\n)\nprint(records)\ncolumns = (\"subject\", \"participants.dominant_hand\", \"split/folds.fold\")\nprint(records.table.select(columns).head(4))\nprint(len(records.where(fold=0)))\nBITSRecordSet(10 records, key=['subject'], references=['T1w'], fields=['participants.dominant_hand', 'split/folds.fold'])\nshape: (4, 3)\n┌─────────┬────────────────────────────┬──────────────────┐\n│ subject ┆ participants.dominant_hand ┆ split/folds.fold │\n│ ---     ┆ ---                        ┆ ---              │\n│ str     ┆ str                        ┆ i64              │\n╞═════════╪════════════════════════════╪══════════════════╡\n│ 01      ┆ left                       ┆ 0                │\n│ 02      ┆ right                      ┆ 1                │\n│ 03      ┆ right                      ┆ 0                │\n│ 04      ┆ right                      ┆ 1                │\n└─────────┴────────────────────────────┴──────────────────┘\n5\nBIDSReference selects image rows from the BIDS index. A string of the form \"relation.column\" selects a relation column. The join key is inferred from the selected data; this example produces one record per subject. Records with a missing component are dropped by default. Pass missing=\"error\" to reject incomplete joins. where(fold=0) filters the assembled records.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Build records and batches"
+    ]
+  },
+  {
+    "objectID": "tutorials/record-sets-and-batches.html#batching-data-for-models",
+    "href": "tutorials/record-sets-and-batches.html#batching-data-for-models",
+    "title": "Build records and batches",
+    "section": "3 Batching data for models",
+    "text": "3 Batching data for models\nThe T1-weighted images do not all have the same shape, so they cannot be stacked directly. A record function requests a 64 x 64 x 64 window from each image and renames the output fields. The window remains lazy until the loader resolves the batch, allowing the backend to read only the required array region.\n\n\ncrops.py\n\ndef crop(record):\n    \"\"\"A random 64-voxel cube of the T1w image, and the label.\"\"\"\n    return {\n        \"T1w\": record[\"T1w\"].random_window(i=64, j=64, k=64),\n        \"hand\": record[\"participants.dominant_hand\"],\n    }\n\n\n\n\n\n\n\nWarningData loader workers\n\n\n\nWith the recommended forkserver or spawn process start method, each worker imports the record function by module and name. Define the function in an importable module, rather than as a notebook-local function or lambda.\n\n\nimport torch\n\nfrom crops import crop\n\nloader = records.select(crop, seed=0).loader(batch_size=2, shuffle=True, stack=True)\ndata = torch.utils.data.DataLoader(\n    loader,\n    batch_size=None,\n    num_workers=2,\n    persistent_workers=True,\n    multiprocessing_context=\"forkserver\",\n)\nfor epoch in range(2):\n    loader.set_epoch(epoch)\n    batch = next(iter(data))\n    t1w = batch[\"T1w\"]\n    print(epoch, type(t1w).__name__, tuple(t1w.shape), t1w.dtype, batch[\"hand\"])\n0 Tensor (2, 64, 64, 64) torch.float32 ['left', 'left']\n1 Tensor (2, 64, 64, 64) torch.float32 ['right', 'left']\nrecords.loader() already produces complete batches, so the outer PyTorch DataLoader uses batch_size=None. set_epoch() changes the deterministic shuffle order and random-window draws for the next epoch in every worker.\n\n\n\n\n\n\nWarningWorkers and the main module\n\n\n\nIn a script, protect the training entry point with if __name__ == \"__main__\": so that worker imports do not run the training loop.\n\n\n\n\n\n\n\n\nNoteBITS and MONAI\n\n\n\nThe record-set loader is a tensorbids data-loading interface. The temporary MONAI integration is maintained by bitsfuse; see Use BITS data in a MONAI pipeline.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Build records and batches"
+    ]
+  },
+  {
+    "objectID": "tutorials/record-sets-and-batches.html#where-to-next",
+    "href": "tutorials/record-sets-and-batches.html#where-to-next",
+    "title": "Build records and batches",
+    "section": "4 Where to next",
+    "text": "4 Where to next\n\nSet up a workspace begins part two of the tutorial.\nThe how-to guides cover custom array layouts, source adapters, relations, and MONAI integration.\nThe explanation section covers the BITS architecture, storage implementation, persistent index, and record assembly.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Build records and batches"
+    ]
+  },
+  {
+    "objectID": "tutorials/dataset-creation.html",
+    "href": "tutorials/dataset-creation.html",
+    "title": "Create a BITS dataset",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nThis chapter converts a ten-subject subset of OpenNeuro ds000114 from BIDS to BITS. Later chapters use the resulting dataset for queries, image reads, and batched model input.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Create a BITS dataset"
+    ]
+  },
+  {
+    "objectID": "tutorials/dataset-creation.html#install-and-fetch-the-data",
+    "href": "tutorials/dataset-creation.html#install-and-fetch-the-data",
+    "title": "Create a BITS dataset",
+    "section": "1 Install and fetch the data",
+    "text": "1 Install and fetch the data\nCreate a virtual environment and install the development versions of the BITS packages:\npython3 -m venv .venv\nsource .venv/bin/activate  # On Windows: .venv\\Scripts\\activate\ngit clone https://github.com/hypercoil/tensorbids.git\ngit clone https://github.com/hypercoil/niflash.git\ngit clone https://github.com/hypercoil/bitsio.git\npython -m pip install -e ./tensorbids -e ./niflash\npython -m pip install -e \"./bitsio[tensorstore,niflash]\" torch\n\n\n\n\n\n\ntensorstore provides a Zarr v3 array backend, niflash provides native neuroimaging container support, and PyTorch supplies the data loader used later in the tutorial.\n\n\n\nDownload the pinned subset of a BIDS dataset (OpenNeuro ds000114):\nfrom bitsio.example_data import fetch_ds000114\n\nroot = fetch_ds000114()\nfiles = sorted(p.relative_to(root).as_posix() for p in root.rglob(\"*\") if p.is_file())\nprint(len(files), \"files\")\nprint(\"\\n\".join(files))\n18 files\ndataset_description.json\nparticipants.tsv\nsub-01/ses-retest/func/sub-01_ses-retest_task-fingerfootlips_bold.nii.gz\nsub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz\nsub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz\nsub-02/ses-retest/func/sub-02_ses-retest_task-fingerfootlips_bold.nii.gz\nsub-02/ses-test/anat/sub-02_ses-test_T1w.nii.gz\nsub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold.nii.gz\nsub-03/ses-test/anat/sub-03_ses-test_T1w.nii.gz\nsub-04/ses-test/anat/sub-04_ses-test_T1w.nii.gz\nsub-05/ses-test/anat/sub-05_ses-test_T1w.nii.gz\nsub-06/ses-test/anat/sub-06_ses-test_T1w.nii.gz\nsub-07/ses-test/anat/sub-07_ses-test_T1w.nii.gz\nsub-08/ses-test/anat/sub-08_ses-test_T1w.nii.gz\nsub-09/ses-test/anat/sub-09_ses-test_T1w.nii.gz\nsub-10/ses-test/anat/sub-10_ses-test_T1w.nii.gz\ntask-fingerfootlips_bold.json\ntask-fingerfootlips_events.tsv\n\n\n\n\n\n\nThe first call downloads approximately 190 MB to data_home() (~/.cache/bitsio unless BITSIO_DATA is set). Subsequent calls use the cached copy.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Create a BITS dataset"
+    ]
+  },
+  {
+    "objectID": "tutorials/dataset-creation.html#create-the-dataset",
+    "href": "tutorials/dataset-creation.html#create-the-dataset",
+    "title": "Create a BITS dataset",
+    "section": "2 Create the dataset",
+    "text": "2 Create the dataset\nauto_create scans the source dataset, writes image arrays and supporting metadata to their respective stores, imports supported BIDS tables, writes the navigators required to reconstruct each image, and builds the BIDS and provenance indexes.\nfrom bitsio import BITSZarrDataset\n\nds, report = BITSZarrDataset.auto_create(root, \"ds000114.bits\")\nprint(report)\ncreated: 14 images of 10 subjects (bold 4, T1w 10)\nwritten 14, skipped 0; tables: events/fingerfootlips, participants\nT1w float32: 10 images in (64, 64, 64) chunks, blosc-zstd@9:byteshuffle (bitsio.default/float32-3d)\nbold int16: 4 images in (16, 32, 32, 30) chunks, blosc-zstd@9:byteshuffle (bitsio.default/int16-time)\nsource 189.9 MB\nView details of the dataset creation report:\nimport json   # For pretty printing\nprint(\"Stored array layouts\")\nprint(\"\\n\".join(str(stratum) for stratum in report.strata))\nprint(f\"\\nImage counts\\n{json.dumps(report.images, indent=2)}\")\nprint(\"\\nImported tables\")\nprint({table.name: table.write.roundtrip.to_string() for table in report.write.tables})\nStored array layouts\nStratumLayout(suffix='T1w', dtype='float32', rule='bitsio.default/float32-3d', chunk_shape=(64, 64, 64), codec='blosc-zstd@9:byteshuffle', images=10)\nStratumLayout(suffix='bold', dtype='int16', rule='bitsio.default/int16-time', chunk_shape=(16, 32, 32, 30), codec='blosc-zstd@9:byteshuffle', images=4)\n\nImage counts\n{\n  \"subject\": {\n    \"01\": 3,\n    \"02\": 3,\n    \"03\": 1,\n    \"04\": 1,\n    \"05\": 1,\n    \"06\": 1,\n    \"07\": 1,\n    \"08\": 1,\n    \"09\": 1,\n    \"10\": 1\n  },\n  \"session\": {\n    \"retest\": 2,\n    \"test\": 12\n  },\n  \"datatype\": {\n    \"func\": 4,\n    \"anat\": 10\n  },\n  \"suffix\": {\n    \"bold\": 4,\n    \"T1w\": 10\n  }\n}\n\nImported tables\n{'events/fingerfootlips': 'semantically_lossless', 'participants': 'semantically_lossless'}\nEach StratumLayout groups images that share a BIDS suffix, stored data type, chunk geometry, and codec. The report also separates source image counts by BIDS entity and records the round-trip fidelity of each imported table.\nThe following guides describe the main ingest customizations:\n\nConfigure array chunking and compression\nCreate a dataset from data that is not BIDS\nControl stored numerical precision\n\nauto_create can resume an interrupted ingestion. If the destination already contains an image with the expected content, the operation skips that image:\n_, again = BITSZarrDataset.auto_create(root, \"ds000114.bits\")\nprint(again)\nresumed: 14 images of 10 subjects (bold 4, T1w 10)\nwritten 0, skipped 16; tables: none\nT1w float32: 10 images in (64, 64, 64) chunks, blosc-zstd@9:byteshuffle (bitsio.default/float32-3d)\nbold int16: 4 images in (16, 32, 32, 30) chunks, blosc-zstd@9:byteshuffle (bitsio.default/int16-time)\nsource 189.9 MB",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Create a BITS dataset"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "bitsio",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nbitsio is part of the hypercoil federation."
+  },
+  {
+    "objectID": "index.html#sections",
+    "href": "index.html#sections",
+    "title": "bitsio",
+    "section": "Sections",
+    "text": "Sections\n\nTutorialsSequential examples that introduce bitsio and produce a working result.How-to guidesProcedures for completing specific tasks with bitsio.ExplanationProcessing models, design constraints and trade-offs that govern bitsio.ReferencePublic modules, classes, functions, types and configuration for bitsio."
+  },
+  {
+    "objectID": "tutorials/index.html",
+    "href": "tutorials/index.html",
+    "title": "Tutorials",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nThis tutorial converts a BIDS dataset to BITS, queries the persistent BIDS-equivalent index, reads images and metadata, and constructs batches for model training. The second part demonstrates an isolated workspace containing a quantised version of one image and examines the resulting lineage records.\nThe examples assume familiarity with Python, BIDS, and common neuroimaging file formats. No prior knowledge of BITS is required.\nThe tutorial is intentionally circumscribed with the goal of developing working knowledge, not exhaustively enumerating use cases; consult the how-to guides for specific tasks, explanation for design details, and reference for the API.",
+    "crumbs": [
+      "Tutorials"
+    ]
+  },
+  {
+    "objectID": "tutorials/index.html#chapters",
+    "href": "tutorials/index.html#chapters",
+    "title": "Tutorials",
+    "section": "1 Chapters",
+    "text": "1 Chapters\n\n1.1 Part 1: ingestion and batched reads\nStarting from an OpenNeuro ds000114 subset, create a BITS dataset, query its BIDS index, read images and metadata, and iterate through model-ready batches.\n\nCreate a dataset\nNavigate the dataset\nRecord sets and batches\n\n\n\n1.2 Part 2: workspaces and provenance\nCreate a copy-on-write workspace over the dataset. Quantise one BOLD image to int8, read the stored codes, inspect the recorded lineage, and then discard the workspace.\n\nSet up a workspace\nLineage and provenance\nTear down a workspace",
+    "crumbs": [
+      "Tutorials"
+    ]
+  },
+  {
+    "objectID": "tutorials/dataset-navigation.html",
+    "href": "tutorials/dataset-navigation.html",
+    "title": "Query and read the dataset",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nOpen the dataset created in the previous chapter, query its persistent BIDS index, and read images, sidecar metadata, and tabular data.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Query and read the dataset"
+    ]
+  },
+  {
+    "objectID": "tutorials/dataset-navigation.html#open-the-dataset",
+    "href": "tutorials/dataset-navigation.html#open-the-dataset",
+    "title": "Query and read the dataset",
+    "section": "1 Open the dataset",
+    "text": "1 Open the dataset\nDatasets open in read-only mode unless read_only=False is specified:\nfrom bitsio import BITSZarrDataset\n\nds = BITSZarrDataset.open(\"ds000114.bits\")\nsummary = ds.summary()\nprint(summary.navigator_count, \"images\")\nprint(ds.subjects())\nprint(ds.datatypes())\n14 images\n['01', '02', '03', '04', '05', '06', '07', '08', '09', '10']\n['anat', 'func']\nsubjects() and datatypes() return distinct values from the BIDS index. sessions() has a different purpose: it reads the BIDS sessions.tsv relation, which this dataset does not contain.\n\n\n\n\n\n\nNotebitsio vs pybids\n\n\n\npybids.BIDSLayout builds an index from a BIDS file tree. A BITS dataset stores its index as part of the dataset; bitsio reads that index from Parquet when executing a query.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Query and read the dataset"
+    ]
+  },
+  {
+    "objectID": "tutorials/dataset-navigation.html#query-the-dataset",
+    "href": "tutorials/dataset-navigation.html#query-the-dataset",
+    "title": "Query and read the dataset",
+    "section": "2 Query the dataset",
+    "text": "2 Query the dataset\nquery() accepts BIDS entity filters and returns references to matching virtual files:\nfrom tensorbids.query import Query\n\nprint(len(ds.query(suffix=\"T1w\")))\nretest = ds.query(subject=[\"01\", \"02\"], session=\"retest\", suffix=\"bold\")\nprint(retest.table.select(\"subject\", \"session\", \"task\"))\nprint(len(ds.query(task=Query.REQUIRED)))  # Images with a non-null task\n10\nshape: (2, 3)\n┌─────────┬─────────┬────────────────┐\n│ subject ┆ session ┆ task           │\n│ ---     ┆ ---     ┆ ---            │\n│ str     ┆ str     ┆ str            │\n╞═════════╪═════════╪════════════════╡\n│ 01      ┆ retest  ┆ fingerfootlips │\n│ 02      ┆ retest  ┆ fingerfootlips │\n└─────────┴─────────┴────────────────┘\n4\nQuery.REQUIRED matches rows for which the named entity is present. In this dataset, all four BOLD runs define task. result.table is a Polars data frame containing the matching index rows.\n\n\n\n\n\n\nFor compatibility with pybids, modality=\"anat\" filters the BIDS datatype directory. Use the appropriate entity name when filtering the BIDS mod entity.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Query and read the dataset"
+    ]
+  },
+  {
+    "objectID": "tutorials/dataset-navigation.html#read-an-image-and-its-metadata",
+    "href": "tutorials/dataset-navigation.html#read-an-image-and-its-metadata",
+    "title": "Query and read the dataset",
+    "section": "3 Read an image and its metadata",
+    "text": "3 Read an image and its metadata\nread() returns one result for each matching file. The single-result queries below therefore unpack a one-element list:\n(t1w,) = ds.read(subject=\"01\", suffix=\"T1w\", form=\"tensor\")\nprint(t1w.shape, t1w.dtype)\n(other,) = ds.read(subject=\"02\", suffix=\"T1w\", form=\"tensor\")\nprint(other.shape)\n(256, 156, 256) float32\n(156, 256, 256)\nThe resolver supports three common output forms:\n\n\"bytes\" (default): reconstructed file-container bytes;\n\"tensor\": the numerical array only; and\n\"object\": a NiBabel-compatible image object.\n\n(image,) = ds.read(subject=\"01\", suffix=\"T1w\", form=\"object\")\nprint(image)\nprint(f\"\\nTensors match? {(t1w == image.dataobj).all()}\")\n\n&lt;class 'nibabel.nifti1.Nifti1Image'&gt;\ndata shape (256, 156, 256)\naffine:\n[[ 9.99131918e-01 -5.16291820e-02  1.25127016e-02 -1.25263863e+02]\n [ 4.07721959e-02  1.29202044e+00 -9.81179178e-02 -7.31330109e+01]\n [-8.54506902e-03  1.28044292e-01  9.95096147e-01 -1.77554291e+02]\n [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]\nmetadata:\n&lt;class 'nibabel.nifti1.Nifti1Header'&gt; object, endian='&lt;'\nsizeof_hdr      : 348\ndata_type       : b''\ndb_name         : b''\nextents         : 0\nsession_error   : 0\nregular         : b'r'\ndim_info        : 0\ndim             : [  3 256 156 256   1   1   1   1]\nintent_p1       : 0.0\nintent_p2       : 0.0\nintent_p3       : 0.0\nintent_code     : none\ndatatype        : float32\nbitpix          : 32\nslice_start     : 0\npixdim          : [1.        1.        1.2993759 1.        0.009668  0.        0.\n 0.       ]\nvox_offset      : 0.0\nscl_slope       : nan\nscl_inter       : nan\nslice_end       : 0\nslice_code      : unknown\nxyzt_units      : 10\ncal_max         : 0.0\ncal_min         : 0.0\nslice_duration  : 0.0\ntoffset         : 0.0\nglmax           : 0\nglmin           : 0\ndescrip         : b'FSL5.0'\naux_file        : b''\nqform_code      : scanner\nsform_code      : scanner\nquatern_b       : 0.04923562332987785\nquatern_c       : 0.0052719819359481335\nquatern_d       : 0.02015533111989498\nqoffset_x       : -125.26386260986328\nqoffset_y       : -73.13301086425781\nqoffset_z       : -177.55429077148438\nsrow_x          : [ 9.9913192e-01 -5.1629182e-02  1.2512702e-02 -1.2526386e+02]\nsrow_y          : [ 4.0772196e-02  1.2920204e+00 -9.8117918e-02 -7.3133011e+01]\nsrow_z          : [-8.5450690e-03  1.2804429e-01  9.9509615e-01 -1.7755429e+02]\nintent_name     : b''\nmagic           : b'n+1'\n\n\nTensors match? True\n\n\n\n\n\n\nNoteFor nibabel users\n\n\n\nFor NIfTI data, form=\"object\" returns a Nifti1Image whose array proxy reads values on demand.\n\n\nUse a query result reference to read the fully inherited JSON sidecar:\n(ref,) = ds.query(subject=\"01\", session=\"test\", suffix=\"bold\")\nsidecar = ds.sidecar(ref)\nprint(sidecar[\"RepetitionTime\"], sorted(sidecar))\n2.5 ['EchoTime', 'FlipAngle', 'RepetitionTime', 'SliceTiming', 'TaskName']\n\n\n\n\n\n\nNoteSidecars and BIDS inheritance\n\n\n\nThe BIDS source adapter resolves sidecar inheritance during ingestion. The RepetitionTime shown here was inherited from the source dataset’s top-level task-fingerfootlips_bold.json.\n\n\nA BITS navigator is the typed operation graph that tells a resolver how to construct one virtual BIDS file. Inspect one of the stored navigators:\nnav = next(ds.get_navigators())\nprint(f\"Fidelity contract level: {nav.contract.level}\\n\")\nprint(ds.show_graph(nav))\nFidelity contract level: 3\n\nsub-01/ses-retest/func/sub-01_ses-retest_task-fingerfootlips_bold.nii\n  kind: reconstitution    contract: lossless / int16    nodes: 2\n  terminal: surface\nnodes (topological order):\n  read     read_tensor  (source)\n  surface  materialize  &lt;- read  [terminal]\nThe graph lists each node’s identifier, operator, and inputs. In this example, read loads an array from the tensor store and surface materializes the result as a file container.\n\n\n\n\n\n\nWarninggzip codec\n\n\n\nThe current NIfTI ingestion path does not retain the source gzip stream. Container-byte reads reconstruct uncompressed NIfTI bytes even when the virtual target path ends in .nii.gz.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Query and read the dataset"
+    ]
+  },
+  {
+    "objectID": "tutorials/dataset-navigation.html#read-a-table",
+    "href": "tutorials/dataset-navigation.html#read-a-table",
+    "title": "Query and read the dataset",
+    "section": "4 Read a table",
+    "text": "4 Read a table\nRead the imported BIDS participants.tsv relation:\nprint(ds.participants())\nshape: (10, 2)\n┌─────────┬───────────────┐\n│ subject ┆ dominant_hand │\n│ ---     ┆ ---           │\n│ str     ┆ str           │\n╞═════════╪═══════════════╡\n│ 01      ┆ left          │\n│ 02      ┆ right         │\n│ 03      ┆ right         │\n│ 04      ┆ right         │\n│ 05      ┆ right         │\n│ 06      ┆ left          │\n│ 07      ┆ right         │\n│ 08      ┆ right         │\n│ 09      ┆ right         │\n│ 10      ┆ left          │\n└─────────┴───────────────┘\nThis subset contains ten participant rows and one phenotype column, dominant_hand.",
+    "crumbs": [
+      "Tutorials",
+      "Part 1: ingestion and batched reads",
+      "Query and read the dataset"
+    ]
+  },
+  {
+    "objectID": "tutorials/workspace-setup.html",
+    "href": "tutorials/workspace-setup.html",
+    "title": "Use a copy-on-write workspace",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nThis chapter creates a copy-on-write workspace over the dataset from part one and writes a quantized copy of one BOLD image to that workspace. The base dataset remains unchanged. The following chapters inspect the write’s lineage, export it as W3C PROV, and discard the workspace while retaining an audit record.",
+    "crumbs": [
+      "Tutorials",
+      "Part 2: workspaces and provenance",
+      "Use a copy-on-write workspace"
+    ]
+  },
+  {
+    "objectID": "tutorials/workspace-setup.html#before-you-start",
+    "href": "tutorials/workspace-setup.html#before-you-start",
+    "title": "Use a copy-on-write workspace",
+    "section": "1 Before you start",
+    "text": "1 Before you start\nOpen the ds000114.bits dataset created in part one with workspace operations enabled:\nfrom bitsio import BITSZarrDataset\n\nds = BITSZarrDataset.open(\"ds000114.bits\", read_only=False)\nprint(len(ds.query(suffix=\"bold\")), \"BOLD runs\")\n4 BOLD runs",
+    "crumbs": [
+      "Tutorials",
+      "Part 2: workspaces and provenance",
+      "Use a copy-on-write workspace"
+    ]
+  },
+  {
+    "objectID": "tutorials/workspace-setup.html#open-a-workspace",
+    "href": "tutorials/workspace-setup.html#open-a-workspace",
+    "title": "Use a copy-on-write workspace",
+    "section": "2 Open a workspace",
+    "text": "2 Open a workspace\nA workspace is an isolated overlay over a dataset or another workspace. Open one named \"int8-bold\", then obtain a writable view of that overlay:\nfrom tensorbids.exceptions import WorkspaceOpenError\n\nWORKSPACE_NAME = \"int8-bold\"\nds.open_workspace(WORKSPACE_NAME)\nexp = ds.at(WORKSPACE_NAME, read_only=False)\nprint([marker.name for marker in ds.workspaces().markers])\ntry:\n    ds.write_table(\"split/other\", ds.split(\"folds\"))\nexcept WorkspaceOpenError as error:\n    print(\"refused:\", type(error).__name__)\n['int8-bold']\nrefused: WorkspaceOpenError\nds continues to address the base dataset, while exp reads the workspace overlay before falling back to the base. While a workspace is open, writes to its parent are rejected with WorkspaceOpenError. This restriction allows a later commit or discard to verify that the parent has not changed since the workspace was opened.\n\n\n\n\n\n\nNoteWorkspace identity\n\n\n\nThe workspace identifier is derived from its name and the recorded state of its parent. A workspace ends by committing its changes or discarding them.",
+    "crumbs": [
+      "Tutorials",
+      "Part 2: workspaces and provenance",
+      "Use a copy-on-write workspace"
+    ]
+  },
+  {
+    "objectID": "tutorials/workspace-setup.html#write-a-run-as-int8-codes",
+    "href": "tutorials/workspace-setup.html#write-a-run-as-int8-codes",
+    "title": "Use a copy-on-write workspace",
+    "section": "3 Write a run as int8 codes",
+    "text": "3 Write a run as int8 codes\nRead subject 01’s BOLD run and write a quantized version whose stored codes span the full int8 range:\nfrom dataclasses import dataclass\n\nimport numpy as np\nfrom tensorbids.authoring import AffineQuantization\nfrom tensorbids.provenance.ingest_record import IngestSource\n\n\n@dataclass\nclass Volume:\n    \"\"\"Values to write, with their affine; a 4-D run is time first.\"\"\"\n\n    data: np.ndarray\n    affine: np.ndarray\n\n    @property\n    def shape(self):\n        return self.data.shape\n\n\n(source,) = exp.query(subject=\"01\", session=\"test\", suffix=\"bold\")\n(image,) = exp.read(target_path=source.target_path, form=\"object\")\nbold = np.moveaxis(image.get_fdata(dtype=\"float32\"), -1, 0)\nvolume = Volume(bold, image.affine)\nrung = AffineQuantization.spanning(bold.min(), bold.max(), \"int8\")\ntarget = \"sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_desc-int8_bold.nii\"\nexp.write_volume(\n    volume,\n    target_path=target,\n    geometry=exp.default_geometry(volume, target, dtype=\"int8\"),\n    precision=rung,\n    ingest_record=IngestSource(source_ref=source.target_path),\n)\nexp.index()\nprint(f\"scale {rung.scale:.4f}, offset {rung.offset:.4f}\")\n(written,) = exp.read(target_path=target, form=\"tensor\")\nprint(\"largest error\", float(np.abs(written - bold).max()), \"&lt;=\", rung.scale / 2)\n(nifti,) = exp.read(target_path=target, form=\"object\")\nprint(nifti.shape == image.shape, np.allclose(nifti.affine, image.affine))\nscale 16.7647, offset 2145.8824\nlargest error 8.35302734375 &lt;= 8.382352941176471\nTrue True\nAffineQuantization.spanning() derives a linear scale and offset from the observed value range. Quantization introduces an error of at most half a scale step, so the navigator’s fidelity contract is lossy. IngestSource records the source BOLD path in the lineage of the new stored array.\n\n\n\n\n\n\nWarningA 4-D volume is written time first\n\n\n\nwrite_volume() expects a four-dimensional volume in (time, i, j, k) order and restores NIfTI’s time-last order when materializing the file. Move the time axis explicitly before writing, as shown above; the API cannot infer an incorrectly ordered input array.\n\n\n\n\n\n\n\n\nNoteNIfTI scaling comparison\n\n\n\nThe BITS tensor store contains the int8 codes directly. The reconstructed NIfTI object exposes dequantized float32 values; it is not an int8 NIfTI using scl_slope and scl_inter. The record-set API can return the codes and their scale parameters separately.",
+    "crumbs": [
+      "Tutorials",
+      "Part 2: workspaces and provenance",
+      "Use a copy-on-write workspace"
+    ]
+  },
+  {
+    "objectID": "tutorials/workspace-setup.html#train-on-the-codes",
+    "href": "tutorials/workspace-setup.html#train-on-the-codes",
+    "title": "Use a copy-on-write workspace",
+    "section": "4 Train on the codes",
+    "text": "4 Train on the codes\nSelect the stored port and attach the scale and offset instead of dequantizing during the read:\nimport torch\nfrom tensorbids.query import BIDSReference\n\ncodes = exp.records(\n    BIDSReference(suffix=\"bold\", desc=\"int8\", port=\"stored\", dequantize=\"attach\")\n)\ndata = torch.utils.data.DataLoader(codes.loader(batch_size=1, stack=True), batch_size=None)\nbatch = next(iter(data))\nq = batch[\"bold\"]\nprint(q.dtype, tuple(q.shape))\nprint(batch[\"bold.scale\"].tolist() == [rung.scale], batch[\"bold.offset\"].tolist() == [rung.offset])\nvalues = q.double() * batch[\"bold.scale\"].view(-1, 1, 1, 1, 1) + batch[\"bold.offset\"].view(-1, 1, 1, 1, 1)\nprint(np.allclose(values[0].numpy(), written, rtol=1e-5))\ntorch.int8 (1, 184, 64, 64, 30)\nTrue True\nTrue\nThe batch contains int8 codes plus one scale and offset per record. Apply the affine transformation on the target device or inside the model. The result matches the resolver’s dequantized float32 read to numerical precision.\nLazy spatial windows work with stored codes in the same way as in part one:\n\n\nwindows.py\n\ndef window(record):\n    \"\"\"A random 32 x 32 x 16 crop of every frame of the run's codes.\"\"\"\n    return {\"bold\": record[\"bold\"].random_window(i=32, j=32, k=16)}\n\nfrom windows import window\n\ncrops = codes.select(window, seed=0).loader(batch_size=1, stack=True)\nbatch = next(iter(torch.utils.data.DataLoader(crops, batch_size=None)))\nprint(batch[\"bold\"].dtype, tuple(batch[\"bold\"].shape), batch[\"bold.scale\"].tolist() == [rung.scale])\ntorch.int8 (1, 184, 32, 32, 16) True\nA window retains the scale and offset of its source image because the affine dequantization is independent for each value.\n\n\n\n\n\n\nWarningA workspace’s records stay in process\n\n\n\nRecord sets backed by a workspace view cannot currently be serialized to PyTorch worker processes. Use the default num_workers=0 for these loaders.\n\n\n\n\n\n\n\n\nNoteMONAI distinction\n\n\n\nQuantization is part of the stored representation, not a MONAI transform. The loader returns the stored codes and their scaling parameters.",
+    "crumbs": [
+      "Tutorials",
+      "Part 2: workspaces and provenance",
+      "Use a copy-on-write workspace"
+    ]
+  },
+  {
+    "objectID": "tutorials/workspace-teardown.html",
+    "href": "tutorials/workspace-teardown.html",
+    "title": "Discard the workspace",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nFinish the workspace example in the same Python session. Discard the workspace, inspect the retained audit record, and then delete that record permanently.",
+    "crumbs": [
+      "Tutorials",
+      "Part 2: workspaces and provenance",
+      "Discard the workspace"
+    ]
+  },
+  {
+    "objectID": "tutorials/workspace-teardown.html#discard-the-changes",
+    "href": "tutorials/workspace-teardown.html#discard-the-changes",
+    "title": "Discard the workspace",
+    "section": "1 Discard the changes",
+    "text": "1 Discard the changes\nexp.commit() would merge the workspace into its parent. This example discards the changes instead:\nexp.discard()\nprint(ds.lineage(key))\nprint([(record.name, record.attempt) for record in ds.discarded_workspaces()])\nold = ds.discarded(\"int8-bold\")\nprint([entry.kind.value for entry in old.history(key).entries], old.lineage(key).lossy)\nprint(len(old.lineage_table()), \"rows\")\nNone\n[('int8-bold', 1)]\n['ingest'] True\n15 rows\nDiscard removes the overlay’s arrays and tables, so the base dataset remains unchanged. It archives the workspace record, journal, and producer metadata; lineage remains available even though the int8 array cannot be read. Reopening int8-bold creates a clean workspace. Each later discard creates a new numbered attempt, selectable with ds.discarded(\"int8-bold\", attempt=n). Call purge() to delete one archived attempt permanently:\nremoved = old.purge()\nprint(len(removed) &gt; 0, ds.discarded_workspaces())\nTrue []\n\n\n\n\n\n\nWarningA store that cannot delete\n\n\n\nIf the underlying store does not support deletion, discard can only remove the workspace logically. Its bytes and metadata remain at the overlay location, and the workspace name cannot be reused until a deletion-capable store purges the retained data.",
+    "crumbs": [
+      "Tutorials",
+      "Part 2: workspaces and provenance",
+      "Discard the workspace"
+    ]
+  },
+  {
+    "objectID": "tutorials/workspace-teardown.html#where-to-next",
+    "href": "tutorials/workspace-teardown.html#where-to-next",
+    "title": "Discard the workspace",
+    "section": "2 Where to next",
+    "text": "2 Where to next\n\nHow-to guides: commit a workspace, inspect discarded workspaces, export provenance, and control stored precision.\nExplanation: copy-on-write workspaces and data lineage.",
+    "crumbs": [
+      "Tutorials",
+      "Part 2: workspaces and provenance",
+      "Discard the workspace"
+    ]
+  },
+  {
+    "objectID": "how-to/change-the-layout.html",
+    "href": "how-to/change-the-layout.html",
+    "title": "Configure array chunking and compression",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nA layout profile selects a chunk shape, shard shape, and compression codec for each stored array according to its data type and axis labels. tensorbids defines the profile and registry interfaces; bitsio provides four profiles for its Zarr backends."
+  },
+  {
+    "objectID": "how-to/change-the-layout.html#list-the-registered-profiles",
+    "href": "how-to/change-the-layout.html#list-the-registered-profiles",
+    "title": "Configure array chunking and compression",
+    "section": "1 List the registered profiles",
+    "text": "1 List the registered profiles\nfrom tensorbids.resolver.layout_profiles import layout_profiles\n\nfor name, profile in sorted(layout_profiles().items()):\n    print(name, [rule.name for rule in profile.rules], \"base:\", profile.base)\nbitsio.archival ['int16-3d'] base: bitsio.unsharded\nbitsio.default ['int16-3d', 'float32-3d', 'int8-3d', 'int16-time', 'int16-direction', 'other'] base: None\nbitsio.fast ['int16-3d', 'float32-3d', 'int8-3d', 'int16-time', 'int16-direction'] base: bitsio.default\nbitsio.unsharded ['int16-3d', 'float32-3d', 'int8-3d', 'int16-time', 'int16-direction', 'other'] base: None\n\n\n\n\n\n\n\n\nProfile\nPicks\nUse it for\n\n\n\n\nbitsio.default\nApproximately 64-voxel chunks with Zstandard-based compression; usually one shard per array\nGeneral-purpose reads with a low object count\n\n\nbitsio.unsharded\nDefault chunking with one object per chunk\nStorage systems that handle many small objects efficiently\n\n\nbitsio.archival\nWhole-volume int16 chunks compressed with zstd@19; otherwise inherits bitsio.unsharded\nInfrequently read data where compression ratio is the priority\n\n\nbitsio.fast\nLower compression levels with sharding\nIngestion and write throughput"
+  },
+  {
+    "objectID": "how-to/change-the-layout.html#create-a-dataset-with-one",
+    "href": "how-to/change-the-layout.html#create-a-dataset-with-one",
+    "title": "Configure array chunking and compression",
+    "section": "2 Create a dataset with one",
+    "text": "2 Create a dataset with one\nds, report = BITSZarrDataset.auto_create(source, \"dest.bits\", profile=\"bitsio.archival\")\nwrite_source() accepts the same profile argument."
+  },
+  {
+    "objectID": "how-to/change-the-layout.html#preview-a-layout-before-writing",
+    "href": "how-to/change-the-layout.html#preview-a-layout-before-writing",
+    "title": "Configure array chunking and compression",
+    "section": "3 Preview a layout before writing",
+    "text": "3 Preview a layout before writing\nfrom tensorbids.resolver.layout_profiles import resolve_layout\n\nt1w = resolve_layout((256, 156, 256), \"float32\", (\"i\", \"j\", \"k\"), \"bitsio.default\")\nprint(t1w.rule, t1w.chunk_shape, t1w.codec, t1w.shard_shape((256, 156, 256), t1w.chunk_shape))\nbold = resolve_layout((184, 64, 64, 30), \"int16\", (\"time\", \"i\", \"j\", \"k\"), \"bitsio.archival\")\nprint(bold.profile, bold.rule, bold.chunk_shape, bold.codec)\nfloat32-3d (64, 64, 64) blosc-zstd@9:byteshuffle (256, 192, 256)\nbitsio.unsharded int16-time (16, 32, 32, 30) blosc-zstd@9:byteshuffle\nIf no rule matches, resolution continues with the profile’s base profile. bitsio.archival defines a rule for three-dimensional int16 arrays. The four-dimensional BOLD array therefore falls back to bitsio.unsharded."
+  },
+  {
+    "objectID": "how-to/change-the-layout.html#fork-a-profile",
+    "href": "how-to/change-the-layout.html#fork-a-profile",
+    "title": "Configure array chunking and compression",
+    "section": "4 Fork a profile",
+    "text": "4 Fork a profile\nfrom tensorbids.resolver.layout_profiles import LayoutRule\n\nlab = layout_profiles()[\"bitsio.default\"].fork(\n    \"lab.bold-frames\",\n    LayoutRule(\n        \"int16-time\",\n        \"zstd@9\",\n        dtypes=frozenset({\"int16\"}),\n        axis_labels=(\"time\", \"i\", \"j\", \"k\"),\n        grid=(1, 64, 64, 30),\n    ),\n)\nframes = resolve_layout((184, 64, 64, 30), \"int16\", (\"time\", \"i\", \"j\", \"k\"), lab)\nprint(frames.profile, frames.rule, frames.chunk_shape, frames.codec)\nlab.bold-frames int16-time (1, 64, 64, 30) zstd@9\nfork() copies the original rules and base profile. A rule with an existing name replaces that rule; a newly named rule is evaluated before the copied rules."
+  },
+  {
+    "objectID": "how-to/change-the-layout.html#register-it",
+    "href": "how-to/change-the-layout.html#register-it",
+    "title": "Configure array chunking and compression",
+    "section": "5 Register it",
+    "text": "5 Register it\nIn a process:\nfrom tensorbids.resolver.layout_profiles import register_layout_profile\n\nregister_layout_profile(lab)\nregister_layout_profile(lab)\nprint(\"lab.bold-frames\" in layout_profiles())\nTrue\nRegistering an equivalent profile a second time is idempotent. Registering a different profile under the same name raises ValueError. Libraries should publish profiles through the tensorbids.layout_profiles entry-point group:\n[project.entry-points.\"tensorbids.layout_profiles\"]\n\"lab.bold-frames\" = \"lab.layouts:BOLD_FRAMES\""
+  },
+  {
+    "objectID": "how-to/change-the-layout.html#override-one-write",
+    "href": "how-to/change-the-layout.html#override-one-write",
+    "title": "Configure array chunking and compression",
+    "section": "6 Override one write",
+    "text": "6 Override one write\nchunk_shape= and codec= on auto_create or write_source take precedence over the profile for every array of that call:\nds, report = BITSZarrDataset.auto_create(source, \"dest.bits\", codec=\"zstd@19\")"
+  },
+  {
+    "objectID": "how-to/change-the-layout.html#constraints",
+    "href": "how-to/change-the-layout.html#constraints",
+    "title": "Configure array chunking and compression",
+    "section": "7 Constraints",
+    "text": "7 Constraints\n\nRules match data types and axis-label sequences, not BIDS suffixes. For example, a T1-weighted image and a three-dimensional mask with the same data type match the same rule.\nExplicit chunk_shape and codec arguments override the profile but are applied to every image in that ingestion call."
+  },
+  {
+    "objectID": "how-to/change-the-layout.html#see-also",
+    "href": "how-to/change-the-layout.html#see-also",
+    "title": "Configure array chunking and compression",
+    "section": "8 See also",
+    "text": "8 See also\n\nStorage backends and array layout"
+  },
+  {
+    "objectID": "how-to/store-integer-tensors.html",
+    "href": "how-to/store-integer-tensors.html",
+    "title": "Control stored numerical precision",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nUse exact narrowing during ingestion when the source values admit a smaller representation. Use explicit affine quantization when a bounded numerical error is acceptable and should be represented in the file’s fidelity contract."
+  },
+  {
+    "objectID": "how-to/store-integer-tensors.html#narrow-exactly-at-ingest",
+    "href": "how-to/store-integer-tensors.html#narrow-exactly-at-ingest",
+    "title": "Control stored numerical precision",
+    "section": "1 Narrow exactly at ingest",
+    "text": "1 Narrow exactly at ingest\nauto_create and write_source take narrowing=:\n\n\n\n\n\n\n\n\nnarrowing=\nLooks at\nStores\n\n\n\n\n\"header\" (default)\nthe header only\nthe source dtype, with the header’s scaling as stored\n\n\n\"range\"\nevery value\nthe smallest integer dtype that holds them, if all are finite whole numbers\n\n\n\"step\"\nevery value\nint codes on a uniform step (at most 65,536 distinct values), if they rebuild every value bit for bit; else as \"range\"\n\n\n\nAll three modes preserve numerical values exactly. If the requested analysis cannot find a smaller exact representation, ingestion retains the original representation.\nfrom bitsio import BITSZarrDataset\nfrom bitsio.example_data import fetch_ds000114\n\nfor narrowing in (\"header\", \"range\", \"step\"):\n    _, report = BITSZarrDataset.auto_create(fetch_ds000114(), f\"{narrowing}.bits\", narrowing=narrowing)\n    print(narrowing, [(s.suffix, s.dtype) for s in report.strata])\nheader [('T1w', 'float32'), ('bold', 'int16')]\nrange [('T1w', 'float32'), ('bold', 'int16')]\nstep [('T1w', 'float32'), ('bold', 'int16')]\nThis dataset does not narrow further: its T1-weighted values are continuous floating-point data, and its BOLD values are already int16. Label maps, masks, and integer-valued data stored in a floating-point container are more likely to benefit."
+  },
+  {
+    "objectID": "how-to/store-integer-tensors.html#quantize-values-to-int8",
+    "href": "how-to/store-integer-tensors.html#quantize-values-to-int8",
+    "title": "Control stored numerical precision",
+    "section": "2 Quantize values to int8",
+    "text": "2 Quantize values to int8\nimport numpy as np\nfrom tensorbids.authoring import AffineQuantization\n\n\nclass Volume:\n    def __init__(self, data, affine):\n        self.data, self.affine, self.shape = data, affine, data.shape\n\n\nds = BITSZarrDataset.open(\"ds000114.bits\", read_only=False)\n(image,) = ds.read(subject=\"01\", suffix=\"T1w\", form=\"object\")\nt1w = image.get_fdata(dtype=\"float32\")\nvolume = Volume(t1w, image.affine)\nrung = AffineQuantization.spanning(t1w.min(), t1w.max(), \"int8\")\ntarget = \"sub-01/ses-test/anat/sub-01_ses-test_desc-int8_T1w.nii\"\nds.write_volume(\n    volume,\n    target_path=target,\n    geometry=ds.default_geometry(volume, target, dtype=\"int8\"),\n    precision=rung,\n)\nds.index()\n(values,) = ds.read(target_path=target, form=\"tensor\")\nprint(values.dtype, float(np.abs(values - t1w).max()) &lt;= rung.scale / 2)\n(row,) = ds.query(target_path=target).table.select(\"contract_level\").to_dicts()\nkey = ds.lineage_table().filter(ds.lineage_table()[\"target_path\"] == target)[\"store_key\"][0]\nprint(row[\"contract_level\"], ds.lineage(key).lossy)\nfloat32 True\nlossy True\nAffineQuantization.spanning(low, high, dtype) maps the minimum and maximum integer codes to low and high. Values are rounded to the nearest code, so the maximum quantization error is half of one scale step. For a four-dimensional volume, pass values in (time, i, j, k) order."
+  },
+  {
+    "objectID": "how-to/store-integer-tensors.html#read-values-or-codes",
+    "href": "how-to/store-integer-tensors.html#read-values-or-codes",
+    "title": "Control stored numerical precision",
+    "section": "3 Read values or codes",
+    "text": "3 Read values or codes\nNormal reads return dequantized values. To retrieve the stored codes together with their scale and offset, select the stored port and attach the dequantization parameters:\nfrom tensorbids.query import BIDSReference\n\ncodes = ds.records(BIDSReference(suffix=\"T1w\", desc=\"int8\", port=\"stored\", dequantize=\"attach\"))\n(c,) = codes.read([0])[\"T1w\"]\nprint(c.q.dtype, c.q.shape, c.dtype, np.allclose(c.q * c.scale + c.offset, values, rtol=1e-5))\nint8 (256, 156, 256) float32 True\nIn records(...).loader(), a Codes value is collated into three fields: T1w for the int8 codes, T1w.scale, and T1w.offset. Lazy windows retain the scale and offset of their source image."
+  },
+  {
+    "objectID": "how-to/store-integer-tensors.html#constraints",
+    "href": "how-to/store-integer-tensors.html#constraints",
+    "title": "Control stored numerical precision",
+    "section": "4 Constraints",
+    "text": "4 Constraints\n\nA reconstructed NIfTI contains dequantized float32 values, not int8 values encoded with scl_slope and scl_inter.\nwrite_array() stores the supplied data type without creating an image fidelity contract. Do not cast to a lossy data type before calling it. Use a container writer such as write_volume() with an explicit precision rung."
+  },
+  {
+    "objectID": "how-to/store-integer-tensors.html#see-also",
+    "href": "how-to/store-integer-tensors.html#see-also",
+    "title": "Control stored numerical precision",
+    "section": "5 See also",
+    "text": "5 See also\n\nStorage backends and array layout\nData lineage and provenance"
+  },
+  {
+    "objectID": "how-to/train-with-monai.html",
+    "href": "how-to/train-with-monai.html",
+    "title": "Use BITS data in a MONAI pipeline",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nbitsfuse adapts a BITS record set to MONAI dictionary transforms and MetaTensor objects."
+  },
+  {
+    "objectID": "how-to/train-with-monai.html#a-map-style-dataset",
+    "href": "how-to/train-with-monai.html#a-map-style-dataset",
+    "title": "Use BITS data in a MONAI pipeline",
+    "section": "1 A map-style dataset",
+    "text": "1 A map-style dataset\nSelect images with the METATENSOR return type, then wrap the record set in bitsfuse.monai.BitsDataset:\nfrom bitsfuse.monai import BitsDataset\nfrom bitsio import BITSZarrDataset\nfrom tensorbids.query import BIDSReference, BIDSReferenceType\n\nds = BITSZarrDataset.open(\"ds000114.bits\")\nrecords = ds.records(\n    BIDSReference(suffix=\"T1w\", return_type=BIDSReferenceType.METATENSOR),\n    \"participants.dominant_hand\",\n)\ndataset = BitsDataset(records)\nitem = dataset[0]\nimage = item[\"T1w\"]\nprint(len(dataset), sorted(item))\nprint(type(image).__name__, tuple(image.shape), image.dtype, tuple(image.meta[\"affine\"].shape))\n10 ['T1w', 'participants.dominant_hand', 'subject']\nMetaTensor (256, 156, 256) torch.float32 (4, 4)\nEach item retains the record fields. A METATENSOR reference becomes a MetaTensor in NIfTI axis order, with affine and spatial_shape metadata; a TENSOR reference becomes a torch.Tensor. The default output data type is float32. Pass float16, bfloat16, float64, or native to select a different type. The optional transform argument applies a MONAI dictionary transform to each item."
+  },
+  {
+    "objectID": "how-to/train-with-monai.html#inside-an-existing-pipeline",
+    "href": "how-to/train-with-monai.html#inside-an-existing-pipeline",
+    "title": "Use BITS data in a MONAI pipeline",
+    "section": "2 Inside an existing pipeline",
+    "text": "2 Inside an existing pipeline\nUse LoadBITSImaged where an existing dictionary pipeline would otherwise use LoadImaged. The transform resolves BIDS target paths through the open dataset:\nfrom bitsfuse.monai import LoadBITSImaged\n\nload = LoadBITSImaged([\"image\"], dataset=ds, ensure_channel_first=True)\n(ref,) = ds.query(subject=\"02\", suffix=\"T1w\")\nloaded = load({\"image\": ref.target_path, \"label\": 1})\nprint(type(loaded[\"image\"]).__name__, tuple(loaded[\"image\"].shape), loaded[\"label\"])\nMetaTensor (1, 156, 256, 256) 1\nA missing target path raises RecordError. With allow_missing_keys=True, the transform leaves absent keys unchanged."
+  },
+  {
+    "objectID": "how-to/train-with-monai.html#batch",
+    "href": "how-to/train-with-monai.html#batch",
+    "title": "Use BITS data in a MONAI pipeline",
+    "section": "3 Batch",
+    "text": "3 Batch\nImages with different shapes cannot be stacked directly. Crop or pad them to a common shape with a MONAI transform or a BITS record function before batching:\nfrom monai.transforms import CenterSpatialCropd, EnsureChannelFirstd, Compose\nfrom torch.utils.data import DataLoader\n\ncrop = Compose([EnsureChannelFirstd(\"T1w\", channel_dim=\"no_channel\"), CenterSpatialCropd(\"T1w\", (64, 64, 64))])\nloader = DataLoader(BitsDataset(records, transform=crop), batch_size=2)\nbatch = next(iter(loader))\nprint(tuple(batch[\"T1w\"].shape), batch[\"participants.dominant_hand\"])\n(2, 1, 64, 64, 64) ['left', 'right']"
+  },
+  {
+    "objectID": "how-to/train-with-monai.html#when-to-use-the-record-sets-loader-instead",
+    "href": "how-to/train-with-monai.html#when-to-use-the-record-sets-loader-instead",
+    "title": "Use BITS data in a MONAI pipeline",
+    "section": "4 When to use the record set’s loader instead",
+    "text": "4 When to use the record set’s loader instead\nrecords.loader() can translate a lazy spatial window into region reads of the stored arrays. BitsDataset reads each selected image before applying its MONAI transform. Use the record-set loader when partial array reads are the priority, and use BitsDataset when reusing an existing MONAI transform pipeline is more important."
+  },
+  {
+    "objectID": "how-to/train-with-monai.html#constraints",
+    "href": "how-to/train-with-monai.html#constraints",
+    "title": "Use BITS data in a MONAI pipeline",
+    "section": "5 Constraints",
+    "text": "5 Constraints\n\nBitsDataset casts image arrays to float32 unless dtype specifies another type.\nFor spawn or forkserver workers, transforms and record functions must be importable by module and name."
+  },
+  {
+    "objectID": "how-to/train-with-monai.html#see-also",
+    "href": "how-to/train-with-monai.html#see-also",
+    "title": "Use BITS data in a MONAI pipeline",
+    "section": "6 See also",
+    "text": "6 See also\n\nRecord assembly and batched loading"
+  },
+  {
+    "objectID": "how-to/read-a-discarded-experiment.html",
+    "href": "how-to/read-a-discarded-experiment.html",
+    "title": "Inspect and purge discarded workspaces",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\nBy default, discard removes a workspace’s arrays and tables but archives its lineage journal, producer metadata, and workspace record under bits/overlays/_discarded/&lt;id&gt;-&lt;attempt&gt;/. Each discard of a workspace name creates a numbered attempt. Pass purge=True to discard() to retain no archive.\nCreate and discard two attempts that write the same target path with different thresholds:"
+  },
+  {
+    "objectID": "how-to/read-a-discarded-experiment.html#list-them",
+    "href": "how-to/read-a-discarded-experiment.html#list-them",
+    "title": "Inspect and purge discarded workspaces",
+    "section": "1 List them",
+    "text": "1 List them\nfor record in ds.discarded_workspaces():\n    print(record.name, record.attempt, record.outcome, record.discarded_at is not None)\nthreshold 1 discarded True\nthreshold 2 discarded True\nEach record includes the workspace name and overlay identifier, attempt number, open and discard times, and the content and history digests of its base dataset."
+  },
+  {
+    "objectID": "how-to/read-a-discarded-experiment.html#read-one",
+    "href": "how-to/read-a-discarded-experiment.html#read-one",
+    "title": "Inspect and purge discarded workspaces",
+    "section": "2 Read one",
+    "text": "2 Read one\nds.discarded(name) opens the latest archived attempt for lineage reads. Use attempt to select an earlier archive:\nlatest = ds.discarded(\"threshold\")\nfirst = ds.discarded(\"threshold\", attempt=1)\nprint(latest.record.attempt, first.record.attempt)\nprint([entry.kind.value for entry in first.history(keys[0]).entries])\nprint(first.lineage(keys[0]).target_path == target, latest.lineage(keys[0]))\nprint(len(first.events()), first.scopes())\n2 1\n['ingest']\nTrue None\n1 ['01']\nThe returned archive view exposes history(), lineage(), events(), scopes(), and lineage_table() over the archived journal and the base dataset. Discarded arrays are not available for numerical reads."
+  },
+  {
+    "objectID": "how-to/read-a-discarded-experiment.html#compare-attempts",
+    "href": "how-to/read-a-discarded-experiment.html#compare-attempts",
+    "title": "Inspect and purge discarded workspaces",
+    "section": "3 Compare attempts",
+    "text": "3 Compare attempts\ndef written(attempt):\n    table = attempt.lineage_table()\n    return table.filter(table[\"source_tree\"] == \"overlay\").select(\"target_path\", \"content_hash\")\n\nfirst_rows, latest_rows = written(first), written(latest)\nprint(first_rows[\"target_path\"].to_list() == latest_rows[\"target_path\"].to_list())\nprint(first_rows[\"content_hash\"].to_list() == latest_rows[\"content_hash\"].to_list())\nTrue\nFalse\nBoth attempts wrote the same target path, but their content hashes differ."
+  },
+  {
+    "objectID": "how-to/read-a-discarded-experiment.html#delete-one-for-good",
+    "href": "how-to/read-a-discarded-experiment.html#delete-one-for-good",
+    "title": "Inspect and purge discarded workspaces",
+    "section": "4 Delete one for good",
+    "text": "4 Delete one for good\nremoved = first.purge()\nprint(len(removed) &gt; 0, first.purge())\nprint([(r.name, r.attempt) for r in ds.discarded_workspaces()])\nTrue ()\n[('threshold', 2)]\npurge() permanently deletes the archive. It requires a writable dataset and does not append a provenance event. A second call returns an empty tuple."
+  },
+  {
+    "objectID": "how-to/read-a-discarded-experiment.html#constraints",
+    "href": "how-to/read-a-discarded-experiment.html#constraints",
+    "title": "Inspect and purge discarded workspaces",
+    "section": "5 Constraints",
+    "text": "5 Constraints\n\nOn a store without deletion support, discard is logical: bytes and metadata remain at the workspace root, and its name cannot be reused until a deletion-capable store purges them.\nThe archive supports provenance inspection, not reconstruction of deleted array values."
+  },
+  {
+    "objectID": "how-to/read-a-discarded-experiment.html#see-also",
+    "href": "how-to/read-a-discarded-experiment.html#see-also",
+    "title": "Inspect and purge discarded workspaces",
+    "section": "6 See also",
+    "text": "6 See also\n\nCopy-on-write workspaces\nData lineage and provenance"
+  },
+  {
+    "objectID": "explanation/index.html",
+    "href": "explanation/index.html",
+    "title": "Explanation",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools.\n\n\nThese chapters explain the architecture implemented by bitsio, the interfaces it receives from tensorbids, and the operational trade-offs of the storage and resolver design.\n\nArchitecture and library responsibilities: the BITS processing model and the boundaries between tensorbids, bitsio, and bitsfuse.\nStorage backends and array layout: tensor, auxiliary, and table storage; layout profiles; content hashes; and partial read cost.\nPersistent BIDS index and query semantics: indexed fields, entity filters, sidecar inheritance, and index freshness.\nRecord assembly and batched loading: joins, lazy region reads, deterministic sampling, and PyTorch workers.\nCopy-on-write workspaces: overlay reads, conflict detection, commit, rebase, discard, and retained audit records.\nData lineage and provenance: navigators, lineage journals, fidelity contracts, and W3C PROV export."
+  },
+  {
+    "objectID": "explanation/stores-and-layout.html",
+    "href": "explanation/stores-and-layout.html",
+    "title": "Storage backends and array layout",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools."
+  },
+  {
+    "objectID": "explanation/stores-and-layout.html#implemented-storage-components",
+    "href": "explanation/stores-and-layout.html#implemented-storage-components",
+    "title": "Storage backends and array layout",
+    "section": "1 Implemented storage components",
+    "text": "1 Implemented storage components\nA tensor store maps an opaque key to an n-dimensional array. bitsio provides Zarr v3 implementations backed by TensorStore or zarr-python. Both backends read arrays written by the other when they support the selected codec. Storage roots may use a local directory, memory, S3, Google Cloud Storage, or Azure; the supported combinations depend on the selected backend and transport.\nAn auxiliary store maps a content hash to a smaller payload such as an affine matrix, image header, or resolved JSON sidecar. Equal canonical payloads share one key. Array-valued payloads use a fixed little-endian .npy representation for each payload kind; floating-point zero and NaN values are canonicalized before hashing. The store can use hash-partitioned objects or packfiles.\nA table engine stores BIDS relations, user-defined relations, and the BIDS and provenance indexes as sharded Parquet.\nA navigator is a typed operation graph defined by tensorbids. It references tensor and auxiliary keys and describes reconstruction steps such as reading, exact casting, affine dequantization, spatial selection, and file materialization. bitsio stores navigators through the tensorbids dataset filesystem and evaluates them with its reference resolver."
+  },
+  {
+    "objectID": "explanation/stores-and-layout.html#tensor-content-hashes",
+    "href": "explanation/stores-and-layout.html#tensor-content-hashes",
+    "title": "Storage backends and array layout",
+    "section": "2 Tensor content hashes",
+    "text": "2 Tensor content hashes\nA tensor content hash covers its data type string, including byte order, its shape, and its C-order values. It does not cover chunk boundaries, compressed bytes, or backend metadata:\nimport numpy as np\nfrom bitsio import BITSZarrDataset, canonical_tensor_hash\n\nds = BITSZarrDataset.open(\"ds000114.bits\", read_only=False)\nvalues = np.arange(4 * 5 * 6, dtype=\"float32\").reshape(4, 5, 6)\na = ds.write_array(\"sub-01/anat/sub-01_desc-a_T1w.nii\", values, codec=\"zstd@19\")\nb = ds.write_array(\"sub-01/anat/sub-01_desc-b_T1w.nii\", values, chunk_shape=(2, 5, 6), codec=\"blosc-zstd@5:byteshuffle\")\nprint(ds.tensor.info(a).codec, \"|\", ds.tensor.info(b).codec, ds.tensor.info(b).chunks)\nprint(ds.tensor_hash(a) == ds.tensor_hash(b) == canonical_tensor_hash(values))\nprint(canonical_tensor_hash(values.astype(\"&gt;f4\")) == canonical_tensor_hash(values))\nzstd@19 | blosc-zstd@5:byteshuffle (2, 5, 6)\nTrue\nFalse\nThe first result shows that the same values have the same hash under different codecs and chunk shapes. The second shows that byte order is part of tensor identity. A storage-only change can therefore be recorded as a relayout event without claiming that the tensor values changed. Store keys are opaque; applications should not parse their current textual representation."
+  },
+  {
+    "objectID": "explanation/stores-and-layout.html#layout",
+    "href": "explanation/stores-and-layout.html#layout",
+    "title": "Storage backends and array layout",
+    "section": "3 Layout",
+    "text": "3 Layout\nAn array plan fixes an array’s shape, data type, chunk shape, shard shape, and codec. A layout profile is an ordered set of rules that matches data types and axis-label sequences. The first matching rule supplies the physical layout. If no local rule matches, selection continues in the base profile.\n\n\n\n\n\n\n\n\nProfile\nBase\nRules\n\n\n\n\nbitsio.default\nnone\nApproximately 64-voxel chunks; Zstandard-based compression; generally one shard per array\n\n\nbitsio.unsharded\nnone\nDefault chunk geometry with one object per chunk\n\n\nbitsio.archival\nbitsio.unsharded\nWhole-volume int16 chunks compressed with zstd@19\n\n\nbitsio.fast\nbitsio.default\nLower compression levels with sharding\n\n\n\nA rule does not inspect BIDS suffixes. Arrays with the same data type and axis labels therefore select the same rule even when their BIDS meanings differ. See Configure array chunking and compression for profile customization."
+  },
+  {
+    "objectID": "explanation/stores-and-layout.html#read-amplification",
+    "href": "explanation/stores-and-layout.html#read-amplification",
+    "title": "Storage backends and array layout",
+    "section": "4 Read amplification",
+    "text": "4 Read amplification\nRead amplification is the ratio between data read or decoded and data requested by the application. The G1 conformance target combines low amplification with a small number of range requests. For a window of side \\(W\\), placed uniformly along an axis of length \\(n\\) and chunked with extent \\(C\\), the number of chunks touched is\n\\[\nk(o) = \\left\\lfloor \\frac{o + W - 1}{C} \\right\\rfloor - \\left\\lfloor \\frac{o}{C} \\right\\rfloor + 1,\n\\qquad o \\in \\{0, \\dots, n - W\\},\n\\]\nFor cubic chunks and windows, the expected decoded amplification is \\(\\prod_{\\text{axes}} \\mathbb{E}[k] \\cdot C^3 / W^3\\). The following calculation uses a \\(64^3\\) window in a (256, 156, 256) float32 image:\nimport numpy as np\n\nW, shape = 64, (256, 156, 256)\n\n\ndef chunks_touched(n, C):\n    o = np.arange(n - W + 1)\n    return (o + W - 1) // C - o // C + 1\n\n\nprint(\"chunk  chunks/window  decoded/needed\")\nfor C in (16, 32, 64, 128):\n    k = np.prod([chunks_touched(n, C).mean() for n in shape])\n    print(f\"{C:&gt;5}  {k:&gt;13.2f}  {k * C**3 / W**3:&gt;13.2f}x\")\nchunk  chunks/window  decoded/needed\n   16         120.09           1.88x\n   32          26.07           3.26x\n   64           7.75           7.75x\n  128           2.29          18.31x\nThe default profile stores these images in \\(64^3\\) chunks within one shard. The next cell reads the shard indexes for the nine tutorial images with this shape and estimates compressed bytes fetched for random windows:\nimport json\nfrom pathlib import Path\n\nfetched, stored = [], []\nfor meta in sorted(Path(\"ds000114.bits/bits/tensors/arrays\").glob(\"*/zarr.json\")):\n    m = json.loads(meta.read_text())\n    if m[\"data_type\"] != \"float32\" or tuple(m[\"shape\"]) != shape:\n        continue\n    (shard,) = [p for p in meta.parent.glob(\"c/**/*\") if p.is_file()]\n    grid = tuple(s // 64 for s in m[\"chunk_grid\"][\"configuration\"][\"chunk_shape\"])\n    raw = shard.read_bytes()\n    table = np.frombuffer(raw[-(np.prod(grid) * 16 + 4) : -4], \"&lt;u8\").reshape(*grid, 2)\n    nbytes = np.where(table[..., 0] == 2**64 - 1, 0, table[..., 1]).astype(float)\n    stored.append(nbytes.sum())\n    rng = np.random.default_rng(0)  # the same windows in every shard\n    for _ in range(1000):\n        origin = [rng.integers(0, n - W + 1) for n in shape]\n        fetched.append(nbytes[tuple(slice(o // 64, (o + W - 1) // 64 + 1) for o in origin)].sum())\nprint(len(stored), \"shards;\", f\"{np.mean(fetched) / 2**20:.2f} MiB fetched per window of\", f\"{np.mean(stored) / 2**20:.1f} MiB stored\")\nprint(f\"a window's decoded values: {W**3 * 4 / 2**20:.0f} MiB; the whole volume: {np.prod(shape) * 4 / 2**20:.1f} MiB\")\n9 shards; 1.37 MiB fetched per window of 5.8 MiB stored\na window's decoded values: 1 MiB; the whole volume: 39.0 MiB\nThe example illustrates three design considerations:\n\nSmaller chunks reduce excess decoding for arbitrary windows but increase the number of touched chunks and storage objects or ranges.\nChunk-aligned samples avoid boundary overlap and provide the most predictable I/O cost.\nSharding reduces object count and can co-locate chunk ranges, but the reader must first obtain the shard index. Readers cache that index after the first access.\n\nCompression changes the byte-level result: the measured random window fetches only part of the compressed shard, whereas a gzip-compressed NIfTI generally requires decompression from the start of the stream."
+  },
+  {
+    "objectID": "explanation/stores-and-layout.html#precision",
+    "href": "explanation/stores-and-layout.html#precision",
+    "title": "Storage backends and array layout",
+    "section": "5 Precision",
+    "text": "5 Precision\nA writer can reduce stored precision in two distinct ways:\n\nExact narrowing during ingestion analyzes the header, value range, or a uniform exact step. It changes storage only when reconstructed values remain exact, so the navigator’s fidelity contract does not weaken.\nAffine quantization maps values to integer codes with a declared scale and offset. It introduces bounded error and produces a lossy contract.\n\nwrite_array() stores the supplied array directly and does not author an image fidelity contract. See Control stored numerical precision."
+  },
+  {
+    "objectID": "explanation/stores-and-layout.html#compared-with-a-nifti-file",
+    "href": "explanation/stores-and-layout.html#compared-with-a-nifti-file",
+    "title": "Storage backends and array layout",
+    "section": "6 Compared with a NIfTI file",
+    "text": "6 Compared with a NIfTI file\nA .nii.gz file is a single gzip stream, so a reader normally decompresses from the start of that stream. A chunked BITS tensor can read and decode only the chunks intersecting the requested region. Its content hash covers tensor type, shape, and values rather than compressed storage bytes."
+  },
+  {
+    "objectID": "explanation/record-sets.html",
+    "href": "explanation/record-sets.html",
+    "title": "Record assembly and batched loading",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools."
+  },
+  {
+    "objectID": "explanation/record-sets.html#definitions",
+    "href": "explanation/record-sets.html#definitions",
+    "title": "Record assembly and batched loading",
+    "section": "1 Definitions",
+    "text": "1 Definitions\nA BIDSReference selects one image for each record and defines the requested representation:\n\nthe return type is TENSOR, METATENSOR, OBJECT, or BYTES;\nthe port selects the reconstructed image tensor or a named navigator port, including \"stored\"; and\ndequantize=\"attach\" returns integer codes with their scale and offset as a Codes value instead of applying the scale during the read.\n\nA relation field is addressed as &lt;relation&gt;.&lt;column&gt;. A bare column name is accepted when it is unambiguous among the selected relations.\nThe record key determines the unit of observation. By default, tensorbids derives it from the BIDS entities that vary among the selected references and includes subject when present. The optional key argument overrides that choice. Each assembled record must contain one value for every reference and field; missing=\"drop\" removes incomplete records, while missing=\"error\" rejects them.\nfrom bitsio import BITSZarrDataset\nfrom tensorbids.query import BIDSReference\n\nds = BITSZarrDataset.open(\"ds000114.bits\")\nprint(ds.records(BIDSReference(suffix=\"T1w\")).key)\nprint(ds.records(BIDSReference(suffix=\"bold\")).key)\nprint(len(ds.records(BIDSReference(suffix=\"T1w\"), BIDSReference(suffix=\"bold\"))))\n('subject',)\n('subject', 'session')\n2\nThe T1-weighted selection varies by subject, whereas the BOLD selection varies by subject and session. Their combined key is therefore (subject, session). Only subject/session pairs that contain both image types remain."
+  },
+  {
+    "objectID": "explanation/record-sets.html#lazy-reads",
+    "href": "explanation/record-sets.html#lazy-reads",
+    "title": "Record assembly and batched loading",
+    "section": "2 Lazy reads",
+    "text": "2 Lazy reads\nInside a record function, tensor references are represented by LazyTensor objects. Basic indexing, random_window(), and bound_to_mask() update a read plan without loading data. When a batch is evaluated, compatible operations are reduced to rectangular array regions and submitted together. The tensor store reads the chunks intersecting those regions; see read amplification.\nRandom-window sampling derives its generator state from the record-set seed, epoch, record index, and reference name. A fixed seed and epoch therefore produce the same windows across worker processes. seed=None requests non-deterministic draws.\ndef crop(record):\n    return record[\"T1w\"].random_window(i=32, j=32, k=32)\n\n\nwindows = ds.records(BIDSReference(suffix=\"T1w\")).select(crop, seed=0)\nfirst, again = windows.read([0]), windows.read([0])\nwindows.set_epoch(1)\nprint((first[0] == again[0]).all(), (first[0] == windows.read([0])[0]).all())\nTrue False\nWith stack=True, values for each reference are stacked along a batch axis. All arrays must have a common shape; fixed-size windows satisfy this condition even when their source images differ. OBJECT and BYTES results are not stacked."
+  },
+  {
+    "objectID": "explanation/record-sets.html#the-loader",
+    "href": "explanation/record-sets.html#the-loader",
+    "title": "Record assembly and batched loading",
+    "section": "3 The loader",
+    "text": "3 The loader\nloader() returns a PyTorch IterableDataset whose items are already complete batches. Wrap it with torch.utils.data.DataLoader(batch_size=None) to avoid a second batching layer. Workers partition the epoch’s batch order. in_flight limits outstanding reads, while slots controls reusable shared-memory buffers. set_epoch() updates both shuffle order and deterministic random windows.\nWith the recommended forkserver or spawn process start method, a worker starts a fresh interpreter and imports the record function by module and name. Define the function in an importable module and protect executable script code with if __name__ == \"__main__\":. Record sets backed by workspace views are not currently serializable to worker processes and must use num_workers=0."
+  },
+  {
+    "objectID": "explanation/record-sets.html#compared-with-monai",
+    "href": "explanation/record-sets.html#compared-with-monai",
+    "title": "Record assembly and batched loading",
+    "section": "4 Compared with MONAI",
+    "text": "4 Compared with MONAI\nThe record-set interface is defined in tensorbids and can exploit bitsio region reads before data reaches the application. MONAI (Cardoso et al. 2022) provides a broader transform ecosystem around item dictionaries and MetaTensor. bitsfuse.monai.BitsDataset adapts BITS records to that interface, generally reading the selected image before applying MONAI transforms. See Use BITS data in a MONAI pipeline."
+  },
+  {
+    "objectID": "explanation/provenance.html",
+    "href": "explanation/provenance.html",
+    "title": "Data lineage and provenance",
+    "section": "",
+    "text": "WarningContent review status\n\n\n\nThis page contains unreviewed content created with large language model (LLM) tools."
+  },
+  {
+    "objectID": "explanation/provenance.html#definitions",
+    "href": "explanation/provenance.html#definitions",
+    "title": "Data lineage and provenance",
+    "section": "1 Definitions",
+    "text": "1 Definitions\nA navigator is a typed operation graph from stored keys to a virtual file. Its fidelity contract is inferred from the graph: byte-preserving lossless, value-preserving semantically_lossless, spatially bounded mask_lossless, or lossy.\nA journal event records one operation affecting a store key. Journals are partitioned by subject. The event types are:\n\n\n\n\n\n\n\nEvent\nRecords\n\n\n\n\ningest\nA key receives stored data from an external source or a producer recipe\n\n\nrelayout\nThe same tensor values move to another physical layout\n\n\nremove\nA key is removed from the current dataset state\n\n\ncondense\nA computed result is materialized in storage\n\n\nevert\nStored data is retired in favor of recomputation from a producer recipe\n\n\nrebase\nA producer recipe is updated to reference a new source state\n\n\nderive\nA derived relation column is recorded\n\n\n\nEach event includes the preceding journal hash. Changing an earlier entry therefore invalidates all later hashes in that journal. Workspace commit appends the workspace entries to the parent’s journal; commit itself is not a lineage event.\nA producer recipe is a navigator whose output is a derived store key. The provenance index folds journal events into the current state of each key. lineage(key) reads that state, while history(key) selects the journal entries associated with the key.\nimport polars as pl\nfrom bitsio import BITSZarrDataset\n\nds = BITSZarrDataset.open(\"ds000114.bits\", read_only=False)\ntable = ds.lineage_table()\n(row,) = table.filter((pl.col(\"subject\") == \"01\") & pl.col(\"target_path\").str.contains(\"T1w\")).to_dicts()\nkey = row[\"store_key\"]\nlineage = ds.lineage(key)\nprint(lineage.lineage.value, lineage.realization.value, lineage.from_index, lineage.lossy)\nprint([entry.kind.value for entry in ds.history(key).entries])\nprint(lineage.ingest_record.source_ref)\nroot stored True False\n['ingest']\nsub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz\nWhen a provenance index exists, lineage reads use the last persisted snapshot. Call index() after writing; otherwise a new key may be absent from lineage() and lineage_table()."
+  },
+  {
+    "objectID": "explanation/provenance.html#contracts-and-loss",
+    "href": "explanation/provenance.html#contracts-and-loss",
+    "title": "Data lineage and provenance",
+    "section": "2 Contracts and loss",
+    "text": "2 Contracts and loss\nWhen a container write authors a lossy navigator, for example through affine quantization to int8, the ingest event records that contract and the key’s lineage reports lossy. write_array() writes a tensor without authoring a virtual image or image fidelity contract. See Control stored numerical precision."
+  },
+  {
+    "objectID": "explanation/provenance.html#the-prov-mapping",
+    "href": "explanation/provenance.html#the-prov-mapping",
+    "title": "Data lineage and provenance",
+    "section": "3 The PROV mapping",
+    "text": "3 The PROV mapping\nds.prov() maps the current lineage of selected keys to the W3C PROV data model (PROV-DM):\n\n\n\n\n\n\n\nPROV\nFrom\n\n\n\n\nprov:Entity\nA store key and its content hash, origin, storage status, subject, layout, and loss status\n\n\nprov:Activity\nThe latest journal event for that key\n\n\nwasGeneratedBy\nAssociation between the key entity and its latest activity\n\n\nprov:PrimarySource and wasDerivedFrom\nAn external source recorded by a root ingest\n\n\nprov:Plan and p-plan:Step\nThe layout profile and matching rule used for storage\n\n\nprov:SoftwareAgent and wasAssociatedWith\nThe software name passed as agent\n\n\n\nIf a write supplies no ingest source, its target path is used as the source reference. Pass ingest_record when the output was derived from another file or dataset object. See Export data lineage as W3C PROV."
+  },
+  {
+    "objectID": "explanation/provenance.html#integrity-properties",
+    "href": "explanation/provenance.html#integrity-properties",
+    "title": "Data lineage and provenance",
+    "section": "4 Integrity properties",
+    "text": "4 Integrity properties\nBITS guardrail G3 requires a dataset to retain the provenance information needed to interpret its current content and to identify a trusted manifest state. bitsio stores lineage journals and producer recipes in base datasets and workspaces. A normal discarded-workspace archive retains its journal and producer metadata. freeze() records content and history digests and rejects a dataset with no provenance state to pin."
+  },
+  {
+    "objectID": "explanation/provenance.html#condense-and-evert",
+    "href": "explanation/provenance.html#condense-and-evert",
+    "title": "Data lineage and provenance",
+    "section": "5 Condense and evert",
+    "text": "5 Condense and evert\ncondense() materializes a computed navigator output as stored data; evert() removes stored data while retaining a recipe that can recompute it. These APIs are part of the tensorbids operation model. The bitsio reference resolver is limited to reconstruction operators, so these operations have limited practical use in a bitsio-only workflow and are not used by the tutorials."
+  },
+  {
+    "objectID": "explanation/provenance.html#compared-with-bids",
+    "href": "explanation/provenance.html#compared-with-bids",
+    "title": "Data lineage and provenance",
+    "section": "6 Compared with BIDS",
+    "text": "6 Compared with BIDS\nBIDS GeneratedBy records pipelines at the derivative-dataset level (Gorgolewski et al. 2016). BITS lineage operates at the stored-key level and records successive events. W3C PROV export projects those entries into entities, activities, sources, plans, and software agents. Applications can use both dataset-level BIDS provenance and key-level BITS lineage."
+  }
+]

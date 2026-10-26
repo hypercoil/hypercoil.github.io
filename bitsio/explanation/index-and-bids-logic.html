@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Persistent BIDS index and query semantics – bitsio</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-cac0433bb97fa58dc0fc6599c25c149a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1f72d60fbc61934737c0fadaed867ef3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">bitsio</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials/index.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../how-to/index.html"> 
+<span class="menu-text">How-to</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../reference/index.html"> 
+<span class="menu-text">Reference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../"> 
+<span class="menu-text">Federation</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-index" id="toc-the-index" class="nav-link active" data-scroll-target="#the-index"><span class="header-section-number">1</span> The index</a></li>
+  <li><a href="#entities-and-filters" id="toc-entities-and-filters" class="nav-link" data-scroll-target="#entities-and-filters"><span class="header-section-number">2</span> Entities and filters</a></li>
+  <li><a href="#sidecar-inheritance" id="toc-sidecar-inheritance" class="nav-link" data-scroll-target="#sidecar-inheritance"><span class="header-section-number">3</span> Sidecar inheritance</a></li>
+  <li><a href="#relations" id="toc-relations" class="nav-link" data-scroll-target="#relations"><span class="header-section-number">4</span> Relations</a></li>
+  <li><a href="#compared-with-pybids" id="toc-compared-with-pybids" class="nav-link" data-scroll-target="#compared-with-pybids"><span class="header-section-number">5</span> Compared with pybids</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Persistent BIDS index and query semantics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- After human review, change the page include to llm-reviewed.qmd. -->
+<div class="callout callout-style-default callout-warning callout-titled" title="Content review status">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Content review status
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This page contains unreviewed content created with large language model (LLM) tools.</p>
+</div>
+</div>
+<div class="callout-tldr" title="Summary">
+<p><code>tensorbids</code> defines BIDS query semantics and index schemas. <code>bitsio</code> persists the indexes as Parquet and executes relational plans against them. Source adapters resolve BIDS paths and sidecar inheritance during ingestion. The indexes are derived data and must be rebuilt after writes.</p>
+</div>
+<section id="the-index" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-index"><span class="header-section-number">1</span> The index</h2>
+<p>The BIDS index has one row per navigator that materializes a BIDS-visible file. Internal navigators that only produce stored tensors do not appear. Each row includes the target path, content hash, standard path components, BIDS entities, fidelity contract, output specification, referenced store keys, and schema-defined metadata columns.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="index-columns"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="index-columns-1"><a href="#index-columns-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bitsio <span class="im">import</span> BITSZarrDataset</span>
+<span id="index-columns-2"><a href="#index-columns-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="index-columns-3"><a href="#index-columns-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> BITSZarrDataset.<span class="bu">open</span>(<span class="st">"ds000114.bits"</span>, read_only<span class="op">=</span><span class="va">False</span>)</span>
+<span id="index-columns-4"><a href="#index-columns-4" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> ds.query(suffix<span class="op">=</span><span class="st">"bold"</span>).table</span>
+<span id="index-columns-5"><a href="#index-columns-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table.height, <span class="st">"rows,"</span>, table.width, <span class="st">"columns"</span>)</span>
+<span id="index-columns-6"><a href="#index-columns-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table.select(<span class="st">"subject"</span>, <span class="st">"session"</span>, <span class="st">"task"</span>, <span class="st">"contract_level"</span>, <span class="st">"RepetitionTime"</span>).head(<span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>4 rows, 71 columns
+shape: (2, 5)
+┌─────────┬─────────┬────────────────┬────────────────┬────────────────┐
+│ subject ┆ session ┆ task           ┆ contract_level ┆ RepetitionTime │
+│ ---     ┆ ---     ┆ ---            ┆ ---            ┆ ---            │
+│ str     ┆ str     ┆ str            ┆ str            ┆ f64            │
+╞═════════╪═════════╪════════════════╪════════════════╪════════════════╡
+│ 01      ┆ retest  ┆ fingerfootlips ┆ lossless       ┆ null           │
+│ 01      ┆ test    ┆ fingerfootlips ┆ lossless       ┆ null           │
+└─────────┴─────────┴────────────────┴────────────────┴────────────────┘</code></pre>
+<p>The <code>RepetitionTime</code> index column is null in the current implementation even though the resolved sidecars contain that field. Metadata-column population is not yet connected to the index builder. Read sidecar fields through <code>ds.sidecar(ref)</code>; do not use these index columns for filtering until metadata population is implemented.</p>
+<p><code>bitsio</code> stores the BIDS index as subject-partitioned Parquet under <code>bits/bids-index/</code>. <code>BITSDataset.index()</code> rebuilds the BIDS and provenance indexes. <code>auto_create()</code> and a successful workspace commit invoke it, but individual write methods do not:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="index-stale"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="index-stale-1"><a href="#index-stale-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="index-stale-2"><a href="#index-stale-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="index-stale-3"><a href="#index-stale-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="index-stale-4"><a href="#index-stale-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Volume:</span>
+<span id="index-stale-5"><a href="#index-stale-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, data):</span>
+<span id="index-stale-6"><a href="#index-stale-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data, <span class="va">self</span>.affine, <span class="va">self</span>.shape <span class="op">=</span> data, np.eye(<span class="dv">4</span>), data.shape</span>
+<span id="index-stale-7"><a href="#index-stale-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="index-stale-8"><a href="#index-stale-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="index-stale-9"><a href="#index-stale-9" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">"sub-01/ses-test/anat/sub-01_ses-test_desc-new_T1w.nii"</span></span>
+<span id="index-stale-10"><a href="#index-stale-10" aria-hidden="true" tabindex="-1"></a>volume <span class="op">=</span> Volume(np.zeros((<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>), <span class="st">"float32"</span>))</span>
+<span id="index-stale-11"><a href="#index-stale-11" aria-hidden="true" tabindex="-1"></a>ds.write_volume(volume, target_path<span class="op">=</span>target, geometry<span class="op">=</span>ds.default_geometry(volume, target))</span>
+<span id="index-stale-12"><a href="#index-stale-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(ds.query(desc<span class="op">=</span><span class="st">"new"</span>)))</span>
+<span id="index-stale-13"><a href="#index-stale-13" aria-hidden="true" tabindex="-1"></a>ds.index()</span>
+<span id="index-stale-14"><a href="#index-stale-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(ds.query(desc<span class="op">=</span><span class="st">"new"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>0
+1</code></pre>
+<p>The provenance index has the same freshness requirement. If it already exists, <code>lineage()</code> and <code>lineage_table()</code> read the persisted snapshot; a newly written key is absent until the next <code>index()</code> call. See <a href="../how-to/export-provenance.html">Export data lineage as W3C PROV</a>.</p>
+</section>
+<section id="entities-and-filters" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="entities-and-filters"><span class="header-section-number">2</span> Entities and filters</h2>
+<p>Filters accept a BIDS entity’s long or short name as defined by the BIDS schema. A scalar requires equality; a list, tuple, or set accepts any member. <code>Query.REQUIRED</code> selects rows where the entity is present, while <code>Query.OPTIONAL</code> imposes no presence requirement.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="index-filters"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="index-filters-1"><a href="#index-filters-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorbids.query <span class="im">import</span> Query</span>
+<span id="index-filters-2"><a href="#index-filters-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="index-filters-3"><a href="#index-filters-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(ds.query(acquisition<span class="op">=</span>Query.REQUIRED)), <span class="bu">len</span>(ds.query(task<span class="op">=</span><span class="st">"fingerfootlips"</span>)), <span class="bu">len</span>(ds.query(task<span class="op">=</span>[<span class="st">"fingerfootlips"</span>])))</span>
+<span id="index-filters-4"><a href="#index-filters-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(ds.query(ses<span class="op">=</span><span class="st">"retest"</span>)) <span class="op">==</span> <span class="bu">len</span>(ds.query(session<span class="op">=</span><span class="st">"retest"</span>)))</span>
+<span id="index-filters-5"><a href="#index-filters-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(ds.query(modality<span class="op">=</span><span class="st">"func"</span>)), <span class="bu">len</span>(ds.query(datatype<span class="op">=</span><span class="st">"func"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>0 4 4
+True
+4 4</code></pre>
+<p>For pybids compatibility, <code>modality</code> is an alias for the datatype directory. It does not refer to the BIDS <code>mod</code> entity.</p>
+</section>
+<section id="sidecar-inheritance" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sidecar-inheritance"><span class="header-section-number">3</span> Sidecar inheritance</h2>
+<p>BIDS metadata inheritance applies matching sidecars from general to specific locations in the source tree. During ingestion, the BIDS source adapter resolves that chain for each image. A more specific value replaces an inherited value as a whole, including nested objects. The merged JSON document is stored as a content-addressed auxiliary payload referenced by the navigator’s <code>sidecar_ref</code> parameter.</p>
+<p>Consequently, normal reads do not traverse a sidecar hierarchy. Changing the source dataset after ingestion has no effect on the BITS dataset; use <code>set_sidecar()</code> to replace stored metadata. The current validation layer checks whether a sidecar is present for suffixes that require one, but it does not validate every required field inside that sidecar.</p>
+</section>
+<section id="relations" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="relations"><span class="header-section-number">4</span> Relations</h2>
+<p>Relations have declared keys, also called their grain. Participants and splits are keyed by subject; phenotype relations may add session; run-level relations such as events use the entities that identify their run. <code>records()</code> assembles model records from relations and image references, <code>query_relation()</code> filters one relation, and <code>join()</code> joins the BIDS index with relations. See <a href="../how-to/import-tables.html">Import tabular data</a>.</p>
+</section>
+<section id="compared-with-pybids" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="compared-with-pybids"><span class="header-section-number">5</span> Compared with pybids</h2>
+<p>pybids constructs a <code>BIDSLayout</code> index from a BIDS tree and resolves metadata according to the indexed file hierarchy <span class="citation" data-cites="yarkoni2019pybids">(<a href="#ref-yarkoni2019pybids" role="doc-biblioref">Yarkoni et al. 2019</a>)</span>. A BITS dataset stores the index and resolved sidecars as part of the dataset. Opening is therefore independent of a source-tree scan, but writes become queryable only after an index rebuild. <code>tensorbids</code> provides a limited <code>BIDSLayout</code> compatibility interface over the stored index for <code>get</code>, <code>get_file</code>, <code>get_subjects</code>, <code>get_metadata</code>, and related calls.</p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-yarkoni2019pybids" class="csl-entry" role="listitem">
+Yarkoni, Tal, Christopher Markiewicz, Alejandro de la Vega, et al. 2019. <span>“<span>PyBIDS</span>: Python Tools for <span>BIDS</span> Datasets.”</span> <em>Journal of Open Source Software</em> 4 (40): 1294. <a href="https://doi.org/10.21105/joss.01294">https://doi.org/10.21105/joss.01294</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

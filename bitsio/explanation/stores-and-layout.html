@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Storage backends and array layout – bitsio</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-cac0433bb97fa58dc0fc6599c25c149a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1f72d60fbc61934737c0fadaed867ef3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">bitsio</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials/index.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../how-to/index.html"> 
+<span class="menu-text">How-to</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/index.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../reference/index.html"> 
+<span class="menu-text">Reference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../"> 
+<span class="menu-text">Federation</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#implemented-storage-components" id="toc-implemented-storage-components" class="nav-link active" data-scroll-target="#implemented-storage-components"><span class="header-section-number">1</span> Implemented storage components</a></li>
+  <li><a href="#tensor-content-hashes" id="toc-tensor-content-hashes" class="nav-link" data-scroll-target="#tensor-content-hashes"><span class="header-section-number">2</span> Tensor content hashes</a></li>
+  <li><a href="#layout" id="toc-layout" class="nav-link" data-scroll-target="#layout"><span class="header-section-number">3</span> Layout</a></li>
+  <li><a href="#read-amplification" id="toc-read-amplification" class="nav-link" data-scroll-target="#read-amplification"><span class="header-section-number">4</span> Read amplification</a></li>
+  <li><a href="#precision" id="toc-precision" class="nav-link" data-scroll-target="#precision"><span class="header-section-number">5</span> Precision</a></li>
+  <li><a href="#compared-with-a-nifti-file" id="toc-compared-with-a-nifti-file" class="nav-link" data-scroll-target="#compared-with-a-nifti-file"><span class="header-section-number">6</span> Compared with a NIfTI file</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Storage backends and array layout</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- After human review, change the page include to llm-reviewed.qmd. -->
+<div class="callout callout-style-default callout-warning callout-titled" title="Content review status">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Content review status
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This page contains unreviewed content created with large language model (LLM) tools.</p>
+</div>
+</div>
+<div class="callout-tldr" title="Summary">
+<p><code>bitsio</code> stores numerical arrays as Zarr v3, auxiliary payloads in content-addressed storage, and relations and indexes as sharded Parquet. Layout profiles select chunking, sharding, and compression according to array data type and axis labels. Tensor content hashes are independent of those physical layout choices.</p>
+</div>
+<section id="implemented-storage-components" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="implemented-storage-components"><span class="header-section-number">1</span> Implemented storage components</h2>
+<p>A <strong>tensor store</strong> maps an opaque key to an n-dimensional array. <code>bitsio</code> provides Zarr v3 implementations backed by TensorStore or zarr-python. Both backends read arrays written by the other when they support the selected codec. Storage roots may use a local directory, memory, S3, Google Cloud Storage, or Azure; the supported combinations depend on the selected backend and transport.</p>
+<p>An <strong>auxiliary store</strong> maps a content hash to a smaller payload such as an affine matrix, image header, or resolved JSON sidecar. Equal canonical payloads share one key. Array-valued payloads use a fixed little-endian <code>.npy</code> representation for each payload kind; floating-point zero and NaN values are canonicalized before hashing. The store can use hash-partitioned objects or packfiles.</p>
+<p>A <strong>table engine</strong> stores BIDS relations, user-defined relations, and the BIDS and provenance indexes as sharded Parquet.</p>
+<p>A <strong>navigator</strong> is a typed operation graph defined by <code>tensorbids</code>. It references tensor and auxiliary keys and describes reconstruction steps such as reading, exact casting, affine dequantization, spatial selection, and file materialization. <code>bitsio</code> stores navigators through the <code>tensorbids</code> dataset filesystem and evaluates them with its reference resolver.</p>
+</section>
+<section id="tensor-content-hashes" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="tensor-content-hashes"><span class="header-section-number">2</span> Tensor content hashes</h2>
+<p>A tensor content hash covers its data type string, including byte order, its shape, and its C-order values. It does not cover chunk boundaries, compressed bytes, or backend metadata:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="layout-identity"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="layout-identity-1"><a href="#layout-identity-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="layout-identity-2"><a href="#layout-identity-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bitsio <span class="im">import</span> BITSZarrDataset, canonical_tensor_hash</span>
+<span id="layout-identity-3"><a href="#layout-identity-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="layout-identity-4"><a href="#layout-identity-4" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> BITSZarrDataset.<span class="bu">open</span>(<span class="st">"ds000114.bits"</span>, read_only<span class="op">=</span><span class="va">False</span>)</span>
+<span id="layout-identity-5"><a href="#layout-identity-5" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.arange(<span class="dv">4</span> <span class="op">*</span> <span class="dv">5</span> <span class="op">*</span> <span class="dv">6</span>, dtype<span class="op">=</span><span class="st">"float32"</span>).reshape(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="layout-identity-6"><a href="#layout-identity-6" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> ds.write_array(<span class="st">"sub-01/anat/sub-01_desc-a_T1w.nii"</span>, values, codec<span class="op">=</span><span class="st">"zstd@19"</span>)</span>
+<span id="layout-identity-7"><a href="#layout-identity-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> ds.write_array(<span class="st">"sub-01/anat/sub-01_desc-b_T1w.nii"</span>, values, chunk_shape<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>), codec<span class="op">=</span><span class="st">"blosc-zstd@5:byteshuffle"</span>)</span>
+<span id="layout-identity-8"><a href="#layout-identity-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ds.tensor.info(a).codec, <span class="st">"|"</span>, ds.tensor.info(b).codec, ds.tensor.info(b).chunks)</span>
+<span id="layout-identity-9"><a href="#layout-identity-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ds.tensor_hash(a) <span class="op">==</span> ds.tensor_hash(b) <span class="op">==</span> canonical_tensor_hash(values))</span>
+<span id="layout-identity-10"><a href="#layout-identity-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(canonical_tensor_hash(values.astype(<span class="st">"&gt;f4"</span>)) <span class="op">==</span> canonical_tensor_hash(values))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>zstd@19 | blosc-zstd@5:byteshuffle (2, 5, 6)
+True
+False</code></pre>
+<p>The first result shows that the same values have the same hash under different codecs and chunk shapes. The second shows that byte order is part of tensor identity. A storage-only change can therefore be recorded as a <code>relayout</code> event without claiming that the tensor values changed. Store keys are opaque; applications should not parse their current textual representation.</p>
+</section>
+<section id="layout" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="layout"><span class="header-section-number">3</span> Layout</h2>
+<p>An <strong>array plan</strong> fixes an array’s shape, data type, chunk shape, shard shape, and codec. A <strong>layout profile</strong> is an ordered set of rules that matches data types and axis-label sequences. The first matching rule supplies the physical layout. If no local rule matches, selection continues in the base profile.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Profile</th>
+<th>Base</th>
+<th>Rules</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bitsio.default</code></td>
+<td>none</td>
+<td>Approximately 64-voxel chunks; Zstandard-based compression; generally one shard per array</td>
+</tr>
+<tr class="even">
+<td><code>bitsio.unsharded</code></td>
+<td>none</td>
+<td>Default chunk geometry with one object per chunk</td>
+</tr>
+<tr class="odd">
+<td><code>bitsio.archival</code></td>
+<td><code>bitsio.unsharded</code></td>
+<td>Whole-volume <code>int16</code> chunks compressed with <code>zstd@19</code></td>
+</tr>
+<tr class="even">
+<td><code>bitsio.fast</code></td>
+<td><code>bitsio.default</code></td>
+<td>Lower compression levels with sharding</td>
+</tr>
+</tbody>
+</table>
+<p>A rule does not inspect BIDS suffixes. Arrays with the same data type and axis labels therefore select the same rule even when their BIDS meanings differ. See <a href="../how-to/change-the-layout.html">Configure array chunking and compression</a> for profile customization.</p>
+</section>
+<section id="read-amplification" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="read-amplification"><span class="header-section-number">4</span> Read amplification</h2>
+<p>Read amplification is the ratio between data read or decoded and data requested by the application. The G1 conformance target combines low amplification with a small number of range requests. For a window of side <span class="math inline">\(W\)</span>, placed uniformly along an axis of length <span class="math inline">\(n\)</span> and chunked with extent <span class="math inline">\(C\)</span>, the number of chunks touched is</p>
+<p><span class="math display">\[
+k(o) = \left\lfloor \frac{o + W - 1}{C} \right\rfloor - \left\lfloor \frac{o}{C} \right\rfloor + 1,
+\qquad o \in \{0, \dots, n - W\},
+\]</span></p>
+<p>For cubic chunks and windows, the expected decoded amplification is <span class="math inline">\(\prod_{\text{axes}} \mathbb{E}[k] \cdot C^3 / W^3\)</span>. The following calculation uses a <span class="math inline">\(64^3\)</span> window in a <code>(256, 156, 256)</code> <code>float32</code> image:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="layout-amplification"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="layout-amplification-1"><a href="#layout-amplification-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="layout-amplification-2"><a href="#layout-amplification-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="layout-amplification-3"><a href="#layout-amplification-3" aria-hidden="true" tabindex="-1"></a>W, shape <span class="op">=</span> <span class="dv">64</span>, (<span class="dv">256</span>, <span class="dv">156</span>, <span class="dv">256</span>)</span>
+<span id="layout-amplification-4"><a href="#layout-amplification-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="layout-amplification-5"><a href="#layout-amplification-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="layout-amplification-6"><a href="#layout-amplification-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> chunks_touched(n, C):</span>
+<span id="layout-amplification-7"><a href="#layout-amplification-7" aria-hidden="true" tabindex="-1"></a>    o <span class="op">=</span> np.arange(n <span class="op">-</span> W <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="layout-amplification-8"><a href="#layout-amplification-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (o <span class="op">+</span> W <span class="op">-</span> <span class="dv">1</span>) <span class="op">//</span> C <span class="op">-</span> o <span class="op">//</span> C <span class="op">+</span> <span class="dv">1</span></span>
+<span id="layout-amplification-9"><a href="#layout-amplification-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="layout-amplification-10"><a href="#layout-amplification-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="layout-amplification-11"><a href="#layout-amplification-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"chunk  chunks/window  decoded/needed"</span>)</span>
+<span id="layout-amplification-12"><a href="#layout-amplification-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> C <span class="kw">in</span> (<span class="dv">16</span>, <span class="dv">32</span>, <span class="dv">64</span>, <span class="dv">128</span>):</span>
+<span id="layout-amplification-13"><a href="#layout-amplification-13" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> np.prod([chunks_touched(n, C).mean() <span class="cf">for</span> n <span class="kw">in</span> shape])</span>
+<span id="layout-amplification-14"><a href="#layout-amplification-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>C<span class="sc">:&gt;5}</span><span class="ss">  </span><span class="sc">{</span>k<span class="sc">:&gt;13.2f}</span><span class="ss">  </span><span class="sc">{</span>k <span class="op">*</span> C<span class="op">**</span><span class="dv">3</span> <span class="op">/</span> W<span class="op">**</span><span class="dv">3</span><span class="sc">:&gt;13.2f}</span><span class="ss">x"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>chunk  chunks/window  decoded/needed
+   16         120.09           1.88x
+   32          26.07           3.26x
+   64           7.75           7.75x
+  128           2.29          18.31x</code></pre>
+<p>The default profile stores these images in <span class="math inline">\(64^3\)</span> chunks within one shard. The next cell reads the shard indexes for the nine tutorial images with this shape and estimates compressed bytes fetched for random windows:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="layout-measured"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="layout-measured-1"><a href="#layout-measured-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="layout-measured-2"><a href="#layout-measured-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="layout-measured-3"><a href="#layout-measured-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="layout-measured-4"><a href="#layout-measured-4" aria-hidden="true" tabindex="-1"></a>fetched, stored <span class="op">=</span> [], []</span>
+<span id="layout-measured-5"><a href="#layout-measured-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> meta <span class="kw">in</span> <span class="bu">sorted</span>(Path(<span class="st">"ds000114.bits/bits/tensors/arrays"</span>).glob(<span class="st">"*/zarr.json"</span>)):</span>
+<span id="layout-measured-6"><a href="#layout-measured-6" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> json.loads(meta.read_text())</span>
+<span id="layout-measured-7"><a href="#layout-measured-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> m[<span class="st">"data_type"</span>] <span class="op">!=</span> <span class="st">"float32"</span> <span class="kw">or</span> <span class="bu">tuple</span>(m[<span class="st">"shape"</span>]) <span class="op">!=</span> shape:</span>
+<span id="layout-measured-8"><a href="#layout-measured-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="layout-measured-9"><a href="#layout-measured-9" aria-hidden="true" tabindex="-1"></a>    (shard,) <span class="op">=</span> [p <span class="cf">for</span> p <span class="kw">in</span> meta.parent.glob(<span class="st">"c/**/*"</span>) <span class="cf">if</span> p.is_file()]</span>
+<span id="layout-measured-10"><a href="#layout-measured-10" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> <span class="bu">tuple</span>(s <span class="op">//</span> <span class="dv">64</span> <span class="cf">for</span> s <span class="kw">in</span> m[<span class="st">"chunk_grid"</span>][<span class="st">"configuration"</span>][<span class="st">"chunk_shape"</span>])</span>
+<span id="layout-measured-11"><a href="#layout-measured-11" aria-hidden="true" tabindex="-1"></a>    raw <span class="op">=</span> shard.read_bytes()</span>
+<span id="layout-measured-12"><a href="#layout-measured-12" aria-hidden="true" tabindex="-1"></a>    table <span class="op">=</span> np.frombuffer(raw[<span class="op">-</span>(np.prod(grid) <span class="op">*</span> <span class="dv">16</span> <span class="op">+</span> <span class="dv">4</span>) : <span class="op">-</span><span class="dv">4</span>], <span class="st">"&lt;u8"</span>).reshape(<span class="op">*</span>grid, <span class="dv">2</span>)</span>
+<span id="layout-measured-13"><a href="#layout-measured-13" aria-hidden="true" tabindex="-1"></a>    nbytes <span class="op">=</span> np.where(table[..., <span class="dv">0</span>] <span class="op">==</span> <span class="dv">2</span><span class="op">**</span><span class="dv">64</span> <span class="op">-</span> <span class="dv">1</span>, <span class="dv">0</span>, table[..., <span class="dv">1</span>]).astype(<span class="bu">float</span>)</span>
+<span id="layout-measured-14"><a href="#layout-measured-14" aria-hidden="true" tabindex="-1"></a>    stored.append(nbytes.<span class="bu">sum</span>())</span>
+<span id="layout-measured-15"><a href="#layout-measured-15" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)  <span class="co"># the same windows in every shard</span></span>
+<span id="layout-measured-16"><a href="#layout-measured-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="layout-measured-17"><a href="#layout-measured-17" aria-hidden="true" tabindex="-1"></a>        origin <span class="op">=</span> [rng.integers(<span class="dv">0</span>, n <span class="op">-</span> W <span class="op">+</span> <span class="dv">1</span>) <span class="cf">for</span> n <span class="kw">in</span> shape]</span>
+<span id="layout-measured-18"><a href="#layout-measured-18" aria-hidden="true" tabindex="-1"></a>        fetched.append(nbytes[<span class="bu">tuple</span>(<span class="bu">slice</span>(o <span class="op">//</span> <span class="dv">64</span>, (o <span class="op">+</span> W <span class="op">-</span> <span class="dv">1</span>) <span class="op">//</span> <span class="dv">64</span> <span class="op">+</span> <span class="dv">1</span>) <span class="cf">for</span> o <span class="kw">in</span> origin)].<span class="bu">sum</span>())</span>
+<span id="layout-measured-19"><a href="#layout-measured-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(stored), <span class="st">"shards;"</span>, <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>mean(fetched) <span class="op">/</span> <span class="dv">2</span><span class="op">**</span><span class="dv">20</span><span class="sc">:.2f}</span><span class="ss"> MiB fetched per window of"</span>, <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>mean(stored) <span class="op">/</span> <span class="dv">2</span><span class="op">**</span><span class="dv">20</span><span class="sc">:.1f}</span><span class="ss"> MiB stored"</span>)</span>
+<span id="layout-measured-20"><a href="#layout-measured-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a window's decoded values: </span><span class="sc">{</span>W<span class="op">**</span><span class="dv">3</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">2</span><span class="op">**</span><span class="dv">20</span><span class="sc">:.0f}</span><span class="ss"> MiB; the whole volume: </span><span class="sc">{</span>np<span class="sc">.</span>prod(shape) <span class="op">*</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">2</span><span class="op">**</span><span class="dv">20</span><span class="sc">:.1f}</span><span class="ss"> MiB"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>9 shards; 1.37 MiB fetched per window of 5.8 MiB stored
+a window's decoded values: 1 MiB; the whole volume: 39.0 MiB</code></pre>
+<p>The example illustrates three design considerations:</p>
+<ul>
+<li>Smaller chunks reduce excess decoding for arbitrary windows but increase the number of touched chunks and storage objects or ranges.</li>
+<li>Chunk-aligned samples avoid boundary overlap and provide the most predictable I/O cost.</li>
+<li>Sharding reduces object count and can co-locate chunk ranges, but the reader must first obtain the shard index. Readers cache that index after the first access.</li>
+</ul>
+<p>Compression changes the byte-level result: the measured random window fetches only part of the compressed shard, whereas a gzip-compressed NIfTI generally requires decompression from the start of the stream.</p>
+</section>
+<section id="precision" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="precision"><span class="header-section-number">5</span> Precision</h2>
+<p>A writer can reduce stored precision in two distinct ways:</p>
+<ul>
+<li><strong>Exact narrowing during ingestion</strong> analyzes the header, value range, or a uniform exact step. It changes storage only when reconstructed values remain exact, so the navigator’s fidelity contract does not weaken.</li>
+<li><strong>Affine quantization</strong> maps values to integer codes with a declared scale and offset. It introduces bounded error and produces a <code>lossy</code> contract.</li>
+</ul>
+<p><code>write_array()</code> stores the supplied array directly and does not author an image fidelity contract. See <a href="../how-to/store-integer-tensors.html">Control stored numerical precision</a>.</p>
+</section>
+<section id="compared-with-a-nifti-file" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="compared-with-a-nifti-file"><span class="header-section-number">6</span> Compared with a NIfTI file</h2>
+<p>A <code>.nii.gz</code> file is a single gzip stream, so a reader normally decompresses from the start of that stream. A chunked BITS tensor can read and decode only the chunks intersecting the requested region. Its content hash covers tensor type, shape, and values rather than compressed storage bytes.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
